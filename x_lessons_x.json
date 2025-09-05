@@ -8,7 +8,7 @@
                 "stderr": "",
                 "stdout": "x_cls_make_all_x.py:11: error: Skipping analyzing \"x_make_github_clones_x.x_cls_make_github_clones_x\": module is installed, but missing library stubs or py.typed marker  [import-untyped]\nx_cls_make_all_x.py:11: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_all_x.py:14: error: Skipping analyzing \"x_make_pypi_x.x_cls_make_pypi_x\": module is installed, but missing library stubs or py.typed marker  [import-untyped]\nx_cls_make_all_x.py:426: error: Function is missing a return type annotation  [no-untyped-def]\nx_cls_make_all_x.py:426: note: Use \"-> None\" if function does not return a value\nx_cls_make_all_x.py:848: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\nFound 4 errors in 1 file (checked 1 source file)\n"
             },
-            "explanation_and_fix": "TODO",
+            "explanation_and_fix": "x_mypy_fix_0000_add_none_return_to_main_x.py,x_mypy_fix_0001_touch_pytyped_x.py",
             "timestamp": "2025-09-05T03:33:18.040084+00:00"
         }
     ],

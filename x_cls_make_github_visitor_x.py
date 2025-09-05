@@ -132,6 +132,16 @@ class x_cls_make_github_visitor_x:
 
    def body(self) -> None:
       """Placeholder for step 2 of the inspect flow. Implement analysis here."""
+
+      ##BEGIN TODO FOR GITHUB COPILOT
+
+      ##please modify the code here to execute the 2 scripts below on every single pthon file in the a priori file
+
+      ## 1) x_mypy_fix_0000_add_none_return_to_main_x.py
+      ## 2) x_mypy_fix_0001_touch_pytyped_x.py
+      
+      ##END TODO FOR GITHUB COPILOT
+      
       # Implemented: ensure tools are installed/updated, run autofix and checks
       python = sys.executable
 
