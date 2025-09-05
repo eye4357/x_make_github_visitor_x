@@ -144,9 +144,10 @@ class x_cls_make_github_visitor_x:
          except Exception as exc:
             raise AssertionError(f"failed to read a-priori index inside body(): {exc}") from exc
 
-         # Adjust these script paths if you place the fixer scripts elsewhere
-         add_none_script = Path(r"C:\x_cloned_repos_x\add_none_return_to_main.py")
-         touch_pytyped_script = Path(r"C:\x_cloned_repos_x\touch_pytyped.py")
+         # Resolve fixer scripts relative to this package so the visitor finds them
+         pkg_dir = Path(__file__).resolve().parent
+         add_none_script = pkg_dir / "x_mypy_fix_0000_add_none_return_to_main_x.py"
+         touch_pytyped_script = pkg_dir / "x_mypy_fix_0001_touch_pytyped_x.py"
          python_exe = sys.executable
 
          for repo_name, files in apriori.items():
@@ -159,7 +160,8 @@ class x_cls_make_github_visitor_x:
                   # record a lesson via the helper when available, otherwise raise
                   try:
                      lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                     lessons.add_mypy_lesson({"cmd": " ".join([python_exe, str(touch_pytyped_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}, "touch_pytyped failed")
+                     bc = {"cmd": " ".join([python_exe, str(touch_pytyped_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
+                     lessons.add_mypy_lesson(bc, "touch_pytyped failed")
                   except AssertionError:
                      raise
                   except Exception:
@@ -171,7 +173,8 @@ class x_cls_make_github_visitor_x:
                if p.returncode != 0:
                   try:
                      lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                     lessons.add_mypy_lesson({"cmd": " ".join([python_exe, str(add_none_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}, "add_none_return_to_main failed")
+                     bc = {"cmd": " ".join([python_exe, str(add_none_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
+                     lessons.add_mypy_lesson(bc, "add_none_return_to_main failed")
                   except AssertionError:
                      raise
                   except Exception:
@@ -210,58 +213,62 @@ class x_cls_make_github_visitor_x:
          repo_report["tools"]["ruff_fix"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          # treat non-zero as failure: record lesson and fail-fast
          if p.returncode != 0:
-            try:
-               lessons = x_cls_make_github_visitor_lesson_x(self.root)
-               lessons.add_ruff_lesson(repo_report["tools"]["ruff_fix"], "TODO")
-            except AssertionError:
-               # duplicate breadcrumb already recorded: fail fast to remind user
-               raise
-            except Exception as exc:
-               # surface lesson-write failure
-               raise AssertionError(f"failed to record ruff_fix lesson for {rel}: {exc}") from exc
-            raise AssertionError(f"ruff --fix failed for {rel}: {p.stderr}")
+               try:
+                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                  bc = {**repo_report["tools"]["ruff_fix"], "repo": rel}
+                  lessons.add_ruff_lesson(bc, "TODO")
+               except AssertionError:
+                  # duplicate breadcrumb already recorded: fail fast to remind user
+                  raise
+               except Exception as exc:
+                  # surface lesson-write failure
+                  raise AssertionError(f"failed to record ruff_fix lesson for {rel}: {exc}") from exc
+               raise AssertionError(f"ruff --fix failed for {rel}: {p.stderr}")
 
          # 3) black autofix
          cmd = [python, "-m", "black", ".", "--line-length", "79"]
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["black"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
-            try:
-               lessons = x_cls_make_github_visitor_lesson_x(self.root)
-               lessons.add_black_lesson(repo_report["tools"]["black"], "TODO")
-            except AssertionError:
-               raise
-            except Exception as exc:
-               raise AssertionError(f"failed to record black lesson for {rel}: {exc}") from exc
-            raise AssertionError(f"black failed for {rel}: {p.stderr}")
+               try:
+                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                  bc = {**repo_report["tools"]["black"], "repo": rel}
+                  lessons.add_black_lesson(bc, "TODO")
+               except AssertionError:
+                  raise
+               except Exception as exc:
+                  raise AssertionError(f"failed to record black lesson for {rel}: {exc}") from exc
+               raise AssertionError(f"black failed for {rel}: {p.stderr}")
 
          # 4) ruff check (post-fix)
          cmd = [python, "-m", "ruff", "check", "."]
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["ruff_check"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
-            try:
-               lessons = x_cls_make_github_visitor_lesson_x(self.root)
-               lessons.add_ruff_lesson(repo_report["tools"]["ruff_check"], "TODO")
-            except AssertionError:
-               raise
-            except Exception as exc:
-               raise AssertionError(f"failed to record ruff_check lesson for {rel}: {exc}") from exc
-            raise AssertionError(f"ruff check failed for {rel}: {p.stderr}")
+               try:
+                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                  bc = {**repo_report["tools"]["ruff_check"], "repo": rel}
+                  lessons.add_ruff_lesson(bc, "TODO")
+               except AssertionError:
+                  raise
+               except Exception as exc:
+                  raise AssertionError(f"failed to record ruff_check lesson for {rel}: {exc}") from exc
+               raise AssertionError(f"ruff check failed for {rel}: {p.stderr}")
 
          # 5) mypy strict check
          cmd = [python, "-m", "mypy", "--strict", "--no-warn-unused-configs", "--show-error-codes", "."]
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["mypy"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
-            try:
-               lessons = x_cls_make_github_visitor_lesson_x(self.root)
-               lessons.add_mypy_lesson(repo_report["tools"]["mypy"], "TODO")
-            except AssertionError:
-               raise
-            except Exception as exc:
-               raise AssertionError(f"failed to record mypy lesson for {rel}: {exc}") from exc
-            raise AssertionError(f"mypy failed for {rel}: {p.stderr}")
+               try:
+                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                  bc = {**repo_report["tools"]["mypy"], "repo": rel}
+                  lessons.add_mypy_lesson(bc, "TODO")
+               except AssertionError:
+                  raise
+               except Exception as exc:
+                  raise AssertionError(f"failed to record mypy lesson for {rel}: {exc}") from exc
+               raise AssertionError(f"mypy failed for {rel}: {p.stderr}")
 
          # 6) also capture resulting file index for this repo (same logic as inspect)
          files = []

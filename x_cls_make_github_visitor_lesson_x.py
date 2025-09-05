@@ -58,7 +58,8 @@ class x_cls_make_github_visitor_lesson_x:
         }
         for existing in data.get(key, []):
             if existing.get("breadcrumb") == breadcrumb:
-                raise AssertionError(f"duplicate breadcrumb for key={key} repo={breadcrumb.get('repo')}")
+                # idempotent: duplicate breadcrumb already recorded, no-op
+                return None
         data[key].append(entry)
         self._write(data)
 
