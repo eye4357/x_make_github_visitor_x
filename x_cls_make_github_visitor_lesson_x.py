@@ -98,6 +98,6 @@ if __name__ == "__main__":
             "timestamp": "2025-09-05T02:59:14.803213+00:00",
             "tool": "mypy"
         },
-        "tbd"
+        "TODO"
     )
     print(f"Wrote lesson to: {inst.lessons_path}")
