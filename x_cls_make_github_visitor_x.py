@@ -143,8 +143,14 @@ class x_cls_make_github_visitor_x:
          cmd = [python, "-m", "ruff", "check", ".", "--fix"]
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["ruff_fix"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
-         # treat non-zero as failure
+         # treat non-zero as failure (breadcrumb and fail-fast)
          if p.returncode != 0:
+            # write breadcrumb so user knows what failed
+            try:
+               self._write_breadcrumbs(rel, "ruff_fix", repo_report["tools"]["ruff_fix"])
+            except Exception:
+               # ignore breadcrumb write errors and fail loudly
+               pass
             raise AssertionError(f"ruff --fix failed for {rel}: {p.stderr}")
 
          # 3) black autofix
@@ -152,6 +158,10 @@ class x_cls_make_github_visitor_x:
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["black"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
+            try:
+               self._write_breadcrumbs(rel, "black", repo_report["tools"]["black"])
+            except Exception:
+               pass
             raise AssertionError(f"black failed for {rel}: {p.stderr}")
 
          # 4) ruff check (post-fix)
@@ -159,6 +169,10 @@ class x_cls_make_github_visitor_x:
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["ruff_check"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
+            try:
+               self._write_breadcrumbs(rel, "ruff_check", repo_report["tools"]["ruff_check"])
+            except Exception:
+               pass
             raise AssertionError(f"ruff check failed for {rel}: {p.stderr}")
 
          # 5) mypy strict check
@@ -166,6 +180,10 @@ class x_cls_make_github_visitor_x:
          p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
          repo_report["tools"]["mypy"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
          if p.returncode != 0:
+            try:
+               self._write_breadcrumbs(rel, "mypy", repo_report["tools"]["mypy"])
+            except Exception:
+               pass
             raise AssertionError(f"mypy failed for {rel}: {p.stderr}")
 
          # 6) also capture resulting file index for this repo (same logic as inspect)
@@ -188,6 +206,43 @@ class x_cls_make_github_visitor_x:
       """Placeholder for cleanup (step 4). Implement teardown here if needed."""
       # intentionally minimal; user can override or extend
       return None
+
+   def _write_breadcrumbs(self, repo: str, tool: str, report: dict) -> None:
+      """Write a small breadcrumbs JSON at the root describing a failing tool run.
+
+      The file `x_tool_breadcrumbs_x.json` is written atomically and contains a
+      list of breadcrumb entries so the user can quickly see what failed.
+      """
+      out = self.root / "x_tool_breadcrumbs_x.json"
+      entry = {
+         "repo": repo,
+         "tool": tool,
+         "timestamp": datetime.now(timezone.utc).isoformat(),
+         "report": report,
+      }
+
+      # Read existing breadcrumbs if present (ignore errors)
+      breadcrumbs: list[dict] = []
+      try:
+         if out.exists():
+            with out.open("r", encoding="utf-8") as fh:
+               data = json.load(fh)
+               if isinstance(data, list):
+                  breadcrumbs = data
+      except Exception:
+         breadcrumbs = []
+
+      breadcrumbs.append(entry)
+
+      tmp = out.with_name(out.name + ".tmp")
+      with tmp.open("w", encoding="utf-8") as fh:
+         json.dump(breadcrumbs, fh, indent=2, sort_keys=True)
+         fh.flush()
+         try:
+            os.fsync(fh.fileno())
+         except Exception:
+            pass
+      os.replace(str(tmp), str(out))
 
    def run_inspect_flow(self) -> None:
       """Run the inspect flow in four steps:
