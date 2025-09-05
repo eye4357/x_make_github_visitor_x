@@ -110,8 +110,17 @@ def process_file(path: Path) -> bool:
     """Process a single file. Returns True if the file was modified."""
     if not path.exists() or path.suffix != ".py":
         return False
+    # Always report that we attempted to process this file
+    try:
+        print(f"Processing: {path}")
+    except Exception:
+        pass
     safe_funcs = file_has_safe_functions(path)
     if not safe_funcs:
+        try:
+            print(f"  no safe functions found in: {path}")
+        except Exception:
+            pass
         return False
 
     # ensure parent dir has py.typed
@@ -132,6 +141,10 @@ def process_file(path: Path) -> bool:
     module = cst.parse_module(src)
     new_module = module.visit(AddNoneReturnTransformer())
     path.write_text(new_module.code, encoding="utf-8")
+    try:
+        print(f"  annotated: {path}")
+    except Exception:
+        pass
     return True
 
 

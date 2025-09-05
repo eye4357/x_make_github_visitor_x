@@ -29,6 +29,10 @@ import sys
 def touch_pytyped(pkg_dirs: list[str]) -> None:
     for d in pkg_dirs:
         p = Path(d)
+        try:
+            print(f"Processing: {d}")
+        except Exception:
+            pass
         if not p.exists():
             print(f"Path does not exist: {p}")
             continue
