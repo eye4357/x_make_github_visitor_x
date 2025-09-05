@@ -135,13 +135,50 @@ class x_cls_make_github_visitor_x:
 
       ##BEGIN TODO FOR GITHUB COPILOT
 
-      ##please modify the code here to execute the 2 scripts below on every single pthon file in the a priori file
+      # --- apply scripted fixes per a-priori index (run fixer scripts) ---
+      apriori_path = self.root / "x_index_a_a_priori_x.json"
+      if apriori_path.exists():
+         try:
+            with apriori_path.open("r", encoding="utf-8") as fh:
+               apriori = json.load(fh)
+         except Exception as exc:
+            raise AssertionError(f"failed to read a-priori index inside body(): {exc}") from exc
 
-      ## 1) x_mypy_fix_0000_add_none_return_to_main_x.py
-      ## 2) x_mypy_fix_0001_touch_pytyped_x.py
-      
+         # Adjust these script paths if you place the fixer scripts elsewhere
+         add_none_script = Path(r"C:\x_cloned_repos_x\add_none_return_to_main.py")
+         touch_pytyped_script = Path(r"C:\x_cloned_repos_x\touch_pytyped.py")
+         python_exe = sys.executable
+
+         for repo_name, files in apriori.items():
+            repo_dir = self.root / repo_name
+
+            # 1) ensure package is marked typed (idempotent)
+            if touch_pytyped_script.exists():
+               p = subprocess.run([python_exe, str(touch_pytyped_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
+               if p.returncode != 0:
+                  # record a lesson via the helper when available, otherwise raise
+                  try:
+                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                     lessons.add_mypy_lesson({"cmd": " ".join([python_exe, str(touch_pytyped_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}, "touch_pytyped failed")
+                  except AssertionError:
+                     raise
+                  except Exception:
+                     raise AssertionError(f"touch_pytyped failed for {repo_name}: {p.stderr}")
+
+            # 2) run safe annotator to add `-> None` to top-level main() when appropriate
+            if add_none_script.exists():
+               p = subprocess.run([python_exe, str(add_none_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
+               if p.returncode != 0:
+                  try:
+                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                     lessons.add_mypy_lesson({"cmd": " ".join([python_exe, str(add_none_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}, "add_none_return_to_main failed")
+                  except AssertionError:
+                     raise
+                  except Exception:
+                     raise AssertionError(f"add_none_return_to_main failed for {repo_name}: {p.stderr}")
+
       ##END TODO FOR GITHUB COPILOT
-      
+
       # Implemented: ensure tools are installed/updated, run autofix and checks
       python = sys.executable
 
