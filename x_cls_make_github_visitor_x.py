@@ -27,8 +27,22 @@ import sys
 from datetime import datetime, timezone
 from typing import Any, Dict
 
-# import the lessons helper
-from .x_cls_make_github_visitor_lesson_x import x_cls_make_github_visitor_lesson_x
+# Import the lessons helper. Use a package-relative import when available,
+# otherwise fall back to loading the module from the same directory so the
+# script can be executed directly (python script.py).
+try:
+   from .x_cls_make_github_visitor_lesson_x import x_cls_make_github_visitor_lesson_x
+except Exception:
+   import importlib.util
+
+   lesson_path = Path(__file__).resolve().parent / "x_cls_make_github_visitor_lesson_x.py"
+   spec = importlib.util.spec_from_file_location("x_cls_make_github_visitor_lesson_x", str(lesson_path))
+   if spec and spec.loader:
+      module = importlib.util.module_from_spec(spec)
+      spec.loader.exec_module(module)  # type: ignore[attr-defined]
+      x_cls_make_github_visitor_lesson_x = module.x_cls_make_github_visitor_lesson_x
+   else:
+      raise
 
 
 class x_cls_make_github_visitor_x:
