@@ -21,428 +21,463 @@ Notes / assumptions:
 from pathlib import Path
 import json
 import os
-from typing import Optional
+from typing import Optional, Any, Dict, List
 import subprocess
 import sys
 from datetime import datetime, timezone
-from typing import Any, Dict
 
-# Import the lessons helper. Use a package-relative import when available,
-# otherwise fall back to loading the module from the same directory so the
-# script can be executed directly (python script.py).
-try:
-   from .x_cls_make_github_visitor_lesson_x import x_cls_make_github_visitor_lesson_x
-except Exception:
-   import importlib.util
-
-   lesson_path = Path(__file__).resolve().parent / "x_cls_make_github_visitor_lesson_x.py"
-   spec = importlib.util.spec_from_file_location("x_cls_make_github_visitor_lesson_x", str(lesson_path))
-   if spec and spec.loader:
-      module = importlib.util.module_from_spec(spec)
-      spec.loader.exec_module(module)  # type: ignore[attr-defined]
-      x_cls_make_github_visitor_lesson_x = module.x_cls_make_github_visitor_lesson_x
-   else:
-      raise
+# Lessons feature removed: keep formatting/type checks but do not record lessons.
 
 
 class x_cls_make_github_visitor_x:
-   """Index immediate child git repositories under a given root.
+    """Index immediate child git repositories under a given root.
 
-   Example usage:
-      inst = x_cls_make_github_visitor_x(r"C:/aaa/bbb/ccc")
-   On construction the instance will validate the root and immediate
-   children; it will NOT write any JSON. Use `inspect(json_name)` to
-   produce index files.
-   """
+    Example usage:
+       inst = x_cls_make_github_visitor_x(r"C:/aaa/bbb/ccc")
+    On construction the instance will validate the root and immediate
+    children; it will NOT write any JSON. Use `inspect(json_name)` to
+    produce index files.
+    """
 
-   def __init__(self, root_dir: str | Path, *, output_filename: str = "repos_index.json") -> None:
-      self.root = Path(root_dir)
-      if not self.root.exists() or not self.root.is_dir():
-         raise AssertionError(f"root path must exist and be a directory: {self.root}")
+    def __init__(
+        self,
+        root_dir: str | Path,
+        *,
+        output_filename: str = "repos_index.json",
+    ) -> None:
+        self.root = Path(root_dir)
+        if not self.root.exists() or not self.root.is_dir():
+            raise AssertionError(
+                f"root path must exist and be a directory: {self.root}"
+            )
 
-      # assert root is not itself a git repository
-      if (self.root / ".git").exists():
-         raise AssertionError(f"root path must not be a git repository: {self.root}")
+        # assert root is not itself a git repository
+        if (self.root / ".git").exists():
+            raise AssertionError(
+                f"root path must not be a git repository: {self.root}"
+            )
 
-      # store output filename default but do not write here
-      self.output_filename = output_filename
+        # store output filename default but do not write here
+        self.output_filename = output_filename
 
-      # examine immediate child directories and assert they are git repos
-      children = [p for p in self.root.iterdir() if p.is_dir()]
-      # assert there is at least one child directory
-      if not children:
-         raise AssertionError(f"root path contains no child directories: {self.root}")
-      bad = [p for p in children if not (p / ".git").exists()]
-      if bad:
-         names = ", ".join(str(p) for p in bad)
-         raise AssertionError(f"the following child directories are not git repos (missing .git): {names}")
-      # storage for tool reports produced by body()
-      
-      
-      
-      self._tool_reports = {}
+        # examine immediate child directories and assert they are git repos
+        children = [p for p in self.root.iterdir() if p.is_dir()]
+        # assert there is at least one child directory
+        if not children:
+            raise AssertionError(
+                f"root path contains no child directories: {self.root}"
+            )
+        bad = [p for p in children if not (p / ".git").exists()]
+        if bad:
+            names = ", ".join(str(p) for p in bad)
+            raise AssertionError(
+                f"the following child directories are not git repos (missing .git): {names}"
+            )
+        # storage for tool reports produced by body()
+        # (typed for mypy)
+        self._tool_reports: Dict[str, Any] = {}
 
-   # --- Modularized operations for inspect command -------------------------------------------------
-   def inspect(self, json_name: str) -> None:
-      """Run the verification and write the index to `json_name` at root.
+    # --- Modularized operations for inspect command -------------------------------------------------
+    def inspect(self, json_name: str) -> None:
+        """Run the verification and write the index to `json_name` at root.
 
-      The `json_name` argument is required and will be used as the
-      filename written into the configured root directory.
-      """
-      # verify children are proper repos and build index
-      children = [p for p in self.root.iterdir() if p.is_dir()]
-      # assert there is at least one child directory
-      if not children:
-         raise AssertionError(f"root path contains no child directories: {self.root}")
+        The `json_name` argument is required and will be used as the
+        filename written into the configured root directory.
+        """
+        # verify children are proper repos and build index
+        children = [p for p in self.root.iterdir() if p.is_dir()]
+        # assert there is at least one child directory
+        if not children:
+            raise AssertionError(
+                f"root path contains no child directories: {self.root}"
+            )
 
-      bad = [p for p in children if not (p / ".git").exists()]
-      if bad:
-         names = ", ".join(str(p) for p in bad)
-         raise AssertionError(f"the following child directories are not git repos (missing .git): {names}")
+        bad = [p for p in children if not (p / ".git").exists()]
+        if bad:
+            names = ", ".join(str(p) for p in bad)
+            raise AssertionError(
+                f"the following child directories are not git repos (missing .git): {names}"
+            )
 
-      index: dict[str, list[str]] = {}
-      for child in sorted(children):
-         relkey = str(child.relative_to(self.root))
-         files: list[str] = []
-         for p in child.rglob("*"):
-            if not p.is_file():
-               continue
-            if ".git" in p.parts or "__pycache__" in p.parts:
-               continue
-            files.append(str(p.relative_to(child).as_posix()))
+        index: dict[str, list[str]] = {}
+        for child in sorted(children):
+            relkey = str(child.relative_to(self.root))
+            files: list[str] = []
+            for p in child.rglob("*"):
+                if not p.is_file():
+                    continue
+                if ".git" in p.parts or "__pycache__" in p.parts:
+                    continue
+                files.append(str(p.relative_to(child).as_posix()))
 
-         index[relkey] = sorted(files)
+            index[relkey] = sorted(files)
 
-      out_path = self.root / json_name
-      # Write atomically: write to a temp file in the same directory, fsync,
-      # then replace the target. This guarantees the file is present on disk
-      # before any subsequent step (e.g. body()) begins.
-      tmp_path = out_path.with_name(out_path.name + ".tmp")
-      with tmp_path.open("w", encoding="utf-8") as fh:
-         json.dump(index, fh, indent=4, sort_keys=True)
-         fh.flush()
-         try:
-            os.fsync(fh.fileno())
-         except Exception:
-            # if fsync is not available for some reason, proceed — replace
-            # will still provide an atomic rename on the same filesystem.
-            pass
-      # Atomic replace
-      os.replace(str(tmp_path), str(out_path))
+        out_path = self.root / json_name
+        # Write atomically: write to a temp file in the same directory, fsync,
+        # then replace the target. This guarantees the file is present on disk
+        # before any subsequent step (e.g. body()) begins.
+        tmp_path = out_path.with_name(out_path.name + ".tmp")
+        with tmp_path.open("w", encoding="utf-8") as fh:
+            json.dump(index, fh, indent=4, sort_keys=True)
+            fh.flush()
+            try:
+                os.fsync(fh.fileno())
+            except Exception:
+                # if fsync is not available for some reason, proceed — replace
+                # will still provide an atomic rename on the same filesystem.
+                pass
+        # Atomic replace
+        os.replace(str(tmp_path), str(out_path))
 
-   def body(self) -> None:
-      """Placeholder for step 2 of the inspect flow. Implement analysis here."""
+    def body(self) -> None:
+        """Placeholder for step 2 of the inspect flow. Implement analysis here."""
+        ##BEGIN TODO FOR GITHUB COPILOT
 
-      ##BEGIN TODO FOR GITHUB COPILOT
+        # --- apply scripted fixes per a-priori index (run fixer scripts) ---
+        apriori_path = self.root / "x_index_a_a_priori_x.json"
+        if apriori_path.exists():
+            try:
+                with apriori_path.open("r", encoding="utf-8") as fh:
+                    apriori = json.load(fh)
+            except Exception as exc:
+                raise AssertionError(
+                    f"failed to read a-priori index inside body(): {exc}"
+                ) from exc
 
-      # --- apply scripted fixes per a-priori index (run fixer scripts) ---
-      apriori_path = self.root / "x_index_a_a_priori_x.json"
-      if apriori_path.exists():
-         try:
-            with apriori_path.open("r", encoding="utf-8") as fh:
-               apriori = json.load(fh)
-         except Exception as exc:
-            raise AssertionError(f"failed to read a-priori index inside body(): {exc}") from exc
+            # Resolve fixer scripts relative to this package so the visitor finds them
+            pkg_dir = Path(__file__).resolve().parent
+            add_none_script = (
+                pkg_dir / "x_mypy_fix_0000_add_none_return_to_main_x.py"
+            )
+            touch_pytyped_script = (
+                pkg_dir / "x_mypy_fix_0001_touch_pytyped_x.py"
+            )
+            xmypy002fix_script = pkg_dir / "x_mypy_fix_0002_xmypy002fix_x.py"
+            python_exe = sys.executable
 
-         # Resolve fixer scripts relative to this package so the visitor finds them
-         pkg_dir = Path(__file__).resolve().parent
-         add_none_script = pkg_dir / "x_mypy_fix_0000_add_none_return_to_main_x.py"
-         touch_pytyped_script = pkg_dir / "x_mypy_fix_0001_touch_pytyped_x.py"
-         xmypy002fix_script = pkg_dir / "x_mypy_fix_0002_xmypy002fix_x.py"
-         python_exe = sys.executable
+            for repo_name, files in apriori.items():
+                repo_dir = self.root / repo_name
 
-         for repo_name, files in apriori.items():
-            repo_dir = self.root / repo_name
+                # 1) ensure package is marked typed (idempotent)
+                if touch_pytyped_script.exists():
+                    p = subprocess.run(
+                        [python_exe, str(touch_pytyped_script), str(repo_dir)],
+                        cwd=str(self.root),
+                        capture_output=True,
+                        text=True,
+                    )
+                    if p.returncode != 0:
+                        raise AssertionError(
+                            f"touch_pytyped failed for {repo_name}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                        )
 
-            # 1) ensure package is marked typed (idempotent)
-            fixer_explanation: str | None = None
-            if touch_pytyped_script.exists():
-               p = subprocess.run([python_exe, str(touch_pytyped_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
-               # attempt to parse machine-readable summary from stdout
-               try:
-                  fixer_explanation = _extract_explanation_from_stdout(p.stdout)
-               except Exception:
-                  fixer_explanation = None
-               if p.returncode != 0:
-                  # record a lesson via the helper when available, otherwise raise
-                  try:
-                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                     bc = {"cmd": " ".join([python_exe, str(touch_pytyped_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
-                     expl = fixer_explanation or "touch_pytyped failed"
-                     lessons.add_mypy_lesson(bc, expl)
-                  except AssertionError:
-                     raise
-                  except Exception:
-                     raise AssertionError(f"touch_pytyped failed for {repo_name}: {p.stderr}")
+                # 2) run safe annotator to add `-> None` to top-level main() when appropriate
+                if add_none_script.exists():
+                    p = subprocess.run(
+                        [python_exe, str(add_none_script), str(repo_dir)],
+                        cwd=str(self.root),
+                        capture_output=True,
+                        text=True,
+                    )
+                    if p.returncode != 0:
+                        raise AssertionError(
+                            f"add_none_return_to_main failed for {repo_name}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                        )
 
-            # 2) run safe annotator to add `-> None` to top-level main() when appropriate
-            if add_none_script.exists():
-               p = subprocess.run([python_exe, str(add_none_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
-               try:
-                  ae = _extract_explanation_from_stdout(p.stdout)
-                  if ae:
-                     # prefer annotator explanation if present
-                     fixer_explanation = ae
-               except Exception:
-                  pass
-               if p.returncode != 0:
-                  try:
-                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                     bc = {"cmd": " ".join([python_exe, str(add_none_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
-                     expl = fixer_explanation or "add_none_return_to_main failed"
-                     lessons.add_mypy_lesson(bc, expl)
-                  except AssertionError:
-                     raise
-                  except Exception:
-                     raise AssertionError(f"add_none_return_to_main failed for {repo_name}: {p.stderr}")
+                # 3) run xmypy002fix which applies combined import and main fixes
+                if xmypy002fix_script.exists():
+                    p = subprocess.run(
+                        [python_exe, str(xmypy002fix_script), str(repo_dir)],
+                        cwd=str(self.root),
+                        capture_output=True,
+                        text=True,
+                    )
+                    if p.returncode != 0:
+                        raise AssertionError(
+                            f"xmypy002fix failed for {repo_name}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                        )
 
-            # 3) run xmypy002fix which applies combined import and main fixes
-            if xmypy002fix_script.exists():
-               p = subprocess.run([python_exe, str(xmypy002fix_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
-               try:
-                  xe = _extract_explanation_from_stdout(p.stdout)
-                  if xe:
-                     fixer_explanation = xe
-               except Exception:
-                  pass
-               if p.returncode != 0:
-                  try:
-                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                     bc = {"cmd": " ".join([python_exe, str(xmypy002fix_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
-                     expl = fixer_explanation or "xmypy002fix failed"
-                     lessons.add_mypy_lesson(bc, expl)
-                  except AssertionError:
-                     raise
-                  except Exception:
-                     raise AssertionError(f"xmypy002fix failed for {repo_name}: {p.stderr}")
+        ##END TODO FOR GITHUB COPILOT
 
-      ##END TODO FOR GITHUB COPILOT
+        # Implemented: ensure tools are installed/updated, run autofix and checks
+        python = sys.executable
 
-      ##BEGIN TODO FOR GITHUB COPILOT
+        # 1) ensure tools are installed/updated to latest
+        cmd_install = [
+            python,
+            "-m",
+            "pip",
+            "install",
+            "--upgrade",
+            "ruff",
+            "black",
+            "mypy",
+        ]
+        p = subprocess.run(cmd_install, capture_output=True, text=True)
+        if p.returncode != 0:
+            raise AssertionError(f"failed to install/update tools: {p.stderr}")
 
-      # Parse fixer script outputs for machine-readable explanation fields.
-      # If the fixer scripts print a trailing one-line JSON like {"explanation_and_fix": "..."}
-      # capture that and include it when writing mypy lessons below.
-      def _extract_explanation_from_stdout(stdout: str) -> str | None:
-         import json as _json
+        # default timeout per tool (seconds)
+        timeout = 120
 
-         if not stdout:
-            return None
-         # split lines and look for a valid JSON object on the last non-empty line
-         lines = [l for l in stdout.splitlines() if l.strip()]
-         if not lines:
-            return None
-         last = lines[-1]
-         try:
-            obj = _json.loads(last)
-            if isinstance(obj, dict) and "explanation_and_fix" in obj:
-               return str(obj["explanation_and_fix"])
-         except Exception:
-            return None
-         return None
+        # per-repo reports
+        reports = {}
 
-      ##END TODO FOR GITHUB COPILOT
+        children = [p for p in self.root.iterdir() if p.is_dir()]
+        children = sorted(children)
 
-      # Implemented: ensure tools are installed/updated, run autofix and checks
-      python = sys.executable
+        for child in children:
+            rel = str(child.relative_to(self.root))
+            repo_report: Dict[str, Any] = {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "tools": {},
+            }
 
-      # 1) ensure tools are installed/updated to latest
-      cmd_install = [python, "-m", "pip", "install", "--upgrade", "ruff", "black", "mypy"]
-      p = subprocess.run(cmd_install, capture_output=True, text=True)
-      if p.returncode != 0:
-         raise AssertionError(f"failed to install/update tools: {p.stderr}")
+            # 2) ruff autofix
+            cmd = [python, "-m", "ruff", "check", ".", "--fix"]
+            p = subprocess.run(
+                cmd,
+                cwd=str(child),
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+            repo_report["tools"]["ruff_fix"] = {
+                "cmd": " ".join(cmd),
+                "exit": p.returncode,
+                "stdout": p.stdout,
+                "stderr": p.stderr,
+            }
+            # treat non-zero as failure: record lesson and fail-fast
+            if p.returncode != 0:
+                # ruff --fix failed; surface details and stop
+                raise AssertionError(
+                    f"ruff --fix failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                )
 
-      # default timeout per tool (seconds)
-      timeout = 120
+            # 3) black autofix
+            cmd = [python, "-m", "black", ".", "--line-length", "79"]
+            p = subprocess.run(
+                cmd,
+                cwd=str(child),
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+            repo_report["tools"]["black"] = {
+                "cmd": " ".join(cmd),
+                "exit": p.returncode,
+                "stdout": p.stdout,
+                "stderr": p.stderr,
+            }
+            if p.returncode != 0:
+                # black failed; surface details and stop
+                raise AssertionError(
+                    f"black failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                )
 
-      # per-repo reports
-      reports = {}
+            # 4) ruff check (post-fix)
+            cmd = [python, "-m", "ruff", "check", "."]
+            p = subprocess.run(
+                cmd,
+                cwd=str(child),
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+            repo_report["tools"]["ruff_check"] = {
+                "cmd": " ".join(cmd),
+                "exit": p.returncode,
+                "stdout": p.stdout,
+                "stderr": p.stderr,
+            }
+            if p.returncode != 0:
+                # ruff check failed; surface details and stop
+                raise AssertionError(
+                    f"ruff check failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                )
 
-      children = [p for p in self.root.iterdir() if p.is_dir()]
-      children = sorted(children)
+            # 5) mypy strict check
+            cmd = [
+                python,
+                "-m",
+                "mypy",
+                "--strict",
+                "--no-warn-unused-configs",
+                "--show-error-codes",
+                ".",
+            ]
+            p = subprocess.run(
+                cmd,
+                cwd=str(child),
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+            repo_report["tools"]["mypy"] = {
+                "cmd": " ".join(cmd),
+                "exit": p.returncode,
+                "stdout": p.stdout,
+                "stderr": p.stderr,
+            }
+            if p.returncode != 0:
+                # mypy failed; surface details and stop
+                raise AssertionError(
+                    f"mypy failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                )
 
-      for child in children:
-         rel = str(child.relative_to(self.root))
-         repo_report = {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "tools": {},
-         }
+            # 6) also capture resulting file index for this repo (same logic as inspect)
+            files: List[str] = []
+            for pth in child.rglob("*"):
+                if not pth.is_file():
+                    continue
+                if ".git" in pth.parts or "__pycache__" in pth.parts:
+                    continue
+                files.append(str(pth.relative_to(child).as_posix()))
+            repo_report["files"] = sorted(files)
 
-         # 2) ruff autofix
-         cmd = [python, "-m", "ruff", "check", ".", "--fix"]
-         p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
-         repo_report["tools"]["ruff_fix"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
-         # treat non-zero as failure: record lesson and fail-fast
-         if p.returncode != 0:
-               try:
-                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                  bc = {**repo_report["tools"]["ruff_fix"], "repo": rel}
-                  lessons.add_ruff_lesson(bc, "TODO")
-               except AssertionError:
-                  # duplicate breadcrumb already recorded: fail fast to remind user
-                  raise
-               except Exception as exc:
-                  # surface lesson-write failure
-                  raise AssertionError(f"failed to record ruff_fix lesson for {rel}: {exc}") from exc
-               raise AssertionError(f"ruff --fix failed for {rel}: {p.stderr}")
+            reports[rel] = repo_report
 
-         # 3) black autofix
-         cmd = [python, "-m", "black", ".", "--line-length", "79"]
-         p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
-         repo_report["tools"]["black"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
-         if p.returncode != 0:
-               try:
-                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                  bc = {**repo_report["tools"]["black"], "repo": rel}
-                  lessons.add_black_lesson(bc, "TODO")
-               except AssertionError:
-                  raise
-               except Exception as exc:
-                  raise AssertionError(f"failed to record black lesson for {rel}: {exc}") from exc
-               raise AssertionError(f"black failed for {rel}: {p.stderr}")
+        # store for merge into a-posteriori index later
+        self._tool_reports = reports
+        return None
 
-         # 4) ruff check (post-fix)
-         cmd = [python, "-m", "ruff", "check", "."]
-         p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
-         repo_report["tools"]["ruff_check"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
-         if p.returncode != 0:
-               try:
-                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                  bc = {**repo_report["tools"]["ruff_check"], "repo": rel}
-                  lessons.add_ruff_lesson(bc, "TODO")
-               except AssertionError:
-                  raise
-               except Exception as exc:
-                  raise AssertionError(f"failed to record ruff_check lesson for {rel}: {exc}") from exc
-               raise AssertionError(f"ruff check failed for {rel}: {p.stderr}")
+    def cleanup(self) -> None:
+        """Placeholder for cleanup (step 4). Implement teardown here if needed."""
+        # intentionally minimal; user can override or extend
+        return None
 
-         # 5) mypy strict check
-         cmd = [python, "-m", "mypy", "--strict", "--no-warn-unused-configs", "--show-error-codes", "."]
-         p = subprocess.run(cmd, cwd=str(child), capture_output=True, text=True, timeout=timeout)
-         repo_report["tools"]["mypy"] = {"cmd": " ".join(cmd), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
-         if p.returncode != 0:
-               try:
-                  lessons = x_cls_make_github_visitor_lesson_x(self.root)
-                  bc = {**repo_report["tools"]["mypy"], "repo": rel}
-                  lessons.add_mypy_lesson(bc, "TODO")
-               except AssertionError:
-                  raise
-               except Exception as exc:
-                  raise AssertionError(f"failed to record mypy lesson for {rel}: {exc}") from exc
-               raise AssertionError(f"mypy failed for {rel}: {p.stderr}")
+    # breadcrumb file removed; lesson helper now records failures
 
-         # 6) also capture resulting file index for this repo (same logic as inspect)
-         files = []
-         for pth in child.rglob("*"):
-            if not pth.is_file():
-               continue
-            if ".git" in pth.parts or "__pycache__" in pth.parts:
-               continue
-            files.append(str(pth.relative_to(child).as_posix()))
-         repo_report["files"] = sorted(files)
+    def run_inspect_flow(self) -> None:
+        """Run the inspect flow in four steps:
+        1) a-priori run -> writes `x_index_a_a_priori_x.json`
+        2) body() (blank)
+        3) a-posteriori run -> writes `x_index_b_a_posteriori_x.json`
+        4) cleanup()
+        """
+        # Step 1: a-priori inspect
+        self.inspect("x_index_a_a_priori_x.json")
+        p1 = self.root / "x_index_a_a_priori_x.json"
+        assert (
+            p1.exists() and p1.stat().st_size > 0
+        ), f"step1 failed: {p1} missing or empty"
 
-         reports[rel] = repo_report
+        # Additional strict safety check: re-read the a-priori index and ensure
+        # its keys exactly match the set of immediate child repo names. Fail
+        # fast on any discrepancy to prevent body() from running against an
+        # unexpected or stale index.
+        try:
+            with p1.open("r", encoding="utf-8") as fh:
+                raw_apriori = json.load(fh)
+        except Exception as exc:
+            raise AssertionError(f"failed to read a-priori index: {exc}")
 
-      # store for merge into a-posteriori index later
-      self._tool_reports = reports
-      return None
+        if not isinstance(raw_apriori, dict):
+            raise AssertionError(
+                f"a-priori index must be a JSON object mapping repo->files: {p1}"
+            )
 
-   def cleanup(self) -> None:
-      """Placeholder for cleanup (step 4). Implement teardown here if needed."""
-      # intentionally minimal; user can override or extend
-      return None
+        # Normalize apriori into concrete typing: Dict[str, List[str]]
+        apriori: Dict[str, List[str]] = {}
+        for k, v in raw_apriori.items():
+            key = str(k)
+            if isinstance(v, list):
+                apriori[key] = [str(x) for x in v if isinstance(x, str)]
+            else:
+                apriori[key] = []
 
-   # breadcrumb file removed; lesson helper now records failures
+        current_children = sorted(
+            [
+                str(p.relative_to(self.root))
+                for p in self.root.iterdir()
+                if p.is_dir()
+            ]
+        )
+        apriori_keys = sorted(list(apriori.keys()))
+        if apriori_keys != current_children:
+            raise AssertionError(
+                f"a-priori index contents do not match immediate children.\n  expected: {current_children}\n  found: {apriori_keys}"
+            )
 
-   def run_inspect_flow(self) -> None:
-      """Run the inspect flow in four steps:
-      1) a-priori run -> writes `x_index_a_a_priori_x.json`
-      2) body() (blank)
-      3) a-posteriori run -> writes `x_index_b_a_posteriori_x.json`
-      4) cleanup()
-      """
-      # Step 1: a-priori inspect
-      self.inspect("x_index_a_a_priori_x.json")
-      p1 = self.root / "x_index_a_a_priori_x.json"
-      assert p1.exists() and p1.stat().st_size > 0, f"step1 failed: {p1} missing or empty"
+        # Step 2: body (placeholder) — any exception will naturally propagate
+        self.body()
 
-      # Additional strict safety check: re-read the a-priori index and ensure
-      # its keys exactly match the set of immediate child repo names. Fail
-      # fast on any discrepancy to prevent body() from running against an
-      # unexpected or stale index.
-      try:
-         with p1.open("r", encoding="utf-8") as fh:
-            apriori = json.load(fh)
-      except Exception as exc:
-         raise AssertionError(f"failed to read a-priori index: {exc}")
+        # Step 3: a-posteriori inspect
+        self.inspect("x_index_b_a_posteriori_x.json")
+        p2 = self.root / "x_index_b_a_posteriori_x.json"
+        assert (
+            p2.exists() and p2.stat().st_size > 0
+        ), f"step3 failed: {p2} missing or empty"
 
-      if not isinstance(apriori, dict):
-         raise AssertionError(f"a-priori index must be a JSON object mapping repo->files: {p1}")
+        # merge tool reports collected during body() into the a-posteriori JSON
+        try:
+            with p2.open("r", encoding="utf-8") as fh:
+                raw_data = json.load(fh)
+        except Exception as exc:
+            raise AssertionError(f"failed to read a-posteriori index: {exc}")
 
-      current_children = sorted([str(p.relative_to(self.root)) for p in self.root.iterdir() if p.is_dir()])
-      apriori_keys = sorted(list(apriori.keys()))
-      if apriori_keys != current_children:
-         raise AssertionError(
-            f"a-priori index contents do not match immediate children.\n  expected: {current_children}\n  found: {apriori_keys}"
-         )
+        if not isinstance(raw_data, dict):
+            raise AssertionError(f"a-posteriori index must be a JSON object mapping repo->files: {p2}")
 
-      # Step 2: body (placeholder) — any exception will naturally propagate
-      self.body()
+        # normalize to concrete dict for safe updates
+        data: Dict[str, Any] = {}
+        for k, v in raw_data.items():
+            data[str(k)] = v
 
-      # Step 3: a-posteriori inspect
-      self.inspect("x_index_b_a_posteriori_x.json")
-      p2 = self.root / "x_index_b_a_posteriori_x.json"
-      assert p2.exists() and p2.stat().st_size > 0, f"step3 failed: {p2} missing or empty"
+        # attach reports under each repo key
+        for repo_name, report in getattr(self, "_tool_reports", {}).items():
+            if repo_name in data:
+                # augment existing entry
+                data[repo_name] = {
+                    "files": data.get(repo_name, []),
+                    "tools": report.get("tools", {}),
+                    "files_index": report.get("files", []),
+                }
+            else:
+                data[repo_name] = {
+                    "files": report.get("files", []),
+                    "tools": report.get("tools", {}),
+                }
 
-      # merge tool reports collected during body() into the a-posteriori JSON
-      try:
-         with p2.open("r", encoding="utf-8") as fh:
-            data = json.load(fh)
-      except Exception as exc:
-         raise AssertionError(f"failed to read a-posteriori index: {exc}")
+        # write back
+        with p2.open("w", encoding="utf-8") as fh:
+            json.dump(data, fh, indent=4, sort_keys=True)
 
-      # attach reports under each repo key
-      for repo_name, report in getattr(self, "_tool_reports", {}).items():
-         if repo_name in data:
-            # augment existing entry
-            data[repo_name] = {"files": data.get(repo_name, []), "tools": report.get("tools", {}), "files_index": report.get("files", [])}
-         else:
-            data[repo_name] = {"files": report.get("files", []), "tools": report.get("tools", {})}
+        # Step 4: cleanup
+        self.cleanup()
 
-      # write back
-      with p2.open("w", encoding="utf-8") as fh:
-         json.dump(data, fh, indent=4, sort_keys=True)
-
-      # Step 4: cleanup
-      self.cleanup()
-   # --- end inspect command -----------------------------------------------------------------------
+    # --- end inspect command -----------------------------------------------------------------------
 
 
-def init_name(root_dir: str | Path, *, output_filename: Optional[str] = None) -> "x_cls_make_github_visitor_x":
-   """Convenience initializer that constructs and returns the visitor instance.
+def init_name(
+    root_dir: str | Path, *, output_filename: Optional[str] = None
+) -> "x_cls_make_github_visitor_x":
+    """Convenience initializer that constructs and returns the visitor instance.
 
-   This function matches the requested `init==name` behavior: it takes a
-   root directory path as the first argument, constructs the class (which
-   performs validation and writes the JSON), and returns the instance.
-   """
-   if output_filename is None:
-      return x_cls_make_github_visitor_x(root_dir)
-   else:
-      return x_cls_make_github_visitor_x(root_dir, output_filename=output_filename)
+    This function matches the requested `init==name` behavior: it takes a
+    root directory path as the first argument, constructs the class (which
+    performs validation and writes the JSON), and returns the instance.
+    """
+    if output_filename is None:
+        return x_cls_make_github_visitor_x(root_dir)
+    else:
+        return x_cls_make_github_visitor_x(
+            root_dir, output_filename=output_filename
+        )
 
 
 def init_main() -> "x_cls_make_github_visitor_x":
-   """Initialize the visitor with the fixed root path C:\\foboar.
+    """Initialize the visitor with the fixed root path C:\\foboar.
 
-   This convenience function follows your request to make the root
-   path `c:\\foboar` and returns the constructed instance.
-   """
-   return init_name(r"C:\x_cloned_repos_x")
+    This convenience function follows your request to make the root
+    path `c:\\foboar` and returns the constructed instance.
+    """
+    return init_name(r"C:\x_cloned_repos_x")
 
 
 if __name__ == "__main__":
-   inst = init_main()
-   # run the inspect flow which writes the a-priori and a-posteriori files
-   inst.run_inspect_flow()
-   print(f"wrote a-priori and a-posteriori index files to: {inst.root}")
-
+    inst = init_main()
+    # run the inspect flow which writes the a-priori and a-posteriori files
+    inst.run_inspect_flow()
+    print(f"wrote a-priori and a-posteriori index files to: {inst.root}")
