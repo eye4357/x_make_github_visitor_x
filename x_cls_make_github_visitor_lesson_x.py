@@ -3,12 +3,12 @@ from __future__ import annotations
 """Helper to append lessons for ruff/black/mypy into x_lessons_x.json.
 
 Provides a class `x_cls_make_github_visitor_lesson_x` with three methods:
-- add_ruff_lesson(json_data, explanation)
-- add_black_lesson(json_data, explanation)
-- add_mypy_lesson(json_data, explanation)
+- add_ruff_lesson(json_data, explanation_and_fix)
+- add_black_lesson(json_data, explanation_and_fix)
+- add_mypy_lesson(json_data, explanation_and_fix)
 
 Each method accepts a breadcrumb JSON (as a dict) and a human-friendly
-explanation string. Lessons are appended to the lists under keys
+explanation_and_fix string. Lessons are appended to the lists under keys
 `ruff`, `black`, and `mypy` in `x_lessons_x.json` located in the same
 directory as this script.
 """
@@ -55,33 +55,33 @@ class x_cls_make_github_visitor_lesson_x:
                 pass
         os.replace(str(tmp), str(self.lessons_path))
 
-    def _append(self, key: str, json_data: Dict[str, Any], explanation: str) -> None:
+    def _append(self, key: str, json_data: Dict[str, Any], explanation_and_fix: str) -> None:
         if key not in ("ruff", "black", "mypy"):
             raise AssertionError("invalid lesson key")
         data = self._load()
         entry = {
             "breadcrumb": json_data,
-            "explanation": explanation,
+            "explanation_and_fix": explanation_and_fix,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
         data[key].append(entry)
         self._write(data)
 
-    def add_ruff_lesson(self, breadcrumb: Dict[str, Any], explanation: str) -> None:
+    def add_ruff_lesson(self, breadcrumb: Dict[str, Any], explanation_and_fix: str) -> None:
         """Append a lesson under the `ruff` key.
 
         breadcrumb: JSON-like dict describing the failure.
-        explanation: human readable instructions to fix it.
+        explanation_and_fix: human readable instructions to fix it.
         """
-        self._append("ruff", breadcrumb, explanation)
+        self._append("ruff", breadcrumb, explanation_and_fix)
 
-    def add_black_lesson(self, breadcrumb: Dict[str, Any], explanation: str) -> None:
+    def add_black_lesson(self, breadcrumb: Dict[str, Any], explanation_and_fix: str) -> None:
         """Append a lesson under the `black` key."""
-        self._append("black", breadcrumb, explanation)
+        self._append("black", breadcrumb, explanation_and_fix)
 
-    def add_mypy_lesson(self, breadcrumb: Dict[str, Any], explanation: str) -> None:
+    def add_mypy_lesson(self, breadcrumb: Dict[str, Any], explanation_and_fix: str) -> None:
         """Append a lesson under the `mypy` key."""
-        self._append("mypy", breadcrumb, explanation)
+        self._append("mypy", breadcrumb, explanation_and_fix)
 
 
 if __name__ == "__main__":
