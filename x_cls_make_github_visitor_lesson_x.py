@@ -17,7 +17,7 @@ from pathlib import Path
 import json
 import os
 from datetime import datetime, timezone
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 class x_cls_make_github_visitor_lesson_x:
@@ -28,23 +28,25 @@ class x_cls_make_github_visitor_lesson_x:
         self.root = Path(root) if root is not None else Path(__file__).resolve().parent
         self.lessons_path = self.root / "x_lessons_x.json"
 
-    def _load(self) -> Dict[str, list]:
-        data: Dict[str, list] = {"ruff": [], "black": [], "mypy": []}
+    def _load(self) -> Dict[str, List[Dict[str, Any]]]:
+        data: Dict[str, List[Dict[str, Any]]] = {"ruff": [], "black": [], "mypy": []}
         try:
             if self.lessons_path.exists():
                 with self.lessons_path.open("r", encoding="utf-8") as fh:
                     raw = json.load(fh)
                     if isinstance(raw, dict):
-                        # keep only the expected keys and ensure lists
+                        # keep only the expected keys and ensure lists of dicts
                         for k in ("ruff", "black", "mypy"):
                             v = raw.get(k, [])
-                            data[k] = v if isinstance(v, list) else []
+                            if isinstance(v, list):
+                                data[k] = [x for x in v if isinstance(x, dict)]
+                            else:
+                                data[k] = []
         except Exception:
-            # on any error, return the default structure
             data = {"ruff": [], "black": [], "mypy": []}
         return data
 
-    def _write(self, data: Dict[str, list]) -> None:
+    def _write(self, data: Dict[str, List[Dict[str, Any]]]) -> None:
         tmp = self.lessons_path.with_name(self.lessons_path.name + ".tmp")
         with tmp.open("w", encoding="utf-8") as fh:
             json.dump(data, fh, indent=4, sort_keys=True)
@@ -64,6 +66,12 @@ class x_cls_make_github_visitor_lesson_x:
             "explanation_and_fix": explanation_and_fix,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
+
+        # Fail-fast if the same breadcrumb was already added (ignore explanation)
+        for existing in data.get(key, []):
+            if existing.get("breadcrumb") == json_data:
+                raise AssertionError(f"duplicate breadcrumb for key={key} repo={json_data.get('repo')}")
+
         data[key].append(entry)
         self._write(data)
 
