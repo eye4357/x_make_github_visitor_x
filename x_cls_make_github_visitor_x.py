@@ -37,6 +37,10 @@ class x_cls_make_github_visitor_x:
       if not self.root.exists() or not self.root.is_dir():
          raise AssertionError(f"root path must exist and be a directory: {self.root}")
 
+      # assert root is not itself a git repository
+      if (self.root / ".git").exists():
+         raise AssertionError(f"root path must not be a git repository: {self.root}")
+
       self.output_filename = output_filename
 
       # examine immediate child directories
