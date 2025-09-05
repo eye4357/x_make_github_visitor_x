@@ -169,9 +169,9 @@ class x_cls_make_github_visitor_x:
             except AssertionError:
                # duplicate breadcrumb already recorded: fail fast to remind user
                raise
-            except Exception:
-               # ignore lesson write errors and fail loudly
-               pass
+            except Exception as exc:
+               # surface lesson-write failure
+               raise AssertionError(f"failed to record ruff_fix lesson for {rel}: {exc}") from exc
             raise AssertionError(f"ruff --fix failed for {rel}: {p.stderr}")
 
          # 3) black autofix
@@ -184,8 +184,8 @@ class x_cls_make_github_visitor_x:
                lessons.add_black_lesson(repo_report["tools"]["black"], "TODO")
             except AssertionError:
                raise
-            except Exception:
-               pass
+            except Exception as exc:
+               raise AssertionError(f"failed to record black lesson for {rel}: {exc}") from exc
             raise AssertionError(f"black failed for {rel}: {p.stderr}")
 
          # 4) ruff check (post-fix)
@@ -198,8 +198,8 @@ class x_cls_make_github_visitor_x:
                lessons.add_ruff_lesson(repo_report["tools"]["ruff_check"], "TODO")
             except AssertionError:
                raise
-            except Exception:
-               pass
+            except Exception as exc:
+               raise AssertionError(f"failed to record ruff_check lesson for {rel}: {exc}") from exc
             raise AssertionError(f"ruff check failed for {rel}: {p.stderr}")
 
          # 5) mypy strict check
@@ -212,8 +212,8 @@ class x_cls_make_github_visitor_x:
                lessons.add_mypy_lesson(repo_report["tools"]["mypy"], "TODO")
             except AssertionError:
                raise
-            except Exception:
-               pass
+            except Exception as exc:
+               raise AssertionError(f"failed to record mypy lesson for {rel}: {exc}") from exc
             raise AssertionError(f"mypy failed for {rel}: {p.stderr}")
 
          # 6) also capture resulting file index for this repo (same logic as inspect)
