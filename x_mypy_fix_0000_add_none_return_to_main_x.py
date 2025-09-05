@@ -183,6 +183,18 @@ def main(argv: List[str] | None = None) -> None:
     else:
         print("No safe 'main' functions found to annotate.")
 
+    # Emit a machine-readable one-line JSON summary for caller automation
+    try:
+        import json
+
+        if all_changed:
+            summary = {"explanation_and_fix": f"annotated {len(all_changed)} file(s): {all_changed}"}
+        else:
+            summary = {"explanation_and_fix": "no safe functions annotated"}
+        print(json.dumps(summary))
+    except Exception:
+        pass
+
 
 if __name__ == "__main__":
     main()

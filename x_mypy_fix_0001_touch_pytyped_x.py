@@ -60,6 +60,14 @@ def main(argv: list[str] | None = None) -> None:
         print("Usage: python touch_pytyped.py <path-to-package> [...])", file=sys.stderr)
         sys.exit(2)
     touch_pytyped(argv)
+    # Emit a machine-readable one-line JSON summary for caller automation
+    try:
+        import json
+
+        summary = {"explanation_and_fix": "touched py.typed marker(s) where needed"}
+        print(json.dumps(summary))
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":

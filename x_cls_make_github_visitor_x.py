@@ -148,20 +148,28 @@ class x_cls_make_github_visitor_x:
          pkg_dir = Path(__file__).resolve().parent
          add_none_script = pkg_dir / "x_mypy_fix_0000_add_none_return_to_main_x.py"
          touch_pytyped_script = pkg_dir / "x_mypy_fix_0001_touch_pytyped_x.py"
+         xmypy002fix_script = pkg_dir / "x_mypy_fix_0002_xmypy002fix_x.py"
          python_exe = sys.executable
 
          for repo_name, files in apriori.items():
             repo_dir = self.root / repo_name
 
             # 1) ensure package is marked typed (idempotent)
+            fixer_explanation: str | None = None
             if touch_pytyped_script.exists():
                p = subprocess.run([python_exe, str(touch_pytyped_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
+               # attempt to parse machine-readable summary from stdout
+               try:
+                  fixer_explanation = _extract_explanation_from_stdout(p.stdout)
+               except Exception:
+                  fixer_explanation = None
                if p.returncode != 0:
                   # record a lesson via the helper when available, otherwise raise
                   try:
                      lessons = x_cls_make_github_visitor_lesson_x(self.root)
                      bc = {"cmd": " ".join([python_exe, str(touch_pytyped_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
-                     lessons.add_mypy_lesson(bc, "touch_pytyped failed")
+                     expl = fixer_explanation or "touch_pytyped failed"
+                     lessons.add_mypy_lesson(bc, expl)
                   except AssertionError:
                      raise
                   except Exception:
@@ -170,15 +178,68 @@ class x_cls_make_github_visitor_x:
             # 2) run safe annotator to add `-> None` to top-level main() when appropriate
             if add_none_script.exists():
                p = subprocess.run([python_exe, str(add_none_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
+               try:
+                  ae = _extract_explanation_from_stdout(p.stdout)
+                  if ae:
+                     # prefer annotator explanation if present
+                     fixer_explanation = ae
+               except Exception:
+                  pass
                if p.returncode != 0:
                   try:
                      lessons = x_cls_make_github_visitor_lesson_x(self.root)
                      bc = {"cmd": " ".join([python_exe, str(add_none_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
-                     lessons.add_mypy_lesson(bc, "add_none_return_to_main failed")
+                     expl = fixer_explanation or "add_none_return_to_main failed"
+                     lessons.add_mypy_lesson(bc, expl)
                   except AssertionError:
                      raise
                   except Exception:
                      raise AssertionError(f"add_none_return_to_main failed for {repo_name}: {p.stderr}")
+
+            # 3) run xmypy002fix which applies combined import and main fixes
+            if xmypy002fix_script.exists():
+               p = subprocess.run([python_exe, str(xmypy002fix_script), str(repo_dir)], cwd=str(self.root), capture_output=True, text=True)
+               try:
+                  xe = _extract_explanation_from_stdout(p.stdout)
+                  if xe:
+                     fixer_explanation = xe
+               except Exception:
+                  pass
+               if p.returncode != 0:
+                  try:
+                     lessons = x_cls_make_github_visitor_lesson_x(self.root)
+                     bc = {"cmd": " ".join([python_exe, str(xmypy002fix_script), str(repo_dir)]), "exit": p.returncode, "stdout": p.stdout, "stderr": p.stderr, "repo": repo_name}
+                     expl = fixer_explanation or "xmypy002fix failed"
+                     lessons.add_mypy_lesson(bc, expl)
+                  except AssertionError:
+                     raise
+                  except Exception:
+                     raise AssertionError(f"xmypy002fix failed for {repo_name}: {p.stderr}")
+
+      ##END TODO FOR GITHUB COPILOT
+
+      ##BEGIN TODO FOR GITHUB COPILOT
+
+      # Parse fixer script outputs for machine-readable explanation fields.
+      # If the fixer scripts print a trailing one-line JSON like {"explanation_and_fix": "..."}
+      # capture that and include it when writing mypy lessons below.
+      def _extract_explanation_from_stdout(stdout: str) -> str | None:
+         import json as _json
+
+         if not stdout:
+            return None
+         # split lines and look for a valid JSON object on the last non-empty line
+         lines = [l for l in stdout.splitlines() if l.strip()]
+         if not lines:
+            return None
+         last = lines[-1]
+         try:
+            obj = _json.loads(last)
+            if isinstance(obj, dict) and "explanation_and_fix" in obj:
+               return str(obj["explanation_and_fix"])
+         except Exception:
+            return None
+         return None
 
       ##END TODO FOR GITHUB COPILOT
 
