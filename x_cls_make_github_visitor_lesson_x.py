@@ -85,8 +85,19 @@ class x_cls_make_github_visitor_lesson_x:
 
 
 if __name__ == "__main__":
-    # tiny interactive demo
     inst = x_cls_make_github_visitor_lesson_x()
-    sample = {"repo": "example", "tool": "mypy", "report": {"exit": 1}}
-    inst.add_mypy_lesson(sample, "Example: run mypy and fix missing annotations")
+    inst.add_mypy_lesson(
+        {
+            "repo": "x_0_make_all_x",
+            "report": {
+            "cmd": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m mypy --strict --no-warn-unused-configs --show-error-codes .",
+            "exit": 1,
+            "stderr": "",
+            "stdout": "x_cls_make_all_x.py:11: error: Skipping analyzing \"x_make_github_clones_x.x_cls_make_github_clones_x\": module is installed, but missing library stubs or py.typed marker  [import-untyped]\nx_cls_make_all_x.py:11: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_all_x.py:14: error: Skipping analyzing \"x_make_pypi_x.x_cls_make_pypi_x\": module is installed, but missing library stubs or py.typed marker  [import-untyped]\nFound 2 errors in 1 file (checked 1 source file)\n"
+            },
+            "timestamp": "2025-09-05T02:59:14.803213+00:00",
+            "tool": "mypy"
+        },
+        "tbd"
+    )
     print(f"Wrote lesson to: {inst.lessons_path}")
