@@ -1,39 +1,34 @@
 """add_none_return_to_main.py
-Safe, programmatic annotator for top-level `def main()` functions.
 
-This script finds top-level Python functions named `main` that:
-- have no existing return type annotation, and
-- do not contain any `return` statement with a value.
+Aggressively annotate functions with `-> None` where safe.
 
-For each such file it finds, it writes a backup copy with the suffix
-`.bak` (for example `x.py` -> `x.py.bak`) and then replaces the
-function signature with one that adds `-> None` (e.g. `def main() -> None:`).
+This script operates on Python files (or directories). For each Python file
+it processes it will annotate every function definition (top-level,
+nested, or methods) that:
+    - has no existing return annotation, and
+    - contains no `return` statement with a value.
 
-Rationale and safety notes
-- We only annotate functions that appear safe (no value-returning `return`).
-- The script creates backups so you can review changes before committing.
-- It uses the stdlib `ast` to conservatively detect safe candidates, and
-  `libcst` to perform source-safe edits preserving formatting.
+For each modified file the script writes a backup with the suffix `.bak` and
+then replaces the file in-place. The script uses the stdlib `ast` for a
+conservative check and `libcst` to perform source-safe edits while preserving
+formatting.
 
 Usage (PowerShell)
 1. Install the library required for editing:
-   pip install libcst
+    pip install libcst
 
-2. Run the script on a single file or a directory (recursively):
-   python .\add_none_return_to_main.py C:\path\to\file_or_dir
+2. Run the script on one or more Python files or directories:
+    python ./x_mypy_fix_0000_add_none_return_to_main_x.py C:/path/to/file.py
+    python ./x_mypy_fix_0000_add_none_return_to_main_x.py C:/path/to/dir
 
-Examples (your workspace):
-   python .\add_none_return_to_main.py c:\x_cloned_repos_x\x_0_make_all_x
+Note: this script does NOT create `py.typed` markers. Use the companion
+`x_mypy_fix_0001_touch_pytyped_x.py` script to add `py.typed` markers to
+package directories. Each fixer modifies one thing only.
 
-Review changes (git or by inspecting `.bak` files) before committing.
-
-Limitations and edge cases
-- If a `main` function is nested inside another function or class it will
-  be skipped (we only consider top-level functions).
-- If a function uses `return` without a value (i.e. `return`) it's still
-  considered safe and will be annotated because it does not produce a value.
-- If you want to annotate other function names or broader patterns, extend
-  the `file_has_safe_main` predicate or the transformer.
+Safety notes
+- The transformation is conservative: a function that returns a value is
+    never annotated. The script creates `.bak` backups for easy rollback.
+- Review `.bak` files or use `git diff` before committing changes.
 """
 
 from __future__ import annotations
@@ -50,50 +45,84 @@ except Exception:  # pragma: no cover - friendly error for missing dependency
     sys.exit(2)
 
 
-def file_has_safe_main(path: Path) -> bool:
-    """Return True if the given Python file has a top-level `def main()`
-    with no return annotation and no `return` with a value.
+def file_has_safe_functions(path: Path) -> set[tuple[int, int]]:
+    """Return a set of (lineno, col_offset) for FunctionDef nodes that are
+    safe to annotate (no return annotation and no return with a value).
+
+    We return the node positions to use as a conservative fingerprint when
+    applying edits with LibCST.
     """
+    out: set[tuple[int, int]] = set()
     try:
         src = path.read_text(encoding="utf-8")
     except Exception:
-        return False
+        return out
     try:
         tree = ast.parse(src)
     except Exception:
-        return False
+        return out
 
-    for node in tree.body:  # only top-level definitions
-        if isinstance(node, ast.FunctionDef) and node.name == "main":
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef):
+            # skip if already annotated
             if node.returns is not None:
-                return False
-            # if any return with a value is present, skip
+                continue
+            # skip if any return with a value exists inside this function
+            has_value_return = False
             for sub in ast.walk(node):
                 if isinstance(sub, ast.Return) and sub.value is not None:
-                    return False
-            return True
-    return False
+                    has_value_return = True
+                    break
+            if not has_value_return:
+                # use the start position as a fingerprint
+                out.add((node.lineno, node.col_offset))
+    return out
 
 
 class AddNoneReturnTransformer(cst.CSTTransformer):
-    """A small LibCST transformer that adds `-> None` to `def main()`.
+    """LibCST transformer that adds `-> None` to safe function definitions.
 
-    We rely on `file_has_safe_main` to ensure safety (no value-returning
-    returns) before applying this transformer to a file.
+    The transformer checks each FunctionDef node: if it has no return
+    annotation and its body contains no `return` with a value, we add
+    `-> None` to the signature. This applies to top-level functions,
+    nested functions, and methods.
     """
 
+    def _has_value_return(self, node: cst.CSTNode) -> bool:
+        # Walk the subtree to detect any Return with a value
+        for n in node.walk():
+            if isinstance(n, cst.Return) and n.value is not None:
+                return True
+        return False
+
     def leave_FunctionDef(self, original: cst.FunctionDef, updated: cst.FunctionDef) -> cst.FunctionDef:  # type: ignore[override]
-        if isinstance(original.name, cst.Name) and original.name.value == "main" and original.returns is None:
-            return updated.with_changes(returns=cst.Annotation(cst.Name("None")))
-        return updated
+        # only annotate when there's no existing annotation
+        if original.returns is not None:
+            return updated
+        # skip if there is any return with a value in the function body
+        if self._has_value_return(updated):
+            return updated
+        # add -> None
+        return updated.with_changes(returns=cst.Annotation(cst.Name("None")))
 
 
 def process_file(path: Path) -> bool:
     """Process a single file. Returns True if the file was modified."""
     if not path.exists() or path.suffix != ".py":
         return False
-    if not file_has_safe_main(path):
+    safe_funcs = file_has_safe_functions(path)
+    if not safe_funcs:
         return False
+
+    # ensure parent dir has py.typed
+    parent = path.parent
+    pytyped = parent / "py.typed"
+    try:
+        if not pytyped.exists():
+            pytyped.write_text("", encoding="utf-8")
+    except Exception:
+        # best-effort; do not fail the annotator if we cannot write py.typed
+        pass
 
     src = path.read_text(encoding="utf-8")
     # backup

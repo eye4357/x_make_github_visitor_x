@@ -1,6 +1,7 @@
 """touch_pytyped.py
 
-Create empty `py.typed` marker files in one or more package directories.
+Create empty `py.typed` marker files in one or more package directories or
+touch the parent directory of a given Python file.
 
 This is useful when you have local packages that are installed (or importable)
 but are not marked as typed. Creating a zero-byte `py.typed` file at the
@@ -8,10 +9,12 @@ package root tells mypy and other checkers that the package is typed and
 should be analyzed.
 
 Usage (PowerShell):
-  python .\touch_pytyped.py c:\path\to\package1 c:\path\to\package2
+    python ./x_mypy_fix_0001_touch_pytyped_x.py C:/path/to/package_dir
+    python ./x_mypy_fix_0001_touch_pytyped_x.py C:/path/to/file.py
 
 Example for this workspace:
-  python .\touch_pytyped.py c:\x_cloned_repos_x\x_make_github_clones_x c:\x_cloned_repos_x\x_make_pypi_x
+    python ./x_mypy_fix_0001_touch_pytyped_x.py C:/x_cloned_repos_x/x_make_github_clones_x
+    python ./x_mypy_fix_0001_touch_pytyped_x.py C:/x_cloned_repos_x/x_0_make_all_x/x_cls_make_all_x.py
 
 The script is intentionally minimal and will not overwrite an existing
 `py.typed` file.
@@ -29,6 +32,9 @@ def touch_pytyped(pkg_dirs: list[str]) -> None:
         if not p.exists():
             print(f"Path does not exist: {p}")
             continue
+        # if the path is a file, touch its parent directory
+        if p.is_file():
+            p = p.parent
         if not p.is_dir():
             print(f"Not a directory, skipping: {p}")
             continue
