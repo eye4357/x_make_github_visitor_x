@@ -1,0 +1,31 @@
+{
+    "x_0_make_all_x": {
+        "files": [
+            "x_cls_make_all_x.py"
+        ],
+        "files_index": [
+            "x_cls_make_all_x.py"
+        ],
+        "tools": {
+            "black": {"exit": 0, "stderr": "", "stdout": ""},
+            "mypy": {"exit": 0, "stderr": "", "stdout": ""},
+            "ruff_check": {"exit": 0, "stderr": "", "stdout": ""},
+            "ruff_fix": {"exit": 0, "stderr": "", "stdout": ""}
+        }
+            "x_0_make_all_x": {
+                "files": [
+                    ".mypy_cache/.gitignore",
+                    ".mypy_cache/3.13/@plugins_snapshot.json",
+        "tools": {}
+    },
+    "x_make_github_clones_x": {
+        "files": ["x_cls_make_github_clones_x.py"],
+        "files_index": ["x_cls_make_github_clones_x.py"],
+        "tools": {}
+    },
+    "x_make_github_visitor_x": {
+        "files": ["x_cls_make_github_visitor_x.py"],
+        "files_index": ["x_cls_make_github_visitor_x.py"],
+        "tools": {}
+    }
+}

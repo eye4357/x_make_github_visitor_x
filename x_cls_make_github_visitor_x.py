@@ -23,27 +23,29 @@ COMMON_CACHE_NAMES = {".mypy_cache", ".ruff_cache", "__pycache__"}
 
 
 class x_cls_make_github_visitor_x:
-    def __init__(
-        self,
-        root_dir: str | Path,
-        *,
-        output_filename: str = "repos_index.json",
-    ) -> None:
+    def __init__(self, root_dir: str | Path, *, output_filename: str = "repos_index.json") -> None:
+        """Initialize visitor.
+
+        root_dir: path to a workspace that contains immediate child git clones.
+        output_filename: unused for package-local index storage but kept for
+        backwards compatibility.
+        """
         self.root = Path(root_dir)
         if not self.root.exists() or not self.root.is_dir():
-            raise AssertionError(
-                f"root path must exist and be a directory: {self.root}"
-            )
+            raise AssertionError(f"root path must exist and be a directory: {self.root}")
 
         # The workspace root must not itself be a git repository (we operate
         # on immediate child clones).
         if (self.root / ".git").exists():
-            raise AssertionError(
-                f"root path must not be a git repository: {self.root}"
-            )
+            raise AssertionError(f"root path must not be a git repository: {self.root}")
 
         self.output_filename = output_filename
         self._tool_reports: Dict[str, Any] = {}
+
+        # package root (the folder containing this module). Use this for
+        # storing the canonical a-priori / a-posteriori index files so they
+        # live with the visitor package rather than the workspace root.
+        self.package_root = Path(__file__).resolve().parent
 
     def _child_dirs(self) -> List[Path]:
         """Return immediate child directories excluding hidden and cache dirs.
@@ -88,7 +90,6 @@ class x_cls_make_github_visitor_x:
         children = self._child_dirs()
         if not children:
             raise AssertionError("no child git repositories found")
-
         index: Dict[str, List[str]] = {}
         for child in children:
             rel = str(child.relative_to(self.root))
@@ -101,7 +102,8 @@ class x_cls_make_github_visitor_x:
                 files.append(str(p.relative_to(child).as_posix()))
             index[rel] = sorted(files)
 
-        out_path = self.root / json_name
+        # store index files inside the visitor package directory
+        out_path = self.package_root / json_name
         self._atomic_write_json(out_path, index)
 
     def body(self) -> None:
@@ -248,9 +250,9 @@ class x_cls_make_github_visitor_x:
         3) a-posteriori run -> writes `x_index_b_a_posteriori_x.json`
         4) cleanup()
         """
-        # Step 1: a-priori inspect
+        # Step 1: a-priori inspect (written into the visitor package dir)
         self.inspect("x_index_a_a_priori_x.json")
-        p1 = self.root / "x_index_a_a_priori_x.json"
+        p1 = self.package_root / "x_index_a_a_priori_x.json"
         assert (
             p1.exists() and p1.stat().st_size > 0
         ), f"step1 failed: {p1} missing or empty"
@@ -288,9 +290,9 @@ class x_cls_make_github_visitor_x:
         # Step 2: run tools
         self.body()
 
-        # Step 3: a-posteriori inspect
+        # Step 3: a-posteriori inspect (written into the visitor package dir)
         self.inspect("x_index_b_a_posteriori_x.json")
-        p2 = self.root / "x_index_b_a_posteriori_x.json"
+        p2 = self.package_root / "x_index_b_a_posteriori_x.json"
         assert (
             p2.exists() and p2.stat().st_size > 0
         ), f"step3 failed: {p2} missing or empty"
@@ -349,4 +351,4 @@ def init_main() -> "x_cls_make_github_visitor_x":
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
-    print(f"wrote a-priori and a-posteriori index files to: {inst.root}")
+    print(f"wrote a-priori and a-posteriori index files to: {inst.package_root}")
