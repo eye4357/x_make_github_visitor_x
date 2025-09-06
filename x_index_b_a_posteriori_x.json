@@ -1491,7 +1491,7 @@
         "tools": {
             "black": {
                 "exit": 0,
-                "stderr": "reformatted C:\\x_cloned_repos_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n1 file reformatted.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
@@ -2111,7 +2111,7 @@
         "tools": {
             "black": {
                 "exit": 0,
-                "stderr": "reformatted C:\\x_cloned_repos_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n1 file reformatted.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
@@ -2127,7 +2127,7 @@
             "ruff_fix": {
                 "exit": 0,
                 "stderr": "",
-                "stdout": "Found 1 error (1 fixed, 0 remaining).\n"
+                "stdout": "All checks passed!\n"
             }
         }
     },
@@ -2421,7 +2421,7 @@
         "tools": {
             "black": {
                 "exit": 0,
-                "stderr": "reformatted C:\\x_cloned_repos_x\\x_make_pip_updates_x\\x_cls_make_pip_updates_x.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n1 file reformatted.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
@@ -2437,7 +2437,7 @@
             "ruff_fix": {
                 "exit": 0,
                 "stderr": "",
-                "stdout": "Found 1 error (1 fixed, 0 remaining).\n"
+                "stdout": "All checks passed!\n"
             }
         }
     },
@@ -3013,7 +3013,7 @@
         "tools": {
             "black": {
                 "exit": 0,
-                "stderr": "reformatted C:\\x_cloned_repos_x\\x_yahw_x\\x_cls_yahw_x.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n1 file reformatted.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
