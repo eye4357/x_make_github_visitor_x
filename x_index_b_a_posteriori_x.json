@@ -349,7 +349,7 @@
         "tool_reports": {
             "black": {
                 "exit": 0,
-                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
+                "stderr": "reformatted C:\\x_cloned_repos_x\\x_0_make_all_x\\x_cls_make_all_x.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n1 file reformatted.\n",
                 "stdout": ""
             },
             "mypy": {
