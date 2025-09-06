@@ -23,7 +23,12 @@ COMMON_CACHE_NAMES = {".mypy_cache", ".ruff_cache", "__pycache__"}
 
 
 class x_cls_make_github_visitor_x:
-    def __init__(self, root_dir: str | Path, *, output_filename: str = "repos_index.json") -> None:
+    def __init__(
+        self,
+        root_dir: str | Path,
+        *,
+        output_filename: str = "repos_index.json",
+    ) -> None:
         """Initialize visitor.
 
         root_dir: path to a workspace that contains immediate child git clones.
@@ -32,12 +37,16 @@ class x_cls_make_github_visitor_x:
         """
         self.root = Path(root_dir)
         if not self.root.exists() or not self.root.is_dir():
-            raise AssertionError(f"root path must exist and be a directory: {self.root}")
+            raise AssertionError(
+                f"root path must exist and be a directory: {self.root}"
+            )
 
         # The workspace root must not itself be a git repository (we operate
         # on immediate child clones).
         if (self.root / ".git").exists():
-            raise AssertionError(f"root path must not be a git repository: {self.root}")
+            raise AssertionError(
+                f"root path must not be a git repository: {self.root}"
+            )
 
         self.output_filename = output_filename
         self._tool_reports: Dict[str, Any] = {}
@@ -198,31 +207,40 @@ class x_cls_make_github_visitor_x:
                 )
 
             # 4) mypy strict
-            cmd = [
-                python,
-                "-m",
-                "mypy",
-                "--strict",
-                "--no-warn-unused-configs",
-                "--show-error-codes",
-                ".",
-            ]
-            p = subprocess.run(
-                cmd,
-                cwd=str(child),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            repo_report["tools"]["mypy"] = {
-                "exit": p.returncode,
-                "stdout": p.stdout,
-                "stderr": p.stderr,
-            }
-            if p.returncode != 0:
-                raise AssertionError(
-                    f"mypy failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+            # Skip mypy if there are no Python source files in the repo
+            py_files = list(child.rglob("*.py")) + list(child.rglob("*.pyi"))
+            if not any(p.is_file() for p in py_files):
+                repo_report["tools"]["mypy"] = {
+                    "exit": 0,
+                    "stdout": "",
+                    "stderr": "skipped - no Python source (.py/.pyi) found",
+                }
+            else:
+                cmd = [
+                    python,
+                    "-m",
+                    "mypy",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    ".",
+                ]
+                p = subprocess.run(
+                    cmd,
+                    cwd=str(child),
+                    capture_output=True,
+                    text=True,
+                    timeout=timeout,
                 )
+                repo_report["tools"]["mypy"] = {
+                    "exit": p.returncode,
+                    "stdout": p.stdout,
+                    "stderr": p.stderr,
+                }
+                if p.returncode != 0:
+                    raise AssertionError(
+                        f"mypy failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                    )
 
             # capture resulting file index for this repo
             files: List[str] = []
@@ -351,4 +369,6 @@ def init_main() -> "x_cls_make_github_visitor_x":
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
-    print(f"wrote a-priori and a-posteriori index files to: {inst.package_root}")
+    print(
+        f"wrote a-priori and a-posteriori index files to: {inst.package_root}"
+    )
