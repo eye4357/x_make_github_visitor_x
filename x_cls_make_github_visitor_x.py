@@ -74,7 +74,7 @@ class x_cls_make_github_visitor_x:
                 continue
             # Only include directories that look like git clones (contain .git)
             if not (p / ".git").exists():
-                # skip non-repo helper folders (for example: tools)
+                # skip non-repo helper folders
                 continue
             out.append(p)
         return sorted(out)
@@ -122,7 +122,7 @@ class x_cls_make_github_visitor_x:
         the tool's stdout/stderr to aid debugging.
         """
         python = sys.executable
-        # ensure tools are available; if install fails surface stderr
+        # ensure required formatter/linter/typecheck packages are available; if install fails surface stderr
         p = subprocess.run(
             [
                 python,
@@ -138,7 +138,9 @@ class x_cls_make_github_visitor_x:
             text=True,
         )
         if p.returncode != 0:
-            raise AssertionError(f"failed to install tools: {p.stderr}")
+            raise AssertionError(
+                f"failed to install required packages: {p.stderr}"
+            )
 
         timeout = 120
         reports: Dict[str, Any] = {}
@@ -146,7 +148,7 @@ class x_cls_make_github_visitor_x:
             rel = str(child.relative_to(self.root))
             repo_report: Dict[str, Any] = {
                 "timestamp": datetime.now(timezone.utc).isoformat(),
-                "tools": {},
+                "tool_reports": {},
             }
 
             # 1) ruff --fix
@@ -158,7 +160,7 @@ class x_cls_make_github_visitor_x:
                 text=True,
                 timeout=timeout,
             )
-            repo_report["tools"]["ruff_fix"] = {
+            repo_report["tool_reports"]["ruff_fix"] = {
                 "exit": p.returncode,
                 "stdout": p.stdout,
                 "stderr": p.stderr,
@@ -177,7 +179,7 @@ class x_cls_make_github_visitor_x:
                 text=True,
                 timeout=timeout,
             )
-            repo_report["tools"]["black"] = {
+            repo_report["tool_reports"]["black"] = {
                 "exit": p.returncode,
                 "stdout": p.stdout,
                 "stderr": p.stderr,
@@ -196,7 +198,7 @@ class x_cls_make_github_visitor_x:
                 text=True,
                 timeout=timeout,
             )
-            repo_report["tools"]["ruff_check"] = {
+            repo_report["tool_reports"]["ruff_check"] = {
                 "exit": p.returncode,
                 "stdout": p.stdout,
                 "stderr": p.stderr,
@@ -210,7 +212,7 @@ class x_cls_make_github_visitor_x:
             # Skip mypy if there are no Python source files in the repo
             py_files = list(child.rglob("*.py")) + list(child.rglob("*.pyi"))
             if not any(p.is_file() for p in py_files):
-                repo_report["tools"]["mypy"] = {
+                repo_report["tool_reports"]["mypy"] = {
                     "exit": 0,
                     "stdout": "",
                     "stderr": "skipped - no Python source (.py/.pyi) found",
@@ -232,7 +234,7 @@ class x_cls_make_github_visitor_x:
                     text=True,
                     timeout=timeout,
                 )
-                repo_report["tools"]["mypy"] = {
+                repo_report["tool_reports"]["mypy"] = {
                     "exit": p.returncode,
                     "stdout": p.stdout,
                     "stderr": p.stderr,
@@ -263,10 +265,10 @@ class x_cls_make_github_visitor_x:
 
     def run_inspect_flow(self) -> None:
         """Run the inspect flow in four steps:
-        1) a-priori run -> writes `x_index_a_a_priori_x.json`
-        2) body() -> run tools
-        3) a-posteriori run -> writes `x_index_b_a_posteriori_x.json`
-        4) cleanup()
+            1) a-priori run -> writes `x_index_a_a_priori_x.json`
+        2) body() -> run toolchain (formatters/linters/typecheck)
+            3) a-posteriori run -> writes `x_index_b_a_posteriori_x.json`
+            4) cleanup()
         """
         # Step 1: a-priori inspect (written into the visitor package dir)
         self.inspect("x_index_a_a_priori_x.json")
@@ -305,7 +307,7 @@ class x_cls_make_github_visitor_x:
                 f"a-priori index contents do not match immediate children.\n  expected: {sorted(current_children)}\n  found: {apriori_keys}"
             )
 
-        # Step 2: run tools
+        # Step 2: run toolchain (ruff -> black -> ruff -> mypy)
         self.body()
 
         # Step 3: a-posteriori inspect (written into the visitor package dir)
@@ -333,13 +335,13 @@ class x_cls_make_github_visitor_x:
             if repo_name in data:
                 data[repo_name] = {
                     "files": data.get(repo_name, []),
-                    "tools": report.get("tools", {}),
+                    "tool_reports": report.get("tool_reports", {}),
                     "files_index": report.get("files", []),
                 }
             else:
                 data[repo_name] = {
                     "files": report.get("files", []),
-                    "tools": report.get("tools", {}),
+                    "tool_reports": report.get("tool_reports", {}),
                 }
 
         self._atomic_write_json(p2, data)
