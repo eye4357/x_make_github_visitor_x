@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from pathlib import Path
 import json
 import os
 import subprocess
 import sys
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 """Visitor to run ruff/black/mypy on immediate child git clones.
@@ -301,7 +301,7 @@ class x_cls_make_github_visitor_x:
         current_children = [
             str(p.relative_to(self.root)) for p in self._child_dirs()
         ]
-        apriori_keys = sorted(list(apriori.keys()))
+        apriori_keys = sorted(apriori.keys())
         if apriori_keys != sorted(current_children):
             raise AssertionError(
                 f"a-priori index contents do not match immediate children.\n  expected: {sorted(current_children)}\n  found: {apriori_keys}"
