@@ -37,6 +37,8 @@
             ".mypy_cache/3.13/_winapi.meta.json",
             ".mypy_cache/3.13/abc.data.json",
             ".mypy_cache/3.13/abc.meta.json",
+            ".mypy_cache/3.13/argparse.data.json",
+            ".mypy_cache/3.13/argparse.meta.json",
             ".mypy_cache/3.13/ast.data.json",
             ".mypy_cache/3.13/ast.meta.json",
             ".mypy_cache/3.13/builtins.data.json",
@@ -71,6 +73,10 @@
             ".mypy_cache/3.13/email/policy.meta.json",
             ".mypy_cache/3.13/enum.data.json",
             ".mypy_cache/3.13/enum.meta.json",
+            ".mypy_cache/3.13/filecmp.data.json",
+            ".mypy_cache/3.13/filecmp.meta.json",
+            ".mypy_cache/3.13/forceit.data.json",
+            ".mypy_cache/3.13/forceit.meta.json",
             ".mypy_cache/3.13/genericpath.data.json",
             ".mypy_cache/3.13/genericpath.meta.json",
             ".mypy_cache/3.13/gzip.data.json",
@@ -185,6 +191,7 @@
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/10042042194336382833",
             ".ruff_cache/CACHEDIR.TAG",
+            "forceit.py",
             "x_cls_make_all_x.py"
         ],
         "files_index": [
@@ -224,6 +231,8 @@
             ".mypy_cache/3.13/_winapi.meta.json",
             ".mypy_cache/3.13/abc.data.json",
             ".mypy_cache/3.13/abc.meta.json",
+            ".mypy_cache/3.13/argparse.data.json",
+            ".mypy_cache/3.13/argparse.meta.json",
             ".mypy_cache/3.13/ast.data.json",
             ".mypy_cache/3.13/ast.meta.json",
             ".mypy_cache/3.13/builtins.data.json",
@@ -258,6 +267,10 @@
             ".mypy_cache/3.13/email/policy.meta.json",
             ".mypy_cache/3.13/enum.data.json",
             ".mypy_cache/3.13/enum.meta.json",
+            ".mypy_cache/3.13/filecmp.data.json",
+            ".mypy_cache/3.13/filecmp.meta.json",
+            ".mypy_cache/3.13/forceit.data.json",
+            ".mypy_cache/3.13/forceit.meta.json",
             ".mypy_cache/3.13/genericpath.data.json",
             ".mypy_cache/3.13/genericpath.meta.json",
             ".mypy_cache/3.13/gzip.data.json",
@@ -372,18 +385,19 @@
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/10042042194336382833",
             ".ruff_cache/CACHEDIR.TAG",
+            "forceit.py",
             "x_cls_make_all_x.py"
         ],
         "tool_reports": {
             "black": {
                 "exit": 0,
-                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file left unchanged.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n2 files left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
                 "exit": 0,
                 "stderr": "",
-                "stdout": "Success: no issues found in 1 source file\n"
+                "stdout": "Success: no issues found in 2 source files\n"
             },
             "ruff_check": {
                 "exit": 0,
