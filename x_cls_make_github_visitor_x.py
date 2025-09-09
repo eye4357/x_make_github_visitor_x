@@ -4,9 +4,9 @@ import json
 import os
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 """Visitor to run ruff/black/mypy on immediate child git clones.
 
@@ -28,6 +28,7 @@ class x_cls_make_github_visitor_x:
         root_dir: str | Path,
         *,
         output_filename: str = "repos_index.json",
+        ctx: object | None = None,
     ) -> None:
         """Initialize visitor.
 
@@ -43,26 +44,28 @@ class x_cls_make_github_visitor_x:
 
         # The workspace root must not itself be a git repository (we operate
         # on immediate child clones).
+
         if (self.root / ".git").exists():
             raise AssertionError(
                 f"root path must not be a git repository: {self.root}"
             )
 
         self.output_filename = output_filename
-        self._tool_reports: Dict[str, Any] = {}
+        self._tool_reports: dict[str, Any] = {}
+        self._ctx = ctx
 
         # package root (the folder containing this module). Use this for
         # storing the canonical a-priori / a-posteriori index files so they
         # live with the visitor package rather than the workspace root.
         self.package_root = Path(__file__).resolve().parent
 
-    def _child_dirs(self) -> List[Path]:
+    def _child_dirs(self) -> list[Path]:
         """Return immediate child directories excluding hidden and cache dirs.
 
         Exclude names starting with '.' or '__' and common cache names to avoid
         treating tool caches as repositories.
         """
-        out: List[Path] = []
+        out: list[Path] = []
         for p in self.root.iterdir():
             if not p.is_dir():
                 continue
@@ -99,10 +102,10 @@ class x_cls_make_github_visitor_x:
         children = self._child_dirs()
         if not children:
             raise AssertionError("no child git repositories found")
-        index: Dict[str, List[str]] = {}
+        index: dict[str, list[str]] = {}
         for child in children:
             rel = str(child.relative_to(self.root))
-            files: List[str] = []
+            files: list[str] = []
             for p in child.rglob("*"):
                 if not p.is_file():
                     continue
@@ -134,6 +137,7 @@ class x_cls_make_github_visitor_x:
                 "black",
                 "mypy",
             ],
+            check=False,
             capture_output=True,
             text=True,
         )
@@ -143,11 +147,11 @@ class x_cls_make_github_visitor_x:
             )
 
         timeout = 120
-        reports: Dict[str, Any] = {}
+        reports: dict[str, Any] = {}
         for child in self._child_dirs():
             rel = str(child.relative_to(self.root))
-            repo_report: Dict[str, Any] = {
-                "timestamp": datetime.now(timezone.utc).isoformat(),
+            repo_report: dict[str, Any] = {
+                "timestamp": datetime.now(UTC).isoformat(),
                 "tool_reports": {},
             }
 
@@ -155,6 +159,7 @@ class x_cls_make_github_visitor_x:
             cmd = [python, "-m", "ruff", "check", ".", "--fix"]
             p = subprocess.run(
                 cmd,
+                check=False,
                 cwd=str(child),
                 capture_output=True,
                 text=True,
@@ -174,6 +179,7 @@ class x_cls_make_github_visitor_x:
             cmd = [python, "-m", "black", ".", "--line-length", "79"]
             p = subprocess.run(
                 cmd,
+                check=False,
                 cwd=str(child),
                 capture_output=True,
                 text=True,
@@ -193,6 +199,7 @@ class x_cls_make_github_visitor_x:
             cmd = [python, "-m", "ruff", "check", "."]
             p = subprocess.run(
                 cmd,
+                check=False,
                 cwd=str(child),
                 capture_output=True,
                 text=True,
@@ -229,6 +236,7 @@ class x_cls_make_github_visitor_x:
                 ]
                 p = subprocess.run(
                     cmd,
+                    check=False,
                     cwd=str(child),
                     capture_output=True,
                     text=True,
@@ -245,7 +253,7 @@ class x_cls_make_github_visitor_x:
                     )
 
             # capture resulting file index for this repo
-            files: List[str] = []
+            files: list[str] = []
             for pth in child.rglob("*"):
                 if not pth.is_file():
                     continue
@@ -282,14 +290,16 @@ class x_cls_make_github_visitor_x:
             with p1.open("r", encoding="utf-8") as fh:
                 raw_apriori = json.load(fh)
         except Exception as exc:
-            raise AssertionError(f"failed to read a-priori index: {exc}")
+            raise AssertionError(
+                f"failed to read a-priori index: {exc}"
+            ) from exc
 
         if not isinstance(raw_apriori, dict):
             raise AssertionError(
                 f"a-priori index must be a JSON object mapping repo->files: {p1}"
             )
 
-        apriori: Dict[str, List[str]] = {}
+        apriori: dict[str, list[str]] = {}
         for k, v in raw_apriori.items():
             key = str(k)
             if isinstance(v, list):
@@ -321,14 +331,16 @@ class x_cls_make_github_visitor_x:
             with p2.open("r", encoding="utf-8") as fh:
                 raw_data = json.load(fh)
         except Exception as exc:
-            raise AssertionError(f"failed to read a-posteriori index: {exc}")
+            raise AssertionError(
+                f"failed to read a-posteriori index: {exc}"
+            ) from exc
 
         if not isinstance(raw_data, dict):
             raise AssertionError(
                 f"a-posteriori index must be a JSON object mapping repo->files: {p2}"
             )
 
-        data: Dict[str, Any] = {str(k): v for k, v in raw_data.items()}
+        data: dict[str, Any] = {str(k): v for k, v in raw_data.items()}
 
         # attach reports under each repo key
         for repo_name, report in getattr(self, "_tool_reports", {}).items():
@@ -351,21 +363,24 @@ class x_cls_make_github_visitor_x:
 
 
 def init_name(
-    root_dir: str | Path, *, output_filename: Optional[str] = None
-) -> "x_cls_make_github_visitor_x":
+    root_dir: str | Path,
+    *,
+    output_filename: str | None = None,
+    ctx: object | None = None,
+) -> x_cls_make_github_visitor_x:
     if output_filename is None:
-        return x_cls_make_github_visitor_x(root_dir)
+        return x_cls_make_github_visitor_x(root_dir, ctx=ctx)
     return x_cls_make_github_visitor_x(
-        root_dir, output_filename=output_filename
+        root_dir, output_filename=output_filename, ctx=ctx
     )
 
 
-def init_main() -> "x_cls_make_github_visitor_x":
+def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
     """Initialize the visitor with the fixed root path C:\\x_cloned_repos_x.
 
     Returns the visitor instance ready to run against the workspace.
     """
-    return init_name(r"C:\x_cloned_repos_x")
+    return init_name(r"C:\x_cloned_repos_x", ctx=ctx)
 
 
 if __name__ == "__main__":

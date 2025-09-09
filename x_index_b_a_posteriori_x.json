@@ -1,6 +1,8 @@
 {
     "x_0_make_all_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -127,6 +129,8 @@
             ".mypy_cache/3.13/ntpath.meta.json",
             ".mypy_cache/3.13/nturl2path.data.json",
             ".mypy_cache/3.13/nturl2path.meta.json",
+            ".mypy_cache/3.13/orchestrator_core.data.json",
+            ".mypy_cache/3.13/orchestrator_core.meta.json",
             ".mypy_cache/3.13/os/__init__.data.json",
             ".mypy_cache/3.13/os/__init__.meta.json",
             ".mypy_cache/3.13/os/path.data.json",
@@ -159,6 +163,10 @@
             ".mypy_cache/3.13/tarfile.meta.json",
             ".mypy_cache/3.13/tempfile.data.json",
             ".mypy_cache/3.13/tempfile.meta.json",
+            ".mypy_cache/3.13/test_diagram_builders.data.json",
+            ".mypy_cache/3.13/test_diagram_builders.meta.json",
+            ".mypy_cache/3.13/test_orchestrator_core.data.json",
+            ".mypy_cache/3.13/test_orchestrator_core.meta.json",
             ".mypy_cache/3.13/time.data.json",
             ".mypy_cache/3.13/time.meta.json",
             ".mypy_cache/3.13/types.data.json",
@@ -188,13 +196,23 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/10042042194336382833",
+            ".ruff_cache/0.12.12/12628084886260382207",
+            ".ruff_cache/0.12.12/1746509708494966312",
             ".ruff_cache/CACHEDIR.TAG",
             "forceit.py",
+            "orchestrator_core.py",
+            "plan.md",
+            "pyproject.toml",
+            "tests/test_diagram_builders.py",
+            "tests/test_orchestrator_core.py",
             "x_cls_make_all_x.py"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -321,6 +339,8 @@
             ".mypy_cache/3.13/ntpath.meta.json",
             ".mypy_cache/3.13/nturl2path.data.json",
             ".mypy_cache/3.13/nturl2path.meta.json",
+            ".mypy_cache/3.13/orchestrator_core.data.json",
+            ".mypy_cache/3.13/orchestrator_core.meta.json",
             ".mypy_cache/3.13/os/__init__.data.json",
             ".mypy_cache/3.13/os/__init__.meta.json",
             ".mypy_cache/3.13/os/path.data.json",
@@ -353,6 +373,10 @@
             ".mypy_cache/3.13/tarfile.meta.json",
             ".mypy_cache/3.13/tempfile.data.json",
             ".mypy_cache/3.13/tempfile.meta.json",
+            ".mypy_cache/3.13/test_diagram_builders.data.json",
+            ".mypy_cache/3.13/test_diagram_builders.meta.json",
+            ".mypy_cache/3.13/test_orchestrator_core.data.json",
+            ".mypy_cache/3.13/test_orchestrator_core.meta.json",
             ".mypy_cache/3.13/time.data.json",
             ".mypy_cache/3.13/time.meta.json",
             ".mypy_cache/3.13/types.data.json",
@@ -382,22 +406,30 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/10042042194336382833",
+            ".ruff_cache/0.12.12/12628084886260382207",
+            ".ruff_cache/0.12.12/1746509708494966312",
             ".ruff_cache/CACHEDIR.TAG",
             "forceit.py",
+            "orchestrator_core.py",
+            "plan.md",
+            "pyproject.toml",
+            "tests/test_diagram_builders.py",
+            "tests/test_orchestrator_core.py",
             "x_cls_make_all_x.py"
         ],
         "tool_reports": {
             "black": {
                 "exit": 0,
-                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n2 files left unchanged.\n",
+                "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n5 files left unchanged.\n",
                 "stdout": ""
             },
             "mypy": {
                 "exit": 0,
                 "stderr": "",
-                "stdout": "Success: no issues found in 2 source files\n"
+                "stdout": "Success: no issues found in 5 source files\n"
             },
             "ruff_check": {
                 "exit": 0,
@@ -413,6 +445,12 @@
     },
     "x_legatus_tactica_core_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
+            ".pre-commit-config.yaml",
+            ".ruff_cache/.gitignore",
+            ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_sort_x/a_code/a_downloads/CH9102_WIN.EXE",
             "x_sort_x/a_code/a_downloads/ESP32_GENERIC-20250415-v1.25.0.bin",
             "x_sort_x/a_code/a_downloads/Git-2.51.0-64-bit.exe",
@@ -453,6 +491,12 @@
             "x_sort_x/b_docs/developer diary.md"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
+            ".pre-commit-config.yaml",
+            ".ruff_cache/.gitignore",
+            ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_sort_x/a_code/a_downloads/CH9102_WIN.EXE",
             "x_sort_x/a_code/a_downloads/ESP32_GENERIC-20250415-v1.25.0.bin",
             "x_sort_x/a_code/a_downloads/Git-2.51.0-64-bit.exe",
@@ -505,18 +549,20 @@
             },
             "ruff_check": {
                 "exit": 0,
-                "stderr": "warning: No Python files found under the given path(s)\n",
+                "stderr": "",
                 "stdout": "All checks passed!\n"
             },
             "ruff_fix": {
                 "exit": 0,
-                "stderr": "warning: No Python files found under the given path(s)\n",
+                "stderr": "",
                 "stdout": "All checks passed!\n"
             }
         }
     },
     "x_make_eye4357_local_dirs_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -648,12 +694,17 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/11114569714517611373",
+            ".ruff_cache/0.12.12/13482178897407751695",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_dirs_x.py"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -785,9 +836,12 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/11114569714517611373",
+            ".ruff_cache/0.12.12/13482178897407751695",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_dirs_x.py"
         ],
         "tool_reports": {
@@ -815,6 +869,8 @@
     },
     "x_make_github_clones_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1008,12 +1064,23 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/13843359420249815567",
+            ".ruff_cache/0.12.12/7077391494320529527",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_github_clones_x.py"
+            "dist/x_make_github_clones_x-10.0.4-py3-none-any.whl",
+            "dist/x_make_github_clones_x-10.0.4.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_github_clones_x.py",
+            "x_make_github_clones_x.egg-info/PKG-INFO",
+            "x_make_github_clones_x.egg-info/SOURCES.txt",
+            "x_make_github_clones_x.egg-info/dependency_links.txt",
+            "x_make_github_clones_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1207,10 +1274,19 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/13843359420249815567",
+            ".ruff_cache/0.12.12/7077391494320529527",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_github_clones_x.py"
+            "dist/x_make_github_clones_x-10.0.4-py3-none-any.whl",
+            "dist/x_make_github_clones_x-10.0.4.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_github_clones_x.py",
+            "x_make_github_clones_x.egg-info/PKG-INFO",
+            "x_make_github_clones_x.egg-info/SOURCES.txt",
+            "x_make_github_clones_x.egg-info/dependency_links.txt",
+            "x_make_github_clones_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -1237,6 +1313,8 @@
     },
     "x_make_github_visitor_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1378,14 +1456,25 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/1339747256684341891",
             ".ruff_cache/0.12.12/4963248008142151814",
             ".ruff_cache/CACHEDIR.TAG",
+            "dist/x_make_github_visitor_x-10.0.2-py3-none-any.whl",
+            "dist/x_make_github_visitor_x-10.0.2.tar.gz",
+            "pyproject.toml",
             "x_cls_make_github_visitor_x.py",
             "x_index_a_a_priori_x.json",
-            "x_index_b_a_posteriori_x.json"
+            "x_index_b_a_posteriori_x.json",
+            "x_make_github_visitor_x.egg-info/PKG-INFO",
+            "x_make_github_visitor_x.egg-info/SOURCES.txt",
+            "x_make_github_visitor_x.egg-info/dependency_links.txt",
+            "x_make_github_visitor_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1527,12 +1616,21 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/1339747256684341891",
             ".ruff_cache/0.12.12/4963248008142151814",
             ".ruff_cache/CACHEDIR.TAG",
+            "dist/x_make_github_visitor_x-10.0.2-py3-none-any.whl",
+            "dist/x_make_github_visitor_x-10.0.2.tar.gz",
+            "pyproject.toml",
             "x_cls_make_github_visitor_x.py",
             "x_index_a_a_priori_x.json",
-            "x_index_b_a_posteriori_x.json"
+            "x_index_b_a_posteriori_x.json",
+            "x_make_github_visitor_x.egg-info/PKG-INFO",
+            "x_make_github_visitor_x.egg-info/SOURCES.txt",
+            "x_make_github_visitor_x.egg-info/dependency_links.txt",
+            "x_make_github_visitor_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -1559,6 +1657,8 @@
     },
     "x_make_graphviz_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1690,12 +1790,23 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/10344495316378904526",
             ".ruff_cache/0.12.12/11664145867116081914",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_graphviz_x.py"
+            "dist/x_make_graphviz_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_graphviz_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_graphviz_x.py",
+            "x_make_graphviz_x.egg-info/PKG-INFO",
+            "x_make_graphviz_x.egg-info/SOURCES.txt",
+            "x_make_graphviz_x.egg-info/dependency_links.txt",
+            "x_make_graphviz_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1827,10 +1938,19 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/10344495316378904526",
             ".ruff_cache/0.12.12/11664145867116081914",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_graphviz_x.py"
+            "dist/x_make_graphviz_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_graphviz_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_graphviz_x.py",
+            "x_make_graphviz_x.egg-info/PKG-INFO",
+            "x_make_graphviz_x.egg-info/SOURCES.txt",
+            "x_make_graphviz_x.egg-info/dependency_links.txt",
+            "x_make_graphviz_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -1857,6 +1977,8 @@
     },
     "x_make_markdown_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -1988,14 +2110,26 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/2701149745611447975",
             ".ruff_cache/0.12.12/798381257670403061",
             ".ruff_cache/CACHEDIR.TAG",
+            "dist/x_make_markdown_x-10.0.2-py3-none-any.whl",
+            "dist/x_make_markdown_x-10.0.2.tar.gz",
             "dummy/dummy.txt",
+            "dummy/dummy/dummy.txt",
             "dummy2.txt",
-            "x_cls_make_markdown_x.py"
+            "pyproject.toml",
+            "x_cls_make_markdown_x.py",
+            "x_make_markdown_x.egg-info/PKG-INFO",
+            "x_make_markdown_x.egg-info/SOURCES.txt",
+            "x_make_markdown_x.egg-info/dependency_links.txt",
+            "x_make_markdown_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2127,12 +2261,22 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/2701149745611447975",
             ".ruff_cache/0.12.12/798381257670403061",
             ".ruff_cache/CACHEDIR.TAG",
+            "dist/x_make_markdown_x-10.0.2-py3-none-any.whl",
+            "dist/x_make_markdown_x-10.0.2.tar.gz",
             "dummy/dummy.txt",
+            "dummy/dummy/dummy.txt",
             "dummy2.txt",
-            "x_cls_make_markdown_x.py"
+            "pyproject.toml",
+            "x_cls_make_markdown_x.py",
+            "x_make_markdown_x.egg-info/PKG-INFO",
+            "x_make_markdown_x.egg-info/SOURCES.txt",
+            "x_make_markdown_x.egg-info/dependency_links.txt",
+            "x_make_markdown_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -2159,6 +2303,8 @@
     },
     "x_make_mermaid_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2290,12 +2436,23 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/5375464950716779471",
             ".ruff_cache/0.12.12/8593302851214312491",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_mermaid_x.py"
+            "dist/x_make_mermaid_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_mermaid_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_mermaid_x.py",
+            "x_make_mermaid_x.egg-info/PKG-INFO",
+            "x_make_mermaid_x.egg-info/SOURCES.txt",
+            "x_make_mermaid_x.egg-info/dependency_links.txt",
+            "x_make_mermaid_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2427,10 +2584,19 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/5375464950716779471",
             ".ruff_cache/0.12.12/8593302851214312491",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_mermaid_x.py"
+            "dist/x_make_mermaid_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_mermaid_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_mermaid_x.py",
+            "x_make_mermaid_x.egg-info/PKG-INFO",
+            "x_make_mermaid_x.egg-info/SOURCES.txt",
+            "x_make_mermaid_x.egg-info/dependency_links.txt",
+            "x_make_mermaid_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -2457,6 +2623,8 @@
     },
     "x_make_persistent_env_var_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2598,12 +2766,23 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/14860584350988556037",
+            ".ruff_cache/0.12.12/6534871500529606043",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_persistent_env_var_x.py"
+            "dist/x_make_persistent_env_var_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_persistent_env_var_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_persistent_env_var_x.py",
+            "x_make_persistent_env_var_x.egg-info/PKG-INFO",
+            "x_make_persistent_env_var_x.egg-info/SOURCES.txt",
+            "x_make_persistent_env_var_x.egg-info/dependency_links.txt",
+            "x_make_persistent_env_var_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2745,10 +2924,19 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/14860584350988556037",
+            ".ruff_cache/0.12.12/6534871500529606043",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_persistent_env_var_x.py"
+            "dist/x_make_persistent_env_var_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_persistent_env_var_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_persistent_env_var_x.py",
+            "x_make_persistent_env_var_x.egg-info/PKG-INFO",
+            "x_make_persistent_env_var_x.egg-info/SOURCES.txt",
+            "x_make_persistent_env_var_x.egg-info/dependency_links.txt",
+            "x_make_persistent_env_var_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -2775,6 +2963,8 @@
     },
     "x_make_pip_updates_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -2912,12 +3102,23 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/12690114058531580125",
             ".ruff_cache/0.12.12/14445149111296209522",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_pip_updates_x.py"
+            "dist/x_make_pip_updates_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_pip_updates_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_pip_updates_x.py",
+            "x_make_pip_updates_x.egg-info/PKG-INFO",
+            "x_make_pip_updates_x.egg-info/SOURCES.txt",
+            "x_make_pip_updates_x.egg-info/dependency_links.txt",
+            "x_make_pip_updates_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -3055,10 +3256,19 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/12690114058531580125",
             ".ruff_cache/0.12.12/14445149111296209522",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_pip_updates_x.py"
+            "dist/x_make_pip_updates_x-10.0.1-py3-none-any.whl",
+            "dist/x_make_pip_updates_x-10.0.1.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_pip_updates_x.py",
+            "x_make_pip_updates_x.egg-info/PKG-INFO",
+            "x_make_pip_updates_x.egg-info/SOURCES.txt",
+            "x_make_pip_updates_x.egg-info/dependency_links.txt",
+            "x_make_pip_updates_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -3085,6 +3295,8 @@
     },
     "x_make_pypi_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -3264,12 +3476,23 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/12128350233225944488",
+            ".ruff_cache/0.12.12/18148655311303580836",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_pypi_x.py"
+            "dist/x_make_pypi_x-10.0.3-py3-none-any.whl",
+            "dist/x_make_pypi_x-10.0.3.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_pypi_x.py",
+            "x_make_pypi_x.egg-info/PKG-INFO",
+            "x_make_pypi_x.egg-info/SOURCES.txt",
+            "x_make_pypi_x.egg-info/dependency_links.txt",
+            "x_make_pypi_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/__future__.data.json",
@@ -3449,10 +3672,19 @@
             ".mypy_cache/3.13/zlib.data.json",
             ".mypy_cache/3.13/zlib.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/12128350233225944488",
+            ".ruff_cache/0.12.12/18148655311303580836",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_pypi_x.py"
+            "dist/x_make_pypi_x-10.0.3-py3-none-any.whl",
+            "dist/x_make_pypi_x-10.0.3.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_pypi_x.py",
+            "x_make_pypi_x.egg-info/PKG-INFO",
+            "x_make_pypi_x.egg-info/SOURCES.txt",
+            "x_make_pypi_x.egg-info/dependency_links.txt",
+            "x_make_pypi_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
@@ -3479,6 +3711,8 @@
     },
     "x_make_test2_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -3608,12 +3842,17 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/6758491702882039190",
+            ".ruff_cache/0.12.12/9414467311911545642",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test2_x.py"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -3743,9 +3982,12 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/6758491702882039190",
+            ".ruff_cache/0.12.12/9414467311911545642",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test2_x.py"
         ],
         "tool_reports": {
@@ -3773,6 +4015,8 @@
     },
     "x_make_test3_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -3902,12 +4146,17 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/487625114152758550",
             ".ruff_cache/0.12.12/5100813316630412284",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test3_x.py"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -4037,9 +4286,12 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/487625114152758550",
             ".ruff_cache/0.12.12/5100813316630412284",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test3_x.py"
         ],
         "tool_reports": {
@@ -4067,6 +4319,8 @@
     },
     "x_make_test_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -4196,12 +4450,17 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/730559407284630359",
             ".ruff_cache/0.12.12/7649874918719434418",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test_x.py"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -4331,9 +4590,12 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
+            ".ruff_cache/0.12.12/730559407284630359",
             ".ruff_cache/0.12.12/7649874918719434418",
             ".ruff_cache/CACHEDIR.TAG",
+            "pyproject.toml",
             "x_cls_make_test_x.py"
         ],
         "tool_reports": {
@@ -4361,6 +4623,8 @@
     },
     "x_make_yahw_x": {
         "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -4490,12 +4754,23 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/8822695805917474750",
+            ".ruff_cache/0.12.12/9541346182569929136",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_yahw_x.py"
+            "dist/x_make_yahw_x-10.0.3-py3-none-any.whl",
+            "dist/x_make_yahw_x-10.0.3.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_yahw_x.py",
+            "x_make_yahw_x.egg-info/PKG-INFO",
+            "x_make_yahw_x.egg-info/SOURCES.txt",
+            "x_make_yahw_x.egg-info/dependency_links.txt",
+            "x_make_yahw_x.egg-info/top_level.txt"
         ],
         "files_index": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
             ".mypy_cache/.gitignore",
             ".mypy_cache/3.13/@plugins_snapshot.json",
             ".mypy_cache/3.13/_ast.data.json",
@@ -4625,10 +4900,19 @@
             ".mypy_cache/3.13/zipimport.data.json",
             ".mypy_cache/3.13/zipimport.meta.json",
             ".mypy_cache/CACHEDIR.TAG",
+            ".pre-commit-config.yaml",
             ".ruff_cache/.gitignore",
             ".ruff_cache/0.12.12/8822695805917474750",
+            ".ruff_cache/0.12.12/9541346182569929136",
             ".ruff_cache/CACHEDIR.TAG",
-            "x_cls_make_yahw_x.py"
+            "dist/x_make_yahw_x-10.0.3-py3-none-any.whl",
+            "dist/x_make_yahw_x-10.0.3.tar.gz",
+            "pyproject.toml",
+            "x_cls_make_yahw_x.py",
+            "x_make_yahw_x.egg-info/PKG-INFO",
+            "x_make_yahw_x.egg-info/SOURCES.txt",
+            "x_make_yahw_x.egg-info/dependency_links.txt",
+            "x_make_yahw_x.egg-info/top_level.txt"
         ],
         "tool_reports": {
             "black": {
