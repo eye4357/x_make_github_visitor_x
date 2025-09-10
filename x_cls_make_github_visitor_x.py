@@ -386,6 +386,6 @@ def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
-    print(
-        f"wrote a-priori and a-posteriori index files to: {inst.package_root}"
-    )
+    from x_make_common_x.helpers import info as _info
+
+    _info(f"wrote a-priori and a-posteriori index files to: {inst.package_root}")
