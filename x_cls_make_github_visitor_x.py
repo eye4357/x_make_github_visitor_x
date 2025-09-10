@@ -8,6 +8,24 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import logging as _logging
+_LOGGER = _logging.getLogger("x_make")
+
+
+def _info(*args: object) -> None:
+    msg = " ".join(str(a) for a in args)
+    try:
+        _LOGGER.info("%s", msg)
+    except Exception:
+        pass
+    try:
+        print(msg)
+    except Exception:
+        try:
+            sys.stdout.write(msg + "\n")
+        except Exception:
+            pass
+
 """Visitor to run ruff/black/mypy on immediate child git clones.
 
 This module removes the previous "lessons" feature. It ignores hidden
@@ -386,6 +404,4 @@ def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
-    from x_make_common_x.helpers import info as _info
-
     _info(f"wrote a-priori and a-posteriori index files to: {inst.package_root}")
