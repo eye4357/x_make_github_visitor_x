@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import logging as _logging
+
 _LOGGER = _logging.getLogger("x_make")
 
 
@@ -25,6 +26,7 @@ def _info(*args: object) -> None:
             sys.stdout.write(msg + "\n")
         except Exception:
             pass
+
 
 """Visitor to run ruff/black/mypy on immediate child git clones.
 
@@ -404,4 +406,6 @@ def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
-    _info(f"wrote a-priori and a-posteriori index files to: {inst.package_root}")
+    _info(
+        f"wrote a-priori and a-posteriori index files to: {inst.package_root}"
+    )
