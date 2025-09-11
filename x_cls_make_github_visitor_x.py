@@ -382,6 +382,15 @@ class x_cls_make_github_visitor_x:
         self.cleanup()
 
 
+def _workspace_root() -> str:
+    here = Path(__file__).resolve()
+    for anc in here.parents:
+        if (anc / '.git').exists():  # repo root
+            return str(anc.parent)
+    # Fallback: two levels up
+    return str(here.parent.parent)
+
+
 def init_name(
     root_dir: str | Path,
     *,
@@ -396,11 +405,8 @@ def init_name(
 
 
 def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
-    """Initialize the visitor with the fixed root path C:\\x_cloned_repos_x.
-
-    Returns the visitor instance ready to run against the workspace.
-    """
-    return init_name(r"C:\x_cloned_repos_x", ctx=ctx)
+    """Initialize the visitor using dynamic workspace root (parent of this repo)."""
+    return init_name(_workspace_root(), ctx=ctx)
 
 
 if __name__ == "__main__":
