@@ -385,7 +385,7 @@ class x_cls_make_github_visitor_x:
 def _workspace_root() -> str:
     here = Path(__file__).resolve()
     for anc in here.parents:
-        if (anc / '.git').exists():  # repo root
+        if (anc / ".git").exists():  # repo root
             return str(anc.parent)
     # Fallback: two levels up
     return str(here.parent.parent)
