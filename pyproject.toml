@@ -1,0 +1,44 @@
+[tool.ruff]
+select = ["ALL"]
+ignore = [
+    "D",
+    "COM812",
+    "ISC001",
+    "T20",
+]
+line-length = 88
+target-version = "py311"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+strict = true
+warn_return_any = true
+warn_unreachable = true
+disallow_any_unimported = true
+disallow_any_expr = true
+disallow_any_decorated = true
+disallow_any_explicit = true
+show_error_codes = true
+no_warn_unused_configs = true
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+reportMissingImports = "error"
+reportMissingTypeStubs = "error"
+reportUnusedImport = "error"
+reportUnusedFunction = "error"
+reportUnusedVariable = "error"
+reportDuplicateImport = "error"
+reportConstantRedefinition = "error"
+reportUnknownArgumentType = "error"
+reportUnknownVariableType = "error"
+reportMissingParameterType = "error"
+reportMissingTypeArgument = "error"
+reportInvalidTypeVarUse = "error"
+reportUnnecessaryCast = "error"
+reportUnnecessaryComparison = "error"
+reportImplicitStringConcatenation = "error"

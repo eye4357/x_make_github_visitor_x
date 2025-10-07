@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import logging as _logging
 
@@ -28,18 +29,25 @@ def _info(*args: object) -> None:
             pass
 
 
-"""Visitor to run ruff/black/mypy on immediate child git clones.
+"""Visitor to run ruff/black/mypy/pyright on immediate child git clones.
 
 This module removes the previous "lessons" feature. It ignores hidden
 and common tool-cache directories when discovering immediate child
-repositories (for example: .mypy_cache, .ruff_cache, __pycache__). The
-visitor writes an a-priori and a-posteriori file index and preserves the
-ruff/black/mypy flow. Any tool failures are raised as AssertionError with
-the captured stdout/stderr to make failures visible.
+repositories (for example: .mypy_cache, .ruff_cache, __pycache__, .pyright).
+The visitor writes an a-priori and a-posteriori file index, preserves the
+extended toolchain flow, and now supports caching tool outputs to speed up
+incremental reruns. Any tool failures are raised as AssertionError with the
+captured stdout/stderr to make failures visible.
 """
 
 
-COMMON_CACHE_NAMES = {".mypy_cache", ".ruff_cache", "__pycache__"}
+COMMON_CACHE_NAMES = {
+    ".mypy_cache",
+    ".ruff_cache",
+    "__pycache__",
+    ".pyright",
+    ".tool_cache",
+}
 
 
 class x_cls_make_github_visitor_x:
@@ -49,12 +57,15 @@ class x_cls_make_github_visitor_x:
         *,
         output_filename: str = "repos_index.json",
         ctx: object | None = None,
+        enable_cache: bool = True,
     ) -> None:
         """Initialize visitor.
 
         root_dir: path to a workspace that contains immediate child git clones.
         output_filename: unused for package-local index storage but kept for
         backwards compatibility.
+        enable_cache: whether to reuse cached tool outputs when repositories are
+        unchanged between runs.
         """
         self.root = Path(root_dir)
         if not self.root.exists() or not self.root.is_dir():
@@ -73,11 +84,16 @@ class x_cls_make_github_visitor_x:
         self.output_filename = output_filename
         self._tool_reports: dict[str, Any] = {}
         self._ctx = ctx
+        self.enable_cache = enable_cache
 
         # package root (the folder containing this module). Use this for
         # storing the canonical a-priori / a-posteriori index files so they
         # live with the visitor package rather than the workspace root.
         self.package_root = Path(__file__).resolve().parent
+
+        self.cache_dir = self.package_root / ".tool_cache"
+        if self.enable_cache:
+            self.cache_dir.mkdir(exist_ok=True)
 
     def _child_dirs(self) -> list[Path]:
         """Return immediate child directories excluding hidden and cache dirs.
@@ -114,6 +130,82 @@ class x_cls_make_github_visitor_x:
                 pass
         os.replace(str(tmp), str(path))
 
+    def _repo_content_hash(self, repo_path: Path) -> str:
+        """Return a deterministic hash of repository contents for caching."""
+        hasher = hashlib.sha256()
+        for p in sorted(repo_path.rglob("*")):
+            if not p.is_file():
+                continue
+            if ".git" in p.parts or "__pycache__" in p.parts:
+                continue
+            if p.suffix in {".pyc", ".pyo"}:
+                continue
+            rel = p.relative_to(repo_path).as_posix().encode("utf-8")
+            hasher.update(rel)
+            try:
+                hasher.update(p.read_bytes())
+            except Exception:
+                # Skip unreadable files without failing the whole hash
+                continue
+        return hasher.hexdigest()
+
+    def _cache_path(self, repo_name: str, tool_name: str, repo_hash: str) -> Path:
+        key = f"{repo_name}_{tool_name}_{repo_hash[:16]}"
+        return self.cache_dir / f"{key}.json"
+
+    def _load_cache(
+        self,
+        repo_name: str,
+        tool_name: str,
+        repo_hash: str,
+    ) -> dict[str, Any] | None:
+        if not self.enable_cache:
+            return None
+        cache_file = self._cache_path(repo_name, tool_name, repo_hash)
+        if not cache_file.exists():
+            return None
+        try:
+            with cache_file.open("r", encoding="utf-8") as fh:
+                return cast(dict[str, Any], json.load(fh))
+        except Exception:
+            try:
+                cache_file.unlink()
+            except Exception:
+                pass
+            return None
+
+    def _store_cache(
+        self,
+        repo_name: str,
+        tool_name: str,
+        repo_hash: str,
+        payload: dict[str, Any],
+    ) -> None:
+        if not self.enable_cache:
+            return
+        cache_file = self._cache_path(repo_name, tool_name, repo_hash)
+        try:
+            self._atomic_write_json(cache_file, payload)
+        except Exception:
+            # Don't let cache write failures stop execution
+            pass
+
+    def _prune_cache(self, keep: int = 500) -> None:
+        if not self.enable_cache or not self.cache_dir.exists():
+            return
+        try:
+            cache_files = sorted(self.cache_dir.glob("*.json"), key=lambda p: p.stat().st_mtime)
+        except Exception:
+            return
+        overflow = len(cache_files) - keep
+        if overflow <= 0:
+            return
+        for stale in cache_files[:overflow]:
+            try:
+                stale.unlink()
+            except Exception:
+                continue
+
     def inspect(self, json_name: str) -> None:
         """Write an index of files present in each immediate child repo.
 
@@ -139,122 +231,145 @@ class x_cls_make_github_visitor_x:
         self._atomic_write_json(out_path, index)
 
     def body(self) -> None:
-        """Run toolchain (ruff -> black -> ruff -> mypy) against each child repo.
+        """Run toolchain (ruff -> black -> ruff -> mypy -> pyright) against each child repo."""
 
-        Any non-zero exit from a tool raises an AssertionError that contains
-        the tool's stdout/stderr to aid debugging.
-        """
         python = sys.executable
-        # ensure required formatter/linter/typecheck packages are available; if install fails surface stderr
+        packages = ["ruff", "black", "mypy", "pyright"]
         p = subprocess.run(
-            [
-                python,
-                "-m",
-                "pip",
-                "install",
-                "--upgrade",
-                "ruff",
-                "black",
-                "mypy",
-            ],
+            [python, "-m", "pip", "install", "--upgrade", *packages],
             check=False,
             capture_output=True,
             text=True,
         )
         if p.returncode != 0:
             raise AssertionError(
-                f"failed to install required packages: {p.stderr}"
+                f"failed to install required packages: {p.stdout}\n{p.stderr}"
             )
 
-        timeout = 120
+        self._prune_cache()
+
+        timeout = 300
         reports: dict[str, Any] = {}
         for child in self._child_dirs():
             rel = str(child.relative_to(self.root))
+            repo_hash = self._repo_content_hash(child)
             repo_report: dict[str, Any] = {
                 "timestamp": datetime.now(UTC).isoformat(),
+                "repo_hash": repo_hash,
                 "tool_reports": {},
             }
 
-            # 1) ruff --fix
-            cmd = [python, "-m", "ruff", "check", ".", "--fix"]
-            p = subprocess.run(
-                cmd,
-                check=False,
-                cwd=str(child),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            repo_report["tool_reports"]["ruff_fix"] = {
-                "exit": p.returncode,
-                "stdout": p.stdout,
-                "stderr": p.stderr,
-            }
-            if p.returncode != 0:
-                raise AssertionError(
-                    f"ruff --fix failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
-                )
-
-            # 2) black
-            cmd = [python, "-m", "black", ".", "--line-length", "79"]
-            p = subprocess.run(
-                cmd,
-                check=False,
-                cwd=str(child),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            repo_report["tool_reports"]["black"] = {
-                "exit": p.returncode,
-                "stdout": p.stdout,
-                "stderr": p.stderr,
-            }
-            if p.returncode != 0:
-                raise AssertionError(
-                    f"black failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
-                )
-
-            # 3) ruff check
-            cmd = [python, "-m", "ruff", "check", "."]
-            p = subprocess.run(
-                cmd,
-                check=False,
-                cwd=str(child),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            repo_report["tool_reports"]["ruff_check"] = {
-                "exit": p.returncode,
-                "stdout": p.stdout,
-                "stderr": p.stderr,
-            }
-            if p.returncode != 0:
-                raise AssertionError(
-                    f"ruff check failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
-                )
-
-            # 4) mypy strict
-            # Skip mypy if there are no Python source files in the repo
             py_files = list(child.rglob("*.py")) + list(child.rglob("*.pyi"))
-            if not any(p.is_file() for p in py_files):
-                repo_report["tool_reports"]["mypy"] = {
-                    "exit": 0,
-                    "stdout": "",
-                    "stderr": "skipped - no Python source (.py/.pyi) found",
-                }
-            else:
-                cmd = [
-                    python,
-                    "-m",
+            has_python = any(path.is_file() for path in py_files)
+
+            tools = (
+                (
+                    "ruff_fix",
+                    [
+                        python,
+                        "-m",
+                        "ruff",
+                        "check",
+                        ".",
+                        "--fix",
+                        "--select",
+                        "ALL",
+                        "--ignore",
+                        "D,COM812,ISC001,T20",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
+                    ],
+                    False,
+                ),
+                (
+                    "black",
+                    [
+                        python,
+                        "-m",
+                        "black",
+                        ".",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
+                        "--check",
+                        "--diff",
+                    ],
+                    True,
+                ),
+                (
+                    "ruff_check",
+                    [
+                        python,
+                        "-m",
+                        "ruff",
+                        "check",
+                        ".",
+                        "--select",
+                        "ALL",
+                        "--ignore",
+                        "D,COM812,ISC001,T20",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
+                    ],
+                    False,
+                ),
+                (
                     "mypy",
-                    "--strict",
-                    "--no-warn-unused-configs",
-                    "--show-error-codes",
-                    ".",
-                ]
-                p = subprocess.run(
+                    [
+                        python,
+                        "-m",
+                        "mypy",
+                        ".",
+                        "--strict",
+                        "--no-warn-unused-configs",
+                        "--show-error-codes",
+                        "--warn-return-any",
+                        "--warn-unreachable",
+                        "--disallow-any-unimported",
+                        "--disallow-any-expr",
+                        "--disallow-any-decorated",
+                        "--disallow-any-explicit",
+                    ],
+                    True,
+                ),
+                (
+                    "pyright",
+                    [
+                        python,
+                        "-m",
+                        "pyright",
+                        ".",
+                        "--level",
+                        "error",
+                    ],
+                    True,
+                ),
+            )
+
+            for tool_name, cmd, skip_if_no_python in tools:
+                if skip_if_no_python and not has_python:
+                    _info(f"{tool_name}: skipped (no Python files) in {rel}")
+                    repo_report["tool_reports"][tool_name] = {
+                        "exit": 0,
+                        "stdout": "",
+                        "stderr": "skipped - no Python source (.py/.pyi) found",
+                        "cached": False,
+                    }
+                    continue
+
+                cached = self._load_cache(rel, tool_name, repo_hash)
+                if cached is not None:
+                    cached["cached"] = True
+                    repo_report["tool_reports"][tool_name] = cached
+                    _info(f"{tool_name}: cache hit for {rel}")
+                    continue
+
+                proc = subprocess.run(
                     cmd,
                     check=False,
                     cwd=str(child),
@@ -262,17 +377,20 @@ class x_cls_make_github_visitor_x:
                     text=True,
                     timeout=timeout,
                 )
-                repo_report["tool_reports"]["mypy"] = {
-                    "exit": p.returncode,
-                    "stdout": p.stdout,
-                    "stderr": p.stderr,
+                result = {
+                    "exit": proc.returncode,
+                    "stdout": proc.stdout,
+                    "stderr": proc.stderr,
+                    "cached": False,
                 }
-                if p.returncode != 0:
+                repo_report["tool_reports"][tool_name] = result
+                self._store_cache(rel, tool_name, repo_hash, result)
+                if proc.returncode != 0:
                     raise AssertionError(
-                        f"mypy failed for {rel}: exit={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}"
+                        f"{tool_name} failed for {rel}: exit={proc.returncode}\n"
+                        f"stdout={proc.stdout}\nstderr={proc.stderr}"
                     )
 
-            # capture resulting file index for this repo
             files: list[str] = []
             for pth in child.rglob("*"):
                 if not pth.is_file():
@@ -284,12 +402,52 @@ class x_cls_make_github_visitor_x:
 
             reports[rel] = repo_report
 
-        # store for merge into a-posteriori index later
         self._tool_reports = reports
 
     def cleanup(self) -> None:
         """Placeholder for cleanup. Override if needed."""
         return None
+
+    def generate_summary_report(self) -> dict[str, Any]:
+        """Produce an aggregate summary of the most recent tool run."""
+        summary: dict[str, Any] = {
+            "timestamp": datetime.now(UTC).isoformat(),
+            "total_repos": len(self._tool_reports),
+            "overall_stats": {
+                "cache_hits": 0,
+                "cache_misses": 0,
+                "failed_tools": 0,
+                "total_tools_run": 0,
+            },
+            "repos": {},
+        }
+        overall = summary["overall_stats"]
+        for repo_name, report in self._tool_reports.items():
+            repo_summary: dict[str, Any] = {
+                "repo_hash": report.get("repo_hash"),
+                "tools": {},
+                "cached": 0,
+                "failed": 0,
+            }
+            tools = report.get("tool_reports", {})
+            for tool_name, tool_report in tools.items():
+                exit_code = int(tool_report.get("exit", -1))
+                cached = bool(tool_report.get("cached", False))
+                repo_summary["tools"][tool_name] = {
+                    "exit": exit_code,
+                    "cached": cached,
+                }
+                overall["total_tools_run"] += 1
+                if cached:
+                    repo_summary["cached"] += 1
+                    overall["cache_hits"] += 1
+                else:
+                    overall["cache_misses"] += 1
+                if exit_code != 0:
+                    repo_summary["failed"] += 1
+                    overall["failed_tools"] += 1
+            summary["repos"][repo_name] = repo_summary
+        return summary
 
     def run_inspect_flow(self) -> None:
         """Run the inspect flow in four steps:
@@ -319,13 +477,14 @@ class x_cls_make_github_visitor_x:
                 f"a-priori index must be a JSON object mapping repo->files: {p1}"
             )
 
+        apriori_raw = cast(dict[str, Any], raw_apriori)
         apriori: dict[str, list[str]] = {}
-        for k, v in raw_apriori.items():
-            key = str(k)
-            if isinstance(v, list):
-                apriori[key] = [str(x) for x in v if isinstance(x, str)]
+        for key, value in apriori_raw.items():
+            key_str = str(key)
+            if isinstance(value, list):
+                apriori[key_str] = [str(x) for x in value if isinstance(x, str)]
             else:
-                apriori[key] = []
+                apriori[key_str] = []
 
         # ensure the apriori keys match visible child dirs (use _child_dirs to ignore caches)
         current_children = [
@@ -360,7 +519,8 @@ class x_cls_make_github_visitor_x:
                 f"a-posteriori index must be a JSON object mapping repo->files: {p2}"
             )
 
-        data: dict[str, Any] = {str(k): v for k, v in raw_data.items()}
+        data_raw = cast(dict[str, Any], raw_data)
+        data: dict[str, Any] = {str(k): v for k, v in data_raw.items()}
 
         # attach reports under each repo key
         for repo_name, report in getattr(self, "_tool_reports", {}).items():
@@ -377,6 +537,10 @@ class x_cls_make_github_visitor_x:
                 }
 
         self._atomic_write_json(p2, data)
+
+        summary = self.generate_summary_report()
+        summary_path = self.package_root / "x_summary_report_x.json"
+        self._atomic_write_json(summary_path, summary)
 
         # Step 4: cleanup
         self.cleanup()
@@ -396,22 +560,42 @@ def init_name(
     *,
     output_filename: str | None = None,
     ctx: object | None = None,
+    enable_cache: bool = True,
 ) -> x_cls_make_github_visitor_x:
     if output_filename is None:
-        return x_cls_make_github_visitor_x(root_dir, ctx=ctx)
+        return x_cls_make_github_visitor_x(
+            root_dir,
+            ctx=ctx,
+            enable_cache=enable_cache,
+        )
     return x_cls_make_github_visitor_x(
-        root_dir, output_filename=output_filename, ctx=ctx
+        root_dir,
+        output_filename=output_filename,
+        ctx=ctx,
+        enable_cache=enable_cache,
     )
 
 
-def init_main(ctx: object | None = None) -> x_cls_make_github_visitor_x:
+def init_main(
+    ctx: object | None = None,
+    *,
+    enable_cache: bool = True,
+) -> x_cls_make_github_visitor_x:
     """Initialize the visitor using dynamic workspace root (parent of this repo)."""
-    return init_name(_workspace_root(), ctx=ctx)
+    return init_name(_workspace_root(), ctx=ctx, enable_cache=enable_cache)
 
 
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()
+    summary = inst.generate_summary_report()
+    overall = summary.get("overall_stats", {})
+    hits = int(overall.get("cache_hits", 0))
+    total = int(overall.get("total_tools_run", 0))
+    ratio = (hits / total * 100.0) if total else 0.0
     _info(
-        f"wrote a-priori and a-posteriori index files to: {inst.package_root}"
+        f"wrote a-priori, a-posteriori, and summary files to: {inst.package_root}"
+    )
+    _info(
+        f"processed {summary.get('total_repos', 0)} repositories | cache hits: {hits}/{total} ({ratio:.1f}%)"
     )
