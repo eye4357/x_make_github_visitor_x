@@ -4,8 +4,10 @@ import hashlib
 import json
 import logging as _logging
 import os
+import platform
 import subprocess
 import sys
+import time
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
@@ -48,6 +50,14 @@ COMMON_CACHE_NAMES = {
     ".tool_cache",
 }
 
+TOOL_MODULE_MAP = {
+    "ruff_fix": "ruff",
+    "ruff_check": "ruff",
+    "black": "black",
+    "mypy": "mypy",
+    "pyright": "pyright",
+}
+
 
 class x_cls_make_github_visitor_x:
     def __init__(
@@ -87,6 +97,8 @@ class x_cls_make_github_visitor_x:
         self._last_run_failures: bool = False
         self._failure_messages: list[str] = []
         self._failure_details: list[dict[str, Any]] = []
+        self._tool_versions: dict[str, str] = {}
+        self._runtime_snapshot: dict[str, Any] = {}
 
         # package root (the folder containing this module). Use this for
         # storing the canonical a-priori / a-posteriori index files so they
@@ -131,6 +143,19 @@ class x_cls_make_github_visitor_x:
                 # best-effort fsync; ignore if unsupported
                 pass
         os.replace(str(tmp), str(path))
+
+    @staticmethod
+    def _ensure_text(value: Any) -> str:
+        if isinstance(value, str):
+            return value
+        if isinstance(value, (bytes, bytearray)):
+            try:
+                return value.decode("utf-8")  # type: ignore[return-value]
+            except Exception:  # pragma: no cover - diagnostic fallback
+                return value.decode("utf-8", "replace")  # type: ignore[return-value]
+        if value is None:
+            return ""
+        return str(value)
 
     def _repo_content_hash(self, repo_path: Path) -> str:
         """Return a deterministic hash of repository contents for caching."""
@@ -231,6 +256,27 @@ class x_cls_make_github_visitor_x:
             except Exception:
                 continue
 
+    def _collect_tool_versions(self, python: str) -> dict[str, str]:
+        versions: dict[str, str] = {}
+        for module in sorted({*TOOL_MODULE_MAP.values()}):
+            try:
+                proc = subprocess.run(
+                    [python, "-m", module, "--version"],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                )
+            except Exception as exc:  # pragma: no cover - diagnostics only
+                versions[module] = f"<error invoking --version: {exc}>"
+                continue
+            output = (proc.stdout or proc.stderr).strip()
+            if proc.returncode != 0:
+                versions[module] = f"<exit {proc.returncode}> {output}"
+            else:
+                versions[module] = output or "<no output>"
+        return versions
+
     def inspect(self, json_name: str) -> list[str]:
         """Write an index of files present in each immediate child repo.
 
@@ -286,6 +332,22 @@ class x_cls_make_github_visitor_x:
             raise AssertionError(
                 f"failed to install required packages: {p.stdout}\n{p.stderr}"
             )
+
+        self._tool_versions = self._collect_tool_versions(python)
+        self._runtime_snapshot = {
+            "python_executable": python,
+            "python_version": sys.version.replace("\n", " "),
+            "platform": platform.platform(),
+            "run_started_at": datetime.now(UTC).isoformat(),
+            "workspace_root": str(self.root),
+        }
+        env_snapshot = {
+            key: os.environ.get(key)
+            for key in ("PATH", "PYTHONPATH", "VIRTUAL_ENV")
+            if os.environ.get(key)
+        }
+        if env_snapshot:
+            self._runtime_snapshot["environment"] = env_snapshot
 
         self._prune_cache()
 
@@ -395,65 +457,125 @@ class x_cls_make_github_visitor_x:
             )
 
             for tool_name, cmd, skip_if_no_python in tools:
+                module_name = TOOL_MODULE_MAP.get(tool_name, tool_name)
+                tool_version = self._tool_versions.get(module_name, "<unknown>")
                 if skip_if_no_python and not has_python:
                     _info(f"{tool_name}: skipped (no Python files) in {rel}")
+                    now_iso = datetime.now(UTC).isoformat()
                     repo_report["tool_reports"][tool_name] = {
                         "exit": 0,
                         "stdout": "",
                         "stderr": "skipped - no Python source (.py/.pyi) found",
                         "cached": False,
+                        "skipped": True,
+                        "skip_reason": "no_python_files",
+                        "cmd": cmd,
+                        "cmd_display": " ".join(str(part) for part in cmd),
+                        "cwd": str(child),
+                        "started_at": now_iso,
+                        "ended_at": now_iso,
+                        "duration_seconds": 0.0,
+                        "repo_hash": repo_hash,
+                        "tool_version": tool_version,
+                        "tool_module": module_name,
                     }
                     continue
 
                 cached = self._load_cache(rel, tool_name, repo_hash)
                 if cached is not None:
+                    cached = dict(cached)
                     cached["cached"] = True
+                    cached.setdefault("cmd", cmd)
+                    cached.setdefault("cmd_display", " ".join(str(part) for part in cmd))
+                    cached.setdefault("cwd", str(child))
+                    cached.setdefault("repo_hash", repo_hash)
+                    cached.setdefault("tool_version", tool_version)
+                    cached.setdefault("tool_module", module_name)
+                    cached.setdefault("started_at", "")
+                    cached.setdefault("ended_at", "")
+                    cached.setdefault("duration_seconds", 0.0)
                     repo_report["tool_reports"][tool_name] = cached
                     _info(f"{tool_name}: cache hit for {rel}")
                     continue
 
-                proc = subprocess.run(
-                    cmd,
-                    check=False,
-                    cwd=str(child),
-                    capture_output=True,
-                    text=True,
-                    timeout=timeout,
-                )
+                start_wall = datetime.now(UTC)
+                start_perf = time.perf_counter()
+                try:
+                    proc = subprocess.run(
+                        cmd,
+                        check=False,
+                        cwd=str(child),
+                        capture_output=True,
+                        text=True,
+                        timeout=timeout,
+                    )
+                    timed_out = False
+                    proc_stdout = proc.stdout
+                    proc_stderr = proc.stderr
+                    exit_code: int | None = proc.returncode
+                except subprocess.TimeoutExpired as exc:  # pragma: no cover - diagnostic path
+                    timed_out = True
+                    exit_code = None
+                    proc_stdout = (exc.output or "") if isinstance(exc.output, str) else ""
+                    proc_stderr = (exc.stderr or "") if isinstance(exc.stderr, str) else ""
+                    proc = None
+                end_wall = datetime.now(UTC)
+                duration = max(time.perf_counter() - start_perf, 0.0)
+
+                proc_stdout = self._ensure_text(proc_stdout)
+                proc_stderr = self._ensure_text(proc_stderr)
+
                 result: dict[str, Any] = {
-                    "exit": proc.returncode,
-                    "stdout": proc.stdout,
-                    "stderr": proc.stderr,
+                    "exit": exit_code,
+                    "stdout": proc_stdout,
+                    "stderr": proc_stderr,
                     "cached": False,
+                    "cmd": cmd,
+                    "cmd_display": " ".join(str(part) for part in cmd),
+                    "cwd": str(child),
+                    "started_at": start_wall.isoformat(),
+                    "ended_at": end_wall.isoformat(),
+                    "duration_seconds": duration,
+                    "repo_hash": repo_hash,
+                    "tool_version": tool_version,
+                    "tool_module": module_name,
                 }
+                if timed_out:
+                    result["timed_out"] = True
+                    result["timeout_seconds"] = timeout
                 repo_report["tool_reports"][tool_name] = result
-                if proc.returncode != 0:
+                failure_condition = timed_out or exit_code is None or exit_code != 0
+                if failure_condition:
                     self._delete_cache(rel, tool_name, repo_hash)
-                    truncated_stdout = proc.stdout.strip().splitlines()
-                    truncated_stderr = proc.stderr.strip().splitlines()
+                    truncated_stdout = proc_stdout.strip().splitlines()
+                    truncated_stderr = proc_stderr.strip().splitlines()
                     preview_stdout = "\n".join(truncated_stdout[:5])
                     if len(truncated_stdout) > 5:
                         preview_stdout += "\n…"
                     preview_stderr = "\n".join(truncated_stderr[:5])
                     if len(truncated_stderr) > 5:
                         preview_stderr += "\n…"
+                    exit_display = "timeout" if timed_out else f"exit {exit_code}"
                     failure_messages.append(
-                        f"{tool_name} failed for {rel} (exit {proc.returncode})"
-                        f"\nstdout:\n{preview_stdout or '<empty>'}\n"
-                        f"stderr:\n{preview_stderr or '<empty>'}"
+                        f"{tool_name} failed for {rel} ({exit_display})"
+                        f"\ncwd: {child}"
+                        f"\ncommand: {result['cmd_display']}"
+                        f"\nstarted_at: {result['started_at']}"
+                        f"\nduration: {duration:.3f}s"
+                        f"\ntool_version: {tool_version}"
+                        f"\nstdout:\n{preview_stdout or '<empty>'}"
+                        f"\nstderr:\n{preview_stderr or '<empty>'}"
                     )
-                    failure_details.append(
-                        {
-                            "repo": rel,
-                            "tool": tool_name,
-                            "exit": proc.returncode,
-                            "cmd": cmd,
-                            "stdout": proc.stdout,
-                            "stderr": proc.stderr,
-                        }
-                    )
+                    failure_entry = {
+                        "repo": rel,
+                        "repo_path": str(child),
+                        "tool": tool_name,
+                        "tool_module": module_name,
+                    }
+                    failure_entry.update(result)
+                    failure_details.append(failure_entry)
                     _info(
-                        f"{tool_name}: failure (exit {proc.returncode}) in {rel}; details captured"
+                        f"{tool_name}: failure ({exit_display}) in {rel}; details captured"
                     )
                     continue
                 self._store_cache(rel, tool_name, repo_hash, result)
@@ -475,6 +597,7 @@ class x_cls_make_github_visitor_x:
         self._last_run_failures = bool(failure_messages)
         self._failure_messages = failure_messages
         self._failure_details = failure_details
+        self._runtime_snapshot["run_completed_at"] = datetime.now(UTC).isoformat()
 
     def cleanup(self) -> None:
         """Placeholder for cleanup. Override if needed."""
@@ -504,11 +627,21 @@ class x_cls_make_github_visitor_x:
             }
             tools = report.get("tool_reports", {})
             for tool_name, tool_report in tools.items():
-                exit_code = int(tool_report.get("exit", -1))
+                exit_raw = tool_report.get("exit")
+                exit_code: int | None
+                if exit_raw is None:
+                    exit_code = None
+                else:
+                    try:
+                        exit_code = int(exit_raw)
+                    except Exception:
+                        exit_code = -1
                 cached = bool(tool_report.get("cached", False))
+                timed_out_flag = bool(tool_report.get("timed_out", False))
                 repo_summary["tools"][tool_name] = {
                     "exit": exit_code,
                     "cached": cached,
+                    "timed_out": timed_out_flag,
                 }
                 overall["total_tools_run"] += 1
                 if cached:
@@ -516,7 +649,7 @@ class x_cls_make_github_visitor_x:
                     overall["cache_hits"] += 1
                 else:
                     overall["cache_misses"] += 1
-                if exit_code != 0:
+                if timed_out_flag or exit_code not in (0, None):
                     repo_summary["failed"] += 1
                     overall["failed_tools"] += 1
             summary["repos"][repo_name] = repo_summary
@@ -630,8 +763,16 @@ class x_cls_make_github_visitor_x:
             "timestamp": datetime.now(UTC).isoformat(),
             "root": str(self.root),
             "had_failures": bool(self._last_run_failures),
+            "total_failures": len(self._failure_details),
             "failures": self._failure_details,
+            "summary_report_path": str(summary_path),
+            "apriori_index_path": str(p1),
+            "posteriori_index_path": str(p2),
+            "tool_versions": self._tool_versions,
+            "runtime_snapshot": self._runtime_snapshot,
         }
+        if self._failure_messages:
+            failure_payload["failure_messages"] = self._failure_messages
         self._atomic_write_json(failure_report_path, failure_payload)
 
         # Step 4: cleanup
@@ -645,7 +786,7 @@ class x_cls_make_github_visitor_x:
             if len(msgs) > 5:
                 preview += "\n\n…"
             raise AssertionError(
-                f"toolchain failures detected across repositories ({len(msgs)} total).\n{preview}"
+                f"toolchain failures detected across repositories ({len(msgs)} total).\n{preview}\n\nFull failure log: {failure_report_path}"
             )
 
 

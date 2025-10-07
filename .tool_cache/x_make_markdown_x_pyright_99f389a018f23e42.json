@@ -1,0 +1,22 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pyright",
+        ".",
+        "--level",
+        "error"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+    "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+    "duration_seconds": 1.0967978000117,
+    "ended_at": "2025-10-07T18:02:51.729568+00:00",
+    "exit": 0,
+    "repo_hash": "99f389a018f23e4224b057ecf2c5d757004c9e5cdd43356b34191fc84ee59aef",
+    "started_at": "2025-10-07T18:02:50.632772+00:00",
+    "stderr": "",
+    "stdout": "0 errors, 0 warnings, 0 informations\n",
+    "tool_module": "pyright",
+    "tool_version": "pyright 1.1.406"
+}

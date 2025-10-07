@@ -1,0 +1,22 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pyright",
+        ".",
+        "--level",
+        "error"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+    "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+    "duration_seconds": 1.2713601000141352,
+    "ended_at": "2025-10-07T18:02:44.694838+00:00",
+    "exit": 0,
+    "repo_hash": "3baf010cd14d943b44e46bd4f3ecfcef595bb66b92892e3f625eaf72cdf2b5c4",
+    "started_at": "2025-10-07T18:02:43.423482+00:00",
+    "stderr": "",
+    "stdout": "0 errors, 0 warnings, 0 informations\n",
+    "tool_module": "pyright",
+    "tool_version": "pyright 1.1.406"
+}
