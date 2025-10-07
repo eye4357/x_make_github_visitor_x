@@ -1,0 +1,29 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        ".",
+        "--strict",
+        "--no-warn-unused-configs",
+        "--show-error-codes",
+        "--warn-return-any",
+        "--warn-unreachable",
+        "--disallow-any-unimported",
+        "--disallow-any-expr",
+        "--disallow-any-decorated",
+        "--disallow-any-explicit"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+    "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+    "duration_seconds": 0.19285389999276958,
+    "ended_at": "2025-10-07T22:35:44.157949+00:00",
+    "exit": 0,
+    "repo_hash": "e9fbec3842f2d131bb48fecb9fec286c237a975a9be54a24f00834ccc5f55a08",
+    "started_at": "2025-10-07T22:35:43.965095+00:00",
+    "stderr": "",
+    "stdout": "Success: no issues found in 1 source file\n",
+    "tool_module": "mypy",
+    "tool_version": "mypy 1.18.2 (compiled: yes)"
+}

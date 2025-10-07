@@ -1,0 +1,26 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "black",
+        ".",
+        "--line-length",
+        "88",
+        "--target-version",
+        "py311",
+        "--check",
+        "--diff"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+    "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+    "duration_seconds": 0.26966550000361167,
+    "ended_at": "2025-10-07T22:37:38.011021+00:00",
+    "exit": 0,
+    "repo_hash": "1e8b7b95b5ac91eaa94e4d5b5c19d21a929d8db811858a437b171f156a3a61df",
+    "started_at": "2025-10-07T22:37:37.741357+00:00",
+    "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file would be left unchanged.\n",
+    "stdout": "",
+    "tool_module": "black",
+    "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+}
