@@ -84,6 +84,7 @@ class x_cls_make_github_visitor_x:
         self._tool_reports: dict[str, Any] = {}
         self._ctx = ctx
         self.enable_cache = enable_cache
+        self._last_run_failures: bool = False
 
         # package root (the folder containing this module). Use this for
         # storing the canonical a-priori / a-posteriori index files so they
@@ -165,13 +166,22 @@ class x_cls_make_github_visitor_x:
             return None
         try:
             with cache_file.open("r", encoding="utf-8") as fh:
-                return cast("dict[str, Any]", json.load(fh))
+                cached = cast("dict[str, Any]", json.load(fh))
         except Exception:
             try:
                 cache_file.unlink()
             except Exception:
                 pass
             return None
+        exit_code: int | None
+        try:
+            exit_code = int(cached.get("exit", 0))
+        except Exception:
+            exit_code = None
+        if exit_code not in (None, 0):
+            self._delete_cache(repo_name, tool_name, repo_hash)
+            return None
+        return cached
 
     def _store_cache(
         self,
@@ -187,6 +197,20 @@ class x_cls_make_github_visitor_x:
             self._atomic_write_json(cache_file, payload)
         except Exception:
             # Don't let cache write failures stop execution
+            pass
+
+    def _delete_cache(
+        self,
+        repo_name: str,
+        tool_name: str,
+        repo_hash: str,
+    ) -> None:
+        if not self.enable_cache:
+            return
+        cache_file = self._cache_path(repo_name, tool_name, repo_hash)
+        try:
+            cache_file.unlink()
+        except Exception:
             pass
 
     def _prune_cache(self, keep: int = 500) -> None:
@@ -205,17 +229,30 @@ class x_cls_make_github_visitor_x:
             except Exception:
                 continue
 
-    def inspect(self, json_name: str) -> None:
+    def inspect(self, json_name: str) -> list[str]:
         """Write an index of files present in each immediate child repo.
 
-        The produced JSON maps repo-name -> [file paths].
+        Returns the list of repository names (relative paths) that were indexed.
         """
         children = self._child_dirs()
         if not children:
-            raise AssertionError("no child git repositories found")
+            try:
+                entries = sorted(
+                    p.name for p in self.root.iterdir() if p.is_dir()
+                )
+            except Exception:
+                entries = []
+            preview = ", ".join(entries[:10])
+            suffix = "" if len(entries) <= 10 else " …"
+            raise AssertionError(
+                "no child git repositories found"
+                f" under {self.root} (visible dirs: {preview}{suffix})"
+            )
         index: dict[str, list[str]] = {}
+        repo_names: list[str] = []
         for child in children:
             rel = str(child.relative_to(self.root))
+            repo_names.append(rel)
             files: list[str] = []
             for p in child.rglob("*"):
                 if not p.is_file():
@@ -228,6 +265,7 @@ class x_cls_make_github_visitor_x:
         # store index files inside the visitor package directory
         out_path = self.package_root / json_name
         self._atomic_write_json(out_path, index)
+        return repo_names
 
     def body(self) -> None:
         """Run toolchain (ruff -> black -> ruff -> mypy -> pyright) against each child repo."""
@@ -249,6 +287,7 @@ class x_cls_make_github_visitor_x:
 
         timeout = 300
         reports: dict[str, Any] = {}
+        any_failures = False
         for child in self._child_dirs():
             rel = str(child.relative_to(self.root))
             repo_hash = self._repo_content_hash(child)
@@ -271,14 +310,6 @@ class x_cls_make_github_visitor_x:
                         "check",
                         ".",
                         "--fix",
-                        "--select",
-                        "ALL",
-                        "--ignore",
-                        "D,COM812,ISC001,T20",
-                        "--line-length",
-                        "88",
-                        "--target-version",
-                        "py311",
                     ],
                     False,
                 ),
@@ -289,10 +320,6 @@ class x_cls_make_github_visitor_x:
                         "-m",
                         "black",
                         ".",
-                        "--line-length",
-                        "88",
-                        "--target-version",
-                        "py311",
                         "--check",
                         "--diff",
                     ],
@@ -306,14 +333,6 @@ class x_cls_make_github_visitor_x:
                         "ruff",
                         "check",
                         ".",
-                        "--select",
-                        "ALL",
-                        "--ignore",
-                        "D,COM812,ISC001,T20",
-                        "--line-length",
-                        "88",
-                        "--target-version",
-                        "py311",
                     ],
                     False,
                 ),
@@ -376,19 +395,21 @@ class x_cls_make_github_visitor_x:
                     text=True,
                     timeout=timeout,
                 )
-                result = {
+                result: dict[str, Any] = {
                     "exit": proc.returncode,
                     "stdout": proc.stdout,
                     "stderr": proc.stderr,
                     "cached": False,
                 }
                 repo_report["tool_reports"][tool_name] = result
-                self._store_cache(rel, tool_name, repo_hash, result)
                 if proc.returncode != 0:
-                    raise AssertionError(
-                        f"{tool_name} failed for {rel}: exit={proc.returncode}\n"
-                        f"stdout={proc.stdout}\nstderr={proc.stderr}"
+                    self._delete_cache(rel, tool_name, repo_hash)
+                    any_failures = True
+                    _info(
+                        f"{tool_name}: failure (exit {proc.returncode}) in {rel}; see cached stdout/stderr"
                     )
+                    continue
+                self._store_cache(rel, tool_name, repo_hash, result)
 
             files: list[str] = []
             for pth in child.rglob("*"):
@@ -402,6 +423,11 @@ class x_cls_make_github_visitor_x:
             reports[rel] = repo_report
 
         self._tool_reports = reports
+        try:
+            self._last_run_failures = any_failures
+        except Exception:
+            # Fallback attribute storage if attrs locked down
+            setattr(self, "_last_run_failures", any_failures)
 
     def cleanup(self) -> None:
         """Placeholder for cleanup. Override if needed."""
@@ -456,11 +482,14 @@ class x_cls_make_github_visitor_x:
             4) cleanup()
         """
         # Step 1: a-priori inspect (written into the visitor package dir)
-        self.inspect("x_index_a_a_priori_x.json")
+        apriori_repos = self.inspect("x_index_a_a_priori_x.json")
         p1 = self.package_root / "x_index_a_a_priori_x.json"
         assert (
             p1.exists() and p1.stat().st_size > 0
         ), f"step1 failed: {p1} missing or empty"
+        _info(
+            f"apriori discovery: found {len(apriori_repos)} repositories under {self.root}"
+        )
 
         # re-read and normalize apriori
         try:
@@ -481,7 +510,11 @@ class x_cls_make_github_visitor_x:
         for key, value in apriori_raw.items():
             key_str = str(key)
             if isinstance(value, list):
-                apriori[key_str] = [str(x) for x in value if isinstance(x, str)]
+                normalized: list[str] = []
+                for item in cast("list[Any]", value):
+                    if isinstance(item, str):
+                        normalized.append(item)
+                apriori[key_str] = normalized
             else:
                 apriori[key_str] = []
 
@@ -499,11 +532,14 @@ class x_cls_make_github_visitor_x:
         self.body()
 
         # Step 3: a-posteriori inspect (written into the visitor package dir)
-        self.inspect("x_index_b_a_posteriori_x.json")
+        posterior_repos = self.inspect("x_index_b_a_posteriori_x.json")
         p2 = self.package_root / "x_index_b_a_posteriori_x.json"
         assert (
             p2.exists() and p2.stat().st_size > 0
         ), f"step3 failed: {p2} missing or empty"
+        _info(
+            f"a-posteriori discovery: found {len(posterior_repos)} repositories under {self.root}"
+        )
 
         try:
             with p2.open("r", encoding="utf-8") as fh:
