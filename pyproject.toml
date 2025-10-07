@@ -1,5 +1,5 @@
 [tool.ruff]
-select = ["E", "F", "I"]
+select = ["ALL"]
 ignore = [
     "D",
     "COM812",

@@ -85,6 +85,8 @@ class x_cls_make_github_visitor_x:
         self._ctx = ctx
         self.enable_cache = enable_cache
         self._last_run_failures: bool = False
+        self._failure_messages: list[str] = []
+        self._failure_details: list[dict[str, Any]] = []
 
         # package root (the folder containing this module). Use this for
         # storing the canonical a-priori / a-posteriori index files so they
@@ -259,6 +261,8 @@ class x_cls_make_github_visitor_x:
                     continue
                 if ".git" in p.parts or "__pycache__" in p.parts:
                     continue
+                if p.suffix.lower() not in {".py", ".pyi"}:
+                    continue
                 files.append(str(p.relative_to(child).as_posix()))
             index[rel] = sorted(files)
 
@@ -287,7 +291,8 @@ class x_cls_make_github_visitor_x:
 
         timeout = 300
         reports: dict[str, Any] = {}
-        any_failures = False
+        failure_messages: list[str] = []
+        failure_details: list[dict[str, Any]] = []
         for child in self._child_dirs():
             rel = str(child.relative_to(self.root))
             repo_hash = self._repo_content_hash(child)
@@ -310,6 +315,14 @@ class x_cls_make_github_visitor_x:
                         "check",
                         ".",
                         "--fix",
+                        "--select",
+                        "ALL",
+                        "--ignore",
+                        "D,COM812,ISC001,T20",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
                     ],
                     False,
                 ),
@@ -320,6 +333,10 @@ class x_cls_make_github_visitor_x:
                         "-m",
                         "black",
                         ".",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
                         "--check",
                         "--diff",
                     ],
@@ -333,6 +350,14 @@ class x_cls_make_github_visitor_x:
                         "ruff",
                         "check",
                         ".",
+                        "--select",
+                        "ALL",
+                        "--ignore",
+                        "D,COM812,ISC001,T20",
+                        "--line-length",
+                        "88",
+                        "--target-version",
+                        "py311",
                     ],
                     False,
                 ),
@@ -404,9 +429,31 @@ class x_cls_make_github_visitor_x:
                 repo_report["tool_reports"][tool_name] = result
                 if proc.returncode != 0:
                     self._delete_cache(rel, tool_name, repo_hash)
-                    any_failures = True
+                    truncated_stdout = proc.stdout.strip().splitlines()
+                    truncated_stderr = proc.stderr.strip().splitlines()
+                    preview_stdout = "\n".join(truncated_stdout[:5])
+                    if len(truncated_stdout) > 5:
+                        preview_stdout += "\n…"
+                    preview_stderr = "\n".join(truncated_stderr[:5])
+                    if len(truncated_stderr) > 5:
+                        preview_stderr += "\n…"
+                    failure_messages.append(
+                        f"{tool_name} failed for {rel} (exit {proc.returncode})"
+                        f"\nstdout:\n{preview_stdout or '<empty>'}\n"
+                        f"stderr:\n{preview_stderr or '<empty>'}"
+                    )
+                    failure_details.append(
+                        {
+                            "repo": rel,
+                            "tool": tool_name,
+                            "exit": proc.returncode,
+                            "cmd": cmd,
+                            "stdout": proc.stdout,
+                            "stderr": proc.stderr,
+                        }
+                    )
                     _info(
-                        f"{tool_name}: failure (exit {proc.returncode}) in {rel}; see cached stdout/stderr"
+                        f"{tool_name}: failure (exit {proc.returncode}) in {rel}; details captured"
                     )
                     continue
                 self._store_cache(rel, tool_name, repo_hash, result)
@@ -417,17 +464,17 @@ class x_cls_make_github_visitor_x:
                     continue
                 if ".git" in pth.parts or "__pycache__" in pth.parts:
                     continue
+                if pth.suffix.lower() not in {".py", ".pyi"}:
+                    continue
                 files.append(str(pth.relative_to(child).as_posix()))
             repo_report["files"] = sorted(files)
 
             reports[rel] = repo_report
 
         self._tool_reports = reports
-        try:
-            self._last_run_failures = any_failures
-        except Exception:
-            # Fallback attribute storage if attrs locked down
-            setattr(self, "_last_run_failures", any_failures)
+        self._last_run_failures = bool(failure_messages)
+        self._failure_messages = failure_messages
+        self._failure_details = failure_details
 
     def cleanup(self) -> None:
         """Placeholder for cleanup. Override if needed."""
@@ -443,6 +490,7 @@ class x_cls_make_github_visitor_x:
                 "cache_misses": 0,
                 "failed_tools": 0,
                 "total_tools_run": 0,
+                "had_failures": bool(self._last_run_failures),
             },
             "repos": {},
         }
@@ -577,8 +625,28 @@ class x_cls_make_github_visitor_x:
         summary_path = self.package_root / "x_summary_report_x.json"
         self._atomic_write_json(summary_path, summary)
 
+        failure_report_path = self.package_root / "x_tool_failures_x.json"
+        failure_payload: dict[str, Any] = {
+            "timestamp": datetime.now(UTC).isoformat(),
+            "root": str(self.root),
+            "had_failures": bool(self._last_run_failures),
+            "failures": self._failure_details,
+        }
+        self._atomic_write_json(failure_report_path, failure_payload)
+
         # Step 4: cleanup
         self.cleanup()
+
+        if self._last_run_failures:
+            msgs = self._failure_messages[:]
+            if not msgs:
+                msgs = ["tool failures occurred but no messages were captured"]
+            preview = "\n\n".join(msgs[:5])
+            if len(msgs) > 5:
+                preview += "\n\n…"
+            raise AssertionError(
+                f"toolchain failures detected across repositories ({len(msgs)} total).\n{preview}"
+            )
 
 
 def _workspace_root() -> str:
