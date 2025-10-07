@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import tempfile
 from pathlib import Path
 
 from x_cls_make_github_visitor_x import x_cls_make_github_visitor_x

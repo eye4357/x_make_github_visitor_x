@@ -2,14 +2,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging as _logging
 import os
 import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
-
-import logging as _logging
 
 _LOGGER = _logging.getLogger("x_make")
 
@@ -166,7 +165,7 @@ class x_cls_make_github_visitor_x:
             return None
         try:
             with cache_file.open("r", encoding="utf-8") as fh:
-                return cast(dict[str, Any], json.load(fh))
+                return cast("dict[str, Any]", json.load(fh))
         except Exception:
             try:
                 cache_file.unlink()
@@ -406,7 +405,7 @@ class x_cls_make_github_visitor_x:
 
     def cleanup(self) -> None:
         """Placeholder for cleanup. Override if needed."""
-        return None
+        return
 
     def generate_summary_report(self) -> dict[str, Any]:
         """Produce an aggregate summary of the most recent tool run."""
@@ -477,7 +476,7 @@ class x_cls_make_github_visitor_x:
                 f"a-priori index must be a JSON object mapping repo->files: {p1}"
             )
 
-        apriori_raw = cast(dict[str, Any], raw_apriori)
+        apriori_raw = cast("dict[str, Any]", raw_apriori)
         apriori: dict[str, list[str]] = {}
         for key, value in apriori_raw.items():
             key_str = str(key)
@@ -519,7 +518,7 @@ class x_cls_make_github_visitor_x:
                 f"a-posteriori index must be a JSON object mapping repo->files: {p2}"
             )
 
-        data_raw = cast(dict[str, Any], raw_data)
+        data_raw = cast("dict[str, Any]", raw_data)
         data: dict[str, Any] = {str(k): v for k, v in data_raw.items()}
 
         # attach reports under each repo key
