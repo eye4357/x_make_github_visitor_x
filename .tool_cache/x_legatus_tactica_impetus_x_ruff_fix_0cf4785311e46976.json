@@ -1,0 +1,30 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        ".",
+        "--fix",
+        "--select",
+        "ALL",
+        "--ignore",
+        "D,COM812,ISC001,T20",
+        "--line-length",
+        "88",
+        "--target-version",
+        "py311"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+    "cwd": "C:\\x_runner_x\\x_legatus_tactica_impetus_x",
+    "duration_seconds": 0.07252599997445941,
+    "ended_at": "2025-10-08T12:49:05.921138+00:00",
+    "exit": 0,
+    "repo_hash": "0cf4785311e469761f0fd1856c5d50d917274982ecfc4314b0cd9674e479fd43",
+    "started_at": "2025-10-08T12:49:05.848612+00:00",
+    "stderr": "warning: No Python files found under the given path(s)\n",
+    "stdout": "All checks passed!\n",
+    "tool_module": "ruff",
+    "tool_version": "ruff 0.14.0"
+}

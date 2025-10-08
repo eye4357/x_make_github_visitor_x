@@ -1,5 +1,9 @@
 {
     "x_0_make_all_x": [
+        "__init__.py",
+        "forceit.py",
+        "manifest.py",
+        "tests/test_forceit.py",
         "x_cls_make_all_x.py"
     ],
     "x_legatus_acta_schedae_x": [
@@ -59,6 +63,7 @@
         "plugins/calendar_sync.py",
         "plugins/task_scoring.py",
         "save.py",
+        "tests/conftest.py",
         "tests/test_ai_briefing_service.py",
         "tests/test_ai_service.py",
         "tests/test_api.py",
@@ -81,10 +86,18 @@
         "x_cls_legatus_acta_schedae_x.py"
     ],
     "x_legatus_tactica_impetus_x": [],
+    "x_make_common_x": [
+        "__init__.py",
+        "x_env_x.py",
+        "x_http_client_x.py",
+        "x_logging_utils_x.py",
+        "x_subprocess_utils_x.py"
+    ],
     "x_make_github_clones_x": [
         "x_cls_make_github_clones_x.py"
     ],
     "x_make_github_visitor_x": [
+        "tests/__init__.py",
         "tests/test_github_visitor.py",
         "x_cls_make_github_visitor_x.py"
     ],

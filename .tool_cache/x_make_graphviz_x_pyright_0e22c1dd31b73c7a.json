@@ -1,0 +1,22 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pyright",
+        ".",
+        "--level",
+        "error"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+    "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+    "duration_seconds": 1.0431004000129178,
+    "ended_at": "2025-10-08T12:49:15.944597+00:00",
+    "exit": 0,
+    "repo_hash": "0e22c1dd31b73c7a4e2e59f8441c8af11683ceb52abafd980ff3213db6d17cd5",
+    "started_at": "2025-10-08T12:49:14.901498+00:00",
+    "stderr": "Error processing line 1 of C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\distutils-precedence.pth:\n\n  Traceback (most recent call last):\n    File \"<frozen site>\", line 207, in addpackage\n    File \"<string>\", line 1, in <module>\n  AttributeError: module '_distutils_hack' has no attribute 'add_shim'\n\nRemainder of file ignored\nError processing line 1 of C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\distutils-precedence.pth:\n\n  Traceback (most recent call last):\n    File \"<frozen site>\", line 207, in addpackage\n    File \"<string>\", line 1, in <module>\n  AttributeError: module '_distutils_hack' has no attribute 'add_shim'\n\nRemainder of file ignored\n",
+    "stdout": "0 errors, 0 warnings, 0 informations\n",
+    "tool_module": "pyright",
+    "tool_version": "pyright 1.1.406"
+}

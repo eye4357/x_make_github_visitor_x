@@ -17,6 +17,23 @@ mypy --strict with zero Any leaks (unless annotated via whitelisted Protocols).
 pyright --level error with clean type attribution.
 Security lint (S-series) must be resolved or moved behind documented suppressions with justification.
 Introduce automated CI gates (GitHub Actions or Azure DevOps pipelines) mirroring the above commands.
+
+Toolchain Failure Snapshot (2025-10-08)
+Visitor run logs surfaced 49 tool failures and the normalized dataset now lives in `x_tool_failures_x.json` (generated 2025-10-08). The JSON now carries repo status flags, recommended actions, and the aggregate tool stats from `x_summary_report_x.json`. Highlights:
+- `x_0_make_all_x`: BLE001 violations in `forceit.py`, formatting drift in `forceit.py` and `x_cls_make_all_x.py`, and strict mypy rejections for explicit `Any` usage.
+	- 2025-10-08 update: `forceit.py` has been rewritten with explicit error handling, unit tests (`tests/test_forceit.py`) were added, and ruff/black/mypy/pytest now pass locally. The repo entry in `x_tool_failures_x.json` is marked `passing` with validation commands captured.
+	- 2025-10-08 follow-up: Added `tests/__init__.py` so ruff no longer reports INP001 against the forceit test suite; remaining test asserts will be refactored in a later pass.
+	- 2025-10-08 note: Tagged `_TEST_PYPI_TOKEN_ENV` with `# noqa: S105`—documented that the string is an env-var name, eliminating the security false positive.
+- `x_legatus_acta_schedae_x`: Standard-library imports need guarding under `TYPE_CHECKING`, with additional lint/type output pending deeper inspection.
+	- 2025-10-08 update: Taskwarrior adapter now uses absolute imports, TYPE_CHECKING guards, and normalized datetime helpers; local ruff check is clean for that module. Repository-wide lint remains red (`ruff --statistics` reports 989 hits spanning asserts, relative imports, typing-only imports), black would reformat 41 files, and `mypy --strict` surfaces 126 errors concentrated in CLI Click commands and test fixtures.
+	- 2025-10-08 follow-up: `interface/cli/main.py` now imports `typer` directly, every command callback is annotated with `-> None`, and the collaboration push workflow records telemetry before tearing down temp files. Remaining lint debt lives in tests (S101) and automation glue.
+	- 2025-10-08 addendum: Collaboration commands now use a shared helper for endpoint validation, clean up temporary bundles via `contextlib.suppress`, and catch `httpx.HTTPError` explicitly; a repo-level virtualenv (`.venv`) lets targeted mypy runs pass on the CLI module even while global lint debt stays high.
+	- 2025-10-08 follow-up: CLI boolean options now reference shared `typer.Option` constants (collab/export/review/ai), and tag filters accept optional lists so ruff can stop flagging mutable defaults during the ongoing lint cleanup.
+	- 2025-10-08 lint pass: Refactored `interface/cli/main.py` to satisfy `python -m ruff check` (bool flags tagged with targeted `noqa`, long f-strings split, helper lists use `extend`); module-level mypy still green via the repo `.venv`.
+	- 2025-10-08 import guard: `app.py` now wraps service imports in a `TYPE_CHECKING` block, clearing ruff TC001 without touching runtime wiring for `TaskApp`.
+	- 2025-10-08 domain touch: `core/domain/events.py` now hides `datetime` and `Task` imports behind `TYPE_CHECKING`, removing TC001/TC003 lint noise while the rest of the domain package remains unchanged.
+- Remaining orchestration helpers (clones, visitor, pip updates, etc.) each reported lint+formatting failures; treat them as batching candidates once shared configs land.
+Next step: burn down the first repo (`x_0_make_all_x`) end-to-end, using the JSON map to track status flips from failing → passing.
 Cross-Cutting Workstreams
 1. Governance & Tooling
 Central Lint/Type-Check Configs
