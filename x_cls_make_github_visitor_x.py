@@ -219,11 +219,20 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _ensure_text(value: object) -> str:
         if isinstance(value, str):
             return value
+
+        data: bytes | None = None
         if isinstance(value, (bytes, bytearray)):
+            data = bytes(value)
+        elif isinstance(value, memoryview):
+            data = value.tobytes()
+
+        if data is not None:
             try:
-                return value.decode("utf-8")  # type: ignore[return-value]
+                decoded = data.decode("utf-8")
             except UnicodeDecodeError:  # pragma: no cover - diagnostic fallback
-                return value.decode("utf-8", "replace")  # type: ignore[return-value]
+                decoded = data.decode("utf-8", "replace")
+            return decoded
+
         if value is None:
             return ""
         return str(value)
@@ -430,6 +439,62 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             failure_details=failure_details,
         )
 
+    def _build_skip_outcome(
+        self,
+        *,
+        repo: RepoContext,
+        config: ToolConfig,
+        tool_version: str,
+        module_name: str,
+    ) -> ToolOutcome:
+        now_iso = datetime.now(UTC).isoformat()
+        skip_result: ToolResult = {
+            "exit": 0,
+            "stdout": "",
+            "stderr": "skipped - no Python source (.py/.pyi) found",
+            "cached": False,
+            "skipped": True,
+            "skip_reason": "no_python_files",
+            "cmd": list(config.command),
+            "cmd_display": " ".join(str(part) for part in config.command),
+            "cwd": str(repo.path),
+            "started_at": now_iso,
+            "ended_at": now_iso,
+            "duration_seconds": 0.0,
+            "repo_hash": repo.repo_hash,
+            "tool_version": tool_version,
+            "tool_module": module_name,
+        }
+        return ToolOutcome(skip_result)
+
+    def _load_cached_outcome(
+        self,
+        *,
+        repo: RepoContext,
+        config: ToolConfig,
+        tool_version: str,
+        module_name: str,
+    ) -> ToolOutcome | None:
+        cached = self._load_cache(repo.rel_path, config.name, repo.repo_hash)
+        if cached is None:
+            return None
+        cached_result: ToolResult = dict(cached)
+        cached_result["cached"] = True
+        cached_result.setdefault("cmd", list(config.command))
+        cached_result.setdefault(
+            "cmd_display",
+            " ".join(str(part) for part in config.command),
+        )
+        cached_result.setdefault("cwd", str(repo.path))
+        cached_result.setdefault("repo_hash", repo.repo_hash)
+        cached_result.setdefault("tool_version", tool_version)
+        cached_result.setdefault("tool_module", module_name)
+        cached_result.setdefault("started_at", "")
+        cached_result.setdefault("ended_at", "")
+        cached_result.setdefault("duration_seconds", 0.0)
+        _info(f"{config.name}: cache hit for {repo.rel_path}")
+        return ToolOutcome(cached_result)
+
     def _run_tool_for_repo(
         self,
         *,
@@ -442,44 +507,21 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
         if config.skip_if_no_python and not repo.has_python:
             _info(f"{config.name}: skipped (no Python files) in {repo.rel_path}")
-            now_iso = datetime.now(UTC).isoformat()
-            skip_result: ToolResult = {
-                "exit": 0,
-                "stdout": "",
-                "stderr": "skipped - no Python source (.py/.pyi) found",
-                "cached": False,
-                "skipped": True,
-                "skip_reason": "no_python_files",
-                "cmd": list(config.command),
-                "cmd_display": " ".join(str(part) for part in config.command),
-                "cwd": str(repo.path),
-                "started_at": now_iso,
-                "ended_at": now_iso,
-                "duration_seconds": 0.0,
-                "repo_hash": repo.repo_hash,
-                "tool_version": tool_version,
-                "tool_module": module_name,
-            }
-            return ToolOutcome(skip_result)
-
-        cached = self._load_cache(repo.rel_path, config.name, repo.repo_hash)
-        if cached is not None:
-            cached_result: ToolResult = dict(cached)
-            cached_result["cached"] = True
-            cached_result.setdefault("cmd", list(config.command))
-            cached_result.setdefault(
-                "cmd_display",
-                " ".join(str(part) for part in config.command),
+            return self._build_skip_outcome(
+                repo=repo,
+                config=config,
+                tool_version=tool_version,
+                module_name=module_name,
             )
-            cached_result.setdefault("cwd", str(repo.path))
-            cached_result.setdefault("repo_hash", repo.repo_hash)
-            cached_result.setdefault("tool_version", tool_version)
-            cached_result.setdefault("tool_module", module_name)
-            cached_result.setdefault("started_at", "")
-            cached_result.setdefault("ended_at", "")
-            cached_result.setdefault("duration_seconds", 0.0)
-            _info(f"{config.name}: cache hit for {repo.rel_path}")
-            return ToolOutcome(cached_result)
+
+        cached_outcome = self._load_cached_outcome(
+            repo=repo,
+            config=config,
+            tool_version=tool_version,
+            module_name=module_name,
+        )
+        if cached_outcome is not None:
+            return cached_outcome
 
         start_wall = datetime.now(UTC)
         start_perf = time.perf_counter()
@@ -503,8 +545,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         except subprocess.TimeoutExpired as exc:  # pragma: no cover - diag path
             timed_out = True
             exit_code = None
-            stdout_obj = exc.output or ""
-            stderr_obj = exc.stderr or ""
+            stdout_output = cast("object | None", exc.output)
+            stderr_output = cast("object | None", exc.stderr)
+            stdout_obj = stdout_output if stdout_output is not None else ""
+            stderr_obj = stderr_output if stderr_output is not None else ""
 
         end_wall = datetime.now(UTC)
         duration = max(time.perf_counter() - start_perf, 0.0)
@@ -571,11 +615,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         else:
             duration = 0.0
         tool_version = self._ensure_text(result.get("tool_version", "<unknown>"))
+        cmd_display = self._ensure_text(result.get("cmd_display", ""))
+        started_at = self._ensure_text(result.get("started_at", ""))
         failure_message_lines = [
             f"{config.name} failed for {repo.rel_path} ({exit_display})",
             f"cwd: {repo.path}",
-            f"command: {result['cmd_display']}",
-            f"started_at: {result['started_at']}",
+            f"command: {cmd_display}",
+            f"started_at: {started_at}",
             f"duration: {duration:.3f}s",
             f"tool_version: {tool_version}",
             f"stdout:\n{preview_stdout or '<empty>'}",
@@ -586,7 +632,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "repo": repo.rel_path,
             "repo_path": str(repo.path),
             "tool": config.name,
-            "tool_module": result.get("tool_module", config.name),
+            "tool_module": self._ensure_text(result.get("tool_module", config.name)),
         }
         failure_detail.update(result)
         return failure_message, failure_detail
@@ -603,17 +649,17 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _load_index(self, path: Path, index_name: str) -> dict[str, object]:
         try:
             with path.open("r", encoding="utf-8") as fh:
-                raw = json.load(fh)
+                raw_loaded = cast("object", json.load(fh))
         except Exception as exc:
             msg = f"unable to read {index_name} index"
             raise RuntimeError(msg) from exc
 
-        if not isinstance(raw, dict):
-            actual = type(raw).__name__
+        if not isinstance(raw_loaded, dict):
+            actual = raw_loaded.__class__.__name__
             msg = f"{index_name} index must be a mapping; got {actual}"
             raise TypeError(msg)
 
-        return cast("dict[str, object]", raw)
+        return cast("dict[str, object]", raw_loaded)
 
     def _normalize_apriori_index(self, raw: dict[str, object]) -> dict[str, list[str]]:
         normalized: dict[str, list[str]] = {}
@@ -641,8 +687,19 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _merge_tool_reports(self, data: dict[str, object]) -> None:
         for repo_name, report in self._tool_reports.items():
-            tool_reports = report.get("tool_reports", {})
-            files_index = report.get("files", [])
+            tool_reports_value = report.get("tool_reports", {})
+            if isinstance(tool_reports_value, dict):
+                tool_reports = cast("dict[str, object]", tool_reports_value)
+            else:
+                tool_reports = {}
+
+            files_index_value = report.get("files", [])
+            if isinstance(files_index_value, list):
+                raw_file_list = cast("list[object]", files_index_value)
+                files_index = [item for item in raw_file_list if isinstance(item, str)]
+            else:
+                files_index = []
+
             existing = data.get(repo_name)
             if isinstance(existing, dict):
                 existing_dict = cast("dict[str, object]", existing)
@@ -772,12 +829,17 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         if not self.enable_cache or not self.cache_dir.exists():
             return
         try:
-            cache_files = sorted(
-                self.cache_dir.glob("*.json"),
-                key=lambda path: path.stat().st_mtime,
-            )
+            candidate_files = list(self.cache_dir.glob("*.json"))
         except OSError:
             return
+
+        def _file_mtime(path: Path) -> float:
+            try:
+                return path.stat().st_mtime
+            except OSError:
+                return 0.0
+
+        cache_files = sorted(candidate_files, key=_file_mtime)
         overflow = len(cache_files) - keep
         if overflow <= 0:
             return
@@ -818,9 +880,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         children = self._child_dirs()
         if not children:
             try:
-                entries = sorted(
-                    p.name for p in self.root.iterdir() if p.is_dir()
-                )
+                entries = sorted(p.name for p in self.root.iterdir() if p.is_dir())
             except OSError:
                 entries = []
             preview = ", ".join(entries[:VISIBLE_DIR_PREVIEW_LIMIT])

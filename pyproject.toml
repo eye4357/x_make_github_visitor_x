@@ -1,4 +1,8 @@
 [tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = [
     "D",
@@ -6,8 +10,6 @@ ignore = [
     "ISC001",
     "T20",
 ]
-line-length = 88
-target-version = "py311"
 
 [tool.black]
 line-length = 88
