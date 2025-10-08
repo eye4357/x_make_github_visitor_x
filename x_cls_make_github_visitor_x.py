@@ -217,21 +217,20 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     @staticmethod
     def _ensure_text(value: object) -> str:
+        def decode_bytes(raw: bytes) -> str:
+            try:
+                return raw.decode("utf-8")
+            except UnicodeDecodeError:  # pragma: no cover - diagnostic fallback
+                return raw.decode("utf-8", "replace")
+
         if isinstance(value, str):
             return value
 
-        data: bytes | None = None
         if isinstance(value, (bytes, bytearray)):
-            data = bytes(value)
-        elif isinstance(value, memoryview):
-            data = value.tobytes()
+            return decode_bytes(bytes(value))
 
-        if data is not None:
-            try:
-                decoded = data.decode("utf-8")
-            except UnicodeDecodeError:  # pragma: no cover - diagnostic fallback
-                decoded = data.decode("utf-8", "replace")
-            return decoded
+        if isinstance(value, memoryview):
+            return decode_bytes(value.tobytes())
 
         if value is None:
             return ""
