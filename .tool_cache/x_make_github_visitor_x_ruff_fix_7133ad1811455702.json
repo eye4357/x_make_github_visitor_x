@@ -1,0 +1,30 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        ".",
+        "--fix",
+        "--select",
+        "ALL",
+        "--ignore",
+        "D,COM812,ISC001,T20",
+        "--line-length",
+        "88",
+        "--target-version",
+        "py311"
+    ],
+    "cmd_display": "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+    "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+    "duration_seconds": 0.11198019998846576,
+    "ended_at": "2025-10-09T19:39:49.983637+00:00",
+    "exit": 0,
+    "repo_hash": "7133ad1811455702299c503595cb5a1b61cd96a4cfbb9dd8d56a52ace461a57a",
+    "started_at": "2025-10-09T19:39:49.871657+00:00",
+    "stderr": "",
+    "stdout": "All checks passed!\n",
+    "tool_module": "ruff",
+    "tool_version": "ruff 0.14.0"
+}

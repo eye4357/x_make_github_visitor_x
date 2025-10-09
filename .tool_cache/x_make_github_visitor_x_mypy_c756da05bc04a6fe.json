@@ -1,0 +1,29 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        ".",
+        "--strict",
+        "--no-warn-unused-configs",
+        "--show-error-codes",
+        "--warn-return-any",
+        "--warn-unreachable",
+        "--disallow-any-unimported",
+        "--disallow-any-expr",
+        "--disallow-any-decorated",
+        "--disallow-any-explicit"
+    ],
+    "cmd_display": "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+    "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+    "duration_seconds": 0.23681640002178028,
+    "ended_at": "2025-10-09T07:48:14.087482+00:00",
+    "exit": 0,
+    "repo_hash": "c756da05bc04a6fe388a7ad717dd6e62ab82b90f0afd1240fcc774750da4f390",
+    "started_at": "2025-10-09T07:48:13.850666+00:00",
+    "stderr": "",
+    "stdout": "Success: no issues found in 3 source files\n",
+    "tool_module": "mypy",
+    "tool_version": "mypy 1.18.2 (compiled: yes)"
+}

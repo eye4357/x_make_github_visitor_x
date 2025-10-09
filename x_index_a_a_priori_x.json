@@ -8117,6 +8117,9 @@
         "x_cls_make_pip_updates_x.py"
     ],
     "x_make_py_mod_sideload_x": [
+        "__init__.py",
+        "tests/__init__.py",
+        "tests/test_py_module_sideload.py",
         "x_cls_make_py_mod_sideload_x.py"
     ],
     "x_make_pypi_x": [

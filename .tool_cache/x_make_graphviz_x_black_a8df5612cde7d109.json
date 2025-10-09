@@ -1,0 +1,26 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "black",
+        ".",
+        "--line-length",
+        "88",
+        "--target-version",
+        "py311",
+        "--check",
+        "--diff"
+    ],
+    "cmd_display": "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+    "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+    "duration_seconds": 0.3017544999602251,
+    "ended_at": "2025-10-09T07:48:16.085068+00:00",
+    "exit": 0,
+    "repo_hash": "a8df5612cde7d109dca2ffd9eb8b8e3f55c784ca02d95568a9ead434f89c5a24",
+    "started_at": "2025-10-09T07:48:15.783314+00:00",
+    "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file would be left unchanged.\n",
+    "stdout": "",
+    "tool_module": "black",
+    "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+}
