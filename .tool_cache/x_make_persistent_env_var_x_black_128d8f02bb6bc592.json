@@ -1,0 +1,26 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "black",
+        ".",
+        "--line-length",
+        "88",
+        "--target-version",
+        "py311",
+        "--check",
+        "--diff"
+    ],
+    "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+    "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+    "duration_seconds": 0.2580801000003703,
+    "ended_at": "2025-10-08T20:40:42.196646+00:00",
+    "exit": 0,
+    "repo_hash": "128d8f02bb6bc592b66ab811c247dac004b97dd472aa3d3a989b3a352d2e7bb5",
+    "started_at": "2025-10-08T20:40:41.938567+00:00",
+    "stderr": "All done! \\u2728 \\U0001f370 \\u2728\n1 file would be left unchanged.\n",
+    "stdout": "",
+    "tool_module": "black",
+    "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+}

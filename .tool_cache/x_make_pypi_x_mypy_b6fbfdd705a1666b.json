@@ -1,0 +1,29 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        ".",
+        "--strict",
+        "--no-warn-unused-configs",
+        "--show-error-codes",
+        "--warn-return-any",
+        "--warn-unreachable",
+        "--disallow-any-unimported",
+        "--disallow-any-expr",
+        "--disallow-any-decorated",
+        "--disallow-any-explicit"
+    ],
+    "cmd_display": "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+    "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+    "duration_seconds": 2.0363654000102542,
+    "ended_at": "2025-10-09T02:44:35.399549+00:00",
+    "exit": 0,
+    "repo_hash": "b6fbfdd705a1666bbf67610bdfe604ca349177dc65041cfffd4e824a6c176b7a",
+    "started_at": "2025-10-09T02:44:33.363179+00:00",
+    "stderr": "",
+    "stdout": "Success: no issues found in 1 source file\n",
+    "tool_module": "mypy",
+    "tool_version": "mypy 1.18.2 (compiled: yes)"
+}

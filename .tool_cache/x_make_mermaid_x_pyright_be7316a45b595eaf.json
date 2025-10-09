@@ -1,0 +1,22 @@
+{
+    "cached": false,
+    "cmd": [
+        "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pyright",
+        ".",
+        "--level",
+        "error"
+    ],
+    "cmd_display": "C:\\x_runner_x\\x_0_make_all_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+    "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+    "duration_seconds": 1.3810002999962308,
+    "ended_at": "2025-10-09T02:44:19.260879+00:00",
+    "exit": 0,
+    "repo_hash": "be7316a45b595eaf2540aa53be77c497ca432acfc263a9f817393bf46f29210d",
+    "started_at": "2025-10-09T02:44:17.879879+00:00",
+    "stderr": "Error processing line 1 of C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\distutils-precedence.pth:\n\n  Traceback (most recent call last):\n    File \"<frozen site>\", line 207, in addpackage\n    File \"<string>\", line 1, in <module>\n  AttributeError: module '_distutils_hack' has no attribute 'add_shim'\n\nRemainder of file ignored\nError processing line 1 of C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\distutils-precedence.pth:\n\n  Traceback (most recent call last):\n    File \"<frozen site>\", line 207, in addpackage\n    File \"<string>\", line 1, in <module>\n  AttributeError: module '_distutils_hack' has no attribute 'add_shim'\n\nRemainder of file ignored\n",
+    "stdout": "0 errors, 0 warnings, 0 informations\n",
+    "tool_module": "pyright",
+    "tool_version": "pyright 1.1.406"
+}
