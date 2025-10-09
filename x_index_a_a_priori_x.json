@@ -8109,6 +8109,7 @@
         "x_cls_make_mermaid_x.py"
     ],
     "x_make_persistent_env_var_x": [
+        "tests/__init__.py",
         "tests/test_persistent_env.py",
         "x_cls_make_persistent_env_var_x.py"
     ],
