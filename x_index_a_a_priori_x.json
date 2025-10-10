@@ -11437,6 +11437,13 @@
         "core/services/scheduler_service.py",
         "core/services/search_service.py",
         "core/services/task_service.py",
+        "cryptography/__init__.py",
+        "cryptography/fernet.py",
+        "fastapi/__init__.py",
+        "fastapi/__main__.py",
+        "fastapi/cli.py",
+        "fastapi_cli/__init__.py",
+        "fastapi_cli/cli.py",
         "infrastructure/__init__.py",
         "infrastructure/automation/__init__.py",
         "infrastructure/automation/webhook_client.py",
@@ -11488,6 +11495,7 @@
         "tests/test_tui_controller.py",
         "tui/__init__.py",
         "tui/__main__.py",
+        "typer/__init__.py",
         "x_cls_legatus_acta_schedae_x.py"
     ],
     "x_legatus_tactica_impetus_x": [],
@@ -11499,9 +11507,17 @@
         "x_subprocess_utils_x.py"
     ],
     "x_make_github_clones_x": [
+        "__init__.py",
+        "fastapi/__init__.py",
+        "fastapi/__main__.py",
+        "fastapi/cli.py",
+        "fastapi_cli/__init__.py",
+        "fastapi_cli/cli.py",
         "tests/__init__.py",
         "tests/test_make_github_clones.py",
-        "x_cls_make_github_clones_x.py"
+        "x_cls_make_github_clones_x.py",
+        "x_make_github_clones_x/__init__.py",
+        "x_make_github_clones_x/x_cls_make_github_clones_x.py"
     ],
     "x_make_github_visitor_x": [
         "tests/__init__.py",
@@ -13419,6 +13435,7 @@
         ".venv/Lib/site-packages/pytest/__init__.py",
         ".venv/Lib/site-packages/pytest/__main__.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "tests/__init__.py",
         "tests/test_graphviz_builder.py",
         "x_cls_make_graphviz_x.py"
     ],
@@ -15333,6 +15350,8 @@
         ".venv/Lib/site-packages/pytest/__init__.py",
         ".venv/Lib/site-packages/pytest/__main__.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "__init__.py",
+        "tests/__init__.py",
         "tests/test_markdown_builder.py",
         "x_cls_make_markdown_x.py"
     ],
@@ -17247,6 +17266,8 @@
         ".venv/Lib/site-packages/pytest/__init__.py",
         ".venv/Lib/site-packages/pytest/__main__.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "__init__.py",
+        "tests/__init__.py",
         "tests/test_mermaid_builder.py",
         "x_cls_make_mermaid_x.py"
     ],
@@ -19161,6 +19182,7 @@
         ".venv/Lib/site-packages/pytest/__init__.py",
         ".venv/Lib/site-packages/pytest/__main__.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "__init__.py",
         "tests/__init__.py",
         "tests/test_persistent_env.py",
         "x_cls_make_persistent_env_var_x.py"
@@ -21076,6 +21098,8 @@
         ".venv/Lib/site-packages/pytest/__init__.py",
         ".venv/Lib/site-packages/pytest/__main__.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "__init__.py",
+        "tests/__init__.py",
         "tests/test_pip_updates.py",
         "x_cls_make_pip_updates_x.py"
     ],
@@ -29925,6 +29949,8 @@
         ".venv/Lib/site-packages/sniffio/_tests/test_sniffio.py",
         ".venv/Lib/site-packages/sniffio/_version.py",
         ".venv/Lib/site-packages/typing_extensions.py",
+        "__init__.py",
+        "tests/__init__.py",
         "tests/test_yahw.py",
         "x_cls_make_yahw_x.py"
     ]
