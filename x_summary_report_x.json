@@ -1,48 +1,48 @@
 {
     "overall_stats": {
-        "cache_hits": 12,
-        "cache_misses": 58,
-        "failed_tools": 33,
+        "cache_hits": 2,
+        "cache_misses": 68,
+        "failed_tools": 39,
         "had_failures": true,
         "total_tools_run": 70
     },
     "repos": {
         "x_0_make_all_x": {
             "cached": 0,
-            "failed": 5,
-            "repo_hash": "a13c5215e06965f1bfb29fafbc347a45e252a69ee1c7cb17ce59b26f4a8473b1",
+            "failed": 0,
+            "repo_hash": "821ba929778710fca35efd7dd25f498749872d06013e1b8844324689c20e5512",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "mypy": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "pyright": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "ruff_check": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "ruff_fix": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 }
             }
         },
         "x_legatus_acta_schedae_x": {
             "cached": 0,
-            "failed": 5,
-            "repo_hash": "9e2304c1af24a4e982f2ed441375d0c9254636fa553e84ad158a805ef6c75076",
+            "failed": 3,
+            "repo_hash": "5c01f621d7a9501b0d3ab9279a4e5022926fcffb5f85acfa3b6f64f04c45645d",
             "tools": {
                 "black": {
                     "cached": false,
@@ -61,12 +61,12 @@
                 },
                 "ruff_check": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "ruff_fix": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 }
             }
@@ -105,8 +105,8 @@
         },
         "x_make_common_x": {
             "cached": 0,
-            "failed": 1,
-            "repo_hash": "e95dd9c8701d6c0bd80bac40717dd08e90915bb7ea96ff1f86b6aaaad9d33d8a",
+            "failed": 0,
+            "repo_hash": "74cb2287ced238b75d7d668a3e1e51a39c69bef264d5b26848d82bcff84c309b",
             "tools": {
                 "black": {
                     "cached": false,
@@ -115,7 +115,7 @@
                 },
                 "mypy": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "pyright": {
@@ -137,8 +137,8 @@
         },
         "x_make_github_clones_x": {
             "cached": 0,
-            "failed": 2,
-            "repo_hash": "94d7f41d60f7158bb8e83bfe4b67b8785aab55e6ad489361e3d04d708c6a24f9",
+            "failed": 4,
+            "repo_hash": "ae6e662eb6fc48822d9ce90e85e733abc80509b898014ddbe7f44c27e081851a",
             "tools": {
                 "black": {
                     "cached": false,
@@ -147,12 +147,12 @@
                 },
                 "mypy": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "pyright": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_check": {
@@ -170,7 +170,7 @@
         "x_make_github_visitor_x": {
             "cached": 0,
             "failed": 0,
-            "repo_hash": "7133ad1811455702299c503595cb5a1b61cd96a4cfbb9dd8d56a52ace461a57a",
+            "repo_hash": "f8d2810dae3ce4e1323c9f5d48485caa6781a42a3b3ae1911a5df5d8b3a13598",
             "tools": {
                 "black": {
                     "cached": false,
@@ -201,12 +201,12 @@
         },
         "x_make_graphviz_x": {
             "cached": 0,
-            "failed": 3,
-            "repo_hash": "7de37b8371d3b8e7f6ec8a7152b2c3727de0abd7ec172df525670b960540fa43",
+            "failed": 5,
+            "repo_hash": "1d5425b62f310d992529e7499c1a86d6e6cd54d9d1e0335b42d1efc15b466223",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "mypy": {
@@ -216,7 +216,7 @@
                 },
                 "pyright": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_check": {
@@ -232,45 +232,13 @@
             }
         },
         "x_make_markdown_x": {
-            "cached": 5,
-            "failed": 0,
-            "repo_hash": "bdf0835fec1b2a228b20baf641fcffc9a2bd050992c364cd8203975829dc8a45",
-            "tools": {
-                "black": {
-                    "cached": true,
-                    "exit": 0,
-                    "timed_out": false
-                },
-                "mypy": {
-                    "cached": true,
-                    "exit": 0,
-                    "timed_out": false
-                },
-                "pyright": {
-                    "cached": true,
-                    "exit": 0,
-                    "timed_out": false
-                },
-                "ruff_check": {
-                    "cached": true,
-                    "exit": 0,
-                    "timed_out": false
-                },
-                "ruff_fix": {
-                    "cached": true,
-                    "exit": 0,
-                    "timed_out": false
-                }
-            }
-        },
-        "x_make_mermaid_x": {
             "cached": 0,
-            "failed": 3,
-            "repo_hash": "43dc197c23bc05b07b93f853da9e38c7a9101b6b39a9c6f99e01681e0a4f165e",
+            "failed": 5,
+            "repo_hash": "29ffba3c62cbb4fdabd098c77a872caeb240e4ef53b49132cfea3b33321de89d",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "mypy": {
@@ -280,7 +248,39 @@
                 },
                 "pyright": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
+                    "timed_out": false
+                },
+                "ruff_check": {
+                    "cached": false,
+                    "exit": 1,
+                    "timed_out": false
+                },
+                "ruff_fix": {
+                    "cached": false,
+                    "exit": 1,
+                    "timed_out": false
+                }
+            }
+        },
+        "x_make_mermaid_x": {
+            "cached": 0,
+            "failed": 5,
+            "repo_hash": "8096b4c0825a723bfbd4bbefe6e54b01a9fc7bd9ec0ea58f5be0e7f4198ca9a2",
+            "tools": {
+                "black": {
+                    "cached": false,
+                    "exit": 1,
+                    "timed_out": false
+                },
+                "mypy": {
+                    "cached": false,
+                    "exit": 1,
+                    "timed_out": false
+                },
+                "pyright": {
+                    "cached": false,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_check": {
@@ -297,8 +297,8 @@
         },
         "x_make_persistent_env_var_x": {
             "cached": 0,
-            "failed": 4,
-            "repo_hash": "fcbb45f4e2d24d4bbb15196c45ff24006bc21345469c87b47ed3fcdf8bc08292",
+            "failed": 3,
+            "repo_hash": "0d747fce58b9f7766c856dfc0b5d83db5ab6d516675e2fb5e2b8359075f8dfb4",
             "tools": {
                 "black": {
                     "cached": false,
@@ -307,7 +307,7 @@
                 },
                 "mypy": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "pyright": {
@@ -329,12 +329,12 @@
         },
         "x_make_pip_updates_x": {
             "cached": 0,
-            "failed": 3,
-            "repo_hash": "57d1d09851ff75519ff3466e1c7bd9fd046afbd30fb5dc9525c2b3fdd99238ea",
+            "failed": 5,
+            "repo_hash": "89936064e870688603b9c5b68b978b386ec327418f602f9dc5dd39512bf96bb2",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "mypy": {
@@ -344,7 +344,7 @@
                 },
                 "pyright": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_check": {
@@ -361,12 +361,12 @@
         },
         "x_make_py_mod_sideload_x": {
             "cached": 0,
-            "failed": 5,
-            "repo_hash": "575a807fc49b6e2c14c855f99cdc102a943b45436d16ed05bdc67476d3f27da2",
+            "failed": 4,
+            "repo_hash": "4664082cf9594627807e8e1a1ef708dab6f00699d7a6ba1d768a0c80b481355c",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "mypy": {
@@ -393,12 +393,12 @@
         },
         "x_make_pypi_x": {
             "cached": 0,
-            "failed": 2,
-            "repo_hash": "c0512fab90b64c643df9d8de1d0e964b63c966426bd0db5e35e07b6504d74074",
+            "failed": 1,
+            "repo_hash": "0f99bdcd8d8fb0adf3d36aa79673c1de95ed756a5afb907f7d9a1d4a1ea65097",
             "tools": {
                 "black": {
                     "cached": false,
-                    "exit": 0,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "mypy": {
@@ -413,49 +413,49 @@
                 },
                 "ruff_check": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 },
                 "ruff_fix": {
                     "cached": false,
-                    "exit": 1,
+                    "exit": 0,
                     "timed_out": false
                 }
             }
         },
         "x_make_yahw_x": {
-            "cached": 5,
-            "failed": 0,
-            "repo_hash": "f43912d362296af347a9d5584369459b2ae2941c1859563107967ca23f66f6b9",
+            "cached": 0,
+            "failed": 4,
+            "repo_hash": "65676505e79b165131bfe9fbc6376610f2afb031c3cdc1c6a0493e2d5332d529",
             "tools": {
                 "black": {
-                    "cached": true,
+                    "cached": false,
                     "exit": 0,
                     "timed_out": false
                 },
                 "mypy": {
-                    "cached": true,
-                    "exit": 0,
+                    "cached": false,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "pyright": {
-                    "cached": true,
-                    "exit": 0,
+                    "cached": false,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_check": {
-                    "cached": true,
-                    "exit": 0,
+                    "cached": false,
+                    "exit": 1,
                     "timed_out": false
                 },
                 "ruff_fix": {
-                    "cached": true,
-                    "exit": 0,
+                    "cached": false,
+                    "exit": 1,
                     "timed_out": false
                 }
             }
         }
     },
-    "timestamp": "2025-10-09T19:40:13.558856+00:00",
+    "timestamp": "2025-10-10T16:09:16.403626+00:00",
     "total_repos": 14
 }

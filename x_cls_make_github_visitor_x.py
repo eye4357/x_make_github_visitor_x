@@ -241,6 +241,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         hasher = hashlib.sha256()
         for p in sorted(repo_path.rglob("*")):
             if not p.is_file():
+
                 continue
             if ".git" in p.parts or "__pycache__" in p.parts:
                 continue
