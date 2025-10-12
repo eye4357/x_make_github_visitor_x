@@ -5,6 +5,7 @@ import json
 import logging as _logging
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import time
@@ -50,6 +51,8 @@ COMMON_CACHE_NAMES = {
     ".pyright",
     ".tool_cache",
 }
+
+GENERATED_BUILD_DIR_PREFIXES: tuple[str, ...] = ("_build_temp",)
 
 TOOL_MODULE_MAP = {
     "ruff_fix": "ruff",
@@ -133,6 +136,10 @@ def _preview_lines(lines: Sequence[str], limit: int) -> str:
     if len(lines) > limit:
         preview += "\n…"
     return preview
+
+
+def _is_generated_build_dir(name: str) -> bool:
+    return any(name.startswith(prefix) for prefix in GENERATED_BUILD_DIR_PREFIXES)
 
 
 class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility
@@ -236,6 +243,16 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             return ""
         return str(value)
 
+    def _cleanup_generated_build_dirs(self, repo_path: Path) -> None:
+        with suppress(OSError):
+            for child in repo_path.iterdir():
+                if not child.is_dir():
+                    continue
+                if not _is_generated_build_dir(child.name):
+                    continue
+                _info("Removing generated build directory:", str(child))
+                shutil.rmtree(child, ignore_errors=True)
+
     def _repo_content_hash(self, repo_path: Path) -> str:
         """Return a deterministic hash of repository contents for caching."""
         hasher = hashlib.sha256()
@@ -244,6 +261,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
                 continue
             if ".git" in p.parts or "__pycache__" in p.parts:
+                continue
+            if any(_is_generated_build_dir(part) for part in p.parts):
                 continue
             if p.suffix in {".pyc", ".pyo"}:
                 continue
@@ -387,6 +406,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 continue
             if ".git" in pth.parts or "__pycache__" in pth.parts:
                 continue
+            if any(_is_generated_build_dir(part) for part in pth.parts):
+                continue
             if pth.suffix.lower() not in {".py", ".pyi"}:
                 continue
             files.append(str(pth.relative_to(repo_path).as_posix()))
@@ -398,6 +419,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         python: str,
         timeout: int,
     ) -> RepoProcessingResult:
+        self._cleanup_generated_build_dirs(repo_path)
         rel = str(repo_path.relative_to(self.root))
         repo_hash = self._repo_content_hash(repo_path)
         repo_files = self._collect_repo_files(repo_path)
