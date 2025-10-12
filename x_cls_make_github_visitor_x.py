@@ -1087,7 +1087,10 @@ if __name__ == "__main__":
     total = _coerce_exit_code(overall.get("total_tools_run", 0)) or 0
     ratio = (hits / total * 100.0) if total else 0.0
 
-    _info("wrote a-priori, a-posteriori, and summary files to:", inst.package_root)
+    _info(
+        "wrote a-priori, a-posteriori, and summary files to:",
+        inst.package_root,
+    )
 
     summary_line = (
         f"processed {summary.get('total_repos', 0)} repositories "
