@@ -1158,6 +1158,49 @@ def init_main(
     return init_name(_workspace_root(), ctx=ctx, enable_cache=enable_cache)
 
 
+def run_workspace_inspection(
+    root_dir: str | Path,
+    *,
+    ctx: object | None = None,
+    enable_cache: bool = True,
+) -> Path | None:
+    """Run the full inspection pipeline for the provided workspace root.
+
+    Returns the markdown report path when available. When no child git
+    repositories are discovered the function logs the outcome and returns
+    ``None`` to keep the orchestrator flow moving without raising.
+    """
+
+    try:
+        visitor = init_name(root_dir, ctx=ctx, enable_cache=enable_cache)
+    except (RuntimeError, ValueError, TypeError) as err:  # pragma: no cover
+        # init guard
+        message = f"x_make_github_visitor instantiate failed: {err}"
+        raise AssertionError(message) from err
+
+    _info(
+        "Running x_make_github_visitor against cloned repos",
+        f"root={Path(root_dir)!s} ...",
+    )
+
+    try:
+        visitor.run_inspect_flow()
+    except AssertionError as err:
+        lowered_error = str(err).lower()
+        if "no child git repositories found" in lowered_error:
+            _info(
+                "Visitor skipped: no child git repositories present at root;",
+                "continuing orchestrator flow",
+            )
+            return None
+        raise
+    except (RuntimeError, ValueError) as err:
+        message = f"x_make_github_visitor run failed: {err}"
+        raise AssertionError(message) from err
+
+    return visitor.last_report_path
+
+
 if __name__ == "__main__":
     inst = init_main()
     inst.run_inspect_flow()

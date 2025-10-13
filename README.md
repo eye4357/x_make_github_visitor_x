@@ -1,9 +1,9 @@
-# x_make_github_visitor_x — Lab Notes from Walter White
+# x_make_github_visitor_x — Control Room Lab Notes
 
 > "I send this visitor ahead of every batch. If a repo can't meet the standard, it doesn't touch my table."
 
 ## Manifesto
-x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as Markdown dossiers, and keeps the Road to 0.20.0 initiative brutally honest.
+x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as Markdown dossiers, and keeps the Road to 0.20.1 initiative brutally honest.
 
 ## Ingredients
 - Python 3.11+
@@ -28,8 +28,8 @@ x_make_github_visitor_x is the compliance auditor for every repository under my 
 
 ## Distribution Chain
 - [Changelog](./CHANGELOG.md)
-- [Road to 0.20.0 Control Room](../x_0_make_all_x/Change%20Control/0.20.0/index.md)
-- [Road to 0.20.0 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.0/Road%20to%200.20.0%20Engineering%20Proposal%20-%20Walter%20White.md)
+- [Road to 0.20.1 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.1/Road%20to%200.20.1%20Engineering%20Proposal.md)
+- [Road to 0.20.1 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.1/Road%20to%200.20.1%20Engineering%20Proposal.md)
 
 ## Cross-Linked Intelligence
 - [x_make_github_clones_x](../x_make_github_clones_x/README.md) — supplies the repos this visitor inspects
