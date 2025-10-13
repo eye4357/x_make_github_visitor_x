@@ -183,9 +183,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._runtime_snapshot: dict[str, object] = {}
         self._last_report_path: Path | None = None
 
-    # package root (the folder containing this module). Reports live here so
-    # they remain alongside the visitor package rather than the workspace
-    # root.
+        # package root (the folder containing this module). Reports live here so
+        # they remain alongside the visitor package rather than the workspace
+        # root.
         self.package_root = Path(__file__).resolve().parent
         self._reports_dir = self.package_root / REPORTS_DIR_NAME
 
@@ -711,6 +711,18 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             return value
         return str(value)
 
+    def _detail_value(
+        self,
+        detail: Mapping[str, object],
+        *keys: str,
+        default: str = "",
+    ) -> str:
+        for key in keys:
+            value = self._ensure_detail_text(detail, key)
+            if value:
+                return value
+        return default
+
     def _stat_value(self, mapping: Mapping[str, object], key: str) -> int:
         value = mapping.get(key)
         if isinstance(value, bool):
@@ -737,9 +749,25 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         else:
             typed_overall = cast("Mapping[str, object]", {})
 
-        lines: list[str] = []
-        lines.append(f"# Visitor Failure Report — {now.isoformat()}")
-        lines.append("")
+        detail_pairs = list(
+            zip(self._failure_details, self._failure_messages, strict=False)
+        )
+
+        lines = self._report_header_lines(now, summary, typed_overall)
+        lines.extend(self._failure_section_lines(detail_pairs))
+        lines.extend(self._report_footer_lines())
+
+        report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self._last_report_path = report_path
+        return report_path
+
+    def _report_header_lines(
+        self,
+        now: datetime,
+        summary: Mapping[str, object],
+        overall: Mapping[str, object],
+    ) -> list[str]:
+        lines = [f"# Visitor Failure Report — {now.isoformat()}", ""]
         lines.append(f"- Workspace root: `{self.root}`")
         run_started = self._runtime_snapshot.get("run_started_at", "")
         if run_started:
@@ -748,67 +776,104 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         if run_finished:
             lines.append(f"- Run completed at: {run_finished}")
         lines.append(f"- Total repositories examined: {summary.get('total_repos', 0)}")
-        total_tools = self._stat_value(typed_overall, "total_tools_run")
+        total_tools = self._stat_value(overall, "total_tools_run")
         lines.append(f"- Total tool executions: {total_tools}")
-        failed_tools = self._stat_value(typed_overall, "failed_tools")
+        failed_tools = self._stat_value(overall, "failed_tools")
         lines.append(f"- Failing tool executions: {failed_tools}")
-        cache_hits = self._stat_value(typed_overall, "cache_hits")
+        cache_hits = self._stat_value(overall, "cache_hits")
         lines.append(f"- Cache hits: {cache_hits}")
-        lines.append("")
-        lines.append("## Failures")
-        lines.append("")
+        lines.extend(["", "## Failures", ""])
+        return lines
 
-        detail_pairs = list(zip(self._failure_details, self._failure_messages))
+    def _failure_section_lines(
+        self,
+        detail_pairs: Sequence[tuple[Mapping[str, object], str]],
+    ) -> list[str]:
         if not detail_pairs:
-            lines.append("- [x] No failures detected — all tools passed")
-        else:
-            for detail, message in detail_pairs:
-                repo = self._ensure_detail_text(detail, "repo") or self._ensure_detail_text(detail, "repo_path") or "<unknown repo>"
-                tool = self._ensure_detail_text(detail, "tool") or self._ensure_detail_text(detail, "tool_module") or "<unknown tool>"
-                preview = self._summarize_failure_message(message)
-                lines.append(f"- [ ] `{repo}` · `{tool}` — {preview}")
+            return ["- [x] No failures detected — all tools passed", ""]
 
-                command_display = self._command_display(detail)
-                exit_code = _coerce_exit_code(detail.get("exit"))
-                if detail.get("timed_out"):
-                    exit_display = f"timeout after {detail.get('timeout_seconds', '')}s"
-                elif exit_code is None:
-                    exit_display = "exit <unknown>"
-                else:
-                    exit_display = f"exit {exit_code}"
-                repo_path = self._ensure_detail_text(detail, "repo_path") or self._ensure_detail_text(detail, "cwd")
-                suggestion = self._ensure_detail_text(detail, "next_action") or "Investigate"
-                captured_at = self._ensure_detail_text(detail, "ended_at") or self._ensure_detail_text(detail, "started_at")
-                tool_version = self._ensure_detail_text(detail, "tool_version")
-                stdout_preview = _preview_lines(self._ensure_text(detail.get("stdout", "")).splitlines(), OUTPUT_PREVIEW_LIMIT)
-                stderr_preview = _preview_lines(self._ensure_text(detail.get("stderr", "")).splitlines(), OUTPUT_PREVIEW_LIMIT)
+        lines: list[str] = []
+        for detail, message in detail_pairs:
+            lines.extend(self._render_failure(detail, message))
+        return lines
 
-                lines.append(f"  - Command: `{command_display}`")
-                lines.append(f"  - Exit: {exit_display}")
-                if repo_path:
-                    lines.append(f"  - Repo path: `{repo_path}`")
-                if tool_version:
-                    lines.append(f"  - Tool version: {tool_version}")
-                if captured_at:
-                    lines.append(f"  - Captured at: {captured_at}")
-                lines.append(f"  - Suggested action: {suggestion}")
-                if stdout_preview:
-                    lines.append("  - Stdout preview:")
-                    for line in stdout_preview.splitlines():
-                        lines.append(f"    > {line}")
-                if stderr_preview:
-                    lines.append("  - Stderr preview:")
-                    for line in stderr_preview.splitlines():
-                        lines.append(f"    > {line}")
-                lines.append("")
+    def _render_failure(
+        self,
+        detail: Mapping[str, object],
+        message: str,
+    ) -> list[str]:
+        repo = self._detail_value(detail, "repo", "repo_path", default="<unknown repo>")
+        tool = self._detail_value(
+            detail,
+            "tool",
+            "tool_module",
+            default="<unknown tool>",
+        )
+        preview = self._summarize_failure_message(message)
+        lines = [f"- [ ] `{repo}` · `{tool}` — {preview}"]
 
-        lines.append("---")
+        command_display = self._command_display(detail)
+        exit_display = self._exit_display(detail)
+        repo_path = self._detail_value(detail, "repo_path", "cwd")
+        suggestion = self._detail_value(
+            detail,
+            "next_action",
+            default="Investigate",
+        )
+        captured_at = self._detail_value(detail, "ended_at", "started_at")
+        tool_version = self._detail_value(detail, "tool_version")
+        stdout_preview = self._preview_output(detail, "stdout")
+        stderr_preview = self._preview_output(detail, "stderr")
+
+        lines.extend(
+            [
+                f"  - Command: `{command_display}`",
+                f"  - Exit: {exit_display}",
+            ]
+        )
+        if repo_path:
+            lines.append(f"  - Repo path: `{repo_path}`")
+        if tool_version:
+            lines.append(f"  - Tool version: {tool_version}")
+        if captured_at:
+            lines.append(f"  - Captured at: {captured_at}")
+        lines.append(f"  - Suggested action: {suggestion}")
+        if stdout_preview:
+            lines.extend(self._render_output_preview("Stdout", stdout_preview))
+        if stderr_preview:
+            lines.extend(self._render_output_preview("Stderr", stderr_preview))
         lines.append("")
-        lines.append("_Generated by x_make_github_visitor_x_; actionable items are tracked as unchecked tasks._")
+        return lines
 
-        report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        self._last_report_path = report_path
-        return report_path
+    def _exit_display(self, detail: Mapping[str, object]) -> str:
+        if detail.get("timed_out"):
+            timeout = self._detail_value(detail, "timeout_seconds")
+            return f"timeout after {timeout}s" if timeout else "timeout"
+
+        exit_code = _coerce_exit_code(detail.get("exit"))
+        if exit_code is None:
+            return "exit <unknown>"
+        return f"exit {exit_code}"
+
+    def _preview_output(self, detail: Mapping[str, object], key: str) -> str:
+        text = self._ensure_text(detail.get(key, ""))
+        return _preview_lines(text.splitlines(), OUTPUT_PREVIEW_LIMIT)
+
+    def _render_output_preview(self, label: str, preview: str) -> list[str]:
+        header = f"  - {label} preview:"
+        lines = [header]
+        lines.extend(f"    > {line}" for line in preview.splitlines())
+        return lines
+
+    def _report_footer_lines(self) -> list[str]:
+        return [
+            "---",
+            "",
+            (
+                "_Generated by x_make_github_visitor_x_; actionable items are "
+                "tracked as unchecked tasks._"
+            ),
+        ]
 
     def _raise_on_failures(self, report_path: Path | None) -> None:
         if not self._last_run_failures:
