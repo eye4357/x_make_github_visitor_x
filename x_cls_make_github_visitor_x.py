@@ -34,13 +34,12 @@ def _info(*args: object) -> None:
 
 """Visitor to run ruff/black/mypy/pyright on immediate child git clones.
 
-This module removes the previous "lessons" feature. It ignores hidden
-and common tool-cache directories when discovering immediate child
-repositories (for example: .mypy_cache, .ruff_cache, __pycache__, .pyright).
-The visitor writes an a-priori and a-posteriori file index, preserves the
-extended toolchain flow, and now supports caching tool outputs to speed up
-incremental reruns. Any tool failures are raised as AssertionError with the
-captured stdout/stderr to make failures visible.
+Hidden and cache directories (for example: .mypy_cache, .ruff_cache,
+__pycache__, .pyright) are ignored when discovering child repositories.
+The visitor caches tool outputs for unchanged repositories and now emits a
+timestamped Markdown TODO report summarising any failures instead of the
+legacy JSON index files. Failures still raise AssertionError with captured
+stdout/stderr for visibility.
 """
 
 
@@ -74,6 +73,8 @@ REQUIRED_PACKAGES: tuple[str, ...] = (
     "mypy",
     "pyright",
 )
+MARKDOWN_MESSAGE_LIMIT = 240
+REPORTS_DIR_NAME = "reports"
 
 
 @dataclass(frozen=True)
@@ -180,11 +181,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._failure_details: list[dict[str, object]] = []
         self._tool_versions: dict[str, str] = {}
         self._runtime_snapshot: dict[str, object] = {}
+        self._last_report_path: Path | None = None
 
-        # package root (the folder containing this module). Use this for
-        # storing the canonical a-priori / a-posteriori index files so they
-        # live with the visitor package rather than the workspace root.
+    # package root (the folder containing this module). Reports live here so
+    # they remain alongside the visitor package rather than the workspace
+    # root.
         self.package_root = Path(__file__).resolve().parent
+        self._reports_dir = self.package_root / REPORTS_DIR_NAME
 
         self.cache_dir = self.package_root / ".tool_cache"
         if self.enable_cache:
@@ -659,117 +662,155 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failure_detail.update(result)
         return failure_message, failure_detail
 
-    def _ensure_index_file(self, path: Path, step_label: str) -> None:
-        if path.exists() and path.stat().st_size > 0:
-            return
-        msg = f"{step_label} failed: {path} missing or empty"
-        raise AssertionError(msg)
+    def _ensure_reports_dir(self) -> Path:
+        reports_dir = self._reports_dir
+        reports_dir.mkdir(parents=True, exist_ok=True)
+        return reports_dir
 
-    def _log_discovery(self, label: str, repo_count: int) -> None:
-        _info(label, f"found {repo_count} repositories under {self.root}")
+    def _remove_legacy_json_reports(self) -> None:
+        legacy_names = (
+            "x_index_a_a_priori_x.json",
+            "x_index_b_a_posteriori_x.json",
+            "x_summary_report_x.json",
+            "x_tool_failures_x.json",
+        )
+        for name in legacy_names:
+            stale_path = self.package_root / name
+            with suppress(OSError):
+                if stale_path.exists():
+                    stale_path.unlink()
 
-    def _load_index(self, path: Path, index_name: str) -> dict[str, object]:
-        try:
-            with path.open("r", encoding="utf-8") as fh:
-                raw_loaded = cast("object", json.load(fh))
-        except Exception as exc:
-            msg = f"unable to read {index_name} index"
-            raise RuntimeError(msg) from exc
+    def _summarize_failure_message(self, message: str) -> str:
+        collapsed = " ".join(message.strip().split())
+        if not collapsed:
+            return "Tool failure recorded"
+        if len(collapsed) <= MARKDOWN_MESSAGE_LIMIT:
+            return collapsed
+        return collapsed[: MARKDOWN_MESSAGE_LIMIT - 1] + "…"
 
-        if not isinstance(raw_loaded, dict):
-            actual = raw_loaded.__class__.__name__
-            msg = f"{index_name} index must be a mapping; got {actual}"
-            raise TypeError(msg)
+    def _command_display(self, detail: Mapping[str, object]) -> str:
+        cmd_display = detail.get("cmd_display")
+        if isinstance(cmd_display, str) and cmd_display.strip():
+            return cmd_display.strip()
+        raw_cmd = detail.get("cmd")
+        if isinstance(raw_cmd, Sequence) and not isinstance(
+            raw_cmd,
+            (str, bytes, bytearray),
+        ):
+            parts_seq = cast("Sequence[object]", raw_cmd)
+            parts = [str(part) for part in parts_seq]
+            if parts:
+                return " ".join(parts)
+        return "<command unavailable>"
 
-        return cast("dict[str, object]", raw_loaded)
+    def _ensure_detail_text(self, detail: Mapping[str, object], key: str) -> str:
+        value = detail.get(key)
+        if value is None:
+            return ""
+        if isinstance(value, str):
+            return value
+        return str(value)
 
-    def _normalize_apriori_index(self, raw: dict[str, object]) -> dict[str, list[str]]:
-        normalized: dict[str, list[str]] = {}
-        for key, value in raw.items():
-            key_str = str(key)
-            if isinstance(value, list):
-                items = cast("list[object]", value)
-                normalized[key_str] = [item for item in items if isinstance(item, str)]
-            else:
-                normalized[key_str] = []
-        return normalized
+    def _stat_value(self, mapping: Mapping[str, object], key: str) -> int:
+        value = mapping.get(key)
+        if isinstance(value, bool):
+            return int(value)
+        if isinstance(value, (int, float)):
+            return int(value)
+        if isinstance(value, str):
+            with suppress(ValueError):
+                return int(value)
+        return 0
 
-    def _validate_children_match(self, apriori: Mapping[str, list[str]]) -> None:
-        expected = sorted(str(p.relative_to(self.root)) for p in self._child_dirs())
-        actual = sorted(apriori.keys())
-        if actual == expected:
-            return
-        _info("a-priori index expected:", expected)
-        _info("a-priori index found:", actual)
-        msg = "a-priori index contents do not match children"
-        raise AssertionError(msg)
+    def _write_markdown_failure_report(self) -> Path:
+        reports_dir = self._ensure_reports_dir()
+        now = datetime.now(UTC)
+        timestamp = now.strftime("%Y%m%d_%H%M%S")
+        filename = f"visitor_failures_{timestamp}.md"
+        report_path = reports_dir / filename
 
-    def _prepare_posterior_data(self, raw: dict[str, object]) -> dict[str, object]:
-        return {str(key): value for key, value in raw.items()}
+        summary = self.generate_summary_report()
+        overall = summary.get("overall_stats", {})
+        typed_overall: Mapping[str, object]
+        if isinstance(overall, Mapping):
+            typed_overall = cast("Mapping[str, object]", overall)
+        else:
+            typed_overall = cast("Mapping[str, object]", {})
 
-    def _merge_tool_reports(self, data: dict[str, object]) -> None:
-        for repo_name, report in self._tool_reports.items():
-            tool_reports_value = report.get("tool_reports", {})
-            if isinstance(tool_reports_value, dict):
-                tool_reports = cast("dict[str, object]", tool_reports_value)
-            else:
-                tool_reports = {}
+        lines: list[str] = []
+        lines.append(f"# Visitor Failure Report — {now.isoformat()}")
+        lines.append("")
+        lines.append(f"- Workspace root: `{self.root}`")
+        run_started = self._runtime_snapshot.get("run_started_at", "")
+        if run_started:
+            lines.append(f"- Run started at: {run_started}")
+        run_finished = self._runtime_snapshot.get("run_completed_at", "")
+        if run_finished:
+            lines.append(f"- Run completed at: {run_finished}")
+        lines.append(f"- Total repositories examined: {summary.get('total_repos', 0)}")
+        total_tools = self._stat_value(typed_overall, "total_tools_run")
+        lines.append(f"- Total tool executions: {total_tools}")
+        failed_tools = self._stat_value(typed_overall, "failed_tools")
+        lines.append(f"- Failing tool executions: {failed_tools}")
+        cache_hits = self._stat_value(typed_overall, "cache_hits")
+        lines.append(f"- Cache hits: {cache_hits}")
+        lines.append("")
+        lines.append("## Failures")
+        lines.append("")
 
-            files_index_value = report.get("files", [])
-            if isinstance(files_index_value, list):
-                raw_file_list = cast("list[object]", files_index_value)
-                files_index = [item for item in raw_file_list if isinstance(item, str)]
-            else:
-                files_index = []
+        detail_pairs = list(zip(self._failure_details, self._failure_messages))
+        if not detail_pairs:
+            lines.append("- [x] No failures detected — all tools passed")
+        else:
+            for detail, message in detail_pairs:
+                repo = self._ensure_detail_text(detail, "repo") or self._ensure_detail_text(detail, "repo_path") or "<unknown repo>"
+                tool = self._ensure_detail_text(detail, "tool") or self._ensure_detail_text(detail, "tool_module") or "<unknown tool>"
+                preview = self._summarize_failure_message(message)
+                lines.append(f"- [ ] `{repo}` · `{tool}` — {preview}")
 
-            existing = data.get(repo_name)
-            if isinstance(existing, dict):
-                existing_dict = cast("dict[str, object]", existing)
-                raw_files = existing_dict.get("files", [])
-                if isinstance(raw_files, list):
-                    raw_list = cast("list[object]", raw_files)
-                    files_value = [item for item in raw_list if isinstance(item, str)]
+                command_display = self._command_display(detail)
+                exit_code = _coerce_exit_code(detail.get("exit"))
+                if detail.get("timed_out"):
+                    exit_display = f"timeout after {detail.get('timeout_seconds', '')}s"
+                elif exit_code is None:
+                    exit_display = "exit <unknown>"
                 else:
-                    files_value = []
-            elif isinstance(existing, list):
-                existing_list = cast("list[object]", existing)
-                files_value = [item for item in existing_list if isinstance(item, str)]
-            else:
-                files_value = []
-            entry: dict[str, object] = {
-                "files": files_value,
-                "tool_reports": tool_reports,
-                "files_index": files_index,
-            }
-            if repo_name not in data:
-                entry.pop("files_index", None)
-            data[repo_name] = entry
+                    exit_display = f"exit {exit_code}"
+                repo_path = self._ensure_detail_text(detail, "repo_path") or self._ensure_detail_text(detail, "cwd")
+                suggestion = self._ensure_detail_text(detail, "next_action") or "Investigate"
+                captured_at = self._ensure_detail_text(detail, "ended_at") or self._ensure_detail_text(detail, "started_at")
+                tool_version = self._ensure_detail_text(detail, "tool_version")
+                stdout_preview = _preview_lines(self._ensure_text(detail.get("stdout", "")).splitlines(), OUTPUT_PREVIEW_LIMIT)
+                stderr_preview = _preview_lines(self._ensure_text(detail.get("stderr", "")).splitlines(), OUTPUT_PREVIEW_LIMIT)
 
-    def _write_failure_report(
-        self,
-        *,
-        failure_path: Path,
-        summary_path: Path,
-        apriori_path: Path,
-        posterior_path: Path,
-    ) -> None:
-        failure_payload: dict[str, object] = {
-            "timestamp": datetime.now(UTC).isoformat(),
-            "root": str(self.root),
-            "had_failures": bool(self._last_run_failures),
-            "total_failures": len(self._failure_details),
-            "failures": self._failure_details,
-            "summary_report_path": str(summary_path),
-            "apriori_index_path": str(apriori_path),
-            "posteriori_index_path": str(posterior_path),
-            "tool_versions": self._tool_versions,
-            "runtime_snapshot": self._runtime_snapshot,
-        }
-        if self._failure_messages:
-            failure_payload["failure_messages"] = self._failure_messages
-        self._atomic_write_json(failure_path, failure_payload)
+                lines.append(f"  - Command: `{command_display}`")
+                lines.append(f"  - Exit: {exit_display}")
+                if repo_path:
+                    lines.append(f"  - Repo path: `{repo_path}`")
+                if tool_version:
+                    lines.append(f"  - Tool version: {tool_version}")
+                if captured_at:
+                    lines.append(f"  - Captured at: {captured_at}")
+                lines.append(f"  - Suggested action: {suggestion}")
+                if stdout_preview:
+                    lines.append("  - Stdout preview:")
+                    for line in stdout_preview.splitlines():
+                        lines.append(f"    > {line}")
+                if stderr_preview:
+                    lines.append("  - Stderr preview:")
+                    for line in stderr_preview.splitlines():
+                        lines.append(f"    > {line}")
+                lines.append("")
 
-    def _raise_on_failures(self, failure_report_path: Path) -> None:
+        lines.append("---")
+        lines.append("")
+        lines.append("_Generated by x_make_github_visitor_x_; actionable items are tracked as unchecked tasks._")
+
+        report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        self._last_report_path = report_path
+        return report_path
+
+    def _raise_on_failures(self, report_path: Path | None) -> None:
         if not self._last_run_failures:
             return
         msgs = self._failure_messages[:]
@@ -785,7 +826,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         if len(msgs) > FAILURE_PREVIEW_LIMIT:
             _info("…additional failures omitted…")
 
-        msg = f"toolchain failures detected; see {failure_report_path}"
+        if report_path is not None:
+            msg = f"toolchain failures detected; see {report_path}"
+        else:
+            msg = "toolchain failures detected; markdown report path unavailable"
         raise AssertionError(msg)
 
     def _load_cache(
@@ -894,45 +938,6 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 versions[module] = output or "<no output>"
         return versions
 
-    def inspect(self, json_name: str) -> list[str]:
-        """Write an index of files present in each immediate child repo.
-
-        Returns the list of repository names (relative paths) that were indexed.
-        """
-        children = self._child_dirs()
-        if not children:
-            try:
-                entries = sorted(p.name for p in self.root.iterdir() if p.is_dir())
-            except OSError:
-                entries = []
-            preview = ", ".join(entries[:VISIBLE_DIR_PREVIEW_LIMIT])
-            suffix = "" if len(entries) <= VISIBLE_DIR_PREVIEW_LIMIT else " …"
-            msg = (
-                "no child git repositories found"
-                f" under {self.root} (visible dirs: {preview}{suffix})"
-            )
-            raise AssertionError(msg)
-        index: dict[str, list[str]] = {}
-        repo_names: list[str] = []
-        for child in children:
-            rel = str(child.relative_to(self.root))
-            repo_names.append(rel)
-            files: list[str] = []
-            for p in child.rglob("*"):
-                if not p.is_file():
-                    continue
-                if ".git" in p.parts or "__pycache__" in p.parts:
-                    continue
-                if p.suffix.lower() not in {".py", ".pyi"}:
-                    continue
-                files.append(str(p.relative_to(child).as_posix()))
-            index[rel] = sorted(files)
-
-        # store index files inside the visitor package directory
-        out_path = self.package_root / json_name
-        self._atomic_write_json(out_path, index)
-        return repo_names
-
     def body(self) -> None:
         """Run ruff/black/mypy/pyright against each child repository."""
 
@@ -1015,44 +1020,38 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return summary
 
     def run_inspect_flow(self) -> None:
-        """Run the inspect flow in four steps."""
+        """Run discovery, execute tools, and emit a markdown TODO report."""
 
-        apriori_path = self.package_root / "x_index_a_a_priori_x.json"
-        posterior_path = self.package_root / "x_index_b_a_posteriori_x.json"
-        summary_path = self.package_root / "x_summary_report_x.json"
-        failure_report_path = self.package_root / "x_tool_failures_x.json"
+        children = self._child_dirs()
+        if not children:
+            try:
+                entries = sorted(p.name for p in self.root.iterdir() if p.is_dir())
+            except OSError:
+                entries = []
+            preview = ", ".join(entries[:VISIBLE_DIR_PREVIEW_LIMIT])
+            suffix = "" if len(entries) <= VISIBLE_DIR_PREVIEW_LIMIT else " …"
+            msg = (
+                "no child git repositories found"
+                f" under {self.root} (visible dirs: {preview}{suffix})"
+            )
+            raise AssertionError(msg)
 
-        apriori_repos = self.inspect("x_index_a_a_priori_x.json")
-        self._ensure_index_file(apriori_path, "step1")
-        self._log_discovery("apriori discovery:", len(apriori_repos))
-
-        apriori_raw = self._load_index(apriori_path, "a-priori")
-        apriori_index = self._normalize_apriori_index(apriori_raw)
-        self._validate_children_match(apriori_index)
-
-        self.body()
-
-        posterior_repos = self.inspect("x_index_b_a_posteriori_x.json")
-        self._ensure_index_file(posterior_path, "step3")
-        self._log_discovery("a-posteriori discovery:", len(posterior_repos))
-
-        posterior_raw = self._load_index(posterior_path, "a-posteriori")
-        posterior_data = self._prepare_posterior_data(posterior_raw)
-        self._merge_tool_reports(posterior_data)
-        self._atomic_write_json(posterior_path, posterior_data)
-
-        summary = self.generate_summary_report()
-        self._atomic_write_json(summary_path, summary)
-
-        self._write_failure_report(
-            failure_path=failure_report_path,
-            summary_path=summary_path,
-            apriori_path=apriori_path,
-            posterior_path=posterior_path,
+        repo_names = [str(child.relative_to(self.root)) for child in children]
+        self._runtime_snapshot["discovered_repositories"] = repo_names
+        _info(
+            "visitor discovery:",
+            f"found {len(repo_names)} repositories under {self.root}",
         )
 
+        self._remove_legacy_json_reports()
+        self.body()
+        report_path = self._write_markdown_failure_report()
         self.cleanup()
-        self._raise_on_failures(failure_report_path)
+        self._raise_on_failures(report_path)
+
+    @property
+    def last_report_path(self) -> Path | None:
+        return self._last_report_path
 
 
 def _workspace_root() -> str:
@@ -1109,10 +1108,11 @@ if __name__ == "__main__":
     total = _coerce_exit_code(overall.get("total_tools_run", 0)) or 0
     ratio = (hits / total * 100.0) if total else 0.0
 
-    _info(
-        "wrote a-priori, a-posteriori, and summary files to:",
-        inst.package_root,
-    )
+    report_path = inst.last_report_path
+    if report_path is not None:
+        _info("visitor markdown report saved to:", report_path)
+    else:
+        _info("visitor markdown report path unavailable")
 
     summary_line = (
         f"processed {summary.get('total_repos', 0)} repositories "

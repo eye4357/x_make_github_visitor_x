@@ -1,30 +1,40 @@
-# x_make_github_visitor_x
+# x_make_github_visitor_x — Lab Notes from Walter White
 
-Enhanced GitHub visitor that enforces unified code quality standards across cloned repositories.
+> "I send this visitor ahead of every batch. If a repo can't meet the standard, it doesn't touch my table."
 
-## Features
+## Manifesto
+x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as Markdown dossiers, and keeps the Road to 0.20.0 initiative brutally honest.
 
-- Sequential toolchain: Ruff (fix) → Black (check) → Ruff (check) → MyPy (strict) → Pyright (strict)
-- Tight formatting and linting configuration enforced via `pyproject.toml`
-- Repository-level caching to skip re-running tools when files are unchanged
-- Generates a-priori, a-posteriori, and summary reports for downstream processing
-- Fails fast when any tool reports violations to keep CI pipelines honest
+## Ingredients
+- Python 3.11+
+- Ruff, Black, MyPy, and Pyright installed in the active environment
+- Optional: GitHub tokens when visiting private inventory
 
-## Usage
+## Cook Instructions
+1. `python -m venv .venv`
+2. `.\.venv\Scripts\Activate.ps1`
+3. `python -m pip install --upgrade pip`
+4. `pip install -r requirements.txt`
+5. `python x_cls_make_github_visitor_x.py` to run the inspection sweep across your clone set
 
-```python
-from pathlib import Path
-from x_cls_make_github_visitor_x import init_name
+## Quality Assurance
+| Check | Command |
+| --- | --- |
+| Formatting sweep | `python -m black .`
+| Lint interrogation | `python -m ruff check .`
+| Type audit | `python -m mypy .`
+| Static contract scan | `python -m pyright`
+| Functional verification | `pytest`
 
-visitor = init_name(Path.cwd(), enable_cache=True)
-visitor.run_inspect_flow()
-```
+## Distribution Chain
+- [Changelog](./CHANGELOG.md)
+- [Road to 0.20.0 Control Room](../x_0_make_all_x/Change%20Control/0.20.0/index.md)
+- [Road to 0.20.0 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.0/Road%20to%200.20.0%20Engineering%20Proposal%20-%20Walter%20White.md)
 
-Outputs are written alongside the module:
+## Cross-Linked Intelligence
+- [x_make_github_clones_x](../x_make_github_clones_x/README.md) — supplies the repos this visitor inspects
+- [x_make_common_x](../x_make_common_x/README.md) — provides the logging, subprocess, and HTTP clients used in the inspection flow
+- [x_0_make_all_x](../x_0_make_all_x/README.md) — the orchestrator that consumes visitor reports to greenlight releases
 
-- `x_index_a_a_priori_x.json`
-- `x_index_b_a_posteriori_x.json`
-- `x_summary_report_x.json`
-- `.tool_cache/` (per-repo cached tool outputs)
-
-Pass `enable_cache=False` when a clean run is required.
+## Lab Etiquette
+Cache or not, every failure becomes a Change Control entry. Don't silence warnings without documentation, and don't forget to stash the Markdown reports—they're the lab's ledger of truth.
