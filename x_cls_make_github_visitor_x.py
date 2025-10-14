@@ -50,6 +50,7 @@ COMMON_CACHE_NAMES = {
 }
 
 GENERATED_BUILD_DIR_PREFIXES: tuple[str, ...] = ("_build_temp",)
+VENV_DIR_NAMES: frozenset[str] = frozenset({"venv", ".venv"})
 
 TOOL_MODULE_MAP = {
     "ruff_fix": "ruff",
@@ -91,6 +92,26 @@ def _yield_periodically(counter: int, *, interval: int) -> None:
         return
     if counter % interval == 0:
         _cooperative_yield()
+
+
+def _normalize_repo_name(value: str) -> str:
+    stripped = value.strip()
+    if not stripped:
+        return ""
+    candidate = Path(stripped)
+    name = candidate.name or stripped
+    return name.strip()
+
+
+def _normalize_rel_path(value: str) -> str:
+    normalized = value.replace("\\", "/").strip()
+    while normalized.startswith("/"):
+        normalized = normalized[1:]
+    return normalized
+
+
+def _is_virtual_env_part(name: str) -> bool:
+    return name.lower() in VENV_DIR_NAMES
 
 
 @dataclass(frozen=True)
@@ -191,6 +212,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         output_filename: str = "repos_index.json",
         ctx: object | None = None,
         enable_cache: bool = True,
+        allowed_repositories: Sequence[str] | None = None,
+        file_allowlist: Mapping[str, Sequence[str]] | None = None,
     ) -> None:
         """Initialize visitor.
 
@@ -240,6 +263,30 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         if self.enable_cache:
             self.cache_dir.mkdir(exist_ok=True)
 
+        normalized_allowed = {
+            normalized
+            for repo in (allowed_repositories or tuple())
+            for normalized in (_normalize_repo_name(repo),)
+            if normalized
+        }
+        self._allowed_repositories: frozenset[str] = frozenset(normalized_allowed)
+
+        file_allowance: dict[str, frozenset[str]] = {}
+        if file_allowlist:
+            for repo_name, rel_paths in file_allowlist.items():
+                normalized_repo = _normalize_repo_name(repo_name)
+                if not normalized_repo:
+                    continue
+                normalized_files = {
+                    normalized
+                    for entry in rel_paths
+                    for normalized in (_normalize_rel_path(entry),)
+                    if normalized
+                }
+                if normalized_files:
+                    file_allowance[normalized_repo] = frozenset(normalized_files)
+        self._file_allowlist: dict[str, frozenset[str]] = file_allowance
+
     def _child_dirs(self) -> list[Path]:
         """Return immediate child directories excluding hidden and cache dirs.
 
@@ -252,10 +299,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             if not p.is_dir():
                 continue
             name = p.name
+            if _is_virtual_env_part(name):
+                continue
             if name.startswith((".", "__")):
                 # hidden or dunder directories (including caches)
                 continue
             if name in COMMON_CACHE_NAMES:
+                continue
+            normalized_name = _normalize_repo_name(name)
+            if self._allowed_repositories and normalized_name not in self._allowed_repositories:
                 continue
             # Only include directories that look like git clones (contain .git)
             if not (p / ".git").exists():
@@ -300,6 +352,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 _yield_periodically(index, interval=_DIR_SCAN_YIELD_INTERVAL)
                 if not child.is_dir():
                     continue
+                if _is_virtual_env_part(child.name):
+                    continue
                 if not _is_generated_build_dir(child.name):
                     continue
                 _info("Removing generated build directory:", str(child))
@@ -314,6 +368,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
                 continue
             if ".git" in p.parts or "__pycache__" in p.parts:
+                continue
+            if any(_is_virtual_env_part(part) for part in p.parts):
                 continue
             if any(_is_generated_build_dir(part) for part in p.parts):
                 continue
@@ -457,17 +513,25 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _collect_repo_files(self, repo_path: Path) -> list[str]:
         files: list[str] = []
+        normalized_repo = _normalize_repo_name(repo_path.name)
+        allowlist = self._file_allowlist.get(normalized_repo)
         for index, pth in enumerate(repo_path.rglob("*"), 1):
             _yield_periodically(index, interval=_FILE_SCAN_YIELD_INTERVAL)
             if not pth.is_file():
                 continue
             if ".git" in pth.parts or "__pycache__" in pth.parts:
                 continue
+            if any(_is_virtual_env_part(part) for part in pth.parts):
+                continue
             if any(_is_generated_build_dir(part) for part in pth.parts):
                 continue
             if pth.suffix.lower() not in {".py", ".pyi"}:
                 continue
-            files.append(str(pth.relative_to(repo_path).as_posix()))
+            rel_path = pth.relative_to(repo_path).as_posix()
+            normalized_rel = _normalize_rel_path(rel_path)
+            if allowlist and normalized_rel not in allowlist:
+                continue
+            files.append(normalized_rel)
         return sorted(files)
 
     def _extract_failure_entries(
