@@ -2,6 +2,7 @@ from __future__ import annotations
 
 # ruff: noqa: S101
 import pathlib
+from collections.abc import Iterable
 
 import pytest
 
@@ -39,7 +40,7 @@ class DummyVisitor(x_cls_make_github_visitor_x):
         self._preset_run_completed = run_completed
         self._reports_dir = reports_dir
 
-    def body(self) -> None:
+    def body(self, *, children: Iterable[pathlib.Path] | None = None) -> None:
         self._tool_reports = self._preset_reports
         self._failure_messages = self._preset_failure_messages
         self._failure_details = self._preset_failure_details
@@ -186,3 +187,13 @@ def test_run_inspect_flow_creates_empty_failure_report(
     report_text = report_path.read_text(encoding="utf-8")
     assert "- [x] No failures detected" in report_text
     assert "repo_clean" not in report_text.splitlines()[0]
+
+
+def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
+    workspace = pathlib.Path(tmp_path)
+    (workspace / ".git").mkdir()
+    _create_repo(workspace, "child_repo")
+
+    visitor = x_cls_make_github_visitor_x(workspace)
+
+    assert visitor._root_is_git_repo is True  # noqa: SLF001

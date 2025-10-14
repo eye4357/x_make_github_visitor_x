@@ -9,12 +9,17 @@ import shutil
 import subprocess
 import sys
 import time
-from collections.abc import Mapping, MutableMapping, Sequence
+from collections.abc import Iterable, Mapping, MutableMapping, Sequence
 from contextlib import suppress
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, cast
+
+from x_make_common_x import emit_event, make_event
+
+if TYPE_CHECKING:
+    from x_make_common_x.telemetry import JSONValue
 
 _LOGGER = _logging.getLogger("x_make")
 
@@ -76,6 +81,24 @@ REQUIRED_PACKAGES: tuple[str, ...] = (
 MARKDOWN_MESSAGE_LIMIT = 240
 REPORTS_DIR_NAME = "reports"
 
+_DIR_SCAN_YIELD_INTERVAL = 4
+_FILE_SCAN_YIELD_INTERVAL = 8
+_REPO_ITERATION_YIELD_INTERVAL = 1
+_TOOL_ITERATION_YIELD_INTERVAL = 1
+
+
+def _cooperative_yield() -> None:
+    """Hint to the scheduler so GUI threads can process events."""
+
+    time.sleep(0.001)
+
+
+def _yield_periodically(counter: int, *, interval: int) -> None:
+    if interval <= 0:
+        return
+    if counter % interval == 0:
+        _cooperative_yield()
+
 
 @dataclass(frozen=True)
 class ToolConfig:
@@ -105,6 +128,7 @@ class RepoContext:
     rel_path: str
     repo_hash: str
     has_python: bool
+    files: tuple[str, ...]
 
 
 def _coerce_exit_code(value: object) -> int | None:
@@ -165,12 +189,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             msg = f"root path must exist and be a directory: {self.root}"
             raise AssertionError(msg)
 
-        # The workspace root must not itself be a git repository (we operate
-        # on immediate child clones).
-
-        if (self.root / ".git").exists():
-            msg = f"root path must not be a git repository: {self.root}"
-            raise AssertionError(msg)
+        # Track whether the workspace root is itself a git repository. The
+        # control center operates on immediate child clones, so we tolerate a
+        # git root and simply avoid treating it as an inspected repository.
+        self._root_is_git_repo = (self.root / ".git").is_dir()
+        if self._root_is_git_repo:
+            _info(
+                "workspace root is a git repository; proceeding with child clone discovery",
+                str(self.root),
+            )
 
         self.output_filename = output_filename
         self._tool_reports: dict[str, RepoReport] = {}
@@ -200,7 +227,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         treating tool caches as repositories.
         """
         out: list[Path] = []
-        for p in self.root.iterdir():
+        for index, p in enumerate(self.root.iterdir(), 1):
+            _yield_periodically(index, interval=_DIR_SCAN_YIELD_INTERVAL)
             if not p.is_dir():
                 continue
             name = p.name
@@ -248,7 +276,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _cleanup_generated_build_dirs(self, repo_path: Path) -> None:
         with suppress(OSError):
-            for child in repo_path.iterdir():
+            for index, child in enumerate(repo_path.iterdir(), 1):
+                _yield_periodically(index, interval=_DIR_SCAN_YIELD_INTERVAL)
                 if not child.is_dir():
                     continue
                 if not _is_generated_build_dir(child.name):
@@ -259,7 +288,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _repo_content_hash(self, repo_path: Path) -> str:
         """Return a deterministic hash of repository contents for caching."""
         hasher = hashlib.sha256()
-        for p in sorted(repo_path.rglob("*")):
+        for index, p in enumerate(sorted(repo_path.rglob("*")), 1):
+            _yield_periodically(index, interval=_FILE_SCAN_YIELD_INTERVAL)
             if not p.is_file():
 
                 continue
@@ -289,11 +319,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             capture_output=True,
             text=True,
         )
+        _cooperative_yield()
         if proc.returncode != 0:
             msg = f"failed to install required packages: {proc.stdout}\n{proc.stderr}"
             raise AssertionError(msg)
 
         self._tool_versions = self._collect_tool_versions(python)
+        _cooperative_yield()
         self._runtime_snapshot = {
             "python_executable": python,
             "python_version": sys.version.replace("\n", " "),
@@ -311,6 +343,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             self._runtime_snapshot["environment"] = env_snapshot
 
         self._prune_cache()
+        _cooperative_yield()
 
     def _tool_configurations(self, python: str) -> list[ToolConfig]:
         return [
@@ -404,7 +437,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _collect_repo_files(self, repo_path: Path) -> list[str]:
         files: list[str] = []
-        for pth in repo_path.rglob("*"):
+        for index, pth in enumerate(repo_path.rglob("*"), 1):
+            _yield_periodically(index, interval=_FILE_SCAN_YIELD_INTERVAL)
             if not pth.is_file():
                 continue
             if ".git" in pth.parts or "__pycache__" in pth.parts:
@@ -416,12 +450,95 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             files.append(str(pth.relative_to(repo_path).as_posix()))
         return sorted(files)
 
+    def _extract_failure_entries(
+        self,
+        *,
+        repo: RepoContext,
+        result: Mapping[str, object],
+    ) -> list[dict[str, str]]:
+        stdout_text = self._ensure_text(result.get("stdout", ""))
+        stderr_text = self._ensure_text(result.get("stderr", ""))
+        if not repo.files:
+            return []
+        combined_lines = [line.strip() for line in stdout_text.splitlines()]
+        combined_lines.extend(line.strip() for line in stderr_text.splitlines())
+        entries: list[dict[str, str]] = []
+        seen: set[str] = set()
+        for rel_path in repo.files:
+            variants = {rel_path, rel_path.replace("/", os.sep)}
+            snippets = [
+                line
+                for line in combined_lines
+                if any(variant in line for variant in variants)
+            ]
+            if not snippets:
+                continue
+            if rel_path in seen:
+                continue
+            seen.add(rel_path)
+            entries.append(
+                {
+                    "file": rel_path,
+                    "message": "\n".join(snippets[:OUTPUT_PREVIEW_LIMIT]),
+                }
+            )
+        return entries
+
+    def _emit_tool_event(
+        self,
+        *,
+        repo: RepoContext,
+        config: ToolConfig,
+        module_name: str,
+        status: str,
+        result: Mapping[str, object],
+        summary: str | None = None,
+        failures: Sequence[Mapping[str, str]] | None = None,
+    ) -> None:
+        duration_value = result.get("duration_seconds")
+        duration_ms: int | None
+        if isinstance(duration_value, (int, float)):
+            duration_ms = int(max(float(duration_value), 0.0) * 1000)
+        else:
+            duration_ms = None
+        details: dict[str, object] = {
+            "repo": repo.rel_path,
+            "repo_path": str(repo.path),
+            "tool": config.name,
+            "tool_family": module_name,
+            "files": list(repo.files),
+            "cached": bool(result.get("cached", False)),
+            "skipped": bool(result.get("skipped", False)),
+            "timed_out": bool(result.get("timed_out", False)),
+        }
+        if summary:
+            details["failure_summary"] = summary
+        if failures:
+            details["failures"] = [
+                {"file": entry.get("file", ""), "message": entry.get("message", "")}
+                for entry in failures
+            ]
+        json_details = cast("Mapping[str, JSONValue]", details)
+        emit_event(
+            make_event(
+                source="visitor",
+                phase="inspection",
+                status=status,
+                repository=repo.rel_path,
+                tool=module_name,
+                attempt=1,
+                duration_ms=duration_ms,
+                details=json_details,
+            )
+        )
+
     def _process_repository(
         self,
         repo_path: Path,
         python: str,
         timeout: int,
     ) -> RepoProcessingResult:
+        _cooperative_yield()
         self._cleanup_generated_build_dirs(repo_path)
         rel = str(repo_path.relative_to(self.root))
         repo_hash = self._repo_content_hash(repo_path)
@@ -431,6 +548,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             rel_path=rel,
             repo_hash=repo_hash,
             has_python=bool(repo_files),
+            files=tuple(repo_files),
         )
 
         tool_reports: dict[str, ToolResult] = {}
@@ -438,7 +556,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failure_details: list[dict[str, object]] = []
 
         configs = self._tool_configurations(python)
-        for config in configs:
+        for index, config in enumerate(configs, 1):
             outcome = self._run_tool_for_repo(
                 repo=repo_context,
                 config=config,
@@ -449,6 +567,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 failure_messages.append(outcome.failure_message)
             if outcome.failure_detail:
                 failure_details.append(outcome.failure_detail)
+            _yield_periodically(index, interval=_TOOL_ITERATION_YIELD_INTERVAL)
 
         repo_report: RepoReport = {
             "timestamp": datetime.now(UTC).isoformat(),
@@ -530,14 +649,35 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         module_name = TOOL_MODULE_MAP.get(config.name, config.name)
         tool_version = self._tool_versions.get(module_name, "<unknown>")
 
+        self._emit_tool_event(
+            repo=repo,
+            config=config,
+            module_name=module_name,
+            status="started",
+            result={
+                "duration_seconds": 0.0,
+                "cached": False,
+                "skipped": False,
+            },
+        )
+
         if config.skip_if_no_python and not repo.has_python:
             _info(f"{config.name}: skipped (no Python files) in {repo.rel_path}")
-            return self._build_skip_outcome(
+            outcome = self._build_skip_outcome(
                 repo=repo,
                 config=config,
                 tool_version=tool_version,
                 module_name=module_name,
             )
+            self._emit_tool_event(
+                repo=repo,
+                config=config,
+                module_name=module_name,
+                status="skipped",
+                result=outcome.result,
+                summary="No Python files detected; skipping",
+            )
+            return outcome
 
         cached_outcome = self._load_cached_outcome(
             repo=repo,
@@ -546,6 +686,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             module_name=module_name,
         )
         if cached_outcome is not None:
+            self._emit_tool_event(
+                repo=repo,
+                config=config,
+                module_name=module_name,
+                status="succeeded",
+                result=cached_outcome.result,
+                summary="Result loaded from cache",
+            )
             return cached_outcome
 
         start_wall = datetime.now(UTC)
@@ -556,6 +704,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         stderr_obj: object
 
         try:
+            _cooperative_yield()
             completed = subprocess.run(  # noqa: S603
                 config.command,
                 check=False,
@@ -613,9 +762,26 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 f"{config.name}: failure in {repo.rel_path};",
                 "details captured",
             )
+            failure_entries = self._extract_failure_entries(repo=repo, result=result)
+            self._emit_tool_event(
+                repo=repo,
+                config=config,
+                module_name=module_name,
+                status="failed",
+                result=result,
+                summary=message,
+                failures=failure_entries,
+            )
             return ToolOutcome(result, message, detail)
 
         self._store_cache(repo.rel_path, config.name, repo.repo_hash, result)
+        self._emit_tool_event(
+            repo=repo,
+            config=config,
+            module_name=module_name,
+            status="succeeded",
+            result=result,
+        )
         return ToolOutcome(result)
 
     def _build_failure_payload(
@@ -974,7 +1140,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         overflow = len(cache_files) - keep
         if overflow <= 0:
             return
-        for stale in cache_files[:overflow]:
+        for index, stale in enumerate(cache_files[:overflow], 1):
+            _yield_periodically(index, interval=_FILE_SCAN_YIELD_INTERVAL)
             with suppress(OSError):
                 stale.unlink()
 
@@ -1001,9 +1168,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 versions[module] = f"<exit {proc.returncode}> {output}"
             else:
                 versions[module] = output or "<no output>"
+            _cooperative_yield()
         return versions
 
-    def body(self) -> None:
+    def body(self, *, children: Iterable[Path] | None = None) -> None:
         """Run ruff/black/mypy/pyright against each child repository."""
 
         python = sys.executable
@@ -1013,7 +1181,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failure_messages: list[str] = []
         failure_details: list[dict[str, object]] = []
 
-        for child in self._child_dirs():
+        repo_iterable = list(children) if children is not None else self._child_dirs()
+        for index, child in enumerate(repo_iterable, 1):
             result = self._process_repository(
                 child,
                 python,
@@ -1022,6 +1191,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             reports[result.relative_name] = result.report
             failure_messages.extend(result.failure_messages)
             failure_details.extend(result.failure_details)
+            _yield_periodically(index, interval=_REPO_ITERATION_YIELD_INTERVAL)
 
         self._tool_reports = reports
         self._last_run_failures = bool(failure_messages)
@@ -1109,7 +1279,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         )
 
         self._remove_legacy_json_reports()
-        self.body()
+        self.body(children=children)
         report_path = self._write_markdown_failure_report()
         self.cleanup()
         self._raise_on_failures(report_path)
