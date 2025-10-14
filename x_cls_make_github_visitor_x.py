@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import logging as _logging
 import os
 import platform
 import shutil
@@ -16,35 +15,29 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
-from x_make_common_x import emit_event, make_event
+from x_make_common_x import emit_event, get_logger, make_event
+from x_make_github_visitor_x.inspection_flow import VisitorRunResult
 
 if TYPE_CHECKING:
     from x_make_common_x.telemetry import JSONValue
 
-_LOGGER = _logging.getLogger("x_make")
+_LOGGER = get_logger("x_make_github_visitor")
 
 
 def _info(*args: object) -> None:
     msg = " ".join(str(a) for a in args)
     with suppress(Exception):
         _LOGGER.info("%s", msg)
-    printed = False
-    with suppress(Exception):
-        print(msg)
-        printed = True
-    if not printed:
-        with suppress(Exception):
-            sys.stdout.write(msg + "\n")
 
 
 """Visitor to run ruff/black/mypy/pyright on immediate child git clones.
 
 Hidden and cache directories (for example: .mypy_cache, .ruff_cache,
 __pycache__, .pyright) are ignored when discovering child repositories.
-The visitor caches tool outputs for unchanged repositories and now emits a
-timestamped Markdown TODO report summarising any failures instead of the
-legacy JSON index files. Failures still raise AssertionError with captured
-stdout/stderr for visibility.
+The visitor caches tool outputs for unchanged repositories and emits a
+timestamped JSON report summarising any failures for downstream automation.
+Failures are captured for reporting without raising so orchestrators can
+continue processing while surfacing diagnostics.
 """
 
 
@@ -78,7 +71,7 @@ REQUIRED_PACKAGES: tuple[str, ...] = (
     "mypy",
     "pyright",
 )
-MARKDOWN_MESSAGE_LIMIT = 240
+SUMMARY_MESSAGE_LIMIT = 240
 REPORTS_DIR_NAME = "reports"
 
 _DIR_SCAN_YIELD_INTERVAL = 4
@@ -131,6 +124,17 @@ class RepoContext:
     files: tuple[str, ...]
 
 
+@dataclass(frozen=True, slots=True)
+class _ToolEventPayload:
+    repo: RepoContext
+    config: ToolConfig
+    module_name: str
+    status: str
+    result: Mapping[str, object]
+    summary: str | None = None
+    failures: Sequence[Mapping[str, str]] | None = None
+
+
 def _coerce_exit_code(value: object) -> int | None:
     if value is None:
         return None
@@ -161,6 +165,18 @@ def _preview_lines(lines: Sequence[str], limit: int) -> str:
     if len(lines) > limit:
         preview += "\n…"
     return preview
+
+
+def _json_ready(value: object) -> JSONValue:
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    if isinstance(value, Mapping):
+        typed_mapping = cast("Mapping[object, object]", value)
+        return {str(key): _json_ready(val) for key, val in typed_mapping.items()}
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+        typed_sequence = cast("Sequence[object]", value)
+        return [_json_ready(entry) for entry in typed_sequence]
+    return str(value)
 
 
 def _is_generated_build_dir(name: str) -> bool:
@@ -195,7 +211,10 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._root_is_git_repo = (self.root / ".git").is_dir()
         if self._root_is_git_repo:
             _info(
-                "workspace root is a git repository; proceeding with child clone discovery",
+                (
+                    "workspace root is a git repository; proceeding "
+                    "with child clone discovery"
+                ),
                 str(self.root),
             )
 
@@ -209,6 +228,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._tool_versions: dict[str, str] = {}
         self._runtime_snapshot: dict[str, object] = {}
         self._last_report_path: Path | None = None
+        self._last_run_result: VisitorRunResult | None = None
 
         # package root (the folder containing this module). Reports live here so
         # they remain alongside the visitor package rather than the workspace
@@ -484,17 +504,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             )
         return entries
 
-    def _emit_tool_event(
-        self,
-        *,
-        repo: RepoContext,
-        config: ToolConfig,
-        module_name: str,
-        status: str,
-        result: Mapping[str, object],
-        summary: str | None = None,
-        failures: Sequence[Mapping[str, str]] | None = None,
-    ) -> None:
+    def _emit_tool_event(self, payload: _ToolEventPayload) -> None:
+        result = payload.result
         duration_value = result.get("duration_seconds")
         duration_ms: int | None
         if isinstance(duration_value, (int, float)):
@@ -502,30 +513,30 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         else:
             duration_ms = None
         details: dict[str, object] = {
-            "repo": repo.rel_path,
-            "repo_path": str(repo.path),
-            "tool": config.name,
-            "tool_family": module_name,
-            "files": list(repo.files),
+            "repo": payload.repo.rel_path,
+            "repo_path": str(payload.repo.path),
+            "tool": payload.config.name,
+            "tool_family": payload.module_name,
+            "files": list(payload.repo.files),
             "cached": bool(result.get("cached", False)),
             "skipped": bool(result.get("skipped", False)),
             "timed_out": bool(result.get("timed_out", False)),
         }
-        if summary:
-            details["failure_summary"] = summary
-        if failures:
+        if payload.summary:
+            details["failure_summary"] = payload.summary
+        if payload.failures:
             details["failures"] = [
                 {"file": entry.get("file", ""), "message": entry.get("message", "")}
-                for entry in failures
+                for entry in payload.failures
             ]
         json_details = cast("Mapping[str, JSONValue]", details)
         emit_event(
             make_event(
                 source="visitor",
                 phase="inspection",
-                status=status,
-                repository=repo.rel_path,
-                tool=module_name,
+                status=payload.status,
+                repository=payload.repo.rel_path,
+                tool=payload.module_name,
                 attempt=1,
                 duration_ms=duration_ms,
                 details=json_details,
@@ -650,15 +661,17 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         tool_version = self._tool_versions.get(module_name, "<unknown>")
 
         self._emit_tool_event(
-            repo=repo,
-            config=config,
-            module_name=module_name,
-            status="started",
-            result={
-                "duration_seconds": 0.0,
-                "cached": False,
-                "skipped": False,
-            },
+            _ToolEventPayload(
+                repo=repo,
+                config=config,
+                module_name=module_name,
+                status="started",
+                result={
+                    "duration_seconds": 0.0,
+                    "cached": False,
+                    "skipped": False,
+                },
+            )
         )
 
         if config.skip_if_no_python and not repo.has_python:
@@ -670,12 +683,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 module_name=module_name,
             )
             self._emit_tool_event(
-                repo=repo,
-                config=config,
-                module_name=module_name,
-                status="skipped",
-                result=outcome.result,
-                summary="No Python files detected; skipping",
+                _ToolEventPayload(
+                    repo=repo,
+                    config=config,
+                    module_name=module_name,
+                    status="skipped",
+                    result=outcome.result,
+                    summary="No Python files detected; skipping",
+                )
             )
             return outcome
 
@@ -687,12 +702,14 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         )
         if cached_outcome is not None:
             self._emit_tool_event(
-                repo=repo,
-                config=config,
-                module_name=module_name,
-                status="succeeded",
-                result=cached_outcome.result,
-                summary="Result loaded from cache",
+                _ToolEventPayload(
+                    repo=repo,
+                    config=config,
+                    module_name=module_name,
+                    status="succeeded",
+                    result=cached_outcome.result,
+                    summary="Result loaded from cache",
+                )
             )
             return cached_outcome
 
@@ -764,23 +781,27 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             )
             failure_entries = self._extract_failure_entries(repo=repo, result=result)
             self._emit_tool_event(
-                repo=repo,
-                config=config,
-                module_name=module_name,
-                status="failed",
-                result=result,
-                summary=message,
-                failures=failure_entries,
+                _ToolEventPayload(
+                    repo=repo,
+                    config=config,
+                    module_name=module_name,
+                    status="failed",
+                    result=result,
+                    summary=message,
+                    failures=tuple(failure_entries),
+                )
             )
             return ToolOutcome(result, message, detail)
 
         self._store_cache(repo.rel_path, config.name, repo.repo_hash, result)
         self._emit_tool_event(
-            repo=repo,
-            config=config,
-            module_name=module_name,
-            status="succeeded",
-            result=result,
+            _ToolEventPayload(
+                repo=repo,
+                config=config,
+                module_name=module_name,
+                status="succeeded",
+                result=result,
+            )
         )
         return ToolOutcome(result)
 
@@ -850,9 +871,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         collapsed = " ".join(message.strip().split())
         if not collapsed:
             return "Tool failure recorded"
-        if len(collapsed) <= MARKDOWN_MESSAGE_LIMIT:
+        if len(collapsed) <= SUMMARY_MESSAGE_LIMIT:
             return collapsed
-        return collapsed[: MARKDOWN_MESSAGE_LIMIT - 1] + "…"
+        return collapsed[: SUMMARY_MESSAGE_LIMIT - 1] + "…"
 
     def _command_display(self, detail: Mapping[str, object]) -> str:
         cmd_display = detail.get("cmd_display")
@@ -900,117 +921,6 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 return int(value)
         return 0
 
-    def _write_markdown_failure_report(self) -> Path:
-        reports_dir = self._ensure_reports_dir()
-        now = datetime.now(UTC)
-        timestamp = now.strftime("%Y%m%d_%H%M%S")
-        filename = f"visitor_failures_{timestamp}.md"
-        report_path = reports_dir / filename
-
-        summary = self.generate_summary_report()
-        overall = summary.get("overall_stats", {})
-        typed_overall: Mapping[str, object]
-        if isinstance(overall, Mapping):
-            typed_overall = cast("Mapping[str, object]", overall)
-        else:
-            typed_overall = cast("Mapping[str, object]", {})
-
-        detail_pairs = list(
-            zip(self._failure_details, self._failure_messages, strict=False)
-        )
-
-        lines = self._report_header_lines(now, summary, typed_overall)
-        lines.extend(self._failure_section_lines(detail_pairs))
-        lines.extend(self._report_footer_lines())
-
-        report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        self._last_report_path = report_path
-        return report_path
-
-    def _report_header_lines(
-        self,
-        now: datetime,
-        summary: Mapping[str, object],
-        overall: Mapping[str, object],
-    ) -> list[str]:
-        lines = [f"# Visitor Failure Report — {now.isoformat()}", ""]
-        lines.append(f"- Workspace root: `{self.root}`")
-        run_started = self._runtime_snapshot.get("run_started_at", "")
-        if run_started:
-            lines.append(f"- Run started at: {run_started}")
-        run_finished = self._runtime_snapshot.get("run_completed_at", "")
-        if run_finished:
-            lines.append(f"- Run completed at: {run_finished}")
-        lines.append(f"- Total repositories examined: {summary.get('total_repos', 0)}")
-        total_tools = self._stat_value(overall, "total_tools_run")
-        lines.append(f"- Total tool executions: {total_tools}")
-        failed_tools = self._stat_value(overall, "failed_tools")
-        lines.append(f"- Failing tool executions: {failed_tools}")
-        cache_hits = self._stat_value(overall, "cache_hits")
-        lines.append(f"- Cache hits: {cache_hits}")
-        lines.extend(["", "## Failures", ""])
-        return lines
-
-    def _failure_section_lines(
-        self,
-        detail_pairs: Sequence[tuple[Mapping[str, object], str]],
-    ) -> list[str]:
-        if not detail_pairs:
-            return ["- [x] No failures detected — all tools passed", ""]
-
-        lines: list[str] = []
-        for detail, message in detail_pairs:
-            lines.extend(self._render_failure(detail, message))
-        return lines
-
-    def _render_failure(
-        self,
-        detail: Mapping[str, object],
-        message: str,
-    ) -> list[str]:
-        repo = self._detail_value(detail, "repo", "repo_path", default="<unknown repo>")
-        tool = self._detail_value(
-            detail,
-            "tool",
-            "tool_module",
-            default="<unknown tool>",
-        )
-        preview = self._summarize_failure_message(message)
-        lines = [f"- [ ] `{repo}` · `{tool}` — {preview}"]
-
-        command_display = self._command_display(detail)
-        exit_display = self._exit_display(detail)
-        repo_path = self._detail_value(detail, "repo_path", "cwd")
-        suggestion = self._detail_value(
-            detail,
-            "next_action",
-            default="Investigate",
-        )
-        captured_at = self._detail_value(detail, "ended_at", "started_at")
-        tool_version = self._detail_value(detail, "tool_version")
-        stdout_preview = self._preview_output(detail, "stdout")
-        stderr_preview = self._preview_output(detail, "stderr")
-
-        lines.extend(
-            [
-                f"  - Command: `{command_display}`",
-                f"  - Exit: {exit_display}",
-            ]
-        )
-        if repo_path:
-            lines.append(f"  - Repo path: `{repo_path}`")
-        if tool_version:
-            lines.append(f"  - Tool version: {tool_version}")
-        if captured_at:
-            lines.append(f"  - Captured at: {captured_at}")
-        lines.append(f"  - Suggested action: {suggestion}")
-        if stdout_preview:
-            lines.extend(self._render_output_preview("Stdout", stdout_preview))
-        if stderr_preview:
-            lines.extend(self._render_output_preview("Stderr", stderr_preview))
-        lines.append("")
-        return lines
-
     def _exit_display(self, detail: Mapping[str, object]) -> str:
         if detail.get("timed_out"):
             timeout = self._detail_value(detail, "timeout_seconds")
@@ -1025,43 +935,110 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         text = self._ensure_text(detail.get(key, ""))
         return _preview_lines(text.splitlines(), OUTPUT_PREVIEW_LIMIT)
 
-    def _render_output_preview(self, label: str, preview: str) -> list[str]:
-        header = f"  - {label} preview:"
-        lines = [header]
-        lines.extend(f"    > {line}" for line in preview.splitlines())
-        return lines
+    def _serialize_failures(
+        self,
+        detail_pairs: Sequence[tuple[Mapping[str, object], str]],
+    ) -> list[dict[str, JSONValue]]:
+        entries: list[dict[str, JSONValue]] = []
+        for detail, message in detail_pairs:
+            repo = self._detail_value(detail, "repo", "repo_path", default="")
+            tool = self._detail_value(detail, "tool", "tool_module", default="")
+            preview = self._summarize_failure_message(message)
+            command_display = self._command_display(detail)
+            exit_display = self._exit_display(detail)
+            repo_path = self._detail_value(detail, "repo_path", "cwd") or None
+            suggestion = (
+                self._detail_value(
+                    detail,
+                    "next_action",
+                    default="Investigate",
+                )
+                or None
+            )
+            captured_at = self._detail_value(detail, "ended_at", "started_at") or None
+            tool_version = self._detail_value(detail, "tool_version") or None
+            stdout_preview = self._preview_output(detail, "stdout") or None
+            stderr_preview = self._preview_output(detail, "stderr") or None
+            entries.append(
+                {
+                    "repo": repo or None,
+                    "tool": tool or None,
+                    "summary": preview,
+                    "message": message,
+                    "command": command_display,
+                    "exit": exit_display,
+                    "repo_path": repo_path,
+                    "tool_version": tool_version,
+                    "captured_at": captured_at,
+                    "suggested_action": suggestion,
+                    "stdout_preview": stdout_preview,
+                    "stderr_preview": stderr_preview,
+                    "detail": _json_ready(detail),
+                }
+            )
+        entries.sort(
+            key=lambda entry: (
+                str(entry.get("repo") or "").casefold(),
+                str(entry.get("tool") or "").casefold(),
+                str(entry.get("summary") or ""),
+            )
+        )
+        return entries
 
-    def _report_footer_lines(self) -> list[str]:
-        return [
-            "---",
-            "",
-            (
-                "_Generated by x_make_github_visitor_x_; actionable items are "
-                "tracked as unchecked tasks._"
-            ),
-        ]
+    def _write_json_failure_report(self) -> Path:
+        reports_dir = self._ensure_reports_dir()
+        now = datetime.now(UTC)
+        timestamp = now.strftime("%Y%m%d_%H%M%S")
+        filename = f"visitor_failures_{timestamp}.json"
+        report_path = reports_dir / filename
 
-    def _raise_on_failures(self, report_path: Path | None) -> None:
-        if not self._last_run_failures:
-            return
-        msgs = self._failure_messages[:]
-        if not msgs:
-            msgs = ["tool failures occurred but no messages were captured"]
+        summary = self.generate_summary_report()
+        detail_pairs = list(
+            zip(self._failure_details, self._failure_messages, strict=False)
+        )
 
-        preview_chunks = msgs[:FAILURE_PREVIEW_LIMIT]
-        preview = "\n\n".join(preview_chunks)
-        _info("toolchain failure preview:")
-        if preview:
-            for block in preview.split("\n\n"):
-                _info(block)
-        if len(msgs) > FAILURE_PREVIEW_LIMIT:
-            _info("…additional failures omitted…")
+        payload: dict[str, JSONValue] = {
+            "schema_version": "1.0",
+            "generated_at": now.isoformat(),
+            "workspace_root": str(self.root),
+            "runtime": _json_ready(dict(self._runtime_snapshot)),
+            "tool_versions": _json_ready(dict(self._tool_versions)),
+            "summary": _json_ready(summary),
+            "failures": _json_ready(self._serialize_failures(detail_pairs)),
+        }
 
-        if report_path is not None:
-            msg = f"toolchain failures detected; see {report_path}"
-        else:
-            msg = "toolchain failures detected; markdown report path unavailable"
-        raise AssertionError(msg)
+        self._atomic_write_json(report_path, payload)
+        self._last_report_path = report_path
+        return report_path
+
+    def _finalize_run_result(self, report_path: Path | None) -> VisitorRunResult:
+        had_failures = bool(self._last_run_failures)
+        messages = tuple(self._failure_messages)
+        details = tuple(dict(detail) for detail in self._failure_details)
+
+        if had_failures:
+            preview_chunks = list(messages[:FAILURE_PREVIEW_LIMIT])
+            preview = "\n\n".join(preview_chunks)
+            _info("toolchain failure preview:")
+            if preview:
+                for block in preview.split("\n\n"):
+                    _info(block)
+            if len(messages) > FAILURE_PREVIEW_LIMIT:
+                _info("…additional failures omitted…")
+            if report_path is not None:
+                _info("toolchain failures recorded in:", str(report_path))
+            else:
+                _info("toolchain failures recorded; JSON report path unavailable")
+
+        result = VisitorRunResult(
+            report_path=report_path,
+            had_failures=had_failures,
+            failure_messages=messages,
+            failure_details=details,
+            skipped=False,
+        )
+        self._last_run_result = result
+        return result
 
     def _load_cache(
         self,
@@ -1255,7 +1232,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return summary
 
     def run_inspect_flow(self) -> None:
-        """Run discovery, execute tools, and emit a markdown TODO report."""
+        """Run discovery, execute tools, and emit a JSON TODO report."""
 
         children = self._child_dirs()
         if not children:
@@ -1280,13 +1257,17 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
         self._remove_legacy_json_reports()
         self.body(children=children)
-        report_path = self._write_markdown_failure_report()
+        report_path = self._write_json_failure_report()
         self.cleanup()
-        self._raise_on_failures(report_path)
+        self._finalize_run_result(report_path)
 
     @property
     def last_report_path(self) -> Path | None:
         return self._last_report_path
+
+    @property
+    def last_run_result(self) -> VisitorRunResult | None:
+        return self._last_run_result
 
 
 def _workspace_root() -> str:
@@ -1333,12 +1314,12 @@ def run_workspace_inspection(
     *,
     ctx: object | None = None,
     enable_cache: bool = True,
-) -> Path | None:
+) -> VisitorRunResult:
     """Run the full inspection pipeline for the provided workspace root.
 
-    Returns the markdown report path when available. When no child git
-    repositories are discovered the function logs the outcome and returns
-    ``None`` to keep the orchestrator flow moving without raising.
+    Returns a :class:`VisitorRunResult` describing the report path and any
+    captured failures. When no child git repositories are discovered the
+    function logs the outcome and marks the result as skipped.
     """
 
     try:
@@ -1362,13 +1343,25 @@ def run_workspace_inspection(
                 "Visitor skipped: no child git repositories present at root;",
                 "continuing orchestrator flow",
             )
-            return None
+            return VisitorRunResult(
+                report_path=None,
+                had_failures=False,
+                skipped=True,
+            )
         raise
     except (RuntimeError, ValueError) as err:
         message = f"x_make_github_visitor run failed: {err}"
         raise AssertionError(message) from err
 
-    return visitor.last_report_path
+    result = visitor.last_run_result
+    if isinstance(result, VisitorRunResult):
+        return result
+
+    report_path = visitor.last_report_path
+    return VisitorRunResult(
+        report_path=report_path,
+        had_failures=False,
+    )
 
 
 if __name__ == "__main__":
@@ -1388,9 +1381,9 @@ if __name__ == "__main__":
 
     report_path = inst.last_report_path
     if report_path is not None:
-        _info("visitor markdown report saved to:", report_path)
+        _info("visitor JSON report saved to:", report_path)
     else:
-        _info("visitor markdown report path unavailable")
+        _info("visitor JSON report path unavailable")
 
     summary_line = (
         f"processed {summary.get('total_repos', 0)} repositories "

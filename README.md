@@ -3,7 +3,10 @@
 > "I send this visitor ahead of every batch. If a repo can't meet the standard, it doesn't touch my table."
 
 ## Manifesto
-x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as Markdown dossiers, and keeps the Road to 0.20.1 initiative brutally honest.
+x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as JSON dossiers, and keeps the Road to 0.20.2 initiative brutally honest.
+
+## 0.20.2 Command Sequence
+Version 0.20.2 locks in the tighter JSON serialization and reporting discipline I expect from the control room. This briefing is calibrated to the Road to 0.20.2 dossier—follow it and every inspection stays actionable, drift from it and you answer for the fallout.
 
 ## Ingredients
 - Python 3.11+
@@ -28,8 +31,8 @@ x_make_github_visitor_x is the compliance auditor for every repository under my 
 
 ## Distribution Chain
 - [Changelog](./CHANGELOG.md)
-- [Road to 0.20.1 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.1/Road%20to%200.20.1%20Engineering%20Proposal.md)
-- [Road to 0.20.1 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.1/Road%20to%200.20.1%20Engineering%20Proposal.md)
+- [Road to 0.20.2 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.2/Road%20to%200.20.2%20Engineering%20Proposal.md)
+- [Road to 0.20.2 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.2/Road%20to%200.20.2%20Engineering%20Proposal.md)
 
 ## Cross-Linked Intelligence
 - [x_make_github_clones_x](../x_make_github_clones_x/README.md) — supplies the repos this visitor inspects
@@ -37,4 +40,4 @@ x_make_github_visitor_x is the compliance auditor for every repository under my 
 - [x_0_make_all_x](../x_0_make_all_x/README.md) — the orchestrator that consumes visitor reports to greenlight releases
 
 ## Lab Etiquette
-Cache or not, every failure becomes a Change Control entry. Don't silence warnings without documentation, and don't forget to stash the Markdown reports—they're the lab's ledger of truth.
+Cache or not, every failure becomes a Change Control entry. Don't silence warnings without documentation, and don't forget to stash the JSON reports—they're the lab's ledger of truth.

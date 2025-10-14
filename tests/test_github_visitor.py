@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 # ruff: noqa: S101
+import json
 import pathlib
-from collections.abc import Iterable
-
-import pytest
+from collections.abc import Mapping
+from typing import cast
 
 from x_cls_make_github_visitor_x import x_cls_make_github_visitor_x
 
@@ -40,7 +40,8 @@ class DummyVisitor(x_cls_make_github_visitor_x):
         self._preset_run_completed = run_completed
         self._reports_dir = reports_dir
 
-    def body(self, *, children: Iterable[pathlib.Path] | None = None) -> None:
+    def body(self, *, children: object | None = None) -> None:
+        _ = children
         self._tool_reports = self._preset_reports
         self._failure_messages = self._preset_failure_messages
         self._failure_details = self._preset_failure_details
@@ -49,7 +50,7 @@ class DummyVisitor(x_cls_make_github_visitor_x):
         self._runtime_snapshot["run_completed_at"] = self._preset_run_completed
 
 
-def test_run_inspect_flow_writes_markdown_report_and_preserves_order(
+def test_run_inspect_flow_writes_json_report_and_preserves_order(  # noqa: PLR0915
     tmp_path: pathlib.Path,
 ) -> None:
     workspace = pathlib.Path(tmp_path) / "workspace"
@@ -127,21 +128,58 @@ def test_run_inspect_flow_writes_markdown_report_and_preserves_order(
         run_completed="2025-10-12T12:20:00+00:00",
     )
 
-    with pytest.raises(AssertionError):
-        visitor.run_inspect_flow()
+    visitor.run_inspect_flow()
+
+    result = visitor.last_run_result
+    assert result is not None
+    assert result.had_failures is True
+    assert list(result.failure_messages) == failure_messages
+    result_details = [dict(detail) for detail in result.failure_details]
+    assert result_details == failure_details
 
     report_path = visitor.last_report_path
     assert report_path is not None
-    report_text = report_path.read_text(encoding="utf-8")
+    assert report_path.suffix == ".json"
+    assert result.report_path == report_path
+    payload_text = report_path.read_text(encoding="utf-8")
+    report_data_raw = cast("object", json.loads(payload_text))
+    assert isinstance(report_data_raw, dict)
+    report_data = cast("dict[str, object]", report_data_raw)
 
-    first_item = report_text.index("- [ ] `repo_a`")
-    second_item = report_text.index("- [ ] `repo_b`")
-    assert first_item < second_item
-    assert "Command: `python -m ruff check .`" in report_text
-    assert "Command: `python -m mypy . --strict`" in report_text
-    assert "Suggested action: Investigate" in report_text
-    assert "Stdout preview" in report_text
-    assert "Stderr preview" in report_text
+    failures_value = report_data.get("failures")
+    assert isinstance(failures_value, list)
+    failure_entries = cast("list[object]", failures_value)
+    failures: list[dict[str, object]] = []
+    for entry in failure_entries:
+        assert isinstance(entry, dict)
+        typed_entry = cast("dict[str, object]", entry)
+        failures.append(typed_entry)
+
+    repo_tool_pairs: list[tuple[str, str]] = []
+    for entry in failures:
+        repo = entry.get("repo")
+        tool = entry.get("tool")
+        assert isinstance(repo, str)
+        assert isinstance(tool, str)
+        repo_tool_pairs.append((repo, tool))
+    assert repo_tool_pairs == [("repo_a", "ruff_check"), ("repo_b", "mypy")]
+
+    command_a = failures[0].get("command")
+    command_b = failures[1].get("command")
+    assert isinstance(command_a, str)
+    assert isinstance(command_b, str)
+    assert command_a == "python -m ruff check ."
+    assert command_b == "python -m mypy . --strict"
+
+    suggested = failures[0].get("suggested_action")
+    assert suggested == "Investigate"
+
+    stdout_preview = failures[0].get("stdout_preview")
+    assert stdout_preview == "lint error"
+
+    stderr_preview = failures[1].get("stderr_preview")
+    assert isinstance(stderr_preview, str)
+    assert "incompatible types" in stderr_preview
 
 
 def test_run_inspect_flow_creates_empty_failure_report(
@@ -184,9 +222,19 @@ def test_run_inspect_flow_creates_empty_failure_report(
 
     report_path = visitor.last_report_path
     assert report_path is not None
-    report_text = report_path.read_text(encoding="utf-8")
-    assert "- [x] No failures detected" in report_text
-    assert "repo_clean" not in report_text.splitlines()[0]
+    payload_text = report_path.read_text(encoding="utf-8")
+    report_data_raw = cast("object", json.loads(payload_text))
+    assert isinstance(report_data_raw, dict)
+    report_data = cast("dict[str, object]", report_data_raw)
+    failures_value = report_data.get("failures")
+    assert isinstance(failures_value, list)
+    failures = cast("list[object]", failures_value)
+    assert failures == []
+
+    summary = report_data.get("summary")
+    assert isinstance(summary, Mapping)
+    summary_map = cast("Mapping[str, object]", summary)
+    assert summary_map.get("total_repos") == 1
 
 
 def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
@@ -195,5 +243,4 @@ def test_workspace_root_can_be_git_repo(tmp_path: pathlib.Path) -> None:
     _create_repo(workspace, "child_repo")
 
     visitor = x_cls_make_github_visitor_x(workspace)
-
-    assert visitor._root_is_git_repo is True  # noqa: SLF001
+    assert visitor.root == workspace

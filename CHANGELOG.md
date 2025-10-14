@@ -2,6 +2,10 @@
 
 All notable changes to x_make_github_visitor_x are documented here. We follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) discipline and Semantic Versioning because inspectors must be incorruptible.
 
+## [0.20.2] - 2025-10-14
+### Changed
+- Rewired documentation to document the 0.20.2 inspection overhaul, detailing the stricter serialization and reporting guardrails now enforced by the visitor.
+
 ## [0.20.1] - 2025-10-13
 ### Changed
 - Introduced `inspection_flow.run_inspection` so the orchestrator delegates visitor orchestration through a single helper.
