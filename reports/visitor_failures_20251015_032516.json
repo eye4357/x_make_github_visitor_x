@@ -1,0 +1,1664 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-15T03:24:10.691719+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 2.5187011000234634,
+                "ended_at": "2025-10-15T03:24:10.691719+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "4d8a527ab5275fbca6ef3f5e51b0faede84149d2979c429092d455ac56b4612b",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T03:24:08.173022+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 02:18:02.958933+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 03:24:10.315979+00:00\n@@ -528,13 +528,11 @@\n             self.enqueue_log(\n                 f\"[summary] Applied cached statuses from {report_path.name} for \"\n                 f\"{applied} tool run(s).\"\n             )\n \n-    def _apply_telemetry_event(\n-        self, event: dict[str, object]\n-    ) -> None:\n+    def _apply_telemetry_event(self, event: dict[str, object]) -> None:\n         source = event.get(\"source\")\n         if source != \"visitor\":\n             return\n         details_obj = event.get(\"details\", {})\n         if not isinstance(details_obj, dict):\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T03:24:08.173022+00:00\nduration: 2.519s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 02:18:02.958933+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 03:24:10.315979+00:00\n@@ -528,13 +528,11 @@\n             self.enqueue_log(\n                 f\"[summary] Applied cached statuses from {report_path.name} for \"\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 02:18:02.958933+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\t2025-10-15 03:24:10.315979+00:00\n@@ -528,13 +528,11 @@\n             self.enqueue_log(\n                 f\"[summary] Applied cached statuses from {report_path.name} for \"\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T03:24:08.1730\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:12.859804+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 1.8360033000353724,
+                "ended_at": "2025-10-15T03:24:12.859804+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "4d8a527ab5275fbca6ef3f5e51b0faede84149d2979c429092d455ac56b4612b",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T03:24:11.023805+00:00",
+                "stderr": "",
+                "stdout": "manifest.py:266: error: Incompatible types in assignment (expression has type \"tuple[str, ...]\", variable has type \"tuple[str]\")  [assignment]\nx_cls_make_all_x.py:550: error: Name \"entry\" already defined on line 522  [no-redef]\nx_cls_make_all_x.py:550: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nx_cls_make_all_x.py:557: error: Argument 1 to \"append\" of \"list\" has incompatible type \"dict[str, Collection[str]]\"; expected \"dict[str, object]\"  [arg-type]\nx_cls_make_all_x.py:557: note: \"dict\" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance\nx_cls_make_all_x.py:557: note: Consider using \"Mapping\" instead, which is covariant in the value type\nx_cls_make_all_x.py:567: error: Incompatible types in assignment (expression has type \"dict[str, object]\", variable has type \"dict[str, Collection[str]]\")  [assignment]\nx_cls_make_all_x.py:591: error: Argument 1 to \"append\" of \"list\" has incompatible type \"dict[str, Collection[str]]\"; expected \"dict[str, object]\"  [arg-type]\nx_cls_make_all_x.py:591: note: \"dict\" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance\nx_cls_make_all_x.py:591: note: Consider using \"Mapping\" instead, which is covariant in the value type\nx_cls_make_all_x.py:634: error: Returning Any from function declared to return \"dict[str, object] | None\"  [no-any-return]\nx_cls_make_all_x.py:634: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:944: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:945: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:946: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:949: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1080: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1081: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1082: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1085: error: Expression has type \"Any\"  [misc]\nFound 16 errors in 2 files (checked 15 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T03:24:11.023805+00:00\nduration: 1.836s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nmanifest.py:266: error: Incompatible types in assignment (expression has type \"tuple[str, ...]\", variable has type \"tuple[str]\")  [assignment]\nx_cls_make_all_x.py:550: error: Name \"entry\" already defined on line 522  [no-redef]\nx_cls_make_all_x.py:550: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nx_cls_make_all_x.py:557: error: Argument 1 to \"append\" of \"list\" has incompatible type \"dict[str, Collection[str]]\"; expected \"dict[str, object]\"  [arg-type]\nx_cls_make_all_x.py:557: note: \"dict\" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "manifest.py:266: error: Incompatible types in assignment (expression has type \"tuple[str, ...]\", variable has type \"tuple[str]\")  [assignment]\nx_cls_make_all_x.py:550: error: Name \"entry\" already defined on line 522  [no-redef]\nx_cls_make_all_x.py:550: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nx_cls_make_all_x.py:557: error: Argument 1 to \"append\" of \"list\" has incompatible type \"dict[str, Collection[str]]\"; expected \"dict[str, object]\"  [arg-type]\nx_cls_make_all_x.py:557: note: \"dict\" is invariant -- see https://mypy.readthedocs.io/en/stable/common_issues.html#variance\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --d\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:11.019600+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.3239661999978125,
+                "ended_at": "2025-10-15T03:24:11.019600+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "4d8a527ab5275fbca6ef3f5e51b0faede84149d2979c429092d455ac56b4612b",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T03:24:10.695635+00:00",
+                "stderr": "",
+                "stdout": "RET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n339 |         return normalized\n    |                ^^^^^^^^^^\n340 |\n341 |     def _set_cell_state(\n    |\nhelp: Remove unnecessary assignment\n\nC901 `_apply_summary_backfill` is too complex (25 > 10)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nPLR0912 Too many branches (25 > 12)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nPLR0915 Too many statements (73 > 50)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nC901 `_apply_telemetry_event` is too complex (21 > 10)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nPLR0911 Too many return statements (9 > 6)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nPLR0912 Too many branches (21 > 12)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nC901 `manifest_python_allowlist` is too complex (14 > 10)\n   --> manifest.py:232:5\n    |\n232 | def manifest_python_allowlist(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^\n233 |     entries: Sequence[ManifestEntry],\n234 | ) -> dict[str, tuple[str, ...]]:\n    |\n\nPLR0912 Too many branches (17 > 12)\n   --> x_cls_make_all_x.py:517:9\n    |\n515 |         return Path(__file__).resolve().parent / \"reports\"\n516 |\n517 |     def generate_run_summary(self) -> dict[str, object]:\n    |         ^^^^^^^^^^^^^^^^^^^^\n518 |         stage_entries: list[dict[str, object]] = []\n519 |         for stage_id, default_title in self._KANBAN_STAGE_TEMPLATES:\n    |\n\nC901 `generate_run_summary` is too complex (14 > 10)\n   --> x_cls_make_all_x.py:517:9\n    |\n515 |         return Path(__file__).resolve().parent / \"reports\"\n516 |\n517 |     def generate_run_summary(self) -> dict[str, object]:\n    |         ^^^^^^^^^^^^^^^^^^^^\n518 |         stage_entries: list[dict[str, object]] = []\n519 |         for stage_id, default_title in self._KANBAN_STAGE_TEMPLATES:\n    |\n\nC901 `clone_repos` is too complex (15 > 10)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nPLR0912 Too many branches (17 > 12)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nPLR0915 Too many statements (69 > 50)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_all_x.py:766:89\n    |\n764 |                         callable_attr()\n765 |                         stage_messages.append(\n766 |                             f\"Invoked cloner.{method_name}() without positional overrides\"\n    |                                                                                         ^^\n767 |                         )\n768 |                     except (\n    |\n\nE501 Line too long (91 > 88)\n   --> x_cls_make_all_x.py:777:89\n    |\n775 |                         _error(\"Cloner run failed:\", err)\n776 |                         stage_messages.append(\n777 |                             f\"cloner.{method_name}() reported an error: {entrypoint_error}\"\n    |                                                                                         ^^^\n778 |                         )\n779 |                     break\n    |\n\nC901 `_launch_command_center` is too complex (11 > 10)\n    --> x_cls_make_all_x.py:1154:5\n     |\n1154 | def _launch_command_center(orchestrator: MakeAllOrchestrator) -> None:\n     |     ^^^^^^^^^^^^^^^^^^^^^^\n1155 |     summary_path = orchestrator.summary_path\n1156 |     if summary_path is None:\n     |\n\nFound 16 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:10.695635+00:00\nduration: 0.324s\ntool_version: ruff 0.14.0\nstdout:\nRET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "RET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:08.167885+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.32941390003543347,
+                "ended_at": "2025-10-15T03:24:08.167885+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "4d8a527ab5275fbca6ef3f5e51b0faede84149d2979c429092d455ac56b4612b",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T03:24:07.838473+00:00",
+                "stderr": "",
+                "stdout": "RET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n339 |         return normalized\n    |                ^^^^^^^^^^\n340 |\n341 |     def _set_cell_state(\n    |\nhelp: Remove unnecessary assignment\n\nC901 `_apply_summary_backfill` is too complex (25 > 10)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nPLR0912 Too many branches (25 > 12)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nPLR0915 Too many statements (73 > 50)\n   --> interface\\gui\\app.py:445:9\n    |\n443 |         return lookup\n444 |\n445 |     def _apply_summary_backfill(self) -> None:\n    |         ^^^^^^^^^^^^^^^^^^^^^^^\n446 |         report_path = self._find_latest_visitor_report()\n447 |         if report_path is None:\n    |\n\nC901 `_apply_telemetry_event` is too complex (21 > 10)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nPLR0911 Too many return statements (9 > 6)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nPLR0912 Too many branches (21 > 12)\n   --> interface\\gui\\app.py:533:9\n    |\n531 |             )\n532 |\n533 |     def _apply_telemetry_event(\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n534 |         self, event: dict[str, object]\n535 |     ) -> None:\n    |\n\nC901 `manifest_python_allowlist` is too complex (14 > 10)\n   --> manifest.py:232:5\n    |\n232 | def manifest_python_allowlist(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^\n233 |     entries: Sequence[ManifestEntry],\n234 | ) -> dict[str, tuple[str, ...]]:\n    |\n\nPLR0912 Too many branches (17 > 12)\n   --> x_cls_make_all_x.py:517:9\n    |\n515 |         return Path(__file__).resolve().parent / \"reports\"\n516 |\n517 |     def generate_run_summary(self) -> dict[str, object]:\n    |         ^^^^^^^^^^^^^^^^^^^^\n518 |         stage_entries: list[dict[str, object]] = []\n519 |         for stage_id, default_title in self._KANBAN_STAGE_TEMPLATES:\n    |\n\nC901 `generate_run_summary` is too complex (14 > 10)\n   --> x_cls_make_all_x.py:517:9\n    |\n515 |         return Path(__file__).resolve().parent / \"reports\"\n516 |\n517 |     def generate_run_summary(self) -> dict[str, object]:\n    |         ^^^^^^^^^^^^^^^^^^^^\n518 |         stage_entries: list[dict[str, object]] = []\n519 |         for stage_id, default_title in self._KANBAN_STAGE_TEMPLATES:\n    |\n\nC901 `clone_repos` is too complex (15 > 10)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nPLR0912 Too many branches (17 > 12)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nPLR0915 Too many statements (69 > 50)\n   --> x_cls_make_all_x.py:678:9\n    |\n677 |     # Step 3: clone repositories (moved logic from freestanding clone_repos)\n678 |     def clone_repos(self, ctx: OrchestratorContext | None) -> object:\n    |         ^^^^^^^^^^^\n679 |         options = self._cloner_options(ctx)\n680 |         metadata: dict[str, object] = {\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_all_x.py:766:89\n    |\n764 |                         callable_attr()\n765 |                         stage_messages.append(\n766 |                             f\"Invoked cloner.{method_name}() without positional overrides\"\n    |                                                                                         ^^\n767 |                         )\n768 |                     except (\n    |\n\nE501 Line too long (91 > 88)\n   --> x_cls_make_all_x.py:777:89\n    |\n775 |                         _error(\"Cloner run failed:\", err)\n776 |                         stage_messages.append(\n777 |                             f\"cloner.{method_name}() reported an error: {entrypoint_error}\"\n    |                                                                                         ^^^\n778 |                         )\n779 |                     break\n    |\n\nC901 `_launch_command_center` is too complex (11 > 10)\n    --> x_cls_make_all_x.py:1154:5\n     |\n1154 | def _launch_command_center(orchestrator: MakeAllOrchestrator) -> None:\n     |     ^^^^^^^^^^^^^^^^^^^^^^\n1155 |     summary_path = orchestrator.summary_path\n1156 |     if summary_path is None:\n     |\n\nFound 16 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:07.838473+00:00\nduration: 0.329s\ntool_version: ruff 0.14.0\nstdout:\nRET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "RET504 Unnecessary assignment to `normalized` before `return` statement\n   --> interface\\gui\\app.py:339:16\n    |\n337 |             return \"\"\n338 |         normalized = _normalize_repo_name(value).lower()\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version p\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:32.453882+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 1.9745714999735355,
+                "ended_at": "2025-10-15T03:24:32.453882+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "f1b594a8a296e1d2c68f32ae9835d65efeefef61ea605762718acea876298b10",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T03:24:30.479314+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_common_x\\run_reports.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 12 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:09:05.151004+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:24:31.860510+00:00\n@@ -40,11 +40,13 @@\n def isoformat_timestamp(moment: datetime | None = None) -> str:\n     current = (moment or datetime.now(UTC)).replace(microsecond=0)\n     return current.isoformat().replace(\"+00:00\", \"Z\")\n \n \n-def _ensure_mapping(payload: Mapping[str, Any] | MutableMapping[str, Any]) -> dict[str, Any]:\n+def _ensure_mapping(\n+    payload: Mapping[str, Any] | MutableMapping[str, Any],\n+) -> dict[str, Any]:\n     if isinstance(payload, dict):\n         return dict(payload)\n     return {str(key): value for key, value in payload.items()}\n \n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T03:24:30.479314+00:00\nduration: 1.975s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:09:05.151004+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:24:31.860510+00:00\n@@ -40,11 +40,13 @@\n def isoformat_timestamp(moment: datetime | None = None) -> str:\n     current = (moment or datetime.now(UTC)).replace(microsecond=0)\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_common_x\\run_reports.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 12 files would be left unchanged.",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_common_x\\run_reports.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 12 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:09:05.151004+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\run_reports.py\t2025-10-15 03:24:31.860510+00:00\n@@ -40,11 +40,13 @@\n def isoformat_timestamp(moment: datetime | None = None) -> str:\n     current = (moment or datetime.now(UTC)).replace(microsecond=0)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T03:24:30.47\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:33.897692+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 1.0539396000094712,
+                "ended_at": "2025-10-15T03:24:33.897692+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "f1b594a8a296e1d2c68f32ae9835d65efeefef61ea605762718acea876298b10",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T03:24:32.843754+00:00",
+                "stderr": "",
+                "stdout": "run_reports.py:45: error: Explicit \"Any\" is not allowed  [explicit-any]\nrun_reports.py:46: error: Expression type contains \"Any\" (has type \"Mapping[str, Any] | MutableMapping[str, Any]\")  [misc]\nrun_reports.py:47: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression has type \"Any\"  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"Mapping[str, Any] | MutableMapping[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"ItemsView[str, Any]\")  [misc]\nrun_reports.py:51: error: Explicit \"Any\" is not allowed  [explicit-any]\nrun_reports.py:66: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:66: error: Expression type contains \"Any\" (has type \"Mapping[str, Any] | MutableMapping[str, Any]\")  [misc]\nrun_reports.py:67: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:68: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:71: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\njson_board.py:113: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\njson_board.py:113: error: Expression has type \"Any\"  [misc]\njson_board.py:121: error: Expression has type \"Any\"  [misc]\njson_board.py:122: error: Expression has type \"Any\"  [misc]\nx_cls_make_common_x.py:95: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nFound 19 errors in 3 files (checked 13 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T03:24:32.843754+00:00\nduration: 1.054s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nrun_reports.py:45: error: Explicit \"Any\" is not allowed  [explicit-any]\nrun_reports.py:46: error: Expression type contains \"Any\" (has type \"Mapping[str, Any] | MutableMapping[str, Any]\")  [misc]\nrun_reports.py:47: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "run_reports.py:45: error: Explicit \"Any\" is not allowed  [explicit-any]\nrun_reports.py:46: error: Expression type contains \"Any\" (has type \"Mapping[str, Any] | MutableMapping[str, Any]\")  [misc]\nrun_reports.py:47: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nrun_reports.py:48: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable -\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:32.840094+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.3817475000396371,
+                "ended_at": "2025-10-15T03:24:32.840094+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "f1b594a8a296e1d2c68f32ae9835d65efeefef61ea605762718acea876298b10",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T03:24:32.458348+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n5 | import builtins\n  |        ^^^^^^^^\n6 | import contextlib\n7 | import json\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                             ^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n --> run_reports.py:4:38\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                                      ^^^^^^^^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nE501 Line too long (93 > 88)\n  --> run_reports.py:45:89\n   |\n45 | def _ensure_mapping(payload: Mapping[str, Any] | MutableMapping[str, Any]) -> dict[str, Any]:\n   |                                                                                         ^^^^^\n46 |     if isinstance(payload, dict):\n47 |         return dict(payload)\n   |\n\nPLR0913 Too many arguments in function definition (6 > 5)\n  --> run_reports.py:51:5\n   |\n51 | def write_run_report(\n   |     ^^^^^^^^^^^^^^^^\n52 |     tool_slug: str,\n53 |     payload: Mapping[str, Any] | MutableMapping[str, Any],\n   |\n\nB904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling\n  --> x_cls_make_common_x.py:99:9\n   |\n97 |     except Exception as exc:  # noqa: BLE001 - surface failure for operators\n98 |         _error(\"x_make_common_x diagnostics failed:\", exc)\n99 |         raise SystemExit(1)\n   |         ^^^^^^^^^^^^^^^^^^^\n   |\n\nFound 6 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:32.458348+00:00\nduration: 0.382s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py3\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:30.475706+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.3087396000046283,
+                "ended_at": "2025-10-15T03:24:30.475706+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "f1b594a8a296e1d2c68f32ae9835d65efeefef61ea605762718acea876298b10",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T03:24:30.166967+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n5 | import builtins\n  |        ^^^^^^^^\n6 | import contextlib\n7 | import json\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                             ^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n --> run_reports.py:4:38\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                                      ^^^^^^^^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nE501 Line too long (93 > 88)\n  --> run_reports.py:45:89\n   |\n45 | def _ensure_mapping(payload: Mapping[str, Any] | MutableMapping[str, Any]) -> dict[str, Any]:\n   |                                                                                         ^^^^^\n46 |     if isinstance(payload, dict):\n47 |         return dict(payload)\n   |\n\nPLR0913 Too many arguments in function definition (6 > 5)\n  --> run_reports.py:51:5\n   |\n51 | def write_run_report(\n   |     ^^^^^^^^^^^^^^^^\n52 |     tool_slug: str,\n53 |     payload: Mapping[str, Any] | MutableMapping[str, Any],\n   |\n\nB904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling\n  --> x_cls_make_common_x.py:99:9\n   |\n97 |     except Exception as exc:  # noqa: BLE001 - surface failure for operators\n98 |         _error(\"x_make_common_x diagnostics failed:\", exc)\n99 |         raise SystemExit(1)\n   |         ^^^^^^^^^^^^^^^^^^^\n   |\n\nFound 6 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:30.166967+00:00\nduration: 0.309s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `builtins` into a type-checking block\n --> json_board.py:5:8\n  |\n3 | from __future__ import annotations\n4 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:43.090038+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 1.0547274000709876,
+                "ended_at": "2025-10-15T03:24:43.090038+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "7ce219f2f2550effcefe946e0c09815edf4a5f86784bff51678407ae2760d857",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-15T03:24:42.035312+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_github_visitor_x.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nx_cls_make_github_visitor_x.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nrunner.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 4 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T03:24:42.035312+00:00\nduration: 1.055s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_github_visitor_x.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nx_cls_make_github_visitor_x.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nrunner.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 4 errors in 2 files (checked 8 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_github_visitor_x.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nx_cls_make_github_visitor_x.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:643: error: Incompatible types in assignment (expression has type \"Mapping[str, object]\", variable has type \"Mapping[str, str]\")  [assignment]\nrunner.py:659: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 4 errors in 2 files (checked 8 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --wa\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:42.030525+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.40933379996567965,
+                "ended_at": "2025-10-15T03:24:42.030525+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "7ce219f2f2550effcefe946e0c09815edf4a5f86784bff51678407ae2760d857",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-15T03:24:41.621192+00:00",
+                "stderr": "",
+                "stdout": "E402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n35 | from x_make_github_visitor_x.inspection_flow import VisitorRunResult\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n36 |\n37 | if TYPE_CHECKING:\n   |\n\nTC002 Move third-party import `x_4357_make_common_x.telemetry.JSONValue` into a type-checking block\n  --> runner.py:44:13\n   |\n42 |     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build\n43 |         from x_4357_make_common_x.telemetry import (\n44 |             JSONValue,  # type: ignore[attr-defined]\n   |             ^^^^^^^^^\n45 |         )\n   |\nhelp: Move into type-checking block\n\nPLR0913 Too many arguments in function definition (6 > 5)\n   --> runner.py:231:9\n    |\n230 | class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility\n231 |     def __init__(\n    |         ^^^^^^^^\n232 |         self,\n233 |         root_dir: str | Path,\n    |\n\nC408 Unnecessary `tuple()` call (rewrite as a literal)\n   --> runner.py:291:50\n    |\n289 |         normalized_allowed = {\n290 |             normalized\n291 |             for repo in (allowed_repositories or tuple())\n    |                                                  ^^^^^^^\n292 |             for normalized in (_normalize_repo_name(repo),)\n293 |             if normalized\n    |\nhelp: Rewrite as a literal\n\nC901 `_emit_tool_event` is too complex (18 > 10)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0915 Too many statements (52 > 50)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPERF401 Use a list comprehension to create a transformed list\n   --> runner.py:612:21\n    |\n610 |             for candidate in candidate_entries:\n611 |                 if isinstance(candidate, str):\n612 |                     collected.append(candidate)\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n613 |             files_checked = collected\n614 |         if not files_checked:\n    |\nhelp: Replace for loop with list comprehension\n\nPERF401 Use a list comprehension to create a transformed list\n   --> runner.py:641:25\n    |\n639 |                 for entry_obj in cast(\"Sequence[object]\", failed_files_obj):\n640 |                     if isinstance(entry_obj, Mapping):\n641 |                         filtered.append(cast(\"Mapping[str, object]\", entry_obj))\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n642 |                 failed_files_iter = tuple(filtered)\n643 |             for entry in failed_files_iter:\n    |\nhelp: Replace for loop with list comprehension\n\nE402 Module level import not at top of file\n  --> x_cls_make_github_visitor_x.py:35:1\n   |\n33 |         )\n34 |\n35 | from x_make_github_visitor_x.inspection_flow import VisitorRunResult\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n36 |\n37 | if TYPE_CHECKING:\n   |\n\nTC002 Move third-party import `x_4357_make_common_x.telemetry.JSONValue` into a type-checking block\n  --> x_cls_make_github_visitor_x.py:44:13\n   |\n42 |     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build\n43 |         from x_4357_make_common_x.telemetry import (\n44 |             JSONValue,  # type: ignore[attr-defined]\n   |             ^^^^^^^^^\n45 |         )\n   |\nhelp: Move into type-checking block\n\nPLR0913 Too many arguments in function definition (6 > 5)\n   --> x_cls_make_github_visitor_x.py:231:9\n    |\n230 | class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility\n231 |     def __init__(\n    |         ^^^^^^^^\n232 |         self,\n233 |         root_dir: str | Path,\n    |\n\nC408 Unnecessary `tuple()` call (rewrite as a literal)\n   --> x_cls_make_github_visitor_x.py:291:50\n    |\n289 |         normalized_allowed = {\n290 |             normalized\n291 |             for repo in (allowed_repositories or tuple())\n    |                                                  ^^^^^^^\n292 |             for normalized in (_normalize_repo_name(repo),)\n293 |             if normalized\n    |\nhelp: Rewrite as a literal\n\nC901 `_emit_tool_event` is too complex (18 > 10)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0915 Too many statements (52 > 50)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPERF401 Use a list comprehension to create a transformed list\n   --> x_cls_make_github_visitor_x.py:612:21\n    |\n610 |             for candidate in candidate_entries:\n611 |                 if isinstance(candidate, str):\n612 |                     collected.append(candidate)\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n613 |             files_checked = collected\n614 |         if not files_checked:\n    |\nhelp: Replace for loop with list comprehension\n\nPERF401 Use a list comprehension to create a transformed list\n   --> x_cls_make_github_visitor_x.py:641:25\n    |\n639 |                 for entry_obj in cast(\"Sequence[object]\", failed_files_obj):\n640 |                     if isinstance(entry_obj, Mapping):\n641 |                         filtered.append(cast(\"Mapping[str, object]\", entry_obj))\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n642 |                 failed_files_iter = tuple(filtered)\n643 |             for entry in failed_files_iter:\n    |\nhelp: Replace for loop with list comprehension\n\nFound 18 errors.\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:41.621192+00:00\nduration: 0.409s\ntool_version: ruff 0.14.0\nstdout:\nE402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "E402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --ta\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:38.772275+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.46515960001852363,
+                "ended_at": "2025-10-15T03:24:38.772275+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "7ce219f2f2550effcefe946e0c09815edf4a5f86784bff51678407ae2760d857",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-15T03:24:38.307117+00:00",
+                "stderr": "",
+                "stdout": "E402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n35 | from x_make_github_visitor_x.inspection_flow import VisitorRunResult\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n36 |\n37 | if TYPE_CHECKING:\n   |\n\nTC002 Move third-party import `x_4357_make_common_x.telemetry.JSONValue` into a type-checking block\n  --> runner.py:44:13\n   |\n42 |     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build\n43 |         from x_4357_make_common_x.telemetry import (\n44 |             JSONValue,  # type: ignore[attr-defined]\n   |             ^^^^^^^^^\n45 |         )\n   |\nhelp: Move into type-checking block\n\nPLR0913 Too many arguments in function definition (6 > 5)\n   --> runner.py:231:9\n    |\n230 | class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility\n231 |     def __init__(\n    |         ^^^^^^^^\n232 |         self,\n233 |         root_dir: str | Path,\n    |\n\nC408 Unnecessary `tuple()` call (rewrite as a literal)\n   --> runner.py:291:50\n    |\n289 |         normalized_allowed = {\n290 |             normalized\n291 |             for repo in (allowed_repositories or tuple())\n    |                                                  ^^^^^^^\n292 |             for normalized in (_normalize_repo_name(repo),)\n293 |             if normalized\n    |\nhelp: Rewrite as a literal\n\nC901 `_emit_tool_event` is too complex (18 > 10)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0915 Too many statements (52 > 50)\n   --> runner.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPERF401 Use a list comprehension to create a transformed list\n   --> runner.py:612:21\n    |\n610 |             for candidate in candidate_entries:\n611 |                 if isinstance(candidate, str):\n612 |                     collected.append(candidate)\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n613 |             files_checked = collected\n614 |         if not files_checked:\n    |\nhelp: Replace for loop with list comprehension\n\nPERF401 Use a list comprehension to create a transformed list\n   --> runner.py:641:25\n    |\n639 |                 for entry_obj in cast(\"Sequence[object]\", failed_files_obj):\n640 |                     if isinstance(entry_obj, Mapping):\n641 |                         filtered.append(cast(\"Mapping[str, object]\", entry_obj))\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n642 |                 failed_files_iter = tuple(filtered)\n643 |             for entry in failed_files_iter:\n    |\nhelp: Replace for loop with list comprehension\n\nE402 Module level import not at top of file\n  --> x_cls_make_github_visitor_x.py:35:1\n   |\n33 |         )\n34 |\n35 | from x_make_github_visitor_x.inspection_flow import VisitorRunResult\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n36 |\n37 | if TYPE_CHECKING:\n   |\n\nTC002 Move third-party import `x_4357_make_common_x.telemetry.JSONValue` into a type-checking block\n  --> x_cls_make_github_visitor_x.py:44:13\n   |\n42 |     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build\n43 |         from x_4357_make_common_x.telemetry import (\n44 |             JSONValue,  # type: ignore[attr-defined]\n   |             ^^^^^^^^^\n45 |         )\n   |\nhelp: Move into type-checking block\n\nPLR0913 Too many arguments in function definition (6 > 5)\n   --> x_cls_make_github_visitor_x.py:231:9\n    |\n230 | class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility\n231 |     def __init__(\n    |         ^^^^^^^^\n232 |         self,\n233 |         root_dir: str | Path,\n    |\n\nC408 Unnecessary `tuple()` call (rewrite as a literal)\n   --> x_cls_make_github_visitor_x.py:291:50\n    |\n289 |         normalized_allowed = {\n290 |             normalized\n291 |             for repo in (allowed_repositories or tuple())\n    |                                                  ^^^^^^^\n292 |             for normalized in (_normalize_repo_name(repo),)\n293 |             if normalized\n    |\nhelp: Rewrite as a literal\n\nC901 `_emit_tool_event` is too complex (18 > 10)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPLR0915 Too many statements (52 > 50)\n   --> x_cls_make_github_visitor_x.py:597:9\n    |\n595 |         return entries\n596 |\n597 |     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n    |         ^^^^^^^^^^^^^^^^\n598 |         result = payload.result\n599 |         duration_value = result.get(\"duration_seconds\")\n    |\n\nPERF401 Use a list comprehension to create a transformed list\n   --> x_cls_make_github_visitor_x.py:612:21\n    |\n610 |             for candidate in candidate_entries:\n611 |                 if isinstance(candidate, str):\n612 |                     collected.append(candidate)\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n613 |             files_checked = collected\n614 |         if not files_checked:\n    |\nhelp: Replace for loop with list comprehension\n\nPERF401 Use a list comprehension to create a transformed list\n   --> x_cls_make_github_visitor_x.py:641:25\n    |\n639 |                 for entry_obj in cast(\"Sequence[object]\", failed_files_obj):\n640 |                     if isinstance(entry_obj, Mapping):\n641 |                         filtered.append(cast(\"Mapping[str, object]\", entry_obj))\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n642 |                 failed_files_iter = tuple(filtered)\n643 |             for entry in failed_files_iter:\n    |\nhelp: Replace for loop with list comprehension\n\nFound 18 errors.\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:38.307117+00:00\nduration: 0.465s\ntool_version: ruff 0.14.0\nstdout:\nE402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "E402 Module level import not at top of file\n  --> runner.py:35:1\n   |\n33 |         )\n34 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 \u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:56.952461+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 1.882192299934104,
+                "ended_at": "2025-10-15T03:24:56.952461+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-15T03:24:55.070272+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:09:29.552218+00:00\n+++ C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:24:56.663294+00:00\n@@ -55,13 +55,11 @@\n     if isinstance(value, Path):\n         return str(value)\n     if isinstance(value, Mapping):\n         typed = cast(\"Mapping[object, object]\", value)\n         return {str(key): _json_ready(val) for key, val in typed.items()}\n-    if isinstance(value, Sequence) and not isinstance(\n-        value, (str, bytes, bytearray)\n-    ):\n+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):\n         typed_seq = cast(\"Sequence[object]\", value)\n         return [_json_ready(entry) for entry in typed_seq]\n     return str(value)\n \n \n@@ -411,11 +409,13 @@\n                 script_detail = {\n                     \"invoked\": used_script,\n                     \"return_code\": script_rc,\n                 }\n             else:\n-                _info(\"pip-updates script not found; using direct pip fallback installation\")\n+                _info(\n+                    \"pip-updates script not found; using direct pip fallback installation\"\n+                )\n             execution_detail[\"script_attempt\"] = script_detail\n \n             pinned = [\n                 f\"{pkg}=={published_versions[pkg]}\"\n                 for pkg in package_list\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T03:24:55.070272+00:00\nduration: 1.882s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:09:29.552218+00:00\n+++ C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:24:56.663294+00:00\n@@ -55,13 +55,11 @@\n     if isinstance(value, Path):\n         return str(value)\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:09:29.552218+00:00\n+++ C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\t2025-10-15 03:24:56.663294+00:00\n@@ -55,13 +55,11 @@\n     if isinstance(value, Path):\n         return str(value)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T0\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:58.406374+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 1.1276067000580952,
+                "ended_at": "2025-10-15T03:24:58.406374+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-15T03:24:57.278768+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_pip_updates_x.py:310: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nupdate_flow.py:532: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\nFound 2 errors in 2 files (checked 5 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T03:24:57.278768+00:00\nduration: 1.128s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_pip_updates_x.py:310: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nupdate_flow.py:532: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\nFound 2 errors in 2 files (checked 5 source files)\nstderr:\n<empty>",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_pip_updates_x.py:310: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nupdate_flow.py:532: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\nFound 2 errors in 2 files (checked 5 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unr\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:00.280844+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 1.8714921999489889,
+                "ended_at": "2025-10-15T03:25:00.280844+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-15T03:24:58.409355+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:532:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-15T03:24:58.409355+00:00\nduration: 1.871s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:532:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\n<empty>",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:532:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-15T03:24:58.409355+00:00 duration: 1.871s\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:57.275500+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 0.31974279996939003,
+                "ended_at": "2025-10-15T03:24:57.275500+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-15T03:24:56.955761+00:00",
+                "stderr": "",
+                "stdout": "PLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n349 |     packages: Sequence[str],\n350 |     *,\n    |\n\nE501 Line too long (93 > 88)\n   --> update_flow.py:416:89\n    |\n414 |                 }\n415 |             else:\n416 |                 _info(\"pip-updates script not found; using direct pip fallback installation\")\n    |                                                                                         ^^^^^\n417 |             execution_detail[\"script_attempt\"] = script_detail\n    |\n\nFound 2 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:56.955761+00:00\nduration: 0.320s\ntool_version: ruff 0.14.0\nstdout:\nPLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": null,
+            "stdout_preview": "PLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:24:55.067361+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 0.30713950004428625,
+                "ended_at": "2025-10-15T03:24:55.067361+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-15T03:24:54.760221+00:00",
+                "stderr": "",
+                "stdout": "PLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n349 |     packages: Sequence[str],\n350 |     *,\n    |\n\nE501 Line too long (93 > 88)\n   --> update_flow.py:416:89\n    |\n414 |                 }\n415 |             else:\n416 |                 _info(\"pip-updates script not found; using direct pip fallback installation\")\n    |                                                                                         ^^^^^\n417 |             execution_detail[\"script_attempt\"] = script_detail\n    |\n\nFound 2 errors.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:24:54.760221+00:00\nduration: 0.307s\ntool_version: ruff 0.14.0\nstdout:\nPLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": null,
+            "stdout_preview": "PLR0915 Too many statements (68 > 50)\n   --> update_flow.py:348:5\n    |\n348 | def run_updates_for_packages(  # noqa: PLR0913\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:04.711893+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.9370837999740615,
+                "ended_at": "2025-10-15T03:25:04.711893+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T03:25:02.774812+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:09:37.965496+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:25:04.345113+00:00\n@@ -31,17 +31,12 @@\n         return value\n     if isinstance(value, Path):\n         return str(value)\n     if isinstance(value, Mapping):\n         typed_mapping = cast(\"Mapping[object, object]\", value)\n-        return {\n-            str(key): _json_ready(val)\n-            for key, val in typed_mapping.items()\n-        }\n-    if isinstance(value, Sequence) and not isinstance(\n-        value, (str, bytes, bytearray)\n-    ):\n+        return {str(key): _json_ready(val) for key, val in typed_mapping.items()}\n+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):\n         typed_sequence = cast(\"Sequence[object]\", value)\n         return [_json_ready(entry) for entry in typed_sequence]\n     return str(value)\n \n \n@@ -636,11 +631,16 @@\n \n             _info(f\"Publishing {context.name} version {context.version}\")\n             try:\n                 published = _execute_publish(context, ctx, publisher_factory)\n                 record[\"status\"] = \"published\"\n-            except (RuntimeError, ValueError, subprocess.SubprocessError, OSError) as exc:\n+            except (\n+                RuntimeError,\n+                ValueError,\n+                subprocess.SubprocessError,\n+                OSError,\n+            ) as exc:\n                 if _should_skip_publish_exception(exc, context.name, context.version):\n                     published = True\n                     record[\"status\"] = \"skipped_existing\"\n                     record[\"skip_reason\"] = _exception_summary(exc)\n                 else:\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T03:25:02.774812+00:00\nduration: 1.937s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:09:37.965496+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:25:04.345113+00:00\n@@ -31,17 +31,12 @@\n         return value\n     if isinstance(value, Path):\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:09:37.965496+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-15 03:25:04.345113+00:00\n@@ -31,17 +31,12 @@\n         return value\n     if isinstance(value, Path):\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T03:25:02.774812\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:05.926942+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.8623221000889316,
+                "ended_at": "2025-10-15T03:25:05.926942+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T03:25:05.064623+00:00",
+                "stderr": "",
+                "stdout": "publish_flow.py:583: error: Expression type contains \"Any\" (has type \"tuple[str, dict[str, Any | str]]\")  [misc]\npublish_flow.py:583: error: Expression type contains \"Any\" (has type \"dict[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"tuple[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\npublish_flow.py:685: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\nFound 5 errors in 1 file (checked 2 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T03:25:05.064623+00:00\nduration: 0.862s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\npublish_flow.py:583: error: Expression type contains \"Any\" (has type \"tuple[str, dict[str, Any | str]]\")  [misc]\npublish_flow.py:583: error: Expression type contains \"Any\" (has type \"dict[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"tuple[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\npublish_flow.py:685: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "publish_flow.py:583: error: Expression type contains \"Any\" (has type \"tuple[str, dict[str, Any | str]]\")  [misc]\npublish_flow.py:583: error: Expression type contains \"Any\" (has type \"dict[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"tuple[str, Any | str]\")  [misc]\npublish_flow.py:584: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\npublish_flow.py:685: error: \"Exception\" has no attribute \"run_report_path\"  [attr-defined]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --dis\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:07.917577+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.9865009000059217,
+                "ended_at": "2025-10-15T03:25:07.917577+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T03:25:05.931074+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n  c:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:685:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-15T03:25:05.931074+00:00\nduration: 1.987s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n  c:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:685:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n  c:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:685:24 - error: Cannot assign to attribute \"run_report_path\" for class \"Exception\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"run_report_path\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-15T03:25:05.931074+00:00 duration: 1.987s tool_version:\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:05.061374+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.34625060006510466,
+                "ended_at": "2025-10-15T03:25:05.061374+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T03:25:04.715126+00:00",
+                "stderr": "",
+                "stdout": "PERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n565 | /         manifest_inputs.append(\n566 | |             {\n567 | |                 \"package\": entry.package,\n568 | |                 \"version\": entry.version,\n569 | |                 \"pypi_name\": entry.options.pypi_name or entry.package,\n570 | |                 \"ancillary\": list(entry.ancillary),\n571 | |                 \"options_kwargs\": _json_ready(options_to_kwargs(entry.options)),\n572 | |             }\n573 | |         )\n    | |_________^\n574 |       report_payload: dict[str, object] = {\n575 |           \"run_id\": run_id,\n    |\nhelp: Replace for loop with list comprehension\n\nE501 Line too long (90 > 88)\n   --> publish_flow.py:641:89\n    |\n639 |                 published = _execute_publish(context, ctx, publisher_factory)\n640 |                 record[\"status\"] = \"published\"\n641 |             except (RuntimeError, ValueError, subprocess.SubprocessError, OSError) as exc:\n    |                                                                                         ^^\n642 |                 if _should_skip_publish_exception(exc, context.name, context.version):\n643 |                     published = True\n    |\n\nS101 Use of `assert` detected\n   --> publish_flow.py:687:5\n    |\n685 |             caught_exc.run_report_path = report_path\n686 |\n687 |     assert report_path is not None\n    |     ^^^^^^\n688 |     return published_versions, published_artifacts, report_path\n    |\n\nFound 3 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:25:04.715126+00:00\nduration: 0.346s\ntool_version: ruff 0.14.0\nstdout:\nPERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "PERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 s\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T03:25:02.771795+00:00",
+            "command": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.30712149990722537,
+                "ended_at": "2025-10-15T03:25:02.771795+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T03:25:02.464676+00:00",
+                "stderr": "",
+                "stdout": "PERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n565 | /         manifest_inputs.append(\n566 | |             {\n567 | |                 \"package\": entry.package,\n568 | |                 \"version\": entry.version,\n569 | |                 \"pypi_name\": entry.options.pypi_name or entry.package,\n570 | |                 \"ancillary\": list(entry.ancillary),\n571 | |                 \"options_kwargs\": _json_ready(options_to_kwargs(entry.options)),\n572 | |             }\n573 | |         )\n    | |_________^\n574 |       report_payload: dict[str, object] = {\n575 |           \"run_id\": run_id,\n    |\nhelp: Replace for loop with list comprehension\n\nE501 Line too long (90 > 88)\n   --> publish_flow.py:641:89\n    |\n639 |                 published = _execute_publish(context, ctx, publisher_factory)\n640 |                 record[\"status\"] = \"published\"\n641 |             except (RuntimeError, ValueError, subprocess.SubprocessError, OSError) as exc:\n    |                                                                                         ^^\n642 |                 if _should_skip_publish_exception(exc, context.name, context.version):\n643 |                     published = True\n    |\n\nS101 Use of `assert` detected\n   --> publish_flow.py:687:5\n    |\n685 |             caught_exc.run_report_path = report_path\n686 |\n687 |     assert report_path is not None\n    |     ^^^^^^\n688 |     return published_versions, published_artifacts, report_path\n    |\n\nFound 3 errors.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T03:25:02.464676+00:00\nduration: 0.307s\ntool_version: ruff 0.14.0\nstdout:\nPERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "PERF401 Use a list comprehension to create a transformed list\n   --> publish_flow.py:565:9\n    |\n563 |       manifest_inputs: list[dict[str, object]] = []\n564 |       for entry in entries:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py3\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        }
+    ],
+    "generated_at": "2025-10-15T03:25:16.912883+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.0-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.22631-SP0",
+        "python_executable": "C:\\x_runner_x\\x_make_yahw_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-15T03:25:16.912711+00:00",
+        "run_started_at": "2025-10-15T03:23:59.773181+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 37,
+            "cache_misses": 33,
+            "failed_tools": 21,
+            "had_failures": true,
+            "total_tools_run": 70
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "4d8a527ab5275fbca6ef3f5e51b0faede84149d2979c429092d455ac56b4612b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "78e1f22543d32e66639c3355860d41c1547c46a3e692ce354b55c0dca14f1bac",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "cc97fafbcc480da07f5da6f3bf95b20b6477a3877b19257bb492c37a976161aa",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "f1b594a8a296e1d2c68f32ae9835d65efeefef61ea605762718acea876298b10",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "2d716c5708d21bccdd5040e74accd1557ab942f8d1b377eb013740a64ab89a01",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "7ce219f2f2550effcefe946e0c09815edf4a5f86784bff51678407ae2760d857",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "8f06960592b12bcdf458cf7dbe69b19d53229e766ab372de159904cd40caa059",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "773e88a773208c3dd9189a57080561a83f907ac0165ae56029f437eb86656c7a",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "3843d549f19170c40a64435274f6332c13501800727ad80b004774ffbc46d01a",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "38624500e50d648701b39572aca2c5d8cd0420bb6d1e9513e212e3aa11078fe0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 5,
+                "repo_hash": "3466eed9e069641a858147efc15eec2157677d5440474711f5b54752b54199f5",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "69ac171dd36d6f8621439bba6bbda0288c09f653e7c678ee9a0e834fe3609e6c",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 5,
+                "repo_hash": "9dc7c24247d4212daa4e8ff45fb6ee8bf573523cf2729b42a4d3b8eea20f34e7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "d5b6324c3c161764524c550422f1e31cacffc452454eb0900e0d52ddd4106018",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-15T03:25:16.912911+00:00",
+        "total_repos": 14
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.0"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
