@@ -15,11 +15,28 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
-from x_make_common_x import emit_event, get_logger, make_event
+_WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
+_workspace_root_str = str(_WORKSPACE_ROOT)
+if _workspace_root_str not in sys.path:
+    sys.path.insert(0, _workspace_root_str)
+
+if TYPE_CHECKING:  # Static analyzers see the local package for precise types
+    from x_make_common_x import emit_event, get_logger, make_event
+else:  # Prefer local workspace package, fall back to PyPI distribution
+    try:
+        from x_make_common_x import emit_event, get_logger, make_event
+    except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
+        from x_4357_make_common_x import emit_event, get_logger, make_event  # type: ignore[attr-defined]
+
 from x_make_github_visitor_x.inspection_flow import VisitorRunResult
 
 if TYPE_CHECKING:
     from x_make_common_x.telemetry import JSONValue
+else:
+    try:
+        from x_make_common_x.telemetry import JSONValue
+    except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
+        from x_4357_make_common_x.telemetry import JSONValue  # type: ignore[attr-defined]
 
 _LOGGER = get_logger("x_make_github_visitor")
 
@@ -576,23 +593,75 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             duration_ms = int(max(float(duration_value), 0.0) * 1000)
         else:
             duration_ms = None
+        files_checked_obj = result.get("files_checked")
+        files_checked: list[str] = []
+        if isinstance(files_checked_obj, (list, tuple)):
+            candidate_entries = cast("Sequence[object]", files_checked_obj)
+            collected: list[str] = []
+            for candidate in candidate_entries:
+                if isinstance(candidate, str):
+                    collected.append(candidate)
+            files_checked = collected
+        if not files_checked:
+            files_checked = list(payload.repo.files)
+
+        failure_entries: list[dict[str, str]] = []
+        failed_files_for_event: list[str] = []
+        if payload.failures is not None:
+            failures_iterable = tuple(payload.failures)
+        else:
+            failures_iterable = ()
+        for entry in failures_iterable:
+            file_name_obj = entry.get("file")
+            message_obj = entry.get("message")
+            if isinstance(file_name_obj, str) and file_name_obj:
+                failed_files_for_event.append(file_name_obj)
+                failure_entries.append(
+                    {
+                        "file": file_name_obj,
+                        "message": message_obj if isinstance(message_obj, str) else "",
+                    }
+                )
+        if not failure_entries:
+            failed_files_iter: tuple[Mapping[str, object], ...] = ()
+            failed_files_obj = result.get("failed_files")
+            if isinstance(failed_files_obj, (list, tuple)):
+                filtered: list[Mapping[str, object]] = []
+                for entry_obj in cast("Sequence[object]", failed_files_obj):
+                    if isinstance(entry_obj, Mapping):
+                        filtered.append(cast("Mapping[str, object]", entry_obj))
+                failed_files_iter = tuple(filtered)
+            for entry in failed_files_iter:
+                file_name_obj = entry.get("file")
+                message_obj = entry.get("message")
+                if isinstance(file_name_obj, str) and file_name_obj:
+                    failed_files_for_event.append(file_name_obj)
+                    failure_entries.append(
+                        {
+                            "file": file_name_obj,
+                            "message": message_obj if isinstance(message_obj, str) else "",
+                        }
+                    )
+
+        files_for_event = list(files_checked)
+        if payload.status == "failed" and failed_files_for_event:
+            files_for_event = list(dict.fromkeys(failed_files_for_event))
         details: dict[str, object] = {
             "repo": payload.repo.rel_path,
             "repo_path": str(payload.repo.path),
             "tool": payload.config.name,
             "tool_family": payload.module_name,
-            "files": list(payload.repo.files),
+            "files": files_for_event,
+            "files_checked": files_checked,
             "cached": bool(result.get("cached", False)),
             "skipped": bool(result.get("skipped", False)),
             "timed_out": bool(result.get("timed_out", False)),
         }
         if payload.summary:
             details["failure_summary"] = payload.summary
-        if payload.failures:
-            details["failures"] = [
-                {"file": entry.get("file", ""), "message": entry.get("message", "")}
-                for entry in payload.failures
-            ]
+        if failure_entries:
+            details["failures"] = failure_entries
+        details["failed_files"] = failure_entries
         json_details = cast("Mapping[str, JSONValue]", details)
         emit_event(
             make_event(
@@ -826,6 +895,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "tool_version": tool_version,
             "tool_module": module_name,
         }
+        result["files_checked"] = list(repo.files)
+        result["failed_files"] = []
         if timed_out:
             result["timed_out"] = True
             result["timeout_seconds"] = timeout
@@ -844,6 +915,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 "details captured",
             )
             failure_entries = self._extract_failure_entries(repo=repo, result=result)
+            if failure_entries:
+                result["failed_files"] = failure_entries
             self._emit_tool_event(
                 _ToolEventPayload(
                     repo=repo,
