@@ -3,10 +3,10 @@
 > "I send this visitor ahead of every batch. If a repo can't meet the standard, it doesn't touch my table."
 
 ## Manifesto
-x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as JSON dossiers, and keeps the Road to 0.20.2 initiative brutally honest.
+x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as JSON dossiers, and keeps the Road to 0.20.3 initiative brutally honest.
 
-## 0.20.2 Command Sequence
-Version 0.20.2 locks in the tighter JSON serialization and reporting discipline I expect from the control room. This briefing is calibrated to the Road to 0.20.2 dossier—follow it and every inspection stays actionable, drift from it and you answer for the fallout.
+## 0.20.3 Command Sequence
+Version 0.20.3 injects per-file diagnostics into every telemetry payload. The visitor now emits `files_checked`, `failed_files`, and granular failure lines so the control room pinpoints contamination instantly. Follow this briefing and every inspection stays actionable; drift and you feel the fallout.
 
 ## Ingredients
 - Python 3.11+
@@ -18,7 +18,7 @@ Version 0.20.2 locks in the tighter JSON serialization and reporting discipline 
 2. `.\.venv\Scripts\Activate.ps1`
 3. `python -m pip install --upgrade pip`
 4. `pip install -r requirements.txt`
-5. `python x_cls_make_github_visitor_x.py` to run the inspection sweep across your clone set
+5. `python -m x_make_github_visitor_x.runner` to run the inspection sweep across your clone set
 
 ## Quality Assurance
 | Check | Command |
@@ -31,8 +31,8 @@ Version 0.20.2 locks in the tighter JSON serialization and reporting discipline 
 
 ## Distribution Chain
 - [Changelog](./CHANGELOG.md)
-- [Road to 0.20.2 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.2/Road%20to%200.20.2%20Engineering%20Proposal.md)
-- [Road to 0.20.2 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.2/Road%20to%200.20.2%20Engineering%20Proposal.md)
+- [Road to 0.20.3 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.3/Road%20to%200.20.3%20Engineering%20Proposal.md)
+- [Road to 0.20.3 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.3/Road%20to%200.20.3%20Engineering%20Proposal.md)
 
 ## Cross-Linked Intelligence
 - [x_make_github_clones_x](../x_make_github_clones_x/README.md) — supplies the repos this visitor inspects

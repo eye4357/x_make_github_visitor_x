@@ -6,7 +6,7 @@ import pathlib
 from collections.abc import Mapping
 from typing import cast
 
-from x_cls_make_github_visitor_x import x_cls_make_github_visitor_x
+from x_make_github_visitor_x import x_cls_make_github_visitor_x
 
 
 def _create_repo(root: pathlib.Path, name: str) -> pathlib.Path:

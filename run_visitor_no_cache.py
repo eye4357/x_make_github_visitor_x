@@ -1,4 +1,4 @@
-from x_cls_make_github_visitor_x import init_main
+from x_make_github_visitor_x import init_main
 
 
 def main() -> None:

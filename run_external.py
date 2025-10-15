@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
 from x_make_common_x.telemetry import JSONValue
-from x_make_github_visitor_x.x_cls_make_github_visitor_x import run_workspace_inspection
+
+from x_make_github_visitor_x import run_workspace_inspection
 
 if TYPE_CHECKING:
     from x_make_github_visitor_x.inspection_flow import VisitorRunResult
