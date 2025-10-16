@@ -2,6 +2,11 @@
 
 All notable changes to x_make_github_visitor_x are documented here. We follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) discipline and Semantic Versioning because inspectors must be incorruptible.
 
+## [0.20.4] - 2025-10-15
+### Changed
+- README updated for the Road to 0.20.4 campaign, detailing how visitor reports feed the Static Gauntlet Kanban column and orchestrator summary.
+- Documented the aggregation flow that rolls per-tool results into pass/skip/fail counts without re-running inspections.
+
 ## [0.20.3] - 2025-10-14
 ### Added
 - Per-file diagnostics appended to telemetry events and JSON reports so every failure pinpoints the file and message without guesswork.

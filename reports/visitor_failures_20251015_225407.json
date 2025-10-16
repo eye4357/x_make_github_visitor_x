@@ -1,0 +1,1912 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-15T22:53:02.298396+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 1.2093598999999813,
+                "ended_at": "2025-10-15T22:53:02.298396+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "636fc734e448d5104559eb3d85cd34de7198476a4b63f736558f8284c4ed5c22",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T22:53:01.089037+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_all_x.py:870: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:871: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:872: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:873: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:903: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:904: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:905: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:906: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:934: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:935: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:936: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:937: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:947: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:950: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1378: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1379: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1380: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1383: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1515: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1516: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1517: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1520: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:1610: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1611: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:1614: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_kanban.py:17: error: Redundant cast to \"dict[str, dict[str, object]]\"  [redundant-cast]\ntests\\test_make_all_kanban.py:57: error: Redundant cast to \"dict[str, object]\"  [redundant-cast]\nFound 27 errors in 2 files (checked 18 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T22:53:01.089037+00:00\nduration: 1.209s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_all_x.py:870: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:871: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:872: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:873: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:903: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_all_x.py:870: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:871: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_all_x.py:872: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:873: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:903: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:01.084244+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.21877089999907184,
+                "ended_at": "2025-10-15T22:53:01.084244+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "636fc734e448d5104559eb3d85cd34de7198476a4b63f736558f8284c4ed5c22",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T22:53:00.865475+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n5 | from collections.abc import Mapping, Sequence\n  |                             ^^^^^^^\n6 | from pathlib import Path\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> tests\\test_gui_columns.py:5:38\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n5 | from collections.abc import Mapping, Sequence\n  |                                      ^^^^^^^^\n6 | from pathlib import Path\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_row_lookup`\n   --> tests\\test_gui_columns.py:121:30\n    |\n119 |     repo_key = \"x_make_common_x\"\n120 |     rel_path = \"sample.py\"\n121 |     row_lookup_obj: object = window._row_lookup\n    |                              ^^^^^^^^^^^^^^^^^^\n122 |     assert isinstance(row_lookup_obj, dict)\n123 |     row_lookup = cast(\"dict[tuple[str, str], int]\", row_lookup_obj)\n    |\n\nSLF001 Private member accessed: `_column_key_to_index`\n   --> tests\\test_gui_columns.py:125:30\n    |\n123 |     row_lookup = cast(\"dict[tuple[str, str], int]\", row_lookup_obj)\n124 |     row_index = row_lookup[(repo_key, rel_path)]\n125 |     column_map_obj: object = window._column_key_to_index\n    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n126 |     assert isinstance(column_map_obj, dict)\n127 |     column_map = cast(\"dict[str, int]\", column_map_obj)\n    |\n\nSLF001 Private member accessed: `_status_table`\n   --> tests\\test_gui_columns.py:128:32\n    |\n126 |     assert isinstance(column_map_obj, dict)\n127 |     column_map = cast(\"dict[str, int]\", column_map_obj)\n128 |     status_table_obj: object = window._status_table\n    |                                ^^^^^^^^^^^^^^^^^^^^\n129 |     assert isinstance(status_table_obj, QTableWidget)\n130 |     status_table = status_table_obj\n    |\n\nFound 5 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:00.865475+00:00\nduration: 0.219s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 2\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:52:59.420238+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.21808720000262838,
+                "ended_at": "2025-10-15T22:52:59.420238+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "636fc734e448d5104559eb3d85cd34de7198476a4b63f736558f8284c4ed5c22",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-15T22:52:59.202159+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n5 | from collections.abc import Mapping, Sequence\n  |                             ^^^^^^^\n6 | from pathlib import Path\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> tests\\test_gui_columns.py:5:38\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n5 | from collections.abc import Mapping, Sequence\n  |                                      ^^^^^^^^\n6 | from pathlib import Path\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_row_lookup`\n   --> tests\\test_gui_columns.py:121:30\n    |\n119 |     repo_key = \"x_make_common_x\"\n120 |     rel_path = \"sample.py\"\n121 |     row_lookup_obj: object = window._row_lookup\n    |                              ^^^^^^^^^^^^^^^^^^\n122 |     assert isinstance(row_lookup_obj, dict)\n123 |     row_lookup = cast(\"dict[tuple[str, str], int]\", row_lookup_obj)\n    |\n\nSLF001 Private member accessed: `_column_key_to_index`\n   --> tests\\test_gui_columns.py:125:30\n    |\n123 |     row_lookup = cast(\"dict[tuple[str, str], int]\", row_lookup_obj)\n124 |     row_index = row_lookup[(repo_key, rel_path)]\n125 |     column_map_obj: object = window._column_key_to_index\n    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n126 |     assert isinstance(column_map_obj, dict)\n127 |     column_map = cast(\"dict[str, int]\", column_map_obj)\n    |\n\nSLF001 Private member accessed: `_status_table`\n   --> tests\\test_gui_columns.py:128:32\n    |\n126 |     assert isinstance(column_map_obj, dict)\n127 |     column_map = cast(\"dict[str, int]\", column_map_obj)\n128 |     status_table_obj: object = window._status_table\n    |                                ^^^^^^^^^^^^^^^^^^^^\n129 |     assert isinstance(status_table_obj, QTableWidget)\n130 |     status_table = status_table_obj\n    |\n\nFound 5 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:52:59.202159+00:00\nduration: 0.218s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_gui_columns.py:5:29\n  |\n3 | # ruff: noqa: S101 - pytest assertions are expected within this module.\n4 | import json\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:13.068367+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 1.2194254000060027,
+                "ended_at": "2025-10-15T22:53:13.068367+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "d30992e7e3e8dce7b3326577bee3a64238aca80658eb8b4e9b083a2357a96320",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T22:53:11.848943+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_common_x\\telemetry.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:39:38.405050+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:53:12.885637+00:00\n@@ -163,11 +163,13 @@\n \n     candidate: dict[str, object] = dict(payload)\n     try:\n         _VALIDATOR.validate(candidate)\n     except ValidationError as exc:\n-        path = \"/\".join(str(part) for part in cast(\"Iterable[object]\", getattr(exc, \"path\", ())))\n+        path = \"/\".join(\n+            str(part) for part in cast(\"Iterable[object]\", getattr(exc, \"path\", ()))\n+        )\n         message_text = str(getattr(exc, \"message\", str(exc)))\n         prefix = (\n             f\"Telemetry payload invalid at {path}: \"\n             if path\n             else \"Telemetry payload invalid: \"\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T22:53:11.848943+00:00\nduration: 1.219s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:39:38.405050+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:53:12.885637+00:00\n@@ -163,11 +163,13 @@\n \n     candidate: dict[str, object] = dict(payload)\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_common_x\\telemetry.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_common_x\\telemetry.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 14 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:39:38.405050+00:00\n+++ C:\\x_runner_x\\x_make_common_x\\telemetry.py\t2025-10-15 22:53:12.885637+00:00\n@@ -163,11 +163,13 @@\n \n     candidate: dict[str, object] = dict(payload)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T22:53:11.848943+00:00 dur\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:14.041257+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.7550776999996742,
+                "ended_at": "2025-10-15T22:53:14.041257+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "d30992e7e3e8dce7b3326577bee3a64238aca80658eb8b4e9b083a2357a96320",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T22:53:13.286179+00:00",
+                "stderr": "",
+                "stdout": "json_board.py:111: error: Function \"x_make_common_x.json_board.BoardState.list\" is not valid as a type  [valid-type]\njson_board.py:111: note: Perhaps you need \"Callable[...]\" or a callback protocol?\ntelemetry.py:167: error: Expression has type \"Any\"  [misc]\ntelemetry.py:168: error: Expression has type \"Any\"  [misc]\ntelemetry.py:169: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\ntelemetry.py:169: error: Expression has type \"Any\"  [misc]\ntelemetry.py:175: error: Expression has type \"Any\"  [misc]\ntests\\test_exporters.py:56: error: Module \"x_make_common_x.exporters\" does not explicitly export attribute \"shutil\"  [attr-defined]\nFound 7 errors in 3 files (checked 15 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T22:53:13.286179+00:00\nduration: 0.755s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\njson_board.py:111: error: Function \"x_make_common_x.json_board.BoardState.list\" is not valid as a type  [valid-type]\njson_board.py:111: note: Perhaps you need \"Callable[...]\" or a callback protocol?\ntelemetry.py:167: error: Expression has type \"Any\"  [misc]\ntelemetry.py:168: error: Expression has type \"Any\"  [misc]\ntelemetry.py:169: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "json_board.py:111: error: Function \"x_make_common_x.json_board.BoardState.list\" is not valid as a type  [valid-type]\njson_board.py:111: note: Perhaps you need \"Callable[...]\" or a callback protocol?\ntelemetry.py:167: error: Expression has type \"Any\"  [misc]\ntelemetry.py:168: error: Expression has type \"Any\"  [misc]\ntelemetry.py:169: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:13.280965+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.20921870000165654,
+                "ended_at": "2025-10-15T22:53:13.280965+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "d30992e7e3e8dce7b3326577bee3a64238aca80658eb8b4e9b083a2357a96320",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T22:53:13.071743+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                             ^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n --> run_reports.py:4:38\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                                      ^^^^^^^^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n  --> telemetry.py:9:29\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                             ^^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Iterable` into a type-checking block\n  --> telemetry.py:9:39\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                                       ^^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n  --> telemetry.py:9:49\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                                                 ^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nE501 Line too long (97 > 88)\n   --> telemetry.py:168:89\n    |\n166 |         _VALIDATOR.validate(candidate)\n167 |     except ValidationError as exc:\n168 |         path = \"/\".join(str(part) for part in cast(\"Iterable[object]\", getattr(exc, \"path\", ())))\n    |                                                                                         ^^^^^^^^^\n169 |         message_text = str(getattr(exc, \"message\", str(exc)))\n170 |         prefix = (\n    |\n\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> tests\\test_exporters.py:3:29\n  |\n1 | from __future__ import annotations\n2 |\n3 | from collections.abc import Sequence\n  |                             ^^^^^^^^\n4 | from pathlib import Path\n5 | from subprocess import CompletedProcess\n  |\nhelp: Move into type-checking block\n\nFound 7 errors.\nNo fixes available (6 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:13.071743+00:00\nduration: 0.209s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at:\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:11.844947+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 0.2615780000051018,
+                "ended_at": "2025-10-15T22:53:11.844947+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "d30992e7e3e8dce7b3326577bee3a64238aca80658eb8b4e9b083a2357a96320",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-15T22:53:11.583372+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                             ^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n --> run_reports.py:4:38\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n  |                                      ^^^^^^^^^^^^^^\n5 | from datetime import UTC, datetime\n6 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n  --> telemetry.py:9:29\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                             ^^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Iterable` into a type-checking block\n  --> telemetry.py:9:39\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                                       ^^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n  --> telemetry.py:9:49\n   |\n 7 | import pathlib\n 8 | import threading\n 9 | from collections.abc import Callable, Iterable, Mapping\n   |                                                 ^^^^^^^\n10 | from dataclasses import dataclass\n11 | from datetime import UTC, datetime\n   |\nhelp: Move into type-checking block\n\nE501 Line too long (97 > 88)\n   --> telemetry.py:168:89\n    |\n166 |         _VALIDATOR.validate(candidate)\n167 |     except ValidationError as exc:\n168 |         path = \"/\".join(str(part) for part in cast(\"Iterable[object]\", getattr(exc, \"path\", ())))\n    |                                                                                         ^^^^^^^^^\n169 |         message_text = str(getattr(exc, \"message\", str(exc)))\n170 |         prefix = (\n    |\n\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> tests\\test_exporters.py:3:29\n  |\n1 | from __future__ import annotations\n2 |\n3 | from collections.abc import Sequence\n  |                             ^^^^^^^^\n4 | from pathlib import Path\n5 | from subprocess import CompletedProcess\n  |\nhelp: Move into type-checking block\n\nFound 7 errors.\nNo fixes available (6 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:11.583372+00:00\nduration: 0.262s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> run_reports.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping, MutableMapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:18.411553+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 1.7912769999966258,
+                "ended_at": "2025-10-15T22:53:18.411553+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-15T22:53:16.620280+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 10 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 19:15:46.783225+00:00\n+++ C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 22:53:18.147110+00:00\n@@ -67,11 +67,13 @@\n     resolved_filename = filename or f\"{tool_slug}_run_{stamp}.json\"\n     data = dict(payload)\n     data.setdefault(\"tool\", tool_slug)\n     data.setdefault(\"generated_at\", _fallback_isoformat_timestamp(moment))\n     report_path = reports_dir / resolved_filename\n-    report_path.write_text(json.dumps(data, indent=2, sort_keys=False), encoding=\"utf-8\")\n+    report_path.write_text(\n+        json.dumps(data, indent=2, sort_keys=False), encoding=\"utf-8\"\n+    )\n     return report_path\n \n \n def _isoformat_timestamp(moment: datetime | None = None) -> str:\n     if _common_isoformat_timestamp is not None:\n@@ -97,10 +99,11 @@\n         \"x_make_github_clones_x\",\n         payload,\n         base_dir=base_dir,\n         timestamp=moment,\n     )\n+\n \n JsonDict = dict[str, object]\n \n T_co = TypeVar(\"T_co\", covariant=True)\n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T22:53:16.620280+00:00\nduration: 1.791s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 19:15:46.783225+00:00\n+++ C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 22:53:18.147110+00:00\n@@ -67,11 +67,13 @@\n     resolved_filename = filename or f\"{tool_slug}_run_{stamp}.json\"\n     data = dict(payload)\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 10 files would be left unchanged.",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 10 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 19:15:46.783225+00:00\n+++ C:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\t2025-10-15 22:53:18.147110+00:00\n@@ -67,11 +67,13 @@\n     resolved_filename = filename or f\"{tool_slug}_run_{stamp}.json\"\n     data = dict(payload)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T22:53:16.62\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:19.396054+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.7581816000019899,
+                "ended_at": "2025-10-15T22:53:19.396054+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-15T22:53:18.637874+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_github_clones_x.py:43: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[datetime | None], str]\")  [assignment]\nx_cls_make_github_clones_x.py:44: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[str, Mapping[str, object] | MutableMapping[str, object], DefaultNamedArg(Path | str | None, 'base_dir'), DefaultNamedArg(str | None, 'filename'), DefaultNamedArg(datetime | None, 'timestamp'), DefaultNamedArg(str, 'reports_name')], Path]\")  [assignment]\nx_cls_make_github_clones_x.py:79: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:96: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:280: error: Returning Any from function declared to return \"dict[str, object] | None\"  [no-any-return]\nx_cls_make_github_clones_x.py:280: error: Expression has type \"Any\"  [misc]\nx_cls_make_github_clones_x.py:750: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:125: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:126: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:127: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:128: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:129: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:176: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:177: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:178: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:232: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:233: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:234: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:235: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:236: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:262: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:263: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:264: error: Expression has type \"Any\"  [misc]\ntests\\test_make_github_clones.py:265: error: Expression has type \"Any\"  [misc]\nFound 24 errors in 2 files (checked 11 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T22:53:18.637874+00:00\nduration: 0.758s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_github_clones_x.py:43: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[datetime | None], str]\")  [assignment]\nx_cls_make_github_clones_x.py:44: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[str, Mapping[str, object] | MutableMapping[str, object], DefaultNamedArg(Path | str | None, 'base_dir'), DefaultNamedArg(str | None, 'filename'), DefaultNamedArg(datetime | None, 'timestamp'), DefaultNamedArg(str, 'reports_name')], Path]\")  [assignment]\nx_cls_make_github_clones_x.py:79: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:96: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:280: error: Returning Any from function declared to return \"dict[str, object] | None\"  [no-any-return]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_github_clones_x.py:43: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[datetime | None], str]\")  [assignment]\nx_cls_make_github_clones_x.py:44: error: Incompatible types in assignment (expression has type \"None\", variable has type \"Callable[[str, Mapping[str, object] | MutableMapping[str, object], DefaultNamedArg(Path | str | None, 'base_dir'), DefaultNamedArg(str | None, 'filename'), DefaultNamedArg(datetime | None, 'timestamp'), DefaultNamedArg(str, 'reports_name')], Path]\")  [assignment]\nx_cls_make_github_clones_x.py:79: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:96: error: Statement is unreachable  [unreachable]\nx_cls_make_github_clones_x.py:280: error: Returning Any from function declared to return \"dict[str, object] | None\"  [no-any-return]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable -\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:20.712753+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 1.3124007000005804,
+                "ended_at": "2025-10-15T22:53:20.712753+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-15T22:53:19.400353+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:40:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:41:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-15T22:53:19.400353+00:00\nduration: 1.312s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:40:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:41:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:40:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_github_clones_x\\x_cls_make_github_clones_x.py:41:10 - error: Import \"x_make_common_x\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-15T22:53:19.400353+00:00 duration: 1.312s tool_vers\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:18.634115+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.21832680000079563,
+                "ended_at": "2025-10-15T22:53:18.634115+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-15T22:53:18.415788+00:00",
+                "stderr": "",
+                "stdout": "EM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n248 |         raise RuntimeError(\"boom\")\n    |                            ^^^^^^\n249 |\n250 |     monkeypatch.setattr(\n    |\nhelp: Assign to variable; remove string literal\n\nPLR2004 Magic value used in comparison, consider replacing `2` with a constant variable\n   --> tests\\test_make_github_clones.py:258:25\n    |\n257 |     exit_code = client.sync()\n258 |     assert exit_code == 2\n    |                         ^\n259 |\n260 |     report_path = client.last_run_report_path\n    |\n\nPLR2004 Magic value used in comparison, consider replacing `2` with a constant variable\n   --> tests\\test_make_github_clones.py:263:36\n    |\n261 |     assert report_path is not None\n262 |     payload = json.loads(report_path.read_text(encoding=\"utf-8\"))\n263 |     assert payload[\"exit_code\"] == 2\n    |                                    ^\n264 |     assert payload[\"summary\"][\"fetch_error\"] == \"boom\"\n265 |     assert payload[\"repos\"] == []\n    |\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n  --> x_cls_make_github_clones_x.py:20:29\n   |\n18 | import urllib.request\n19 | import uuid\n20 | from collections.abc import Mapping, MutableMapping\n   |                             ^^^^^^^\n21 | from contextlib import suppress\n22 | from dataclasses import dataclass\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n  --> x_cls_make_github_clones_x.py:20:38\n   |\n18 | import urllib.request\n19 | import uuid\n20 | from collections.abc import Mapping, MutableMapping\n   |                                      ^^^^^^^^^^^^^^\n21 | from contextlib import suppress\n22 | from dataclasses import dataclass\n   |\nhelp: Move into type-checking block\n\nE501 Line too long (89 > 88)\n  --> x_cls_make_github_clones_x.py:72:89\n   |\n70 |     data.setdefault(\"generated_at\", _fallback_isoformat_timestamp(moment))\n71 |     report_path = reports_dir / resolved_filename\n72 |     report_path.write_text(json.dumps(data, indent=2, sort_keys=False), encoding=\"utf-8\")\n   |                                                                                         ^\n73 |     return report_path\n   |\n\nC901 `sync` is too complex (15 > 10)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nPLR0912 Too many branches (16 > 12)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nPLR0915 Too many statements (76 > 50)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nFound 9 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:18.415788+00:00\nduration: 0.218s\ntool_version: ruff 0.14.0\nstdout:\nEM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "EM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py3\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:16.616896+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.22497839999414282,
+                "ended_at": "2025-10-15T22:53:16.616896+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-15T22:53:16.391920+00:00",
+                "stderr": "",
+                "stdout": "EM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n248 |         raise RuntimeError(\"boom\")\n    |                            ^^^^^^\n249 |\n250 |     monkeypatch.setattr(\n    |\nhelp: Assign to variable; remove string literal\n\nPLR2004 Magic value used in comparison, consider replacing `2` with a constant variable\n   --> tests\\test_make_github_clones.py:258:25\n    |\n257 |     exit_code = client.sync()\n258 |     assert exit_code == 2\n    |                         ^\n259 |\n260 |     report_path = client.last_run_report_path\n    |\n\nPLR2004 Magic value used in comparison, consider replacing `2` with a constant variable\n   --> tests\\test_make_github_clones.py:263:36\n    |\n261 |     assert report_path is not None\n262 |     payload = json.loads(report_path.read_text(encoding=\"utf-8\"))\n263 |     assert payload[\"exit_code\"] == 2\n    |                                    ^\n264 |     assert payload[\"summary\"][\"fetch_error\"] == \"boom\"\n265 |     assert payload[\"repos\"] == []\n    |\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n  --> x_cls_make_github_clones_x.py:20:29\n   |\n18 | import urllib.request\n19 | import uuid\n20 | from collections.abc import Mapping, MutableMapping\n   |                             ^^^^^^^\n21 | from contextlib import suppress\n22 | from dataclasses import dataclass\n   |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.MutableMapping` into a type-checking block\n  --> x_cls_make_github_clones_x.py:20:38\n   |\n18 | import urllib.request\n19 | import uuid\n20 | from collections.abc import Mapping, MutableMapping\n   |                                      ^^^^^^^^^^^^^^\n21 | from contextlib import suppress\n22 | from dataclasses import dataclass\n   |\nhelp: Move into type-checking block\n\nE501 Line too long (89 > 88)\n  --> x_cls_make_github_clones_x.py:72:89\n   |\n70 |     data.setdefault(\"generated_at\", _fallback_isoformat_timestamp(moment))\n71 |     report_path = reports_dir / resolved_filename\n72 |     report_path.write_text(json.dumps(data, indent=2, sort_keys=False), encoding=\"utf-8\")\n   |                                                                                         ^\n73 |     return report_path\n   |\n\nC901 `sync` is too complex (15 > 10)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nPLR0912 Too many branches (16 > 12)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nPLR0915 Too many statements (76 > 50)\n   --> x_cls_make_github_clones_x.py:634:9\n    |\n632 |         )\n633 |\n634 |     def sync(self, username: str | None = None, dest: str | None = None) -> int:\n    |         ^^^^\n635 |         username = username or self.username\n636 |         dest_candidate = dest or self.target_dir or self.DEFAULT_TARGET_DIR\n    |\n\nFound 9 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:16.391920+00:00\nduration: 0.225s\ntool_version: ruff 0.14.0\nstdout:\nEM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "EM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_make_github_clones.py:248:28\n    |\n246 |         **_kwargs: object,\n247 |     ) -> list[RepoRecord]:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:24.739041+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 2.2683230999973603,
+                "ended_at": "2025-10-15T22:53:24.739041+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "f0f4ca2ead7cc3937328a8d2d26cb8db7dcf137683f9e10b039adb6dda9d5cf5",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-15T22:53:22.470718+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\nwould reformat C:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 19:15:48.204193+00:00\n+++ C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 22:53:24.316156+00:00\n@@ -690,13 +690,11 @@\n         return details\n \n     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n         duration_ms = self._event_duration_ms(payload.result)\n         files_checked = self._collect_files_checked(payload)\n-        failure_entries, failed_files_for_event = self._collect_failure_entries(\n-            payload\n-        )\n+        failure_entries, failed_files_for_event = self._collect_failure_entries(payload)\n         files_for_event = self._resolve_files_for_event(\n             status=payload.status,\n             files_checked=files_checked,\n             failed_files=failed_files_for_event,\n         )\n--- C:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\t2025-10-15 21:27:01.967690+00:00\n+++ C:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\t2025-10-15 22:53:24.343855+00:00\n@@ -690,13 +690,11 @@\n         return details\n \n     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:\n         duration_ms = self._event_duration_ms(payload.result)\n         files_checked = self._collect_files_checked(payload)\n-        failure_entries, failed_files_for_event = self._collect_failure_entries(\n-            payload\n-        )\n+        failure_entries, failed_files_for_event = self._collect_failure_entries(payload)\n         files_for_event = self._resolve_files_for_event(\n             status=payload.status,\n             files_checked=files_checked,\n             failed_files=failed_files_for_event,\n         )\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T22:53:22.470718+00:00\nduration: 2.268s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 19:15:48.204193+00:00\n+++ C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 22:53:24.316156+00:00\n@@ -690,13 +690,11 @@\n         return details\n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\nwould reformat C:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\nwould reformat C:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 19:15:48.204193+00:00\n+++ C:\\x_runner_x\\x_make_github_visitor_x\\runner.py\t2025-10-15 22:53:24.316156+00:00\n@@ -690,13 +690,11 @@\n         return details\n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T22:53:22.\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:25.608502+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.6459350999939488,
+                "ended_at": "2025-10-15T22:53:25.608502+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "f0f4ca2ead7cc3937328a8d2d26cb8db7dcf137683f9e10b039adb6dda9d5cf5",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-15T22:53:24.962563+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_github_visitor_x.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 2 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-15T22:53:24.962563+00:00\nduration: 0.646s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_github_visitor_x.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 2 errors in 2 files (checked 8 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_github_visitor_x.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nrunner.py:661: error: Expression type contains \"Any\" (has type \"dict[str, Any | None]\")  [misc]\nFound 2 errors in 2 files (checked 8 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:33.055214+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 1.1172532999989926,
+                "ended_at": "2025-10-15T22:53:33.055214+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "b3905c2bcf39058a0a1742662529d37763adfffbe39bf5e76c2a872d536861be",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-15T22:53:31.937960+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py\n  c:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py:19:6 - error: Import \"x_make_common_x.exporters\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-15T22:53:31.937960+00:00\nduration: 1.117s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py\n  c:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py:19:6 - error: Import \"x_make_common_x.exporters\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py\n  c:\\x_runner_x\\x_make_graphviz_x\\x_cls_make_graphviz_x.py:19:6 - error: Import \"x_make_common_x.exporters\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-15T22:53:31.937960+00:00 duration: 1.117s tool_version: pyrig\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:31.525063+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 0.2607732999967993,
+                "ended_at": "2025-10-15T22:53:31.525063+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "b3905c2bcf39058a0a1742662529d37763adfffbe39bf5e76c2a872d536861be",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-15T22:53:31.264305+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_graphviz_builder.py:55:5\n   |\n53 |     assert builder.get_last_export_result() is not None\n54 |     last = builder.get_last_export_result()\n55 |     assert last and last.succeeded is False\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_graphviz_builder.py:77:5\n   |\n75 |     assert svg_path.exists()\n76 |     last = builder.get_last_export_result()\n77 |     assert last and last.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nFound 3 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:31.264305+00:00\nduration: 0.261s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:30.230911+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 0.21815020000212826,
+                "ended_at": "2025-10-15T22:53:30.230911+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "b3905c2bcf39058a0a1742662529d37763adfffbe39bf5e76c2a872d536861be",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-15T22:53:30.012763+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_graphviz_builder.py:55:5\n   |\n53 |     assert builder.get_last_export_result() is not None\n54 |     last = builder.get_last_export_result()\n55 |     assert last and last.succeeded is False\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_graphviz_builder.py:77:5\n   |\n75 |     assert svg_path.exists()\n76 |     last = builder.get_last_export_result()\n77 |     assert last and last.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nFound 3 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:30.012763+00:00\nduration: 0.218s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_graphviz_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 sta\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:35.969489+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 1.0264565000034054,
+                "ended_at": "2025-10-15T22:53:35.969489+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "fb06e741857d60038bca4957452629c9a4164ff609e87ecfcc2f9e34c6407f56",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-15T22:53:34.943033+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 19:15:51.160943+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 22:53:35.840168+00:00\n@@ -71,10 +71,11 @@\n     monkeypatch.setattr(exporters, \"_resolve_binary\", _no_binary)\n \n     with pytest.raises(RuntimeError, match=\"binary not found\"):\n         builder.to_pdf(\"<html></html>\", str(tmp_path / \"out.pdf\"))\n \n+\n def test_to_pdf_invokes_shared_exporter(tmp_path: Path) -> None:\n     wkhtmltopdf = tmp_path / \"wkhtmltopdf.exe\"\n     wkhtmltopdf.write_text(\"binary\", encoding=\"utf-8\")\n \n     captured: dict[str, Sequence[str]] = {}\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T22:53:34.943033+00:00\nduration: 1.026s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 19:15:51.160943+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 22:53:35.840168+00:00\n@@ -71,10 +71,11 @@\n     monkeypatch.setattr(exporters, \"_resolve_binary\", _no_binary)\n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 19:15:51.160943+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\t2025-10-15 22:53:35.840168+00:00\n@@ -71,10 +71,11 @@\n     monkeypatch.setattr(exporters, \"_resolve_binary\", _no_binary)\n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T22:53:34.943033+00:00\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:36.236528+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.2638571999996202,
+                "ended_at": "2025-10-15T22:53:36.236528+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "fb06e741857d60038bca4957452629c9a4164ff609e87ecfcc2f9e34c6407f56",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-15T22:53:35.972671+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_markdown_builder.py:98:5\n   |\n96 |     assert builder.get_last_export_result() is not None\n97 |     last_result = builder.get_last_export_result()\n98 |     assert last_result and last_result.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n99 |     assert captured[\"command\"][-1].endswith(\"out.pdf\")\n   |\nhelp: Break down assertion into multiple parts\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:35.972671+00:00\nduration: 0.264s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:34.939521+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.22542040000553243,
+                "ended_at": "2025-10-15T22:53:34.939521+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "fb06e741857d60038bca4957452629c9a4164ff609e87ecfcc2f9e34c6407f56",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-15T22:53:34.714101+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_markdown_builder.py:98:5\n   |\n96 |     assert builder.get_last_export_result() is not None\n97 |     last_result = builder.get_last_export_result()\n98 |     assert last_result and last_result.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n99 |     assert captured[\"command\"][-1].endswith(\"out.pdf\")\n   |\nhelp: Break down assertion into multiple parts\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:34.714101+00:00\nduration: 0.225s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_markdown_builder.py:8:29\n   |\n 7 | import importlib\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 sta\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:41.191257+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 1.0067419000042719,
+                "ended_at": "2025-10-15T22:53:41.191257+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "68bc4ce276c78e2401cf636571e5d10c91679fd373e9eefa2739a28663c0860a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-15T22:53:40.184517+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.144127+00:00\n+++ C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.996030+00:00\n@@ -68,14 +68,18 @@\n         return CompletedProcess(list(command), 0, stdout=\"done\", stderr=\"\")\n \n     fake_cli = tmp_path / \"mmdc.exe\"\n     fake_cli.write_text(\"binary\", encoding=\"utf-8\")\n \n-    builder = MermaidBuilder(\n-        runner=runner,\n-        mermaid_cli=str(fake_cli),\n-    ).flowchart(\"LR\").node(\"A\", \"Start\")\n+    builder = (\n+        MermaidBuilder(\n+            runner=runner,\n+            mermaid_cli=str(fake_cli),\n+        )\n+        .flowchart(\"LR\")\n+        .node(\"A\", \"Start\")\n+    )\n     mmd_path = tmp_path / \"diagram.mmd\"\n     svg_path = tmp_path / \"diagram.svg\"\n \n     result = builder.to_svg(mmd_path=str(mmd_path), svg_path=str(svg_path))\n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-15T22:53:40.184517+00:00\nduration: 1.007s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7\nstdout:\n--- C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.144127+00:00\n+++ C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.996030+00:00\n@@ -68,14 +68,18 @@\n         return CompletedProcess(list(command), 0, stdout=\"done\", stderr=\"\")\n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 3 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.144127+00:00\n+++ C:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\t2025-10-15 22:53:40.996030+00:00\n@@ -68,14 +68,18 @@\n         return CompletedProcess(list(command), 0, stdout=\"done\", stderr=\"\")\n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-15T22:53:40.184517+00:00 d\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:41.462670+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 0.2679671000005328,
+                "ended_at": "2025-10-15T22:53:41.462670+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "68bc4ce276c78e2401cf636571e5d10c91679fd373e9eefa2739a28663c0860a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-15T22:53:41.194702+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nB904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling\n  --> tests\\test_mermaid_builder.py:65:13\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_mermaid_builder.py:65:19\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_mermaid_builder.py:65:34\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\nhelp: Assign to variable; remove string literal\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_mermaid_builder.py:88:5\n   |\n86 |     assert command[0] == str(fake_cli)\n87 |     last_result = builder.get_last_export_result()\n88 |     assert last_result and last_result.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nFound 5 errors.\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:41.194702+00:00\nduration: 0.268s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:40.180976+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 0.21455040000000736,
+                "ended_at": "2025-10-15T22:53:40.180976+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "68bc4ce276c78e2401cf636571e5d10c91679fd373e9eefa2739a28663c0860a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-15T22:53:39.966426+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n   |                             ^^^^^^^^\n 9 | from pathlib import Path\n10 | from subprocess import CompletedProcess\n   |\nhelp: Move into type-checking block\n\nB904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling\n  --> tests\\test_mermaid_builder.py:65:13\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_mermaid_builder.py:65:19\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_mermaid_builder.py:65:34\n   |\n63 |             out_index = command.index(\"-o\") + 1\n64 |         except ValueError:  # pragma: no cover - defensive guard\n65 |             raise AssertionError(\"-o flag missing from command\")\n   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n66 |         svg_target = Path(command[out_index])\n67 |         svg_target.write_text(\"<svg />\", encoding=\"utf-8\")\n   |\nhelp: Assign to variable; remove string literal\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_mermaid_builder.py:88:5\n   |\n86 |     assert command[0] == str(fake_cli)\n87 |     last_result = builder.get_last_export_result()\n88 |     assert last_result and last_result.succeeded is True\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   |\nhelp: Break down assertion into multiple parts\n\nFound 7 errors (2 fixed, 5 remaining).\nNo fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:39.966426+00:00\nduration: 0.215s\ntool_version: ruff 0.14.0\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n  --> tests\\test_mermaid_builder.py:8:29\n   |\n 7 | import subprocess\n 8 | from collections.abc import Sequence\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 start\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:54.607748+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.3016889999998966,
+                "ended_at": "2025-10-15T22:53:54.607748+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "573be7db32d15675bcd9c67c3d7672f9b928e15007ee408b8473e15a01585636",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T22:53:54.306061+00:00",
+                "stderr": "",
+                "stdout": "S101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n700 |     assert report_path is not None\n    |     ^^^^^^\n701 |     return published_versions, published_artifacts, report_path\n    |\n\nFound 1 error.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:54.306061+00:00\nduration: 0.302s\ntool_version: ruff 0.14.0\nstdout:\nS101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "S101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 202\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.0"
+        },
+        {
+            "captured_at": "2025-10-15T22:53:53.178179+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.24282169999787584,
+                "ended_at": "2025-10-15T22:53:53.178179+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "publish_flow.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "573be7db32d15675bcd9c67c3d7672f9b928e15007ee408b8473e15a01585636",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-15T22:53:52.935359+00:00",
+                "stderr": "",
+                "stdout": "S101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n700 |     assert report_path is not None\n    |     ^^^^^^\n701 |     return published_versions, published_artifacts, report_path\n    |\n\nFound 1 error.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.0"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-15T22:53:52.935359+00:00\nduration: 0.243s\ntool_version: ruff 0.14.0\nstdout:\nS101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "S101 Use of `assert` detected\n   --> publish_flow.py:700:5\n    |\n698 |                 typed_exc_dict = cast(\"dict[str, object]\", exc_dict_raw)\n699 |                 typed_exc_dict[\"run_report_path\"] = report_path\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at:\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.0"
+        }
+    ],
+    "generated_at": "2025-10-15T22:54:07.546374+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.22631-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-15T22:54:07.545983+00:00",
+        "run_started_at": "2025-10-15T22:52:50.306245+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 22,
+            "cache_misses": 48,
+            "failed_tools": 25,
+            "had_failures": true,
+            "total_tools_run": 70
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "636fc734e448d5104559eb3d85cd34de7198476a4b63f736558f8284c4ed5c22",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "3f2377486dd469d2c4151d592bf6bebad5c76e8cd23082e9afb01466cdff6453",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "cc97fafbcc480da07f5da6f3bf95b20b6477a3877b19257bb492c37a976161aa",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "d30992e7e3e8dce7b3326577bee3a64238aca80658eb8b4e9b083a2357a96320",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 5,
+                "repo_hash": "8b6c5fe1a6b862da65c1ab18e01328289ed7bdd42c284da45e61c5d3a355723d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "f0f4ca2ead7cc3937328a8d2d26cb8db7dcf137683f9e10b039adb6dda9d5cf5",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "b3905c2bcf39058a0a1742662529d37763adfffbe39bf5e76c2a872d536861be",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "fb06e741857d60038bca4957452629c9a4164ff609e87ecfcc2f9e34c6407f56",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "68bc4ce276c78e2401cf636571e5d10c91679fd373e9eefa2739a28663c0860a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "38624500e50d648701b39572aca2c5d8cd0420bb6d1e9513e212e3aa11078fe0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "2b203665e3cbb9fe26d8100566704cc7823a7966e72fb26a1d9b4f85d8b1c3f1",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "69ac171dd36d6f8621439bba6bbda0288c09f653e7c678ee9a0e834fe3609e6c",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "573be7db32d15675bcd9c67c3d7672f9b928e15007ee408b8473e15a01585636",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "d5b6324c3c161764524c550422f1e31cacffc452454eb0900e0d52ddd4106018",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-15T22:54:07.546446+00:00",
+        "total_repos": 14
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.13.7",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.0"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

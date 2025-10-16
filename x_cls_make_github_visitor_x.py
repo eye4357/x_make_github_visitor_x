@@ -224,6 +224,16 @@ def _json_ready(value: object) -> JSONValue:
     return str(value)
 
 
+def _dedupe_preserving_order(values: Iterable[str]) -> list[str]:
+    seen: set[str] = set()
+    unique: list[str] = []
+    for value in values:
+        if value not in seen:
+            seen.add(value)
+            unique.append(value)
+    return unique
+
+
 def _is_generated_build_dir(name: str) -> bool:
     return any(name.startswith(prefix) for prefix in GENERATED_BUILD_DIR_PREFIXES)
 
@@ -658,7 +668,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failed_files: Sequence[str],
     ) -> list[str]:
         if status == "failed" and failed_files:
-            return list(dict.fromkeys(failed_files))
+            return _dedupe_preserving_order(failed_files)
         return list(files_checked)
 
     def _build_event_details(
@@ -692,9 +702,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
     def _emit_tool_event(self, payload: _ToolEventPayload) -> None:
         duration_ms = self._event_duration_ms(payload.result)
         files_checked = self._collect_files_checked(payload)
-        failure_entries, failed_files_for_event = self._collect_failure_entries(
-            payload
-        )
+        failure_entries, failed_files_for_event = self._collect_failure_entries(payload)
         files_for_event = self._resolve_files_for_event(
             status=payload.status,
             files_checked=files_checked,

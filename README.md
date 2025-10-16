@@ -3,10 +3,10 @@
 > "I send this visitor ahead of every batch. If a repo can't meet the standard, it doesn't touch my table."
 
 ## Manifesto
-x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as JSON dossiers, and keeps the Road to 0.20.3 initiative brutally honest.
+x_make_github_visitor_x is the compliance auditor for every repository under my watch. It sequences Ruff, Black, MyPy, and Pyright with caching, reports failures as JSON dossiers, and keeps the Road to 0.20.4 initiative brutally honest.
 
-## 0.20.3 Command Sequence
-Version 0.20.3 injects per-file diagnostics into every telemetry payload. The visitor now emits `files_checked`, `failed_files`, and granular failure lines so the control room pinpoints contamination instantly. Follow this briefing and every inspection stays actionable; drift and you feel the fallout.
+## 0.20.4 Command Sequence
+Version 0.20.4 fuels the Static Gauntlet column. Visitor runs now roll their per-tool results into the orchestrator summary so the GUI reports pass/skip/fail counts without re-parsing logs. Cache hits log the same evidence, and when a tool bleeds out, the Kanban card lights up instantly.
 
 ## Ingredients
 - Python 3.11+
@@ -31,7 +31,7 @@ Version 0.20.3 injects per-file diagnostics into every telemetry payload. The vi
 
 ## Distribution Chain
 - [Changelog](./CHANGELOG.md)
-- [Road to 0.20.3 Control Room Ledger](../x_0_make_all_x/Change%20Control/0.20.3/Road%20to%200.20.3%20Engineering%20Proposal.md)
+- [Road to 0.20.4 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.4/Road%20to%200.20.4%20Engineering%20Proposal.md)
 - [Road to 0.20.3 Engineering Proposal](../x_0_make_all_x/Change%20Control/0.20.3/Road%20to%200.20.3%20Engineering%20Proposal.md)
 
 ## Cross-Linked Intelligence
