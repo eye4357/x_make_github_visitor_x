@@ -1,0 +1,627 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-18T01:27:00.104999+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 1.0989749000000302,
+                "ended_at": "2025-10-18T01:27:00.104999+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "6974ac5024399fae02681a067a89c31deb21d1173f0eef44716732bef6f6063e",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T01:26:59.006025+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\nFound 5 errors in 1 file (checked 4 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-18T01:26:59.006025+00:00\nduration: 1.099s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unr\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-18T01:27:02.648313+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 2.5397292999996353,
+                "ended_at": "2025-10-18T01:27:02.648313+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "6974ac5024399fae02681a067a89c31deb21d1173f0eef44716732bef6f6063e",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T01:27:00.108585+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T01:27:00.108585+00:00\nduration: 2.540s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-18T01:27:00.108585+00:00 duration: 2.540s\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T01:26:59.002735+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.13418179999916902,
+                "ended_at": "2025-10-18T01:26:59.002735+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "6974ac5024399fae02681a067a89c31deb21d1173f0eef44716732bef6f6063e",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T01:26:58.868551+00:00",
+                "stderr": "",
+                "stdout": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n260 |     def run_gui(self) -> int:\n    |         ^^^^^^^\n261 |         values = _open_gui_and_collect(self.tokens, ctx=self._ctx, quiet=self.quiet)\n262 |         if values is None or all(not val for val in values.values()):\n    |\n\nARG001 Unused function argument: `quiet`\n   --> x_cls_make_persistent_env_var_x.py:305:33\n    |\n304 | def _prompt_for_values(\n305 |     tokens: Sequence[Token], *, quiet: bool\n    |                                 ^^^^^\n306 | ) -> dict[str, str] | None:\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_persistent_env_var_x.py:309:89\n    |\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n308 |     print(\n309 |         \"Provide secrets for each token. Leave blank to skip and keep existing user-scoped values.\"\n    |                                                                                         ^^^^^^^^^^^\n310 |     )\n311 |     collected: dict[str, str] = {}\n    |\n\nC901 `_build_gui_parts` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:341:5\n    |\n341 | def _build_gui_parts(\n    |     ^^^^^^^^^^^^^^^^\n342 |     tk_mod: ModuleType,\n343 |     tokens: Sequence[Token],\n    |\n\nFound 4 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T01:26:58.868551+00:00\nduration: 0.134s\ntool_version: ruff 0.14.1\nstdout:\nC901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.1"
+        },
+        {
+            "captured_at": "2025-10-18T01:26:57.501058+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.23541860000023007,
+                "ended_at": "2025-10-18T01:26:57.501058+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "6974ac5024399fae02681a067a89c31deb21d1173f0eef44716732bef6f6063e",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T01:26:57.265627+00:00",
+                "stderr": "",
+                "stdout": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n260 |     def run_gui(self) -> int:\n    |         ^^^^^^^\n261 |         values = _open_gui_and_collect(self.tokens, ctx=self._ctx, quiet=self.quiet)\n262 |         if values is None or all(not val for val in values.values()):\n    |\n\nARG001 Unused function argument: `quiet`\n   --> x_cls_make_persistent_env_var_x.py:305:33\n    |\n304 | def _prompt_for_values(\n305 |     tokens: Sequence[Token], *, quiet: bool\n    |                                 ^^^^^\n306 | ) -> dict[str, str] | None:\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_persistent_env_var_x.py:309:89\n    |\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n308 |     print(\n309 |         \"Provide secrets for each token. Leave blank to skip and keep existing user-scoped values.\"\n    |                                                                                         ^^^^^^^^^^^\n310 |     )\n311 |     collected: dict[str, str] = {}\n    |\n\nC901 `_build_gui_parts` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:341:5\n    |\n341 | def _build_gui_parts(\n    |     ^^^^^^^^^^^^^^^^\n342 |     tk_mod: ModuleType,\n343 |     tokens: Sequence[Token],\n    |\n\nFound 4 errors.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T01:26:57.265627+00:00\nduration: 0.235s\ntool_version: ruff 0.14.1\nstdout:\nC901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.1"
+        }
+    ],
+    "generated_at": "2025-10-18T01:27:23.958025+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-18T01:27:23.957768+00:00",
+        "run_started_at": "2025-10-18T01:26:11.796214+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 0,
+            "cache_misses": 60,
+            "failed_tools": 4,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "4051263d074d55f34f3ae1d43d7d054f9c145b940c62de694c3f6af7e93b506a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "36858249c2f13f44bb8cb89b80a476a88f84dcc2fb29426f5b5ac6bb94868fe6",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5ce84ddd1db443d97d10a63319ed8bd393797f6342147301ca406ac7e0646608",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5ac48ca54db3328b7c696a6184e76c1dfdda35ea1aad29fca026f4d6a229f210",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b5e51e92c312f68405942afaa6988ec4c8bc620465cc25ed446642dfe94ee245",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "38f1de9d4f226c40677248f8b3756d7b3b573c6929c2ea68f5129f7bbd180937",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "6ffbbca9a59767373ea0cd7977c9a83087dc3930351953e5bd0fa2434db0beef",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "6974ac5024399fae02681a067a89c31deb21d1173f0eef44716732bef6f6063e",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "3696e1da32abfc21872b69d1016a35d2a88b1e62e10921cfd703d0c87a5165b4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "7d146789bf80c5d17b85cbcc3f53cf7e0dfb71f0fd44b8b8193a7332abad7c56",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f7a3652c86d423d59676a87d7bf14d3f9ef75f06a696000a8226d81346a40d5a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "2c0c6949103526708629ab50ea69fc21c645ea0793d5dc8bda22da6316874c49",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-18T01:27:23.958055+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

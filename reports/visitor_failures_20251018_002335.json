@@ -1,0 +1,595 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-18T00:23:10.839507+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 1.5453024000007645,
+                "ended_at": "2025-10-18T00:23:10.839507+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "f318a97c42048977974362a5b44e747ec1af87497730bae0060f8bb7a38553a4",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T00:23:09.294206+00:00",
+                "stderr": "",
+                "stdout": "C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:239: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:240: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:241: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:242: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:248: error: Returning Any from function declared to return \"int\"  [no-any-return]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:248: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:275: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:276: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:277: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:279: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:280: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:281: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:282: error: Expression has type \"Any\"  [misc]\ninterface\\gui\\commit.py:9: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"HttpClient\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"HttpError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:526: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:528: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:529: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:530: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:531: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:534: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:703: error: Argument 1 to \"_candidate_release_available\" becomes \"Any\" due to an unfollowed import  [no-any-unimported]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:713: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:714: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:728: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:729: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:736: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:740: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:741: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:774: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:784: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:816: error: Expression has type \"Any\"  [misc]\nFound 36 errors in 2 files (checked 18 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-18T00:23:09.294206+00:00\nduration: 1.545s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:239: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:240: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:239: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:240: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-18T00:23:15.094423+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 4.251091400000405,
+                "ended_at": "2025-10-18T00:23:15.094423+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "f318a97c42048977974362a5b44e747ec1af87497730bae0060f8bb7a38553a4",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T00:23:10.843333+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T00:23:10.843333+00:00\nduration: 4.251s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-18T00:23:10.843333+00:00 duration: 4.251\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T00:23:30.290792+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 2.2479915999992954,
+                "ended_at": "2025-10-18T00:23:30.290792+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "389c40a9efed1063d3bcf2a29b261f940db562c15717a1fc8e0c1476204f9a26",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-18T00:23:28.042800+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n2 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T00:23:28.042800+00:00\nduration: 2.248s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n2 errors, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-18T00:23:28.042800+00:00 dur\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        }
+    ],
+    "generated_at": "2025-10-18T00:23:35.848565+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-18T00:23:35.848261+00:00",
+        "run_started_at": "2025-10-18T00:23:05.999845+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 40,
+            "cache_misses": 20,
+            "failed_tools": 3,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "f318a97c42048977974362a5b44e747ec1af87497730bae0060f8bb7a38553a4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a42f884fe25a30a567aceff76a3cbd8f2b7a901abb17dcb22cca3a52a65b79c7",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "0f2cf1a3805583ffe208a425b71515ee9ad704f2dfdd6d704258ac1d2a301dad",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "17491db0949d1e40e843c81767e6b6288331a865a010ef72513923a0c6d96302",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "613618dda75f19ae47107ff5cd8d389a0dfe0dd07b8f727e9cc7faaecd91174f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "895de21858a8d603b84d1d137a0c400b3db55c0559c1b3751e4598687d5e02a8",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "89cd5374051c713a494f5ff4a8a6f0d47122556590baef76c23ed11026d6dc4f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "3ad94b941cc685774d8546704b32edc734474f33a6d8ad9ef31b47eaa2bffddd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "389c40a9efed1063d3bcf2a29b261f940db562c15717a1fc8e0c1476204f9a26",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "6e43ac0bd28aa96e386c9bec43b51de615f2bcb470aa2628961c137d649b675d",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "9f6bb7c41220e60d845d15eb466742f51d1a2c0b2dd02764e5932ce967b40a0b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "22fec1e5293c375d2c85a6a9321fdb2ef283d4e2443adae053c7427e8b4f09f0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-18T00:23:35.848597+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

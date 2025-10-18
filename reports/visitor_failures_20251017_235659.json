@@ -1,0 +1,533 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-17T23:56:45.578343+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 1.0665863999997782,
+                "ended_at": "2025-10-17T23:56:45.578343+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "edc7bdf245ee32c036cdbb0cd6e28927010f126cc2b6609076f7b31e1b669f73",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-17T23:56:44.511758+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-17T23:56:44.511758+00:00\nduration: 1.067s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-retu\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-17T23:56:54.417080+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 1.1047883999999613,
+                "ended_at": "2025-10-17T23:56:54.417080+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "55c4064299ab11e446e52406806f777e63b10a8c46b67c32e9c63e198029dc79",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-17T23:56:53.312292+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:389: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:394: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:397: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:397: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nx_cls_make_graphviz_x.py:398: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:406: error: Return type becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:407: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:428: error: Expression type contains \"Any\" (has type \"type[GraphvizBuilder]\")  [misc]\ntests\\test_graphviz_builder.py:54: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:55: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:56: error: Expression has type \"Any\"  [misc]\ntests\\test_graphviz_builder.py:77: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:78: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:79: error: Expression has type \"Any\"  [misc]\nFound 18 errors in 2 files (checked 3 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-17T23:56:53.312292+00:00\nduration: 1.105s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --w\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        }
+    ],
+    "generated_at": "2025-10-17T23:56:59.314394+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-17T23:56:59.314012+00:00",
+        "run_started_at": "2025-10-17T23:56:35.468358+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 47,
+            "cache_misses": 13,
+            "failed_tools": 2,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a7bf2db628a2622814296f4f4ab93361f05766099d5627f2d2acc25cf66230d4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a42f884fe25a30a567aceff76a3cbd8f2b7a901abb17dcb22cca3a52a65b79c7",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 4,
+                "failed": 1,
+                "repo_hash": "edc7bdf245ee32c036cdbb0cd6e28927010f126cc2b6609076f7b31e1b669f73",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "4b985e2eda7e49b90bf59cf4d2cb997fc6363afde8f61590462bc5fe7dff2f3d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 4,
+                "failed": 1,
+                "repo_hash": "55c4064299ab11e446e52406806f777e63b10a8c46b67c32e9c63e198029dc79",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "895de21858a8d603b84d1d137a0c400b3db55c0559c1b3751e4598687d5e02a8",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "89cd5374051c713a494f5ff4a8a6f0d47122556590baef76c23ed11026d6dc4f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "3ad94b941cc685774d8546704b32edc734474f33a6d8ad9ef31b47eaa2bffddd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "95544823dd4b6fc54af1c9b874bc2b12d517157478120c685f58a0c757c632aa",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "6e43ac0bd28aa96e386c9bec43b51de615f2bcb470aa2628961c137d649b675d",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "45a70627f32cf9765698cbf747629fbe48536e1c7be0b12fd0fafb850f215e52",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 4,
+                "failed": 0,
+                "repo_hash": "22fec1e5293c375d2c85a6a9321fdb2ef283d4e2443adae053c7427e8b4f09f0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-17T23:56:59.314435+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

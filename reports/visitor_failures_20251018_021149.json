@@ -1,0 +1,958 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-18T02:11:25.296586+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 3.4528609000008146,
+                "ended_at": "2025-10-18T02:11:25.296586+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T02:11:21.843725+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\nwould reformat C:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 17 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:04:30.533306+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:11:23.310223+00:00\n@@ -72,11 +72,13 @@\n     make_all.main([\"--no-gui\"])\n \n     assert not commit_calls\n \n \n-def test_main_does_not_commit_when_orchestrator_fails(monkeypatch, tmp_path: Path) -> None:\n+def test_main_does_not_commit_when_orchestrator_fails(\n+    monkeypatch, tmp_path: Path\n+) -> None:\n     repo_root = tmp_path\n     commit_calls: list[tuple[Path, str]] = []\n \n     class FailingOrchestrator(_OrchestratorHarness):\n         def __init__(self) -> None:\n--- C:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\t2025-10-18 02:04:30.365725+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\t2025-10-18 02:11:25.010101+00:00\n@@ -1751,11 +1751,15 @@\n                     for result in commit_results\n                     if result.commit_return_code != 0\n                 )\n                 if failed_results:\n                     for failure in failed_results:\n-                        summary = failure.stderr or failure.stdout or \"no commit output captured\"\n+                        summary = (\n+                            failure.stderr\n+                            or failure.stdout\n+                            or \"no commit output captured\"\n+                        )\n                         _error(f\"Commit sweep failed for {failure.name}:\", summary)\n                     commit_error = RuntimeError(\n                         \"Commit sweep encountered one or more failures.\"\n                     )\n                 else:\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-18T02:11:21.843725+00:00\nduration: 3.453s\ntool_version: python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:04:30.533306+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:11:23.310223+00:00\n@@ -72,11 +72,13 @@\n     make_all.main([\"--no-gui\"])\n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\nwould reformat C:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 17 files would be left unchanged.",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\nwould reformat C:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 17 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:04:30.533306+00:00\n+++ C:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\t2025-10-18 02:11:23.310223+00:00\n@@ -72,11 +72,13 @@\n     make_all.main([\"--no-gui\"])\n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-18T02:11:21.843725+00:00 durat\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:26.367520+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.924897000000783,
+                "ended_at": "2025-10-18T02:11:26.367520+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T02:11:25.442624+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_all_x.py:1739: error: Argument 2 to \"commit_all_repositories\" has incompatible type \"str | None\"; expected \"str\"  [arg-type]\ntests\\test_make_all_commit_cli.py:21: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:28: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\ntests\\test_make_all_commit_cli.py:28: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:48: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:49: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:49: error: Expression type contains \"Any\" (has type \"Callable[[Path, str, DefaultNamedArg(Any, 'log')], Any]\")  [misc]\ntests\\test_make_all_commit_cli.py:57: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:65: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:65: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:65: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\ntests\\test_make_all_commit_cli.py:65: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:69: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:70: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:70: error: Expression type contains \"Any\" (has type \"Callable[[Path, str, DefaultNamedArg(Any, 'log')], Any]\")  [misc]\ntests\\test_make_all_commit_cli.py:77: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:88: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:88: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:88: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\ntests\\test_make_all_commit_cli.py:88: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:92: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:93: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:93: error: Expression type contains \"Any\" (has type \"Callable[[Path, str, DefaultNamedArg(Any, 'log')], Any]\")  [misc]\ntests\\test_make_all_commit_cli.py:101: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:110: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:110: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:110: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\ntests\\test_make_all_commit_cli.py:110: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:122: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:123: error: Expression has type \"Any\"  [misc]\ntests\\test_make_all_commit_cli.py:123: error: Expression type contains \"Any\" (has type \"Callable[[Path, str, DefaultNamedArg(Any, 'log')], Any]\")  [misc]\ntests\\test_make_all_commit_cli.py:128: error: \"None\" has no attribute \"value\"  [attr-defined]\ntests\\test_make_all_commit_cli.py:128: error: Expression has type \"Any\"  [misc]\nFound 31 errors in 2 files (checked 19 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-18T02:11:25.442624+00:00\nduration: 0.925s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_all_x.py:1739: error: Argument 2 to \"commit_all_repositories\" has incompatible type \"str | None\"; expected \"str\"  [arg-type]\ntests\\test_make_all_commit_cli.py:21: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:28: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_all_x.py:1739: error: Argument 2 to \"commit_all_repositories\" has incompatible type \"str | None\"; expected \"str\"  [arg-type]\ntests\\test_make_all_commit_cli.py:21: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_make_all_commit_cli.py:28: error: Function is missing a return type annotation  [no-untyped-def]\ntests\\test_make_all_commit_cli.py:28: note: Error code \"no-untyped-def\" not covered by \"type: ignore\" comment\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:29.715271+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 3.344052099999317,
+                "ended_at": "2025-10-18T02:11:29.715271+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T02:11:26.371220+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\n  c:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py:128:76 - error: Cannot access attribute \"value\" for class \"None\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"value\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T02:11:26.371220+00:00\nduration: 3.344s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\n  c:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py:128:76 - error: Cannot access attribute \"value\" for class \"None\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"value\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py\n  c:\\x_runner_x\\x_0_make_all_x\\tests\\test_make_all_commit_cli.py:128:76 - error: Cannot access attribute \"value\" for class \"None\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"value\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-18T02:11:26.371220+00:00 duration: 3.344s tool_version: pyright 1.1\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:25.436894+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.13621240000065882,
+                "ended_at": "2025-10-18T02:11:25.436894+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T02:11:25.300683+00:00",
+                "stderr": "",
+                "stdout": "ANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n22 |     repo_root = tmp_path\n23 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:28:9\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:28:50\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:28:50\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:53:5\n   |\n51 |     make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n52 |\n53 |     assert instances and instances[0].run_called\n   |     ^^^^^^\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_make_all_commit_cli.py:53:5\n   |\n51 |     make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n52 |\n53 |     assert instances and instances[0].run_called\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |\nhelp: Break down assertion into multiple parts\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:54:5\n   |\n53 |     assert instances and instances[0].run_called\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:57:41\n   |\n57 | def test_main_skips_commit_without_flag(monkeypatch, tmp_path: Path) -> None:\n   |                                         ^^^^^^^^^^^\n58 |     repo_root = tmp_path\n59 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:65:9\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:65:50\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:65:50\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:74:5\n   |\n72 |     make_all.main([\"--no-gui\"])\n73 |\n74 |     assert not commit_calls\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:77:55\n   |\n77 | def test_main_does_not_commit_when_orchestrator_fails(monkeypatch, tmp_path: Path) -> None:\n   |                                                       ^^^^^^^^^^^\n78 |     repo_root = tmp_path\n79 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nE501 Line too long (91 > 88)\n  --> tests\\test_make_all_commit_cli.py:77:89\n   |\n77 | def test_main_does_not_commit_when_orchestrator_fails(monkeypatch, tmp_path: Path) -> None:\n   |                                                                                         ^^^\n78 |     repo_root = tmp_path\n79 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_make_all_commit_cli.py:86:19\n   |\n85 |         def run(self) -> None:\n86 |             raise RuntimeError(\"orchestrator exploded\")\n   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_make_all_commit_cli.py:86:32\n   |\n85 |         def run(self) -> None:\n86 |             raise RuntimeError(\"orchestrator exploded\")\n   |                                ^^^^^^^^^^^^^^^^^^^^^^^\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |\nhelp: Assign to variable; remove string literal\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:88:9\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:88:50\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:88:50\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:98:5\n   |\n96 |         make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n97 |\n98 |     assert not commit_calls\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n   --> tests\\test_make_all_commit_cli.py:101:46\n    |\n101 | def test_main_raises_when_commit_sweep_fails(monkeypatch, tmp_path: Path) -> None:\n    |                                              ^^^^^^^^^^^\n102 |     repo_root = tmp_path\n103 |     repo_path = repo_root / \"alpha\"\n    |\n\nANN202 Missing return type annotation for private function `fake_commit`\n   --> tests\\test_make_all_commit_cli.py:110:9\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |         ^^^^^^^^^^^\n111 |         return (\n112 |             CommitResult(\n    |\nhelp: Add return type annotation\n\nARG001 Unused function argument: `root`\n   --> tests\\test_make_all_commit_cli.py:110:21\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                     ^^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nARG001 Unused function argument: `message`\n   --> tests\\test_make_all_commit_cli.py:110:33\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                 ^^^^^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nANN001 Missing type annotation for function argument `log`\n   --> tests\\test_make_all_commit_cli.py:110:50\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                                  ^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nARG001 Unused function argument: `log`\n   --> tests\\test_make_all_commit_cli.py:110:50\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                                  ^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_make_all_commit_cli.py:128:5\n    |\n126 |         make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n127 |\n128 |     assert \"Commit sweep encountered one or more failures.\" in str(excinfo.value)\n    |     ^^^^^^\n    |\n\nE501 Line too long (97 > 88)\n    --> x_cls_make_all_x.py:1603:89\n     |\n1601 |         metavar=\"MESSAGE\",\n1602 |         help=(\n1603 |             \"Stage and commit every repository with MESSAGE once the orchestrator run completes.\"\n     |                                                                                         ^^^^^^^^^\n1604 |         ),\n1605 |     )\n     |\n\nC901 `main` is too complex (13 > 10)\n    --> x_cls_make_all_x.py:1716:5\n     |\n1715 | # Keep main using the class-based orchestrator\n1716 | def main(argv: Sequence[str] | None = None) -> None:\n     |     ^^^^\n1717 |     args = _parse_cli_args(argv or sys.argv[1:])\n1718 |     orchestrator = MakeAllOrchestrator()\n     |\n\nPLR0912 Too many branches (13 > 12)\n    --> x_cls_make_all_x.py:1716:5\n     |\n1715 | # Keep main using the class-based orchestrator\n1716 | def main(argv: Sequence[str] | None = None) -> None:\n     |     ^^^^\n1717 |     args = _parse_cli_args(argv or sys.argv[1:])\n1718 |     orchestrator = MakeAllOrchestrator()\n     |\n\nE501 Line too long (97 > 88)\n    --> x_cls_make_all_x.py:1756:89\n     |\n1754 |                 if failed_results:\n1755 |                     for failure in failed_results:\n1756 |                         summary = failure.stderr or failure.stdout or \"no commit output captured\"\n     |                                                                                         ^^^^^^^^^\n1757 |                         _error(f\"Commit sweep failed for {failure.name}:\", summary)\n1758 |                     commit_error = RuntimeError(\n     |\n\nFound 31 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T02:11:25.300683+00:00\nduration: 0.136s\ntool_version: ruff 0.14.1\nstdout:\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "ANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_at: 2\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.1"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:21.836136+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 0.1453163999995013,
+                "ended_at": "2025-10-18T02:11:21.836136+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_commit_cli.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T02:11:21.690819+00:00",
+                "stderr": "",
+                "stdout": "ANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n22 |     repo_root = tmp_path\n23 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:28:9\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:28:50\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:28:50\n   |\n26 |     repo_path.mkdir()\n27 |\n28 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n29 |         commit_calls.append((Path(root), message))\n30 |         return (\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:53:5\n   |\n51 |     make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n52 |\n53 |     assert instances and instances[0].run_called\n   |     ^^^^^^\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |\n\nPT018 Assertion should be broken down into multiple parts\n  --> tests\\test_make_all_commit_cli.py:53:5\n   |\n51 |     make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n52 |\n53 |     assert instances and instances[0].run_called\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |\nhelp: Break down assertion into multiple parts\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:54:5\n   |\n53 |     assert instances and instances[0].run_called\n54 |     assert commit_calls == [(repo_root.resolve(), \"Lab sweep\")]\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:57:41\n   |\n57 | def test_main_skips_commit_without_flag(monkeypatch, tmp_path: Path) -> None:\n   |                                         ^^^^^^^^^^^\n58 |     repo_root = tmp_path\n59 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:65:9\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:65:50\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:65:50\n   |\n63 |             super().__init__(repo_root)\n64 |\n65 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n66 |         commit_calls.append((Path(root), message))\n67 |         return ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:74:5\n   |\n72 |     make_all.main([\"--no-gui\"])\n73 |\n74 |     assert not commit_calls\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:77:55\n   |\n77 | def test_main_does_not_commit_when_orchestrator_fails(monkeypatch, tmp_path: Path) -> None:\n   |                                                       ^^^^^^^^^^^\n78 |     repo_root = tmp_path\n79 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nE501 Line too long (91 > 88)\n  --> tests\\test_make_all_commit_cli.py:77:89\n   |\n77 | def test_main_does_not_commit_when_orchestrator_fails(monkeypatch, tmp_path: Path) -> None:\n   |                                                                                         ^^^\n78 |     repo_root = tmp_path\n79 |     commit_calls: list[tuple[Path, str]] = []\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_make_all_commit_cli.py:86:19\n   |\n85 |         def run(self) -> None:\n86 |             raise RuntimeError(\"orchestrator exploded\")\n   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_make_all_commit_cli.py:86:32\n   |\n85 |         def run(self) -> None:\n86 |             raise RuntimeError(\"orchestrator exploded\")\n   |                                ^^^^^^^^^^^^^^^^^^^^^^^\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |\nhelp: Assign to variable; remove string literal\n\nANN202 Missing return type annotation for private function `fake_commit`\n  --> tests\\test_make_all_commit_cli.py:88:9\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |         ^^^^^^^^^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\nhelp: Add return type annotation\n\nANN001 Missing type annotation for function argument `log`\n  --> tests\\test_make_all_commit_cli.py:88:50\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\n\nARG001 Unused function argument: `log`\n  --> tests\\test_make_all_commit_cli.py:88:50\n   |\n86 |             raise RuntimeError(\"orchestrator exploded\")\n87 |\n88 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n   |                                                  ^^^\n89 |         commit_calls.append((Path(root), message))\n90 |         return ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_make_all_commit_cli.py:98:5\n   |\n96 |         make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n97 |\n98 |     assert not commit_calls\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `monkeypatch`\n   --> tests\\test_make_all_commit_cli.py:101:46\n    |\n101 | def test_main_raises_when_commit_sweep_fails(monkeypatch, tmp_path: Path) -> None:\n    |                                              ^^^^^^^^^^^\n102 |     repo_root = tmp_path\n103 |     repo_path = repo_root / \"alpha\"\n    |\n\nANN202 Missing return type annotation for private function `fake_commit`\n   --> tests\\test_make_all_commit_cli.py:110:9\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |         ^^^^^^^^^^^\n111 |         return (\n112 |             CommitResult(\n    |\nhelp: Add return type annotation\n\nARG001 Unused function argument: `root`\n   --> tests\\test_make_all_commit_cli.py:110:21\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                     ^^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nARG001 Unused function argument: `message`\n   --> tests\\test_make_all_commit_cli.py:110:33\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                 ^^^^^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nANN001 Missing type annotation for function argument `log`\n   --> tests\\test_make_all_commit_cli.py:110:50\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                                  ^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nARG001 Unused function argument: `log`\n   --> tests\\test_make_all_commit_cli.py:110:50\n    |\n108 |             super().__init__(repo_root)\n109 |\n110 |     def fake_commit(root: Path, message: str, *, log=None):  # type: ignore[override]\n    |                                                  ^^^\n111 |         return (\n112 |             CommitResult(\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_make_all_commit_cli.py:128:5\n    |\n126 |         make_all.main([\"--commit-all\", \"Lab sweep\", \"--no-gui\"])\n127 |\n128 |     assert \"Commit sweep encountered one or more failures.\" in str(excinfo.value)\n    |     ^^^^^^\n    |\n\nE501 Line too long (97 > 88)\n    --> x_cls_make_all_x.py:1603:89\n     |\n1601 |         metavar=\"MESSAGE\",\n1602 |         help=(\n1603 |             \"Stage and commit every repository with MESSAGE once the orchestrator run completes.\"\n     |                                                                                         ^^^^^^^^^\n1604 |         ),\n1605 |     )\n     |\n\nC901 `main` is too complex (13 > 10)\n    --> x_cls_make_all_x.py:1716:5\n     |\n1715 | # Keep main using the class-based orchestrator\n1716 | def main(argv: Sequence[str] | None = None) -> None:\n     |     ^^^^\n1717 |     args = _parse_cli_args(argv or sys.argv[1:])\n1718 |     orchestrator = MakeAllOrchestrator()\n     |\n\nPLR0912 Too many branches (13 > 12)\n    --> x_cls_make_all_x.py:1716:5\n     |\n1715 | # Keep main using the class-based orchestrator\n1716 | def main(argv: Sequence[str] | None = None) -> None:\n     |     ^^^^\n1717 |     args = _parse_cli_args(argv or sys.argv[1:])\n1718 |     orchestrator = MakeAllOrchestrator()\n     |\n\nE501 Line too long (97 > 88)\n    --> x_cls_make_all_x.py:1756:89\n     |\n1754 |                 if failed_results:\n1755 |                     for failure in failed_results:\n1756 |                         summary = failure.stderr or failure.stdout or \"no commit output captured\"\n     |                                                                                         ^^^^^^^^^\n1757 |                         _error(f\"Commit sweep failed for {failure.name}:\", summary)\n1758 |                     commit_error = RuntimeError(\n     |\n\nFound 31 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T02:11:21.690819+00:00\nduration: 0.145s\ntool_version: ruff 0.14.1\nstdout:\nANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "ANN001 Missing type annotation for function argument `monkeypatch`\n  --> tests\\test_make_all_commit_cli.py:21:45\n   |\n21 | def test_main_runs_commit_when_flag_present(monkeypatch, tmp_path: Path) -> None:\n   |                                             ^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311 started_a\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.1"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:43.031404+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.7079465000006167,
+                "ended_at": "2025-10-18T02:11:43.031404+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "c000e00f8e6a5b57b7518295ed460d4de456de9118f39b4f5f7597cdd9dd1822",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T02:11:42.323459+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\nFound 5 errors in 1 file (checked 4 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-18T02:11:42.323459+00:00\nduration: 0.708s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_persistent_env_var_x.py:369: error: \"TkFrame\" has no attribute \"grid_columnconfigure\"  [attr-defined]\nx_cls_make_persistent_env_var_x.py:397: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:398: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:399: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unr\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:45.200560+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 2.163354399999662,
+                "ended_at": "2025-10-18T02:11:45.200560+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "c000e00f8e6a5b57b7518295ed460d4de456de9118f39b4f5f7597cdd9dd1822",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T02:11:43.037206+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T02:11:43.037206+00:00\nduration: 2.163s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n  c:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py:369:15 - error: Cannot access attribute \"grid_columnconfigure\" for class \"TkFrame\"\n  \u00c2\u00a0\u00c2\u00a0Attribute \"grid_columnconfigure\" is unknown (reportAttributeAccessIssue)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-18T02:11:43.037206+00:00 duration: 2.163s\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:42.320142+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.14493140000013227,
+                "ended_at": "2025-10-18T02:11:42.320142+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "c000e00f8e6a5b57b7518295ed460d4de456de9118f39b4f5f7597cdd9dd1822",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T02:11:42.175213+00:00",
+                "stderr": "",
+                "stdout": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n260 |     def run_gui(self) -> int:\n    |         ^^^^^^^\n261 |         values = _open_gui_and_collect(self.tokens, ctx=self._ctx, quiet=self.quiet)\n262 |         if values is None or all(not val for val in values.values()):\n    |\n\nARG001 Unused function argument: `quiet`\n   --> x_cls_make_persistent_env_var_x.py:305:33\n    |\n304 | def _prompt_for_values(\n305 |     tokens: Sequence[Token], *, quiet: bool\n    |                                 ^^^^^\n306 | ) -> dict[str, str] | None:\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_persistent_env_var_x.py:309:89\n    |\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n308 |     print(\n309 |         \"Provide secrets for each token. Leave blank to skip and keep existing user-scoped values.\"\n    |                                                                                         ^^^^^^^^^^^\n310 |     )\n311 |     collected: dict[str, str] = {}\n    |\n\nC901 `_build_gui_parts` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:341:5\n    |\n341 | def _build_gui_parts(\n    |     ^^^^^^^^^^^^^^^^\n342 |     tk_mod: ModuleType,\n343 |     tokens: Sequence[Token],\n    |\n\nFound 4 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T02:11:42.175213+00:00\nduration: 0.145s\ntool_version: ruff 0.14.1\nstdout:\nC901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.1"
+        },
+        {
+            "captured_at": "2025-10-18T02:11:40.937026+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.12259310000081314,
+                "ended_at": "2025-10-18T02:11:40.937026+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "c000e00f8e6a5b57b7518295ed460d4de456de9118f39b4f5f7597cdd9dd1822",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-18T02:11:40.814433+00:00",
+                "stderr": "",
+                "stdout": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n260 |     def run_gui(self) -> int:\n    |         ^^^^^^^\n261 |         values = _open_gui_and_collect(self.tokens, ctx=self._ctx, quiet=self.quiet)\n262 |         if values is None or all(not val for val in values.values()):\n    |\n\nARG001 Unused function argument: `quiet`\n   --> x_cls_make_persistent_env_var_x.py:305:33\n    |\n304 | def _prompt_for_values(\n305 |     tokens: Sequence[Token], *, quiet: bool\n    |                                 ^^^^^\n306 | ) -> dict[str, str] | None:\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_persistent_env_var_x.py:309:89\n    |\n307 |     print(\"GUI unavailable. Falling back to console prompts.\")\n308 |     print(\n309 |         \"Provide secrets for each token. Leave blank to skip and keep existing user-scoped values.\"\n    |                                                                                         ^^^^^^^^^^^\n310 |     )\n311 |     collected: dict[str, str] = {}\n    |\n\nC901 `_build_gui_parts` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:341:5\n    |\n341 | def _build_gui_parts(\n    |     ^^^^^^^^^^^^^^^^\n342 |     tk_mod: ModuleType,\n343 |     tokens: Sequence[Token],\n    |\n\nFound 4 errors.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.1"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-18T02:11:40.814433+00:00\nduration: 0.123s\ntool_version: ruff 0.14.1\nstdout:\nC901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "C901 `run_gui` is too complex (11 > 10)\n   --> x_cls_make_persistent_env_var_x.py:260:9\n    |\n258 |         return summaries, ok_all\n259 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.1"
+        }
+    ],
+    "generated_at": "2025-10-18T02:11:49.263451+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-18T02:11:49.263118+00:00",
+        "run_started_at": "2025-10-18T02:11:20.978873+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 44,
+            "cache_misses": 16,
+            "failed_tools": 9,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 5,
+                "repo_hash": "d9c5ab8d463a99d67134a78e055387b8b47646efb597a1b6ee9da1b18a072043",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "7232ed0af3eb64583ed0b04403057f039816c63032b6a642feddbd147469390c",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "c7bd35ce9f6b949290d1125aef80f856956c5d3599167c0f82f6bbf1cf21bc4f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5792fcb1fe492f3f48d26b0da82c70c404823e1f82e4d493bc84197db4038717",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a471728626d474e8fbcab5a1e81ec31c8c71f951ff266f91f2122b3d5de7b018",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "428701d00335d7acfefeb123bf228e450334bbdb942fbfc53928a7231a652849",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "750bbb1659226c5229e3d686dc9e7b981bdee69ada0af569cd4768765042d4f1",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "c000e00f8e6a5b57b7518295ed460d4de456de9118f39b4f5f7597cdd9dd1822",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "1095e0355b57538b5a6acc3b8fbc8f03ce8efabe781e0a137f6c16dadc9c1f09",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "ce17486e92cb8bd7324919df37f077b450326bf08abebea4808cc58a91750ce9",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "00a33cf1bc82492a923a81afd703cd40efa78d7c02bcd174d9d8907bd77d6188",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 4,
+                "failed": 0,
+                "repo_hash": "f3551f4048278bfc675c46937777a05879fa62cf0164a8955daa97d38e51b78b",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-18T02:11:49.263481+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

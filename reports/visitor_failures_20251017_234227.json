@@ -1,0 +1,940 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-17T23:41:07.447489+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 4.731863900000008,
+                "ended_at": "2025-10-17T23:41:07.447489+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "904156aab36063ba5820e0ad4370c3b8c6022fb3e712f86d7cee8eb58975bfaa",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-17T23:41:02.715626+00:00",
+                "stderr": "",
+                "stdout": "C:\\x_runner_x\\typings\\pytest\\__init__.pyi:27: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:38: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:47: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\PySide6\\QtCore.pyi:15: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_gui_exit_code.py:27: error: Expression type contains \"Any\" (has type \"Callable[[Callable[..., object]], Callable[..., object]]\")  [misc]\ntests\\test_gui_exit_code.py:28: error: Type of decorated function contains type \"Any\" (\"Callable[..., object]\")  [misc]\nFound 6 errors in 2 files (checked 18 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-17T23:41:02.715626+00:00\nduration: 4.732s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:27: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:38: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:47: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\PySide6\\QtCore.pyi:15: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_gui_exit_code.py:27: error: Expression type contains \"Any\" (has type \"Callable[[Callable[..., object]], Callable[..., object]]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "C:\\x_runner_x\\typings\\pytest\\__init__.pyi:27: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:38: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\pytest\\__init__.pyi:47: error: Explicit \"Any\" is not allowed  [explicit-any]\nC:\\x_runner_x\\typings\\PySide6\\QtCore.pyi:15: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_gui_exit_code.py:27: error: Expression type contains \"Any\" (has type \"Callable[[Callable[..., object]], Callable[..., object]]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:16.248983+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_common_x",
+                "duration_seconds": 2.398701200000005,
+                "ended_at": "2025-10-17T23:41:16.248983+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "exporters.py",
+                    "json_board.py",
+                    "run_reports.py",
+                    "telemetry.py",
+                    "tests/__init__.py",
+                    "tests/test_exporters.py",
+                    "tests/test_json_board.py",
+                    "tests/test_subprocess_utils.py",
+                    "tests/test_telemetry.py",
+                    "x_cls_make_common_x.py",
+                    "x_env_x.py",
+                    "x_http_client_x.py",
+                    "x_logging_utils_x.py",
+                    "x_subprocess_utils_x.py"
+                ],
+                "repo": "x_make_common_x",
+                "repo_hash": "f5d6245c92f76979e29763c2652d6f5dbc98365b30b5d0e5fa01a9340f8f21e7",
+                "repo_path": "C:\\x_runner_x\\x_make_common_x",
+                "started_at": "2025-10-17T23:41:13.850284+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py:12:12 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py:8:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_subprocess_utils.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_subprocess_utils.py:8:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_subprocess_utils.py:15:10 - error: Import \"_pytest.capture\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_telemetry.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_telemetry.py:9:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_telemetry.py:14:10 - error: Import \"_pytest.capture\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_telemetry.py:15:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n7 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_common_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_common_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:41:13.850284+00:00\nduration: 2.399s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py:12:12 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py:8:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_subprocess_utils.py\n\u2026\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_common_x",
+            "repo_path": "C:\\x_runner_x\\x_make_common_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_exporters.py:12:12 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py\n  c:\\x_runner_x\\x_make_common_x\\tests\\test_json_board.py:8:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_common_x\\tests\\test_subprocess_utils.py\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_common_x (exit 1) cwd: C:\\x_runner_x\\x_make_common_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:41:13.850284+00:00 duration: 2.3\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:20.066382+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 1.067403099999865,
+                "ended_at": "2025-10-17T23:41:20.066382+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "d33ae9dd17d7f154c629e9dee07284efbf4b494c6b777c4f052507ee1a52751d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-17T23:41:18.998979+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-17T23:41:18.998979+00:00\nduration: 1.067s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_github_clones_x.py:54: error: Cannot find implementation or library stub for module named \"x_make_common_x\"  [import]\nx_cls_make_github_clones_x.py:54: note: You may be running mypy in a subpackage, mypy should be run on the package root\nFound 1 error in 1 file (checked 11 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-retu\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:22.310147+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 2.2404994000000897,
+                "ended_at": "2025-10-17T23:41:22.310147+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "tests/__init__.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "d33ae9dd17d7f154c629e9dee07284efbf4b494c6b777c4f052507ee1a52751d",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-17T23:41:20.069649+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:16:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:41:20.069649+00:00\nduration: 2.240s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:16:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:16:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:41:20.069649+00:00\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:32.733065+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 0.9916488999999729,
+                "ended_at": "2025-10-17T23:41:32.733065+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "a2387ff31dfc77395306473b0676d16bb9d23c99c27e48b5b84c84ff56802304",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-17T23:41:31.741418+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:389: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:394: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:397: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:397: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nx_cls_make_graphviz_x.py:398: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:406: error: Return type becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:407: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:428: error: Expression type contains \"Any\" (has type \"type[GraphvizBuilder]\")  [misc]\ntests\\test_graphviz_builder.py:54: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:55: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:56: error: Expression has type \"Any\"  [misc]\ntests\\test_graphviz_builder.py:77: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:78: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_graphviz_builder.py:79: error: Expression has type \"Any\"  [misc]\nFound 18 errors in 2 files (checked 3 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-17T23:41:31.741418+00:00\nduration: 0.992s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_graphviz_x.py:19: error: Cannot find implementation or library stub for module named \"x_make_common_x.exporters\"  [import-not-found]\nx_cls_make_graphviz_x.py:19: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_graphviz_x.py:104: error: Argument 4 to \"__init__\" becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:121: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\nx_cls_make_graphviz_x.py:123: error: Type of variable becomes \"Any | None\" due to an unfollowed import  [no-any-unimported]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --w\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:34.904812+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 2.1673346000000038,
+                "ended_at": "2025-10-17T23:41:34.904812+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "tests/__init__.py",
+                    "tests/test_graphviz_builder.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "a2387ff31dfc77395306473b0676d16bb9d23c99c27e48b5b84c84ff56802304",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-17T23:41:32.737479+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py\n  c:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py:17:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:41:32.737479+00:00\nduration: 2.167s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py\n  c:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py:17:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py\n  c:\\x_runner_x\\x_make_graphviz_x\\tests\\test_graphviz_builder.py:17:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:41:32.737479+00:00 duration:\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:46.235355+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 2.1856749999999465,
+                "ended_at": "2025-10-17T23:41:46.235355+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "02b8afe12262adecc3b7d09fdaaf2ce884c8e0159f9bd359e6f69a2d010c298a",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-17T23:41:44.049677+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:12:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:20:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:41:44.049677+00:00\nduration: 2.186s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:12:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:20:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:12:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_markdown_x\\tests\\test_markdown_builder.py:20:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:41:44.049677+00:00 duration:\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:41:58.037280+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 2.3386491999999635,
+                "ended_at": "2025-10-17T23:41:58.037280+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "7293b0c42097f971432acbc78a1bf68779c75ea8eb7dacf2e415c66cf144a7d5",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-17T23:41:55.698633+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n  c:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py:18:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:41:55.698633+00:00\nduration: 2.339s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n  c:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py:18:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py\n  c:\\x_runner_x\\x_make_mermaid_x\\tests\\test_mermaid_builder.py:18:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n1 error, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:41:55.698633+00:00 duration: 2\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:42:10.683915+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 2.072797099999889,
+                "ended_at": "2025-10-17T23:42:10.683915+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "316028fed66181b4aba9c984d35ea365ef46fa70c301cc80fffb92993a5d6c4e",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-17T23:42:08.611119+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:13:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:25:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:42:08.611119+00:00\nduration: 2.073s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:13:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:25:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:13:8 - error: Import \"pytest\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_pip_updates_x\\tests\\test_pip_updates.py:25:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:42:08.611119+00:00 dur\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-17T23:42:27.947637+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 1.7049522999998317,
+                "ended_at": "2025-10-17T23:42:27.947637+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "8a72ceaafada1aa44d9ed0a39518ce3e9a20316110a400371489ac10529d9f61",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-17T23:42:26.242678+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:14:10 - error: Import \"_pytest.capture\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:15:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-17T23:42:26.242678+00:00\nduration: 1.705s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:14:10 - error: Import \"_pytest.capture\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:15:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:14:10 - error: Import \"_pytest.capture\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_yahw_x\\tests\\test_yahw.py:15:10 - error: Import \"_pytest.monkeypatch\" could not be resolved (reportMissingImports)\n2 errors, 0 warnings, 0 informations",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-17T23:42:26.242678+00:00 duration: 1.705s \u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        }
+    ],
+    "generated_at": "2025-10-17T23:42:27.952547+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-17T23:42:27.952238+00:00",
+        "run_started_at": "2025-10-17T23:40:54.630026+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 10,
+            "cache_misses": 50,
+            "failed_tools": 10,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "904156aab36063ba5820e0ad4370c3b8c6022fb3e712f86d7cee8eb58975bfaa",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "f5d6245c92f76979e29763c2652d6f5dbc98365b30b5d0e5fa01a9340f8f21e7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "d33ae9dd17d7f154c629e9dee07284efbf4b494c6b777c4f052507ee1a52751d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "1983ddd8267322dfc17b3708000c980fedb8734fd3d79f65fbf9b371aa4fa330",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "a2387ff31dfc77395306473b0676d16bb9d23c99c27e48b5b84c84ff56802304",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "02b8afe12262adecc3b7d09fdaaf2ce884c8e0159f9bd359e6f69a2d010c298a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "7293b0c42097f971432acbc78a1bf68779c75ea8eb7dacf2e415c66cf144a7d5",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "c71f5259820d8556376df0f9e19386e63af333acb30ed6c2c0fe998df4d66eaa",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "316028fed66181b4aba9c984d35ea365ef46fa70c301cc80fffb92993a5d6c4e",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "30018d151a990b97778f8ec2265414c67d6ffc3b73a797beb7af94541988b22b",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "31be21f07a052f296cf62f2d71e251b377986f70a344e3fb66ef0850b79dfb36",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "8a72ceaafada1aa44d9ed0a39518ce3e9a20316110a400371489ac10529d9f61",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-17T23:42:27.952575+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

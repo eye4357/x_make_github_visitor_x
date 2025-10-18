@@ -1,0 +1,645 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-18T00:13:47.847839+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    ".",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 1.8217322000000422,
+                "ended_at": "2025-10-18T00:13:47.847839+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d4ef3edd811723a0c7a8d53927a19b9d7f9ef03667bd5a5d74e0e2c094c48fd1",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T00:13:46.026110+00:00",
+                "stderr": "",
+                "stdout": "C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_info\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:239: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:240: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:241: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:242: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:248: error: Returning Any from function declared to return \"int\"  [no-any-return]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:248: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:275: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:276: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:277: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:279: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:280: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:281: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:282: error: Expression has type \"Any\"  [misc]\nmanifest.py:12: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\ninterface\\gui\\commit.py:9: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"HttpClient\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"HttpError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:16: error: Module \"x_make_common_x\" has no attribute \"log_info\"  [attr-defined]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:526: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:528: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:529: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:530: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:531: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:534: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:703: error: Argument 1 to \"_candidate_release_available\" becomes \"Any\" due to an unfollowed import  [no-any-unimported]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:713: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:714: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:728: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:729: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:736: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:740: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:741: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:774: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:784: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_pypi_x\\publish_flow.py:816: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"configure_event_sink\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"emit_event\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"ensure_workspace_on_syspath\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"get_logger\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"make_event\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:15: error: Module \"x_make_common_x\" has no attribute \"register_listener\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:32: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:138: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:402: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:403: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:409: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:410: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:542: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:577: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:595: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:635: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32: error: Module \"x_make_common_x\" has no attribute \"emit_event\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32: error: Module \"x_make_common_x\" has no attribute \"get_logger\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32: error: Module \"x_make_common_x\" has no attribute \"make_event\"  [attr-defined]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:48: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:54: error: Expression has type \"Any\"  [misc]\nC:\\x_runner_x\\x_make_github_visitor_x\\runner.py:719: error: Expression has type \"Any\"  [misc]\nx_cls_make_all_x.py:33: error: Module \"x_make_common_x\" has no attribute \"ensure_workspace_on_syspath\"  [attr-defined]\nx_cls_make_all_x.py:33: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\nx_cls_make_all_x.py:33: error: Module \"x_make_common_x\" has no attribute \"log_info\"  [attr-defined]\nFound 66 errors in 4 files (checked 18 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-18T00:13:46.026110+00:00\nduration: 1.822s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_info\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": null,
+            "stdout_preview": "C:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"CommandError\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_error\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"log_info\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:14: error: Module \"x_make_common_x\" has no attribute \"run_command\"  [attr-defined]\nC:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:238: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy . --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-18T00:13:51.562417+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_0_make_all_x",
+                "duration_seconds": 3.708941599999889,
+                "ended_at": "2025-10-18T00:13:51.562417+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "forceit.py",
+                    "interface/__init__.py",
+                    "interface/gui/__init__.py",
+                    "interface/gui/app.py",
+                    "interface/gui/commit.py",
+                    "interface/gui/tree.py",
+                    "manifest.py",
+                    "tests/__init__.py",
+                    "tests/test_forceit.py",
+                    "tests/test_gui_columns.py",
+                    "tests/test_gui_commit.py",
+                    "tests/test_gui_exit_code.py",
+                    "tests/test_gui_tree.py",
+                    "tests/test_make_all_kanban.py",
+                    "tests/test_orchestrator_clones_stage.py",
+                    "tests/test_publish_manifest.py",
+                    "x_cls_make_all_x.py"
+                ],
+                "repo": "x_0_make_all_x",
+                "repo_hash": "d4ef3edd811723a0c7a8d53927a19b9d7f9ef03667bd5a5d74e0e2c094c48fd1",
+                "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+                "started_at": "2025-10-18T00:13:47.853472+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py:16:29 - error: \"register_listener\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\manifest.py\n  c:\\x_runner_x\\x_0_make_all_x\\manifest.py:12:29 - error: \"log_error\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py\n  c:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py:34:5 - error: \"ensure_workspace_on_syspath\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py:35:5 - error: \"log_error\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_0_make_all_x\\x_cls_make_all_x.py:36:5 - error: \"log_info\" is unknown import symbol (reportAttributeAccessIssue)\n6 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_0_make_all_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_all_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T00:13:47.853472+00:00\nduration: 3.709s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py:16:29 - error: \"register_listener\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\manifest.py\n\u2026\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_0_make_all_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_all_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\app.py:16:29 - error: \"register_listener\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py\n  c:\\x_runner_x\\x_0_make_all_x\\interface\\gui\\commit.py:9:29 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_0_make_all_x\\manifest.py\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_0_make_all_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_all_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-18T00:13:47.853472+00:00 duration: 3.709\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T00:14:06.063649+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 3.080916200000047,
+                "ended_at": "2025-10-18T00:14:06.063649+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "69f808512ae37cad59a5e4c6350a2634ca2cf30aba3b4a16d2a85c08fde7fa23",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-18T00:14:02.982735+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:16:5 - error: \"configure_event_sink\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:17:5 - error: \"emit_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:18:5 - error: \"ensure_workspace_on_syspath\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:19:5 - error: \"get_logger\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:20:5 - error: \"make_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:21:5 - error: \"register_listener\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_make_github_visitor_x\\runner.py\n  c:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32:33 - error: \"emit_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32:45 - error: \"get_logger\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\runner.py:32:57 - error: \"make_event\" is unknown import symbol (reportAttributeAccessIssue)\nc:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py\n  c:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py:32:33 - error: \"emit_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py:32:45 - error: \"get_logger\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\x_cls_make_github_visitor_x.py:32:57 - error: \"make_event\" is unknown import symbol (reportAttributeAccessIssue)\n12 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T00:14:02.982735+00:00\nduration: 3.081s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:16:5 - error: \"configure_event_sink\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:17:5 - error: \"emit_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:18:5 - error: \"ensure_workspace_on_syspath\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:19:5 - error: \"get_logger\" is unknown import symbol (reportAttributeAccessIssue)\n\u2026\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:16:5 - error: \"configure_event_sink\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:17:5 - error: \"emit_event\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:18:5 - error: \"ensure_workspace_on_syspath\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_github_visitor_x\\inspection_flow.py:19:5 - error: \"get_logger\" is unknown import symbol (reportAttributeAccessIssue)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-18T00:14:02.982735+00:\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-18T00:14:18.500116+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 2.2856957999997576,
+                "ended_at": "2025-10-18T00:14:18.500116+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "f4a87d958a16c296320117e8197f94adbf2438dd861c72f4122526945def7c72",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-18T00:14:16.214424+00:00",
+                "stderr": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\n",
+                "stdout": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:17:5 - error: \"log_error\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:18:5 - error: \"log_info\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n4 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-18T00:14:16.214424+00:00\nduration: 2.286s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:17:5 - error: \"log_error\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:18:5 - error: \"log_info\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n\u2026\nstderr:\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": "Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.\nPython was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.",
+            "stdout_preview": "c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:15:5 - error: \"CommandError\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:17:5 - error: \"log_error\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:18:5 - error: \"log_info\" is unknown import symbol (reportAttributeAccessIssue)\n  c:\\x_runner_x\\x_make_pip_updates_x\\update_flow.py:19:5 - error: \"run_command\" is unknown import symbol (reportAttributeAccessIssue)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-18T00:14:16.214424+00:00 dur\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        }
+    ],
+    "generated_at": "2025-10-18T00:14:24.463182+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-18T00:14:24.462897+00:00",
+        "run_started_at": "2025-10-18T00:13:42.581615+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 30,
+            "cache_misses": 30,
+            "failed_tools": 4,
+            "had_failures": true,
+            "total_tools_run": 60
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "d4ef3edd811723a0c7a8d53927a19b9d7f9ef03667bd5a5d74e0e2c094c48fd1",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a42f884fe25a30a567aceff76a3cbd8f2b7a901abb17dcb22cca3a52a65b79c7",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0f2cf1a3805583ffe208a425b71515ee9ad704f2dfdd6d704258ac1d2a301dad",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "69f808512ae37cad59a5e4c6350a2634ca2cf30aba3b4a16d2a85c08fde7fa23",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "613618dda75f19ae47107ff5cd8d389a0dfe0dd07b8f727e9cc7faaecd91174f",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "895de21858a8d603b84d1d137a0c400b3db55c0559c1b3751e4598687d5e02a8",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "89cd5374051c713a494f5ff4a8a6f0d47122556590baef76c23ed11026d6dc4f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "3ad94b941cc685774d8546704b32edc734474f33a6d8ad9ef31b47eaa2bffddd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "f4a87d958a16c296320117e8197f94adbf2438dd861c72f4122526945def7c72",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "6e43ac0bd28aa96e386c9bec43b51de615f2bcb470aa2628961c137d649b675d",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "4c4949651ea36f78aeaa1d090eec2b72ae25d55f9518c4205d7bdd8470ab3236",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "22fec1e5293c375d2c85a6a9321fdb2ef283d4e2443adae053c7427e8b4f09f0",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-18T00:14:24.463219+00:00",
+        "total_repos": 12
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.1"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

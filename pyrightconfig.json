@@ -2,5 +2,8 @@
   "include": ["."],
   "extraPaths": [".."],
   "stubPath": "../typings",
-  "reportMissingImports": "error"
+  "reportMissingImports": "error",
+  "diagnosticSeverityOverrides": {
+    "reportMissingModuleSource": "none"
+  }
 }
