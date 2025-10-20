@@ -1,0 +1,48 @@
+{
+  "status": "success",
+  "schema_version": "x_make_github_visitor_x.run/1.0",
+  "generated_at": "2024-03-01T10:00:00Z",
+  "workspace_root": "C:/workspace",
+  "report_path": "C:/workspace/reports/visitor.json",
+  "had_failures": false,
+  "skipped": false,
+  "failures": [],
+  "failure_messages": [],
+  "failure_details": [],
+  "summary": {
+    "timestamp": "2024-03-01T10:00:00Z",
+    "total_repos": 1,
+    "overall_stats": {
+      "cache_hits": 0,
+      "cache_misses": 1,
+      "failed_tools": 0,
+      "total_tools_run": 1,
+      "had_failures": false
+    },
+    "repos": {
+      "demo": {
+        "repo_hash": "hash-demo",
+        "tools": {
+          "ruff_check": {
+            "exit": 0,
+            "cached": false,
+            "timed_out": false
+          }
+        },
+        "cached": 0,
+        "failed": 0
+      }
+    }
+  },
+  "runtime": {
+    "workspace_root": "C:/workspace",
+    "run_started_at": "2024-03-01T09:59:00Z",
+    "run_completed_at": "2024-03-01T10:00:00Z",
+    "platform": "windows-amd64",
+    "python_executable": "C:/Python/python.exe",
+    "python_version": "3.11.5"
+  },
+  "tool_versions": {
+    "ruff": "0.6.0"
+  }
+}

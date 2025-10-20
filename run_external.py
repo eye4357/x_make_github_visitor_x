@@ -7,8 +7,6 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
-from x_make_common_x.telemetry import JSONValue
-
 from x_make_github_visitor_x import run_workspace_inspection
 
 if TYPE_CHECKING:
@@ -35,6 +33,8 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     return parser
 
+
+JSONValue = str | int | float | bool | None | dict[str, "JSONValue"] | list["JSONValue"]
 
 Payload = dict[str, JSONValue]
 

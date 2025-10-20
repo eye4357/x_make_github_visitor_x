@@ -2,6 +2,8 @@
   "include": ["."],
   "extraPaths": [".."],
   "stubPath": "../typings",
+  "venvPath": "..",
+  "venv": ".venv",
   "reportMissingImports": "error",
   "diagnosticSeverityOverrides": {
     "reportMissingModuleSource": "none"

@@ -1,0 +1,10 @@
+{
+  "status": "failure",
+  "message": "visitor run failed",
+  "details": {
+    "error": "no child git repositories found"
+  },
+  "failure_messages": [
+    "ruff_check failed for repo"
+  ]
+}

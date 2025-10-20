@@ -1,0 +1,17 @@
+{
+  "command": "x_make_github_visitor_x",
+  "parameters": {
+    "root_dir": "C:/x_runner_x",
+    "output_filename": "visitor_report.json",
+    "enable_cache": true,
+    "allowed_repositories": [
+      "x_0_make_all_x",
+      "x_make_common_x"
+    ],
+    "file_allowlist": {
+      "x_0_make_all_x": [
+        "README.md"
+      ]
+    }
+  }
+}

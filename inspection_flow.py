@@ -12,19 +12,10 @@ from pathlib import Path
 from time import perf_counter
 from typing import TYPE_CHECKING, Protocol, TypeGuard, cast
 
-from x_make_common_x import (
-    configure_event_sink,
-    emit_event,
-    ensure_workspace_on_syspath,
-    get_logger,
-    make_event,
-    register_listener,
-)
+from x_make_common_x import ensure_workspace_on_syspath, get_logger
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Sequence
-
-    from x_make_common_x.telemetry import JSONValue, TelemetryEvent
 
 SUBPROCESS_FLAG_ENV = "X_VISITOR_USE_SUBPROCESS"
 _SUBPROCESS_DEFAULT = True
@@ -114,7 +105,6 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
 ) -> None:
     os.environ[SUBPROCESS_FLAG_ENV] = "0"
     ensure_workspace_on_syspath()
-    configure_event_sink(None, echo=False)
 
     ctx_obj: object | None
     if ctx_payload is None:
@@ -131,11 +121,6 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
         raise TypeError(message)
     factory_callable = cast("_VisitorFactory", factory_obj)
 
-    def _forward(event: TelemetryEvent) -> None:
-        with suppress(Exception):
-            queue_obj.put({"type": "event", "payload": dict(event)}, block=True)
-
-    remover = register_listener(_forward)
     try:
         visitor: object
         try:
@@ -218,8 +203,6 @@ def _visitor_process_main(  # noqa: C901, PLR0912, PLR0915
             )
     finally:
         with suppress(Exception):
-            remover()
-        with suppress(Exception):
             queue_obj.put({"type": "done"}, block=True)
 
 
@@ -252,11 +235,7 @@ def _run_visitor_in_subprocess(  # noqa: C901, PLR0912, PLR0915
                     break
                 continue
             kind = message.get("type")
-            if kind == "event":
-                payload = message.get("payload")
-                if isinstance(payload, dict):
-                    emit_event(cast("TelemetryEvent", payload))
-            elif kind == "result":
+            if kind == "result":
                 status = message.get("status")
                 if status == "ok":
                     raw_report = message.get("report")
@@ -535,24 +514,9 @@ def run_inspection(  # noqa: PLR0913
         resolver=resolver,
     )
     root_str = str(root_path)
-    attempt = 1
     start = perf_counter()
     use_subprocess = _should_use_subprocess()
-    emit_event(
-        make_event(
-            source="visitor",
-            phase="inspection",
-            status="started",
-            repository=None,
-            tool="x_make_github_visitor_x",
-            attempt=attempt,
-            duration_ms=None,
-            details={
-                "message": "Visitor inspection flow starting",
-                "root": root_str,
-            },
-        )
-    )
+    _info("Visitor inspection flow starting", f"root={root_str}")
     runner = _load_visitor_runner(visitor_factory)
     run_result: VisitorRunResult | None = None
     try:
@@ -573,76 +537,30 @@ def run_inspection(  # noqa: PLR0913
             run_result = _run_visitor_flow(visitor)
     except AssertionError as exc:
         duration_ms = int((perf_counter() - start) * 1000)
-        emit_event(
-            make_event(
-                source="visitor",
-                phase="inspection",
-                status="failed",
-                repository=None,
-                tool="x_make_github_visitor_x",
-                attempt=attempt,
-                duration_ms=duration_ms,
-                details={
-                    "message": str(exc),
-                    "error_kind": "runtime",
-                },
-            )
+        _error(
+            "Visitor inspection flow failed",
+            f"duration={duration_ms}ms",
+            str(exc),
         )
         raise
     except Exception as exc:
         duration_ms = int((perf_counter() - start) * 1000)
-        emit_event(
-            make_event(
-                source="visitor",
-                phase="inspection",
-                status="failed",
-                repository=None,
-                tool="x_make_github_visitor_x",
-                attempt=attempt,
-                duration_ms=duration_ms,
-                details={
-                    "message": f"Unexpected error: {exc}",
-                    "error_kind": "unknown",
-                },
-            )
+        _error(
+            "Visitor inspection flow encountered an unexpected error",
+            f"duration={duration_ms}ms",
+            str(exc),
         )
         raise
 
     duration_ms = int((perf_counter() - start) * 1000)
-    details: dict[str, object] = {
-        "message": "Visitor inspection flow completed",
-        "root": root_str,
-    }
-    status = "succeeded"
-    if run_result.report_path is not None:
-        details["artifact_path"] = str(run_result.report_path)
-        _info("Visitor JSON report:", str(run_result.report_path))
-    else:
-        details["message"] = "Visitor inspection completed without report"
-
-    details["had_failures"] = run_result.had_failures
-    details["skipped"] = run_result.skipped
+    summary_parts: list[str] = [f"duration={duration_ms}ms"]
     if run_result.had_failures:
-        details["failure_count"] = len(run_result.failure_messages)
-        if run_result.failure_messages:
-            details["failure_preview"] = run_result.failure_messages[:3]
-    if run_result.failure_details:
-        details["failure_details"] = [
-            dict(entry) for entry in run_result.failure_details
-        ]
-    typed_details = cast("dict[str, JSONValue]", details)
-    emit_event(
-        make_event(
-            source="visitor",
-            phase="inspection",
-            status=status,
-            repository=None,
-            tool="x_make_github_visitor_x",
-            attempt=attempt,
-            duration_ms=duration_ms,
-            details=typed_details,
-        )
-    )
+        summary_parts.append(f"failures={len(run_result.failure_messages)}")
+    if run_result.skipped:
+        summary_parts.append("skipped")
+    _info("Visitor inspection flow completed", " ".join(summary_parts))
+    if run_result.report_path is not None:
+        _info("Visitor JSON report:", str(run_result.report_path))
     return run_result
 
 

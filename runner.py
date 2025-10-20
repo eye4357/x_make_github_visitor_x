@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -15,6 +16,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
+from jsonschema import ValidationError
+
 _WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 _workspace_root_str = str(_WORKSPACE_ROOT)
 
@@ -29,21 +32,28 @@ if _workspace_root_str not in sys.path:
     sys.path.insert(0, _workspace_root_str)
 
 if TYPE_CHECKING:  # Static analyzers see the local package for precise types
-    from x_make_common_x import emit_event, get_logger, make_event
+    from x_make_common_x.json_contracts import validate_payload
+    from x_make_common_x.telemetry import JSONValue, emit_event, make_event
+    from x_make_common_x.x_logging_utils_x import get_logger
 else:  # Prefer local workspace package, fall back to PyPI distribution
     try:
-        from x_make_common_x import emit_event, get_logger, make_event
+        from x_make_common_x import emit_event, get_logger, make_event, validate_payload
+        from x_make_common_x.telemetry import JSONValue
     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
         from x_4357_make_common_x import (  # type: ignore[attr-defined]
             emit_event,
             get_logger,
             make_event,
+            validate_payload,
         )
+        try:  # pragma: no cover - compatibility fall-back for legacy builds
+            from x_4357_make_common_x.telemetry import (
+                JSONValue,  # type: ignore[attr-defined]
+            )
+        except (ModuleNotFoundError, ImportError, AttributeError):
+            JSONValue = object  # type: ignore[assignment]
 
-if TYPE_CHECKING:
-    from x_make_common_x.telemetry import JSONValue
-else:
-    JSONValue = object
+from .json_contracts import INPUT_SCHEMA, OUTPUT_SCHEMA
 
 _LOGGER = get_logger("x_make_github_visitor")
 
@@ -83,6 +93,8 @@ TOOL_MODULE_MAP = {
     "mypy": "mypy",
     "pyright": "pyright",
 }
+
+SCHEMA_VERSION = "x_make_github_visitor_x.run/1.0"
 
 ToolResult = dict[str, object]
 RepoReport = dict[str, object]
@@ -283,7 +295,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         self._failure_messages: list[str] = []
         self._failure_details: list[dict[str, object]] = []
         self._tool_versions: dict[str, str] = {}
-        self._runtime_snapshot: dict[str, object] = {}
+        self._runtime_snapshot: dict[str, object] = {
+            "workspace_root": str(self.root),
+        }
         self._last_report_path: Path | None = None
         self._last_run_result: VisitorRunResult | None = None
 
@@ -1459,6 +1473,302 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return self._last_run_result
 
 
+def _coerce_bool_flag(value: object, default: bool) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"1", "true", "yes", "on"}:
+            return True
+        if lowered in {"0", "false", "no", "off"}:
+            return False
+    return default
+
+
+def _maybe_string(value: object) -> str | None:
+    if isinstance(value, str) and value:
+        return value
+    return None
+
+
+def _coerce_allowed_repositories(value: object) -> tuple[str, ...] | None:
+    if not value or isinstance(value, (str, bytes, bytearray)):
+        return None
+    if not isinstance(value, Sequence):
+        return None
+    names: list[str] = []
+    for entry in value:
+        if isinstance(entry, str) and entry:
+            normalized = _normalize_repo_name(entry)
+            if normalized:
+                names.append(normalized)
+    if not names:
+        return None
+    return tuple(_dedupe_preserving_order(names))
+
+
+def _coerce_file_allowlist(
+    value: object,
+) -> dict[str, tuple[str, ...]] | None:
+    if not isinstance(value, Mapping):
+        return None
+    mapping = cast("Mapping[object, object]", value)
+    allowlist: dict[str, tuple[str, ...]] = {}
+    for repo_name_obj, rel_paths_obj in mapping.items():
+        if not isinstance(repo_name_obj, str) or not repo_name_obj:
+            continue
+        normalized_repo = _normalize_repo_name(repo_name_obj)
+        if not normalized_repo:
+            continue
+        if isinstance(rel_paths_obj, (str, bytes, bytearray)):
+            rel_entries = [rel_paths_obj]
+        elif isinstance(rel_paths_obj, Sequence):
+            rel_entries = [str(item) for item in rel_paths_obj]
+        else:
+            continue
+        normalized_files = [
+            normalized
+            for item in rel_entries
+            if isinstance(item, str) and (normalized := _normalize_rel_path(item))
+        ]
+        if normalized_files:
+            allowlist[normalized_repo] = tuple(_dedupe_preserving_order(normalized_files))
+    return allowlist or None
+
+
+def _failure_payload(
+    message: str,
+    *,
+    details: Mapping[str, object] | None = None,
+    failure_messages: Sequence[str] | None = None,
+) -> dict[str, object]:
+    payload: dict[str, object] = {
+        "status": "failure",
+        "message": message,
+    }
+    if details:
+        payload["details"] = {
+            str(key): _json_ready(value) for key, value in dict(details).items()
+        }
+    if failure_messages:
+        payload["failure_messages"] = [
+            str(message)
+            for message in failure_messages
+            if isinstance(message, str) and message
+        ]
+    return payload
+
+
+def _build_skip_payload(
+    visitor: x_cls_make_github_visitor_x,
+    *,
+    generated_at: datetime,
+) -> dict[str, object]:
+    summary = visitor.generate_summary_report()
+    runtime_snapshot = _json_ready(dict(visitor._runtime_snapshot))
+    tool_versions = _json_ready(dict(visitor._tool_versions))
+    payload: dict[str, object] = {
+        "status": "skipped",
+        "schema_version": SCHEMA_VERSION,
+        "generated_at": generated_at.isoformat(),
+        "workspace_root": str(visitor.root),
+        "report_path": None,
+        "had_failures": False,
+        "skipped": True,
+        "failures": [],
+        "failure_messages": [],
+        "failure_details": [],
+        "summary": _json_ready(summary),
+        "runtime": runtime_snapshot,
+        "tool_versions": tool_versions,
+    }
+    return payload
+
+
+def main_json(
+    payload: Mapping[str, object],
+    *,
+    ctx: object | None = None,
+) -> dict[str, object]:
+    try:
+        validate_payload(payload, INPUT_SCHEMA)
+    except ValidationError as exc:
+        detail_payload = {
+            "error": exc.message,
+            "path": [str(part) for part in exc.path],
+            "schema_path": [str(part) for part in exc.schema_path],
+        }
+        return _failure_payload("input payload failed validation", details=detail_payload)
+
+    parameters_obj = payload.get("parameters", {})
+    parameters = cast("Mapping[str, object]", parameters_obj)
+
+    root_dir_obj = parameters.get("root_dir")
+    root_dir = _maybe_string(root_dir_obj)
+    if root_dir is None:
+        return _failure_payload(
+            "input payload failed validation",
+            details={"error": "parameters.root_dir must be a non-empty string"},
+        )
+
+    output_filename_obj = parameters.get("output_filename")
+    output_filename = _maybe_string(output_filename_obj)
+
+    enable_cache = _coerce_bool_flag(parameters.get("enable_cache"), True)
+    allowed_repos = _coerce_allowed_repositories(parameters.get("allowed_repositories"))
+    file_allowlist = _coerce_file_allowlist(parameters.get("file_allowlist"))
+
+    try:
+        if output_filename is None:
+            visitor = x_cls_make_github_visitor_x(
+                root_dir,
+                ctx=ctx,
+                enable_cache=enable_cache,
+                allowed_repositories=allowed_repos,
+                file_allowlist=file_allowlist,
+            )
+        else:
+            visitor = x_cls_make_github_visitor_x(
+                root_dir,
+                ctx=ctx,
+                enable_cache=enable_cache,
+                output_filename=output_filename,
+                allowed_repositories=allowed_repos,
+                file_allowlist=file_allowlist,
+            )
+    except AssertionError as exc:
+        return _failure_payload(
+            "visitor initialisation failed",
+            details={"error": str(exc)},
+        )
+    except Exception as exc:  # noqa: BLE001
+        return _failure_payload(
+            "unexpected error while initialising visitor",
+            details={"error": str(exc)},
+        )
+
+    generated_at = datetime.now(UTC)
+    try:
+        visitor.run_inspect_flow()
+    except AssertionError as exc:
+        message = str(exc)
+        if "no child git repositories found" in message.lower():
+            skip_payload = _build_skip_payload(visitor, generated_at=generated_at)
+            try:
+                validate_payload(skip_payload, OUTPUT_SCHEMA)
+            except ValidationError as err:
+                return _failure_payload(
+                    "generated output failed schema validation",
+                    details={
+                        "error": err.message,
+                        "path": [str(part) for part in err.path],
+                        "schema_path": [str(part) for part in err.schema_path],
+                    },
+                )
+            return skip_payload
+        return _failure_payload(
+            "visitor run failed",
+            details={"error": message},
+        )
+    except Exception as exc:  # noqa: BLE001
+        return _failure_payload(
+            "unexpected error during visitor run",
+            details={"error": str(exc)},
+        )
+
+    result = visitor.last_run_result
+    if not isinstance(result, VisitorRunResult):
+        report_path = visitor.last_report_path
+        result = VisitorRunResult(
+            report_path=report_path,
+            had_failures=False,
+        )
+
+    detail_pairs = list(
+        zip(result.failure_details, result.failure_messages, strict=False)
+    )
+    failure_entries = visitor._serialize_failures(detail_pairs)
+
+    summary = visitor.generate_summary_report()
+    runtime_snapshot = _json_ready(dict(visitor._runtime_snapshot))
+    tool_versions = _json_ready(dict(visitor._tool_versions))
+
+    report_path_value = (
+        str(result.report_path)
+        if isinstance(result.report_path, Path)
+        else (
+            str(result.report_path)
+            if isinstance(result.report_path, str) and result.report_path
+            else None
+        )
+    )
+
+    failure_details_json = _json_ready([dict(detail) for detail in result.failure_details])
+
+    payload_out: dict[str, object] = {
+        "status": "failure" if result.had_failures else "success",
+        "schema_version": SCHEMA_VERSION,
+        "generated_at": generated_at.isoformat(),
+        "workspace_root": str(visitor.root),
+        "report_path": report_path_value,
+        "had_failures": bool(result.had_failures),
+        "skipped": bool(result.skipped),
+        "failures": _json_ready(failure_entries),
+        "failure_messages": list(result.failure_messages),
+        "failure_details": failure_details_json,
+        "summary": _json_ready(summary),
+        "runtime": runtime_snapshot,
+        "tool_versions": tool_versions,
+    }
+
+    try:
+        validate_payload(payload_out, OUTPUT_SCHEMA)
+    except ValidationError as exc:
+        return _failure_payload(
+            "generated output failed schema validation",
+            details={
+                "error": exc.message,
+                "path": [str(part) for part in exc.path],
+                "schema_path": [str(part) for part in exc.schema_path],
+            },
+            failure_messages=result.failure_messages,
+        )
+
+    return payload_out
+
+
+def _load_json_payload(path: str | None) -> Mapping[str, object]:
+    if path:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            return cast("Mapping[str, object]", json.load(handle))
+    return cast("Mapping[str, object]", json.load(sys.stdin))
+
+
+def _run_json_cli(args: Sequence[str]) -> None:
+    parser = argparse.ArgumentParser(
+        description="x_make_github_visitor_x JSON runner"
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Read JSON payload from stdin",
+    )
+    parser.add_argument(
+        "--json-file",
+        type=str,
+        help="Path to JSON payload file",
+    )
+    parsed = parser.parse_args(list(args))
+
+    if not (parsed.json or parsed.json_file):
+        parser.error("JSON input required. Use --json for stdin or --json-file <path>.")
+
+    payload = _load_json_payload(parsed.json_file if parsed.json_file else None)
+    result = main_json(payload)
+    json.dump(result, sys.stdout, indent=2)
+    sys.stdout.write("\n")
+
+
 def _workspace_root() -> str:
     here = Path(__file__).resolve()
     for anc in here.parents:
@@ -1553,29 +1863,42 @@ def run_workspace_inspection(
     )
 
 
+__all__ = [
+    "SCHEMA_VERSION",
+    "init_main",
+    "init_name",
+    "main_json",
+    "run_workspace_inspection",
+    "x_cls_make_github_visitor_x",
+]
+
+
 if __name__ == "__main__":
-    inst = init_main()
-    inst.run_inspect_flow()
-    summary = inst.generate_summary_report()
-    overall_raw = summary.get("overall_stats", {})
-    overall: Mapping[str, object]
-    if isinstance(overall_raw, Mapping):
-        overall = cast("Mapping[str, object]", overall_raw)
+    if any(arg in {"--json", "--json-file"} for arg in sys.argv[1:]):
+        _run_json_cli(sys.argv[1:])
     else:
-        overall = {}
+        inst = init_main()
+        inst.run_inspect_flow()
+        summary = inst.generate_summary_report()
+        overall_raw = summary.get("overall_stats", {})
+        overall: Mapping[str, object]
+        if isinstance(overall_raw, Mapping):
+            overall = cast("Mapping[str, object]", overall_raw)
+        else:
+            overall = {}
 
-    hits = _coerce_exit_code(overall.get("cache_hits", 0)) or 0
-    total = _coerce_exit_code(overall.get("total_tools_run", 0)) or 0
-    ratio = (hits / total * 100.0) if total else 0.0
+        hits = _coerce_exit_code(overall.get("cache_hits", 0)) or 0
+        total = _coerce_exit_code(overall.get("total_tools_run", 0)) or 0
+        ratio = (hits / total * 100.0) if total else 0.0
 
-    report_path = inst.last_report_path
-    if report_path is not None:
-        _info("visitor JSON report saved to:", report_path)
-    else:
-        _info("visitor JSON report path unavailable")
+        report_path = inst.last_report_path
+        if report_path is not None:
+            _info("visitor JSON report saved to:", report_path)
+        else:
+            _info("visitor JSON report path unavailable")
 
-    summary_line = (
-        f"processed {summary.get('total_repos', 0)} repositories "
-        f"| cache hits: {hits}/{total} ({ratio:.1f}%)"
-    )
-    _info(summary_line)
+        summary_line = (
+            f"processed {summary.get('total_repos', 0)} repositories "
+            f"| cache hits: {hits}/{total} ({ratio:.1f}%)"
+        )
+        _info(summary_line)

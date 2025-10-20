@@ -1,6 +1,6 @@
-# Changelog — Control Room Production Log
+# x_make_github_visitor_x — Production Ledger
 
-All notable changes to x_make_github_visitor_x are documented here. We follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) discipline and Semantic Versioning because inspectors must be incorruptible.
+I record every material change to this visitor here. The format mirrors [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning so future audits can trace cause and effect without inference.
 
 ## [0.20.4] - 2025-10-15
 ### Changed
@@ -9,7 +9,7 @@ All notable changes to x_make_github_visitor_x are documented here. We follow [K
 
 ## [0.20.3] - 2025-10-14
 ### Added
-- Per-file diagnostics appended to telemetry events and JSON reports so every failure pinpoints the file and message without guesswork.
+- Per-file diagnostics appended to audit events and JSON reports so every failure pinpoints the file and message without guesswork.
 
 ### Changed
 - README and roadmap references aligned to the 0.20.3 control brief, documenting the JSON-first visitor protocol.
