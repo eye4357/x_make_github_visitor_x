@@ -13,10 +13,11 @@ from time import perf_counter
 from typing import TYPE_CHECKING, Protocol, TypeGuard, cast
 
 from x_make_common_x import ensure_workspace_on_syspath, get_logger
-from x_make_common_x.stage_progress import RepoProgressReporter
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Sequence
+
+    from x_make_common_x.stage_progress import RepoProgressReporter
 
 SUBPROCESS_FLAG_ENV = "X_VISITOR_USE_SUBPROCESS"
 _SUBPROCESS_DEFAULT = True
@@ -498,6 +499,86 @@ def _run_visitor_flow(visitor: VisitorProtocol) -> VisitorRunResult:
     )
 
 
+@dataclass(frozen=True)
+class _InspectionInputs:
+    root_path: Path
+    root_str: str
+    ctx: object | None
+    instantiate_visitor: Callable[..., VisitorProtocol]
+    visitor_factory: object
+    progress_writer: RepoProgressReporter | None
+    runner: VisitorRunner | None
+
+
+def _invoke_runner_with_optional_progress(
+    runner: VisitorRunner,
+    root_path: Path,
+    *,
+    ctx: object | None,
+    progress_writer: RepoProgressReporter | None,
+) -> VisitorRunResult:
+    try:
+        return runner(
+            root_path,
+            ctx=ctx,
+            progress_writer=progress_writer,
+        )
+    except TypeError:
+        return runner(root_path, ctx=ctx)
+
+
+def _construct_direct_visitor(
+    instantiate_visitor: Callable[..., VisitorProtocol],
+    root_str: str,
+    *,
+    ctx: object | None,
+    progress_writer: RepoProgressReporter | None,
+) -> VisitorProtocol:
+    try:
+        return instantiate_visitor(
+            ctx,
+            root_str,
+            progress_writer=progress_writer,
+        )
+    except TypeError:
+        return instantiate_visitor(ctx, root_str)
+
+
+def _execute_inspection(
+    *,
+    use_subprocess: bool,
+    inputs: _InspectionInputs,
+) -> VisitorRunResult:
+    if use_subprocess:
+        _info(
+            "Running x_make_github_visitor via subprocess",
+            f"root={inputs.root_str} ...",
+        )
+        return _run_visitor_in_subprocess(
+            inputs.root_path,
+            inputs.ctx,
+            inputs.visitor_factory,
+        )
+    if inputs.runner is not None:
+        return _invoke_runner_with_optional_progress(
+            inputs.runner,
+            inputs.root_path,
+            ctx=inputs.ctx,
+            progress_writer=inputs.progress_writer,
+        )
+    visitor = _construct_direct_visitor(
+        inputs.instantiate_visitor,
+        inputs.root_str,
+        ctx=inputs.ctx,
+        progress_writer=inputs.progress_writer,
+    )
+    _info(
+        "Running x_make_github_visitor against cloned repos",
+        f"root={inputs.root_str} ...",
+    )
+    return _run_visitor_flow(visitor)
+
+
 def run_inspection(  # noqa: PLR0913
     *,
     cloner: object,
@@ -523,37 +604,20 @@ def run_inspection(  # noqa: PLR0913
         use_subprocess = False
     _info("Visitor inspection flow starting", f"root={root_str}")
     runner = _load_visitor_runner(visitor_factory)
-    run_result: VisitorRunResult | None = None
+    inputs = _InspectionInputs(
+        root_path=root_path,
+        root_str=root_str,
+        ctx=ctx,
+        instantiate_visitor=instantiate_visitor,
+        visitor_factory=visitor_factory,
+        progress_writer=progress_writer,
+        runner=runner,
+    )
     try:
-        if use_subprocess:
-            _info(
-                "Running x_make_github_visitor via subprocess",
-                f"root={root_str} ...",
-            )
-            run_result = _run_visitor_in_subprocess(root_path, ctx, visitor_factory)
-        elif runner is not None:
-            try:
-                run_result = runner(
-                    root_path,
-                    ctx=ctx,
-                    progress_writer=progress_writer,
-                )
-            except TypeError:
-                run_result = runner(root_path, ctx=ctx)
-        else:
-            _info(
-                "Running x_make_github_visitor against cloned repos",
-                f"root={root_str} ...",
-            )
-            try:
-                visitor = instantiate_visitor(
-                    ctx,
-                    root_str,
-                    progress_writer=progress_writer,
-                )
-            except TypeError:
-                visitor = instantiate_visitor(ctx, root_str)
-            run_result = _run_visitor_flow(visitor)
+        run_result = _execute_inspection(
+            use_subprocess=use_subprocess,
+            inputs=inputs,
+        )
     except AssertionError as exc:
         duration_ms = int((perf_counter() - start) * 1000)
         _error(
@@ -572,7 +636,8 @@ def run_inspection(  # noqa: PLR0913
         raise
 
     if run_result is None:
-        raise RuntimeError("Visitor inspection did not produce a run result")
+        missing_result_message = "Visitor inspection did not produce a run result"
+        raise RuntimeError(missing_result_message)
 
     duration_ms = int((perf_counter() - start) * 1000)
     summary_parts: list[str] = [f"duration={duration_ms}ms"]

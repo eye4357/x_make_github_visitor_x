@@ -18,6 +18,8 @@ from typing import TYPE_CHECKING, cast
 
 from jsonschema import ValidationError
 
+from .json_contracts import INPUT_SCHEMA, OUTPUT_SCHEMA
+
 _WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 _workspace_root_str = str(_WORKSPACE_ROOT)
 
@@ -53,8 +55,6 @@ else:  # Prefer local workspace package, fall back to PyPI distribution
             )
         except (ModuleNotFoundError, ImportError, AttributeError):
             JSONValue = object  # type: ignore[assignment]
-
-from .json_contracts import INPUT_SCHEMA, OUTPUT_SCHEMA
 
 _LOGGER = get_logger("x_make_github_visitor")
 
@@ -1376,7 +1376,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             except ValueError:
                 return path.name
 
-        repo_names: dict[Path, str] = {child: _relative_name(child) for child in repo_iterable}
+        repo_names: dict[Path, str] = {
+            child: _relative_name(child) for child in repo_iterable
+        }
 
         if writer is not None:
             for child, rel_name in repo_names.items():
@@ -1431,7 +1433,11 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     )
                 else:
                     tool_reports = result.report.get("tool_reports")
-                    tool_count = len(tool_reports) if isinstance(tool_reports, dict) else 0
+                    tool_count = (
+                        len(tool_reports)
+                        if isinstance(tool_reports, dict)
+                        else 0
+                    )
                     success_message = (
                         f"All {tool_count} tool(s) succeeded."
                         if tool_count
@@ -1507,6 +1513,21 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             repos_section[repo_name] = repo_summary
         return summary
 
+    def runtime_snapshot(self) -> dict[str, object]:
+        """Return a copy of the runtime snapshot for JSON serialization."""
+        return dict(self._runtime_snapshot)
+
+    def tool_versions(self) -> dict[str, str]:
+        """Return a copy of the tool version map from the last run."""
+        return dict(self._tool_versions)
+
+    def serialize_failures(
+        self,
+        detail_pairs: Sequence[tuple[Mapping[str, object], str]],
+    ) -> list[dict[str, JSONValue]]:
+        """Serialize failure detail/message pairs for JSON output."""
+        return self._serialize_failures(detail_pairs)
+
     def run_inspect_flow(self) -> None:
         """Run discovery, execute tools, and emit a JSON TODO report."""
 
@@ -1546,7 +1567,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         return self._last_run_result
 
 
-def _coerce_bool_flag(value: object, default: bool) -> bool:
+def _coerce_bool_flag(value: object, *, default: bool) -> bool:
     if isinstance(value, bool):
         return value
     if isinstance(value, str):
@@ -1605,7 +1626,9 @@ def _coerce_file_allowlist(
             if isinstance(item, str) and (normalized := _normalize_rel_path(item))
         ]
         if normalized_files:
-            allowlist[normalized_repo] = tuple(_dedupe_preserving_order(normalized_files))
+            allowlist[normalized_repo] = tuple(
+                _dedupe_preserving_order(normalized_files)
+            )
     return allowlist or None
 
 
@@ -1632,14 +1655,190 @@ def _failure_payload(
     return payload
 
 
+class _VisitorError(Exception):
+    def __init__(
+        self,
+        message: str,
+        *,
+        details: Mapping[str, object] | None = None,
+        failure_messages: Sequence[str] | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.payload = _failure_payload(
+            message,
+            details=details,
+            failure_messages=failure_messages,
+        )
+
+
+@dataclass(frozen=True)
+class _VisitorParameters:
+    root_dir: str
+    output_filename: str | None
+    enable_cache: bool
+    allowed_repositories: tuple[str, ...] | None
+    file_allowlist: dict[str, tuple[str, ...]] | None
+
+
+def _ensure_input_schema(payload: Mapping[str, object]) -> None:
+    try:
+        validate_payload(payload, INPUT_SCHEMA)
+    except ValidationError as exc:
+        detail_payload = {
+            "error": exc.message,
+            "path": [str(part) for part in exc.path],
+            "schema_path": [str(part) for part in exc.schema_path],
+        }
+        failure_message = "input payload failed validation"
+        raise _VisitorError(
+            failure_message,
+            details=detail_payload,
+        ) from exc
+
+
+def _extract_parameters(payload: Mapping[str, object]) -> _VisitorParameters:
+    parameters_obj = payload.get("parameters", {})
+    if not isinstance(parameters_obj, Mapping):
+        failure_message = "input payload failed validation"
+        raise _VisitorError(
+            failure_message,
+            details={"error": "parameters must be a mapping"},
+        )
+    parameters = cast("Mapping[str, object]", parameters_obj)
+
+    root_dir_obj = parameters.get("root_dir")
+    root_dir = _maybe_string(root_dir_obj)
+    if root_dir is None:
+        failure_message = "input payload failed validation"
+        raise _VisitorError(
+            failure_message,
+            details={"error": "parameters.root_dir must be a non-empty string"},
+        )
+
+    output_filename = _maybe_string(parameters.get("output_filename"))
+    enable_cache = _coerce_bool_flag(
+        parameters.get("enable_cache"),
+        default=True,
+    )
+    allowed_repos = _coerce_allowed_repositories(parameters.get("allowed_repositories"))
+    file_allowlist = _coerce_file_allowlist(parameters.get("file_allowlist"))
+
+    return _VisitorParameters(
+        root_dir=root_dir,
+        output_filename=output_filename,
+        enable_cache=enable_cache,
+        allowed_repositories=allowed_repos,
+        file_allowlist=file_allowlist,
+    )
+
+
+def _initialize_visitor(
+    params: _VisitorParameters,
+    *,
+    ctx: object | None,
+) -> x_cls_make_github_visitor_x:
+    init_kwargs = {
+        "ctx": ctx,
+        "enable_cache": params.enable_cache,
+        "allowed_repositories": params.allowed_repositories,
+        "file_allowlist": params.file_allowlist,
+    }
+    try:
+        if params.output_filename is None:
+            return x_cls_make_github_visitor_x(
+                params.root_dir,
+                **init_kwargs,
+            )
+        return x_cls_make_github_visitor_x(
+            params.root_dir,
+            output_filename=params.output_filename,
+            **init_kwargs,
+        )
+    except AssertionError as exc:
+        failure_message = "visitor initialisation failed"
+        raise _VisitorError(
+            failure_message,
+            details={"error": str(exc)},
+        ) from exc
+    except Exception as exc:
+        failure_message = "unexpected error while initialising visitor"
+        raise _VisitorError(
+            failure_message,
+            details={"error": str(exc)},
+        ) from exc
+
+
+def _validate_output_payload(
+    payload: Mapping[str, object],
+    *,
+    failure_messages: Sequence[str],
+) -> None:
+    try:
+        validate_payload(payload, OUTPUT_SCHEMA)
+    except ValidationError as exc:
+        detail_payload = {
+            "error": exc.message,
+            "path": [str(part) for part in exc.path],
+            "schema_path": [str(part) for part in exc.schema_path],
+        }
+        failure_message = "generated output failed schema validation"
+        raise _VisitorError(
+            failure_message,
+            details=detail_payload,
+            failure_messages=failure_messages,
+        ) from exc
+
+
+def _stringify_report_path(value: object) -> str | None:
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, str) and value:
+        return value
+    return None
+
+
+def _build_success_payload(
+    visitor: x_cls_make_github_visitor_x,
+    result: VisitorRunResult,
+    *,
+    generated_at: datetime,
+) -> dict[str, object]:
+    detail_pairs = list(
+        zip(result.failure_details, result.failure_messages, strict=False)
+    )
+    failure_entries = visitor.serialize_failures(detail_pairs)
+    summary = visitor.generate_summary_report()
+    runtime_snapshot = _json_ready(visitor.runtime_snapshot())
+    tool_versions = _json_ready(visitor.tool_versions())
+    failure_details_json = _json_ready(
+        [dict(detail) for detail in result.failure_details]
+    )
+
+    return {
+        "status": "failure" if result.had_failures else "success",
+        "schema_version": SCHEMA_VERSION,
+        "generated_at": generated_at.isoformat(),
+        "workspace_root": str(visitor.root),
+        "report_path": _stringify_report_path(result.report_path),
+        "had_failures": bool(result.had_failures),
+        "skipped": bool(result.skipped),
+        "failures": _json_ready(failure_entries),
+        "failure_messages": list(result.failure_messages),
+        "failure_details": failure_details_json,
+        "summary": _json_ready(summary),
+        "runtime": runtime_snapshot,
+        "tool_versions": tool_versions,
+    }
+
+
 def _build_skip_payload(
     visitor: x_cls_make_github_visitor_x,
     *,
     generated_at: datetime,
 ) -> dict[str, object]:
     summary = visitor.generate_summary_report()
-    runtime_snapshot = _json_ready(dict(visitor._runtime_snapshot))
-    tool_versions = _json_ready(dict(visitor._tool_versions))
+    runtime_snapshot = _json_ready(visitor.runtime_snapshot())
+    tool_versions = _json_ready(visitor.tool_versions())
     payload: dict[str, object] = {
         "status": "skipped",
         "schema_version": SCHEMA_VERSION,
@@ -1664,150 +1863,54 @@ def main_json(
     ctx: object | None = None,
 ) -> dict[str, object]:
     try:
-        validate_payload(payload, INPUT_SCHEMA)
-    except ValidationError as exc:
-        detail_payload = {
-            "error": exc.message,
-            "path": [str(part) for part in exc.path],
-            "schema_path": [str(part) for part in exc.schema_path],
-        }
-        return _failure_payload("input payload failed validation", details=detail_payload)
+        _ensure_input_schema(payload)
+        params = _extract_parameters(payload)
+        visitor = _initialize_visitor(params, ctx=ctx)
 
-    parameters_obj = payload.get("parameters", {})
-    parameters = cast("Mapping[str, object]", parameters_obj)
-
-    root_dir_obj = parameters.get("root_dir")
-    root_dir = _maybe_string(root_dir_obj)
-    if root_dir is None:
-        return _failure_payload(
-            "input payload failed validation",
-            details={"error": "parameters.root_dir must be a non-empty string"},
-        )
-
-    output_filename_obj = parameters.get("output_filename")
-    output_filename = _maybe_string(output_filename_obj)
-
-    enable_cache = _coerce_bool_flag(parameters.get("enable_cache"), True)
-    allowed_repos = _coerce_allowed_repositories(parameters.get("allowed_repositories"))
-    file_allowlist = _coerce_file_allowlist(parameters.get("file_allowlist"))
-
-    try:
-        if output_filename is None:
-            visitor = x_cls_make_github_visitor_x(
-                root_dir,
-                ctx=ctx,
-                enable_cache=enable_cache,
-                allowed_repositories=allowed_repos,
-                file_allowlist=file_allowlist,
-            )
-        else:
-            visitor = x_cls_make_github_visitor_x(
-                root_dir,
-                ctx=ctx,
-                enable_cache=enable_cache,
-                output_filename=output_filename,
-                allowed_repositories=allowed_repos,
-                file_allowlist=file_allowlist,
-            )
-    except AssertionError as exc:
-        return _failure_payload(
-            "visitor initialisation failed",
-            details={"error": str(exc)},
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _failure_payload(
-            "unexpected error while initialising visitor",
-            details={"error": str(exc)},
-        )
-
-    generated_at = datetime.now(UTC)
-    try:
-        visitor.run_inspect_flow()
-    except AssertionError as exc:
-        message = str(exc)
-        if "no child git repositories found" in message.lower():
-            skip_payload = _build_skip_payload(visitor, generated_at=generated_at)
-            try:
-                validate_payload(skip_payload, OUTPUT_SCHEMA)
-            except ValidationError as err:
-                return _failure_payload(
-                    "generated output failed schema validation",
-                    details={
-                        "error": err.message,
-                        "path": [str(part) for part in err.path],
-                        "schema_path": [str(part) for part in err.schema_path],
-                    },
+        generated_at = datetime.now(UTC)
+        try:
+            visitor.run_inspect_flow()
+        except AssertionError as exc:
+            message = str(exc)
+            if "no child git repositories found" in message.lower():
+                skip_payload = _build_skip_payload(
+                    visitor,
+                    generated_at=generated_at,
                 )
-            return skip_payload
-        return _failure_payload(
-            "visitor run failed",
-            details={"error": message},
+                _validate_output_payload(skip_payload, failure_messages=())
+                return skip_payload
+            failure_message = "visitor run failed"
+            raise _VisitorError(
+                failure_message,
+                details={"error": message},
+            ) from exc
+        except Exception as exc:
+            failure_message = "unexpected error during visitor run"
+            raise _VisitorError(
+                failure_message,
+                details={"error": str(exc)},
+            ) from exc
+
+        result = visitor.last_run_result
+        if not isinstance(result, VisitorRunResult):
+            result = VisitorRunResult(
+                report_path=visitor.last_report_path,
+                had_failures=False,
+            )
+
+        payload_out = _build_success_payload(
+            visitor,
+            result,
+            generated_at=generated_at,
         )
-    except Exception as exc:  # noqa: BLE001
-        return _failure_payload(
-            "unexpected error during visitor run",
-            details={"error": str(exc)},
-        )
-
-    result = visitor.last_run_result
-    if not isinstance(result, VisitorRunResult):
-        report_path = visitor.last_report_path
-        result = VisitorRunResult(
-            report_path=report_path,
-            had_failures=False,
-        )
-
-    detail_pairs = list(
-        zip(result.failure_details, result.failure_messages, strict=False)
-    )
-    failure_entries = visitor._serialize_failures(detail_pairs)
-
-    summary = visitor.generate_summary_report()
-    runtime_snapshot = _json_ready(dict(visitor._runtime_snapshot))
-    tool_versions = _json_ready(dict(visitor._tool_versions))
-
-    report_path_value = (
-        str(result.report_path)
-        if isinstance(result.report_path, Path)
-        else (
-            str(result.report_path)
-            if isinstance(result.report_path, str) and result.report_path
-            else None
-        )
-    )
-
-    failure_details_json = _json_ready([dict(detail) for detail in result.failure_details])
-
-    payload_out: dict[str, object] = {
-        "status": "failure" if result.had_failures else "success",
-        "schema_version": SCHEMA_VERSION,
-        "generated_at": generated_at.isoformat(),
-        "workspace_root": str(visitor.root),
-        "report_path": report_path_value,
-        "had_failures": bool(result.had_failures),
-        "skipped": bool(result.skipped),
-        "failures": _json_ready(failure_entries),
-        "failure_messages": list(result.failure_messages),
-        "failure_details": failure_details_json,
-        "summary": _json_ready(summary),
-        "runtime": runtime_snapshot,
-        "tool_versions": tool_versions,
-    }
-
-    try:
-        validate_payload(payload_out, OUTPUT_SCHEMA)
-    except ValidationError as exc:
-        return _failure_payload(
-            "generated output failed schema validation",
-            details={
-                "error": exc.message,
-                "path": [str(part) for part in exc.path],
-                "schema_path": [str(part) for part in exc.schema_path],
-            },
+    except _VisitorError as exc:
+        return exc.payload
+    else:
+        _validate_output_payload(
+            payload_out,
             failure_messages=result.failure_messages,
         )
-
-    return payload_out
+        return payload_out
 
 
 def _load_json_payload(path: str | None) -> Mapping[str, object]:
