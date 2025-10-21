@@ -16,9 +16,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
-from jsonschema import ValidationError
+from jsonschema import ValidationError as _JsonSchemaValidationError
 
 from .json_contracts import INPUT_SCHEMA, OUTPUT_SCHEMA
+
+JSONSchemaValidationError = cast("type[Exception]", _JsonSchemaValidationError)
 
 _WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 _workspace_root_str = str(_WORKSPACE_ROOT)
@@ -36,12 +38,17 @@ if _workspace_root_str not in sys.path:
 if TYPE_CHECKING:  # Static analyzers see the local package for precise types
     from x_make_common_x.json_contracts import validate_payload
     from x_make_common_x.stage_progress import RepoProgressReporter
-    from x_make_common_x.telemetry import JSONValue, emit_event, make_event
+    from x_make_common_x.telemetry import (
+        JSONValue,
+        TelemetryContext,
+        emit_event,
+        make_event,
+    )
     from x_make_common_x.x_logging_utils_x import get_logger
 else:  # Prefer local workspace package, fall back to PyPI distribution
     try:
         from x_make_common_x import emit_event, get_logger, make_event, validate_payload
-        from x_make_common_x.telemetry import JSONValue
+        from x_make_common_x.telemetry import JSONValue, TelemetryContext
     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
         from x_4357_make_common_x import (  # type: ignore[attr-defined]
             emit_event,
@@ -49,12 +56,15 @@ else:  # Prefer local workspace package, fall back to PyPI distribution
             make_event,
             validate_payload,
         )
+
         try:  # pragma: no cover - compatibility fall-back for legacy builds
             from x_4357_make_common_x.telemetry import (
                 JSONValue,  # type: ignore[attr-defined]
+                TelemetryContext,  # type: ignore[attr-defined]
             )
         except (ModuleNotFoundError, ImportError, AttributeError):
             JSONValue = object  # type: ignore[assignment]
+            TelemetryContext = object  # type: ignore[assignment]
 
 _LOGGER = get_logger("x_make_github_visitor")
 
@@ -251,6 +261,24 @@ def _is_generated_build_dir(name: str) -> bool:
     return any(name.startswith(prefix) for prefix in GENERATED_BUILD_DIR_PREFIXES)
 
 
+def _iterable_to_str_list(value: object) -> list[str]:
+    if isinstance(value, Iterable) and not isinstance(value, (str, bytes, bytearray)):
+        return [str(entry) for entry in value]
+    return []
+
+
+def _validation_error_details(exc: Exception) -> dict[str, object]:
+    message_obj: object = getattr(exc, "message", None)
+    message = str(message_obj) if message_obj is not None else str(exc)
+    path_attr: object = getattr(exc, "path", ())
+    schema_path_attr: object = getattr(exc, "schema_path", ())
+    return {
+        "error": message,
+        "path": _iterable_to_str_list(path_attr),
+        "schema_path": _iterable_to_str_list(schema_path_attr),
+    }
+
+
 class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for compatibility
     def __init__(  # noqa: PLR0913 - runtime configuration requires these parameters
         self,
@@ -261,7 +289,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         enable_cache: bool = True,
         allowed_repositories: Sequence[str] | None = None,
         file_allowlist: Mapping[str, Sequence[str]] | None = None,
-    progress_writer: RepoProgressReporter | None = None,
+        progress_writer: RepoProgressReporter | None = None,
     ) -> None:
         """Initialize visitor.
 
@@ -735,16 +763,19 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             failure_entries=failure_entries,
         )
         json_details = cast("Mapping[str, JSONValue]", details)
+        telemetry_context = TelemetryContext(
+            repository=payload.repo.rel_path,
+            tool=payload.module_name,
+            attempt=1,
+            duration_ms=duration_ms,
+            details=json_details,
+        )
         emit_event(
             make_event(
                 source="visitor",
                 phase="inspection",
                 status=payload.status,
-                repository=payload.repo.rel_path,
-                tool=payload.module_name,
-                attempt=1,
-                duration_ms=duration_ms,
-                details=json_details,
+                context=telemetry_context,
             )
         )
 
@@ -1434,9 +1465,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 else:
                     tool_reports = result.report.get("tool_reports")
                     tool_count = (
-                        len(tool_reports)
-                        if isinstance(tool_reports, dict)
-                        else 0
+                        len(tool_reports) if isinstance(tool_reports, dict) else 0
                     )
                     success_message = (
                         f"All {tool_count} tool(s) succeeded."
@@ -1683,12 +1712,8 @@ class _VisitorParameters:
 def _ensure_input_schema(payload: Mapping[str, object]) -> None:
     try:
         validate_payload(payload, INPUT_SCHEMA)
-    except ValidationError as exc:
-        detail_payload = {
-            "error": exc.message,
-            "path": [str(part) for part in exc.path],
-            "schema_path": [str(part) for part in exc.schema_path],
-        }
+    except JSONSchemaValidationError as exc:
+        detail_payload = _validation_error_details(exc)
         failure_message = "input payload failed validation"
         raise _VisitorError(
             failure_message,
@@ -1737,22 +1762,22 @@ def _initialize_visitor(
     *,
     ctx: object | None,
 ) -> x_cls_make_github_visitor_x:
-    init_kwargs = {
-        "ctx": ctx,
-        "enable_cache": params.enable_cache,
-        "allowed_repositories": params.allowed_repositories,
-        "file_allowlist": params.file_allowlist,
-    }
     try:
         if params.output_filename is None:
             return x_cls_make_github_visitor_x(
                 params.root_dir,
-                **init_kwargs,
+                ctx=ctx,
+                enable_cache=params.enable_cache,
+                allowed_repositories=params.allowed_repositories,
+                file_allowlist=params.file_allowlist,
             )
         return x_cls_make_github_visitor_x(
             params.root_dir,
             output_filename=params.output_filename,
-            **init_kwargs,
+            ctx=ctx,
+            enable_cache=params.enable_cache,
+            allowed_repositories=params.allowed_repositories,
+            file_allowlist=params.file_allowlist,
         )
     except AssertionError as exc:
         failure_message = "visitor initialisation failed"
@@ -1775,12 +1800,8 @@ def _validate_output_payload(
 ) -> None:
     try:
         validate_payload(payload, OUTPUT_SCHEMA)
-    except ValidationError as exc:
-        detail_payload = {
-            "error": exc.message,
-            "path": [str(part) for part in exc.path],
-            "schema_path": [str(part) for part in exc.schema_path],
-        }
+    except JSONSchemaValidationError as exc:
+        detail_payload = _validation_error_details(exc)
         failure_message = "generated output failed schema validation"
         raise _VisitorError(
             failure_message,
@@ -1916,14 +1937,21 @@ def main_json(
 def _load_json_payload(path: str | None) -> Mapping[str, object]:
     if path:
         with Path(path).open("r", encoding="utf-8") as handle:
-            return cast("Mapping[str, object]", json.load(handle))
-    return cast("Mapping[str, object]", json.load(sys.stdin))
+            raw_payload: object = json.load(handle)
+    else:
+        raw_payload = json.load(sys.stdin)
+    if not isinstance(raw_payload, Mapping):
+        message = "JSON payload must be an object"
+        raise TypeError(message)
+    mapping_payload = cast("Mapping[str, object]", raw_payload)
+    normalized: dict[str, object] = {}
+    for key, value in mapping_payload.items():
+        normalized[str(key)] = value
+    return normalized
 
 
 def _run_json_cli(args: Sequence[str]) -> None:
-    parser = argparse.ArgumentParser(
-        description="x_make_github_visitor_x JSON runner"
-    )
+    parser = argparse.ArgumentParser(description="x_make_github_visitor_x JSON runner")
     parser.add_argument(
         "--json",
         action="store_true",
@@ -1936,10 +1964,18 @@ def _run_json_cli(args: Sequence[str]) -> None:
     )
     parsed = parser.parse_args(list(args))
 
-    if not (parsed.json or parsed.json_file):
+    json_attr: object = getattr(parsed, "json", False)
+    json_flag: bool = bool(json_attr)
+    json_file_obj: object = getattr(parsed, "json_file", None)
+    if isinstance(json_file_obj, str):
+        json_file: str | None = json_file_obj
+    else:
+        json_file = None
+
+    if not json_flag and json_file is None:
         parser.error("JSON input required. Use --json for stdin or --json-file <path>.")
 
-    payload = _load_json_payload(parsed.json_file if parsed.json_file else None)
+    payload = _load_json_payload(json_file)
     result = main_json(payload)
     json.dump(result, sys.stdout, indent=2)
     sys.stdout.write("\n")

@@ -370,6 +370,16 @@ class VisitorRunner(Protocol):
     ) -> VisitorRunResult: ...
 
 
+class VisitorConstructor(Protocol):
+    def __call__(
+        self,
+        ctx: object | None,
+        root: str,
+        *,
+        progress_writer: RepoProgressReporter | None = None,
+    ) -> VisitorProtocol: ...
+
+
 class WorkspaceRootResolver(Protocol):
     def __call__(
         self,
@@ -504,7 +514,7 @@ class _InspectionInputs:
     root_path: Path
     root_str: str
     ctx: object | None
-    instantiate_visitor: Callable[..., VisitorProtocol]
+    instantiate_visitor: VisitorConstructor
     visitor_factory: object
     progress_writer: RepoProgressReporter | None
     runner: VisitorRunner | None
@@ -528,7 +538,7 @@ def _invoke_runner_with_optional_progress(
 
 
 def _construct_direct_visitor(
-    instantiate_visitor: Callable[..., VisitorProtocol],
+    instantiate_visitor: VisitorConstructor,
     root_str: str,
     *,
     ctx: object | None,
@@ -584,7 +594,7 @@ def run_inspection(  # noqa: PLR0913
     cloner: object,
     ctx: object | None,
     detect_clones_root: Callable[[], str],
-    instantiate_visitor: Callable[..., VisitorProtocol],
+    instantiate_visitor: VisitorConstructor,
     clones_factory: object,
     visitor_factory: object,
     progress_writer: RepoProgressReporter | None = None,
@@ -634,10 +644,6 @@ def run_inspection(  # noqa: PLR0913
             str(exc),
         )
         raise
-
-    if run_result is None:
-        missing_result_message = "Visitor inspection did not produce a run result"
-        raise RuntimeError(missing_result_message)
 
     duration_ms = int((perf_counter() - start) * 1000)
     summary_parts: list[str] = [f"duration={duration_ms}ms"]
