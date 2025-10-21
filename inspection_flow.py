@@ -13,6 +13,7 @@ from time import perf_counter
 from typing import TYPE_CHECKING, Protocol, TypeGuard, cast
 
 from x_make_common_x import ensure_workspace_on_syspath, get_logger
+from x_make_common_x.stage_progress import RepoProgressReporter
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Sequence
@@ -364,6 +365,7 @@ class VisitorRunner(Protocol):
         root_path: Path,
         *,
         ctx: object | None = None,
+        progress_writer: RepoProgressReporter | None = None,
     ) -> VisitorRunResult: ...
 
 
@@ -501,9 +503,10 @@ def run_inspection(  # noqa: PLR0913
     cloner: object,
     ctx: object | None,
     detect_clones_root: Callable[[], str],
-    instantiate_visitor: Callable[[object | None, str], VisitorProtocol],
+    instantiate_visitor: Callable[..., VisitorProtocol],
     clones_factory: object,
     visitor_factory: object,
+    progress_writer: RepoProgressReporter | None = None,
 ) -> VisitorRunResult:
     fallback_str = detect_clones_root()
     fallback_root = Path(fallback_str or ".")
@@ -516,6 +519,8 @@ def run_inspection(  # noqa: PLR0913
     root_str = str(root_path)
     start = perf_counter()
     use_subprocess = _should_use_subprocess()
+    if progress_writer is not None:
+        use_subprocess = False
     _info("Visitor inspection flow starting", f"root={root_str}")
     runner = _load_visitor_runner(visitor_factory)
     run_result: VisitorRunResult | None = None
@@ -527,13 +532,27 @@ def run_inspection(  # noqa: PLR0913
             )
             run_result = _run_visitor_in_subprocess(root_path, ctx, visitor_factory)
         elif runner is not None:
-            run_result = runner(root_path, ctx=ctx)
+            try:
+                run_result = runner(
+                    root_path,
+                    ctx=ctx,
+                    progress_writer=progress_writer,
+                )
+            except TypeError:
+                run_result = runner(root_path, ctx=ctx)
         else:
             _info(
                 "Running x_make_github_visitor against cloned repos",
                 f"root={root_str} ...",
             )
-            visitor = instantiate_visitor(ctx, root_str)
+            try:
+                visitor = instantiate_visitor(
+                    ctx,
+                    root_str,
+                    progress_writer=progress_writer,
+                )
+            except TypeError:
+                visitor = instantiate_visitor(ctx, root_str)
             run_result = _run_visitor_flow(visitor)
     except AssertionError as exc:
         duration_ms = int((perf_counter() - start) * 1000)
@@ -551,6 +570,9 @@ def run_inspection(  # noqa: PLR0913
             str(exc),
         )
         raise
+
+    if run_result is None:
+        raise RuntimeError("Visitor inspection did not produce a run result")
 
     duration_ms = int((perf_counter() - start) * 1000)
     summary_parts: list[str] = [f"duration={duration_ms}ms"]

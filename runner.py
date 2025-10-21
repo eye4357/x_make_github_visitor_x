@@ -33,6 +33,7 @@ if _workspace_root_str not in sys.path:
 
 if TYPE_CHECKING:  # Static analyzers see the local package for precise types
     from x_make_common_x.json_contracts import validate_payload
+    from x_make_common_x.stage_progress import RepoProgressReporter
     from x_make_common_x.telemetry import JSONValue, emit_event, make_event
     from x_make_common_x.x_logging_utils_x import get_logger
 else:  # Prefer local workspace package, fall back to PyPI distribution
@@ -260,6 +261,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         enable_cache: bool = True,
         allowed_repositories: Sequence[str] | None = None,
         file_allowlist: Mapping[str, Sequence[str]] | None = None,
+    progress_writer: RepoProgressReporter | None = None,
     ) -> None:
         """Initialize visitor.
 
@@ -300,6 +302,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         }
         self._last_report_path: Path | None = None
         self._last_run_result: VisitorRunResult | None = None
+        self.progress_writer: RepoProgressReporter | None = progress_writer
 
         # package root (the folder containing this module). Reports live here so
         # they remain alongside the visitor package rather than the workspace
@@ -366,6 +369,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 continue
             out.append(p)
         return sorted(out)
+
+    def set_progress_writer(self, writer: RepoProgressReporter | None) -> None:
+        self.progress_writer = writer
 
     def _atomic_write_json(self, path: Path, data: object) -> None:
         tmp = path.with_name(path.name + ".tmp")
@@ -1362,7 +1368,40 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failure_details: list[dict[str, object]] = []
 
         repo_iterable = list(children) if children is not None else self._child_dirs()
+        writer = self.progress_writer
+
+        def _relative_name(path: Path) -> str:
+            try:
+                return str(path.relative_to(self.root))
+            except ValueError:
+                return path.name
+
+        repo_names: dict[Path, str] = {child: _relative_name(child) for child in repo_iterable}
+
+        if writer is not None:
+            for child, rel_name in repo_names.items():
+                writer.record_pending(
+                    rel_name,
+                    display_name=child.name,
+                    metadata={
+                        "absolute_path": str(child),
+                        "relative_path": rel_name,
+                    },
+                )
+
         for index, child in enumerate(repo_iterable, 1):
+            rel_name = repo_names.get(child) or _relative_name(child)
+            display_name = Path(rel_name).name or child.name
+            if writer is not None:
+                writer.record_start(
+                    rel_name,
+                    display_name=display_name,
+                    metadata={
+                        "absolute_path": str(child),
+                        "relative_path": rel_name,
+                    },
+                )
+
             result = self._process_repository(
                 child,
                 python,
@@ -1371,6 +1410,40 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             reports[result.relative_name] = result.report
             failure_messages.extend(result.failure_messages)
             failure_details.extend(result.failure_details)
+
+            repo_metadata: dict[str, object] = {
+                "absolute_path": str(child),
+                "relative_path": result.relative_name,
+                "repo_hash": result.report.get("repo_hash"),
+                "tool_reports": result.report.get("tool_reports"),
+            }
+
+            if writer is not None:
+                if result.failure_messages:
+                    failure_meta = dict(repo_metadata)
+                    if result.failure_details:
+                        failure_meta["failure_details"] = result.failure_details
+                    writer.record_failure(
+                        result.relative_name,
+                        display_name=display_name,
+                        metadata=failure_meta,
+                        messages=result.failure_messages,
+                    )
+                else:
+                    tool_reports = result.report.get("tool_reports")
+                    tool_count = len(tool_reports) if isinstance(tool_reports, dict) else 0
+                    success_message = (
+                        f"All {tool_count} tool(s) succeeded."
+                        if tool_count
+                        else "Inspection succeeded."
+                    )
+                    writer.record_success(
+                        result.relative_name,
+                        display_name=display_name,
+                        metadata=repo_metadata,
+                        messages=[success_message],
+                    )
+
             _yield_periodically(index, interval=_REPO_ITERATION_YIELD_INTERVAL)
 
         self._tool_reports = reports
@@ -1784,18 +1857,21 @@ def init_name(
     output_filename: str | None = None,
     ctx: object | None = None,
     enable_cache: bool = True,
+    progress_writer: RepoProgressReporter | None = None,
 ) -> x_cls_make_github_visitor_x:
     if output_filename is None:
         return x_cls_make_github_visitor_x(
             root_dir,
             ctx=ctx,
             enable_cache=enable_cache,
+            progress_writer=progress_writer,
         )
     return x_cls_make_github_visitor_x(
         root_dir,
         output_filename=output_filename,
         ctx=ctx,
         enable_cache=enable_cache,
+        progress_writer=progress_writer,
     )
 
 
@@ -1813,6 +1889,7 @@ def run_workspace_inspection(
     *,
     ctx: object | None = None,
     enable_cache: bool = True,
+    progress_writer: RepoProgressReporter | None = None,
 ) -> VisitorRunResult:
     """Run the full inspection pipeline for the provided workspace root.
 
@@ -1822,7 +1899,12 @@ def run_workspace_inspection(
     """
 
     try:
-        visitor = init_name(root_dir, ctx=ctx, enable_cache=enable_cache)
+        visitor = init_name(
+            root_dir,
+            ctx=ctx,
+            enable_cache=enable_cache,
+            progress_writer=progress_writer,
+        )
     except (RuntimeError, ValueError, TypeError) as err:  # pragma: no cover
         # init guard
         message = f"x_make_github_visitor instantiate failed: {err}"
