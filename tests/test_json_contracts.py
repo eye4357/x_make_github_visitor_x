@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, cast
 
 import pytest
 from x_make_common_x.json_contracts import validate_payload, validate_schema
@@ -22,13 +22,9 @@ from x_make_github_visitor_x.json_contracts import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
-
     from _pytest.monkeypatch import MonkeyPatch
-else:
-    pytest = cast("Any", pytest)
-
-fixture = cast("Callable[..., Any]", pytest.fixture)
+else:  # pragma: no cover - runtime typing fallback
+    MonkeyPatch = object
 
 FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures" / "json_contracts"
 
@@ -42,17 +38,17 @@ def _load_fixture(path: Path) -> dict[str, object]:
     return cast("dict[str, object]", data)
 
 
-@fixture(scope="module")
+@pytest.fixture(scope="module")  # type: ignore[misc]
 def sample_input() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "input.json")
 
 
-@fixture(scope="module")
+@pytest.fixture(scope="module")  # type: ignore[misc]
 def sample_output() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "output.json")
 
 
-@fixture(scope="module")
+@pytest.fixture(scope="module")  # type: ignore[misc]
 def sample_error() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "error.json")
 
