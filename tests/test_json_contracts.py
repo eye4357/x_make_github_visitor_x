@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, Any, cast
 
 import pytest
 from x_make_common_x.json_contracts import validate_payload, validate_schema
@@ -21,6 +21,15 @@ from x_make_github_visitor_x.json_contracts import (
     OUTPUT_SCHEMA,
 )
 
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+    from _pytest.monkeypatch import MonkeyPatch
+else:
+    pytest = cast("Any", pytest)
+
+fixture = cast("Callable[..., Any]", pytest.fixture)
+
 FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures" / "json_contracts"
 
 
@@ -33,17 +42,17 @@ def _load_fixture(path: Path) -> dict[str, object]:
     return cast("dict[str, object]", data)
 
 
-@pytest.fixture(scope="module")
+@fixture(scope="module")
 def sample_input() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "input.json")
 
 
-@pytest.fixture(scope="module")
+@fixture(scope="module")
 def sample_output() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "output.json")
 
 
-@pytest.fixture(scope="module")
+@fixture(scope="module")
 def sample_error() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "error.json")
 
@@ -66,7 +75,7 @@ def test_sample_payloads_match_schema(
 def test_main_json_runs_successfully(
     sample_input: dict[str, object],
     tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
+    monkeypatch: MonkeyPatch,
 ) -> None:
     payload = cast("dict[str, object]", json.loads(json.dumps(sample_input)))
     workspace = tmp_path / "workspace"
@@ -138,7 +147,7 @@ def test_main_json_runs_successfully(
 def test_main_json_handles_skip(
     sample_input: dict[str, object],
     tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
+    monkeypatch: MonkeyPatch,
 ) -> None:
     payload = cast("dict[str, object]", json.loads(json.dumps(sample_input)))
     workspace = tmp_path / "workspace"
