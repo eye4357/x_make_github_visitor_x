@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, ParamSpec, TypeVar, cast
 
 import pytest
 from x_make_common_x.json_contracts import validate_payload, validate_schema
@@ -21,10 +21,36 @@ from x_make_github_visitor_x.json_contracts import (
     OUTPUT_SCHEMA,
 )
 
+_P = ParamSpec("_P")
+_T = TypeVar("_T")
+
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
     from _pytest.monkeypatch import MonkeyPatch
 else:  # pragma: no cover - runtime typing fallback
+    import typing
+
+    Callable = typing.Callable
     MonkeyPatch = object
+
+
+if TYPE_CHECKING:
+
+    def typed_fixture(
+        *_args: object, **_kwargs: object
+    ) -> Callable[[Callable[_P, _T]], Callable[_P, _T]]: ...
+
+else:
+
+    def typed_fixture(
+        *args: object, **kwargs: object
+    ) -> Callable[[Callable[_P, _T]], Callable[_P, _T]]:
+        def _decorate(func: Callable[_P, _T]) -> Callable[_P, _T]:
+            decorated = pytest.fixture(*args, **kwargs)(func)
+            return cast("Callable[_P, _T]", decorated)
+
+        return _decorate
 
 FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures" / "json_contracts"
 
@@ -38,17 +64,17 @@ def _load_fixture(path: Path) -> dict[str, object]:
     return cast("dict[str, object]", data)
 
 
-@pytest.fixture(scope="module")  # type: ignore[misc]
+@typed_fixture(scope="module")
 def sample_input() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "input.json")
 
 
-@pytest.fixture(scope="module")  # type: ignore[misc]
+@typed_fixture(scope="module")
 def sample_output() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "output.json")
 
 
-@pytest.fixture(scope="module")  # type: ignore[misc]
+@typed_fixture(scope="module")
 def sample_error() -> dict[str, object]:
     return _load_fixture(FIXTURE_DIR / "error.json")
 
@@ -76,7 +102,9 @@ def test_main_json_runs_successfully(
     payload = cast("dict[str, object]", json.loads(json.dumps(sample_input)))
     workspace = tmp_path / "workspace"
     workspace.mkdir()
-    parameters = cast("dict[str, object]", payload["parameters"])
+    parameters_obj = payload.get("parameters")
+    assert isinstance(parameters_obj, dict)
+    parameters = cast("dict[str, object]", parameters_obj)
     parameters["root_dir"] = str(workspace)
 
     def fake_run(self: x_cls_make_github_visitor_x) -> None:
@@ -148,7 +176,9 @@ def test_main_json_handles_skip(
     payload = cast("dict[str, object]", json.loads(json.dumps(sample_input)))
     workspace = tmp_path / "workspace"
     workspace.mkdir()
-    parameters = cast("dict[str, object]", payload["parameters"])
+    parameters_obj = payload.get("parameters")
+    assert isinstance(parameters_obj, dict)
+    parameters = cast("dict[str, object]", parameters_obj)
     parameters["root_dir"] = str(workspace)
 
     def fake_run(_: x_cls_make_github_visitor_x) -> None:
