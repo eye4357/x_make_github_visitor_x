@@ -52,6 +52,7 @@ else:
 
         return _decorate
 
+
 FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures" / "json_contracts"
 
 

@@ -1,0 +1,1805 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-25T01:19:45.879357+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_github_clones_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.690885599993635,
+                "ended_at": "2025-10-25T01:19:45.879357+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "json_contracts/__init__.py",
+                    "json_contracts/_impl.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "4b0119d7cc834dca671205bf0e94d1c5dcf54cf96c56aa892cbd7fd2ebb58584",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-25T01:19:45.188764+00:00",
+                "stderr": "",
+                "stdout": "x_make_github_clones_x\\x_cls_make_github_clones_x.py:3: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"RepoRecord\"; maybe \"_RepoRecord\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"main_json\"; maybe \"_main_json\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"resolve_workspace_root\"; maybe \"_resolve_workspace_root\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:12: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"synchronize_workspace\"; maybe \"_synchronize_workspace\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:15: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"x_cls_make_github_clones_x\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:19: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:20: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:21: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:22: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:23: error: Expression has type \"Any\"  [misc]\nFound 10 errors in 1 file (checked 2 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:19:45.188764+00:00\nduration: 0.691s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:3: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"RepoRecord\"; maybe \"_RepoRecord\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"main_json\"; maybe \"_main_json\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"resolve_workspace_root\"; maybe \"_resolve_workspace_root\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:12: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"synchronize_workspace\"; maybe \"_synchronize_workspace\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:15: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"x_cls_make_github_clones_x\"  [attr-defined]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_make_github_clones_x\\x_cls_make_github_clones_x.py:3: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"RepoRecord\"; maybe \"_RepoRecord\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"main_json\"; maybe \"_main_json\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"resolve_workspace_root\"; maybe \"_resolve_workspace_root\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:12: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"synchronize_workspace\"; maybe \"_synchronize_workspace\"?  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:15: error: Module \"x_make_github_clones_x.x_cls_make_github_clones_x\" has no attribute \"x_cls_make_github_clones_x\"  [attr-defined]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:19:45.184477+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.15560330002335832,
+                "ended_at": "2025-10-25T01:19:45.184477+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "json_contracts/__init__.py",
+                    "json_contracts/_impl.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "4b0119d7cc834dca671205bf0e94d1c5dcf54cf96c56aa892cbd7fd2ebb58584",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-25T01:19:45.029652+00:00",
+                "stderr": "",
+                "stdout": "RET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n   |            ^^^^^^^^\n   |\nhelp: Remove unnecessary assignment\n\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_github_clones_x.py:47:7\n   |\n47 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n48 |     message: str\n49 |     path: Sequence[object]\n   |\n\nFound 2 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:19:45.029652+00:00\nduration: 0.156s\ntool_version: ruff 0.14.2\nstdout:\nRET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "RET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --li\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:19:43.146745+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.14294440002413467,
+                "ended_at": "2025-10-25T01:19:43.146745+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "json_contracts/__init__.py",
+                    "json_contracts/_impl.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "4b0119d7cc834dca671205bf0e94d1c5dcf54cf96c56aa892cbd7fd2ebb58584",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-25T01:19:43.001500+00:00",
+                "stderr": "",
+                "stdout": "RET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n   |            ^^^^^^^^\n   |\nhelp: Remove unnecessary assignment\n\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_github_clones_x.py:47:7\n   |\n47 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n48 |     message: str\n49 |     path: Sequence[object]\n   |\n\nFound 2 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:19:43.001500+00:00\nduration: 0.143s\ntool_version: ruff 0.14.2\nstdout:\nRET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "RET504 Unnecessary assignment to `main_obj` before `return` statement\n  --> fastapi\\cli.py:21:12\n   |\n20 |     main_obj = module.main\n21 |     return main_obj\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 \u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:20:31.579612+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_github_visitor_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 1.1741170999594033,
+                "ended_at": "2025-10-25T01:20:31.579612+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "json_contracts.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "tests/test_json_contracts.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "ea3c901ff5b8c7bb641a9591f93eb447393aa5fcccdde3c51e9862f9dd539138",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-25T01:20:30.407507+00:00",
+                "stderr": "",
+                "stdout": "runner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:20:30.407507+00:00\nduration: 1.174s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nrunner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "runner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unuse\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:26.715200+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_markdown_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.8145347000099719,
+                "ended_at": "2025-10-25T01:21:26.715200+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "3c2a8abad635d0e4ec75dbf475ad20f6f3c90a9a4f1c3ea2543ade37a7b76b54",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-25T01:21:25.899916+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_markdown_x.py:387: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_markdown_x.py:522: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:27: error: Expression has type \"Any\"  [misc]\nFound 4 errors in 2 files (checked 12 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:21:25.899916+00:00\nduration: 0.815s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_markdown_x.py:387: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_markdown_x.py:522: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:27: error: Expression has type \"Any\"  [misc]\nFound 4 errors in 2 files (checked 12 source files)\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_markdown_x.py:387: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_markdown_x.py:522: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:27: error: Expression has type \"Any\"  [misc]\nFound 4 errors in 2 files (checked 12 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-e\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:25.895290+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.13716119999298826,
+                "ended_at": "2025-10-25T01:21:25.895290+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "3c2a8abad635d0e4ec75dbf475ad20f6f3c90a9a4f1c3ea2543ade37a7b76b54",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-25T01:21:25.759656+00:00",
+                "stderr": "",
+                "stdout": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n38 |     message: str\n39 |     path: tuple[object, ...]\n   |\n\nFound 1 error.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:21:25.759656+00:00\nduration: 0.137s\ntool_version: ruff 0.14.2\nstdout:\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length \u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:24.220397+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.13716640003258362,
+                "ended_at": "2025-10-25T01:21:24.220397+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "3c2a8abad635d0e4ec75dbf475ad20f6f3c90a9a4f1c3ea2543ade37a7b76b54",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-25T01:21:24.086136+00:00",
+                "stderr": "",
+                "stdout": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n38 |     message: str\n39 |     path: tuple[object, ...]\n   |\n\nFound 1 error.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:21:24.086136+00:00\nduration: 0.137s\ntool_version: ruff 0.14.2\nstdout:\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_markdown_x.py:37:7\n   |\n37 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-len\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:56.999964+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_mermaid_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 1.1461217000032775,
+                "ended_at": "2025-10-25T01:21:56.999964+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "4557f15180ac5c1a34ba08b2beff77dd9c73de5d1bbd01d1dec53390699d9f8a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-25T01:21:55.858718+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_mermaid_x.py:804: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:922: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:1550: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:28: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:29: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:139: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:140: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:141: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nFound 10 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:21:55.858718+00:00\nduration: 1.146s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_mermaid_x.py:804: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:922: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:1550: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_mermaid_x.py:804: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:922: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_mermaid_x.py:1550: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1553: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-erro\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:55.851000+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 0.16187129996251315,
+                "ended_at": "2025-10-25T01:21:55.851000+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "4557f15180ac5c1a34ba08b2beff77dd9c73de5d1bbd01d1dec53390699d9f8a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-25T01:21:55.693759+00:00",
+                "stderr": "",
+                "stdout": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n80 |     message: str\n81 |     path: tuple[object, ...]\n   |\n\nFound 1 error.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:21:55.693759+00:00\nduration: 0.162s\ntool_version: ruff 0.14.2\nstdout:\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:21:54.066517+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 0.14593610004521906,
+                "ended_at": "2025-10-25T01:21:54.066517+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "4557f15180ac5c1a34ba08b2beff77dd9c73de5d1bbd01d1dec53390699d9f8a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-25T01:21:53.924453+00:00",
+                "stderr": "",
+                "stdout": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n80 |     message: str\n81 |     path: tuple[object, ...]\n   |\n\nFound 1 error.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:21:53.924453+00:00\nduration: 0.146s\ntool_version: ruff 0.14.2\nstdout:\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "N818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_mermaid_x.py:79:7\n   |\n79 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-lengt\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:22:27.198055+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_persistent_env_var_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.9169195999857038,
+                "ended_at": "2025-10-25T01:22:27.198055+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "3819a71c86b566a7d833e6fece06e59aa5e7ae37573c7749714cd8bcd9d6e521",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-25T01:22:26.280891+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_persistent_env_var_x.py:613: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:614: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1044: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_persistent_env_var_x.py:1132: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\nx_cls_make_persistent_env_var_x.py:1177: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1180: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1180: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:30: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\nFound 11 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:22:26.280891+00:00\nduration: 0.917s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_persistent_env_var_x.py:613: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:614: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1044: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_persistent_env_var_x.py:613: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:614: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:615: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1044: error: Redundant cast to \"_ValidationErrorProtocol\"  [redundant-cast]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --n\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:22:26.269229+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.14561589999357238,
+                "ended_at": "2025-10-25T01:22:26.269229+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "3819a71c86b566a7d833e6fece06e59aa5e7ae37573c7749714cd8bcd9d6e521",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-25T01:22:26.132417+00:00",
+                "stderr": "",
+                "stdout": "PLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n180 |     monkeypatch: pytest.MonkeyPatch,\n181 | ) -> None:\n    |\n\nTC003 Move standard library import `types.ModuleType` into a type-checking block\n  --> x_cls_make_persistent_env_var_x.py:18:19\n   |\n16 | from datetime import UTC, datetime\n17 | from pathlib import Path\n18 | from types import ModuleType\n   |                   ^^^^^^^^^^\n19 | from typing import IO, TYPE_CHECKING, Protocol, TypeVar, cast\n   |\nhelp: Move into type-checking block\n\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_persistent_env_var_x.py:30:7\n   |\n30 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n31 |     message: str\n32 |     path: tuple[object, ...]\n   |\n\nFound 3 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:22:26.132417+00:00\nduration: 0.146s\ntool_version: ruff 0.14.2\nstdout:\nPLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "PLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC00\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:22:24.186489+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.1547485999763012,
+                "ended_at": "2025-10-25T01:22:24.186489+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "3819a71c86b566a7d833e6fece06e59aa5e7ae37573c7749714cd8bcd9d6e521",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-25T01:22:24.029876+00:00",
+                "stderr": "",
+                "stdout": "PLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n180 |     monkeypatch: pytest.MonkeyPatch,\n181 | ) -> None:\n    |\n\nTC003 Move standard library import `types.ModuleType` into a type-checking block\n  --> x_cls_make_persistent_env_var_x.py:18:19\n   |\n16 | from datetime import UTC, datetime\n17 | from pathlib import Path\n18 | from types import ModuleType\n   |                   ^^^^^^^^^^\n19 | from typing import IO, TYPE_CHECKING, Protocol, TypeVar, cast\n   |\nhelp: Move into type-checking block\n\nN818 Exception name `_ValidationErrorProtocol` should be named with an Error suffix\n  --> x_cls_make_persistent_env_var_x.py:30:7\n   |\n30 | class _ValidationErrorProtocol(Exception):\n   |       ^^^^^^^^^^^^^^^^^^^^^^^^\n31 |     message: str\n32 |     path: tuple[object, ...]\n   |\n\nFound 3 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:22:24.029876+00:00\nduration: 0.155s\ntool_version: ruff 0.14.2\nstdout:\nPLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "PLR0915 Too many statements (51 > 50)\n   --> tests\\test_json_contracts.py:179:5\n    |\n179 | def test_main_json_persist_current_handles_missing(\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,I\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:23:20.975231+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_py_mod_sideload_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+                "duration_seconds": 0.9026085999794304,
+                "ended_at": "2025-10-25T01:23:20.975231+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_py_module_sideload.py",
+                    "x_cls_make_py_mod_sideload_x.py"
+                ],
+                "repo": "x_make_py_mod_sideload_x",
+                "repo_hash": "0806b7ffade133bf5c59c4f2d983fc16e8515dd988fcb7122337c8a87ac21dab",
+                "repo_path": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+                "started_at": "2025-10-25T01:23:20.074365+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_py_mod_sideload_x.py:44: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:285: error: Returning Any from function declared to return \"str | None\"  [no-any-return]\nx_cls_make_py_mod_sideload_x.py:285: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:453: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:456: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:456: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:26: error: Returning Any from function declared to return \"dict[str, object]\"  [no-any-return]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:37: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:38: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:128: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nFound 11 errors in 2 files (checked 9 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_py_mod_sideload_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_mod_sideload_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:23:20.074365+00:00\nduration: 0.903s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_py_mod_sideload_x.py:44: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:285: error: Returning Any from function declared to return \"str | None\"  [no-any-return]\nx_cls_make_py_mod_sideload_x.py:285: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:453: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:456: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_mod_sideload_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_py_mod_sideload_x.py:44: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:285: error: Returning Any from function declared to return \"str | None\"  [no-any-return]\nx_cls_make_py_mod_sideload_x.py:285: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:453: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:456: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_mod_sideload_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-un\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:23:33.918726+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_py_venv_x",
+                "duration_seconds": 1.6870797000010498,
+                "ended_at": "2025-10-25T01:23:33.918726+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "x_cls_make_py_venv_x.py"
+                ],
+                "repo": "x_make_py_venv_x",
+                "repo_hash": "838f7de1ccbbb4993d7575f29d0cb206fb5961d6a7dc790030b65f88150ce382",
+                "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+                "started_at": "2025-10-25T01:23:32.231173+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:15:48.642280+00:00\n+++ C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:23:33.804361+00:00\n@@ -567,13 +567,11 @@\n         \"Sequence[str] | None\", getattr(namespace, \"requirements\", None)\n     )\n     default_requirements_seq = cast(\n         \"Sequence[str] | None\", getattr(namespace, \"default_requirements\", None)\n     )\n-    packages_seq = cast(\n-        \"Sequence[str] | None\", getattr(namespace, \"packages\", None)\n-    )\n+    packages_seq = cast(\"Sequence[str] | None\", getattr(namespace, \"packages\", None))\n \n     requirements = [str(item) for item in requirements_seq] if requirements_seq else []\n     default_requirements = (\n         [str(item) for item in default_requirements_seq]\n         if default_requirements_seq\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_py_venv_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_venv_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-25T01:23:32.231173+00:00\nduration: 1.687s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:15:48.642280+00:00\n+++ C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:23:33.804361+00:00\n@@ -567,13 +567,11 @@\n         \"Sequence[str] | None\", getattr(namespace, \"requirements\", None)\n     )\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.",
+            "repo": "x_make_py_venv_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 1 file would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:15:48.642280+00:00\n+++ C:\\x_runner_x\\x_make_py_venv_x\\x_cls_make_py_venv_x.py\t2025-10-25 01:23:33.804361+00:00\n@@ -567,13 +567,11 @@\n         \"Sequence[str] | None\", getattr(namespace, \"requirements\", None)\n     )\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_py_venv_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_venv_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-25T01:23:34.931315+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_py_venv_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_py_venv_x",
+                "duration_seconds": 0.8716616000165232,
+                "ended_at": "2025-10-25T01:23:34.931315+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "x_cls_make_py_venv_x.py"
+                ],
+                "repo": "x_make_py_venv_x",
+                "repo_hash": "838f7de1ccbbb4993d7575f29d0cb206fb5961d6a7dc790030b65f88150ce382",
+                "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+                "started_at": "2025-10-25T01:23:34.059625+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:586: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:587: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:588: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:592: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:593: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:594: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:595: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:596: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:597: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:598: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:599: error: Expression has type \"Any\"  [misc]\nFound 12 errors in 1 file (checked 2 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_py_venv_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_venv_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:23:34.059625+00:00\nduration: 0.872s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:586: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:587: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:588: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:592: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_venv_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:586: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:587: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:588: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:592: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_py_venv_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_venv_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-erro\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:07.898012+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_pypi_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.0690504999947734,
+                "ended_at": "2025-10-25T01:24:07.898012+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "2fd14ca56749a32a2a6bcdddf4c48f7cbcbbac7bde4792c227f9ec098d16218c",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-25T01:24:06.828992+00:00",
+                "stderr": "",
+                "stdout": "tests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:77: error: Expression has type \"Any\"  [misc]\npublish_flow.py:68: error: Expression has type \"Any\"  [misc]\npublish_flow.py:69: error: Expression has type \"Any\"  [misc]\npublish_flow.py:73: error: Expression has type \"Any\"  [misc]\npublish_flow.py:74: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:639: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:640: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:776: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_pypi_x.py:777: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_pypi_x.py:783: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:793: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:799: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:800: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:800: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_pypi_x.py:802: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:823: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:824: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:840: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:843: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:843: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:140: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\ntests\\test_main_json.py:248: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:250: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:253: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:253: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:257: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:262: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:266: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:278: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_main_json.py:280: error: Expression type contains \"Any\" (has type \"Callable[..., object]\")  [misc]\ntests\\test_main_json.py:284: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\ntests\\test_main_json.py:284: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:284: error: Expression type contains \"Any\" (has type \"Callable[..., object]\")  [misc]\ntests\\test_main_json.py:301: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nFound 37 errors in 4 files (checked 11 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:24:06.828992+00:00\nduration: 1.069s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\ntests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:77: error: Expression has type \"Any\"  [misc]\npublish_flow.py:68: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "tests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:77: error: Expression has type \"Any\"  [misc]\npublish_flow.py:68: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes -\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:06.825318+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.1491190000087954,
+                "ended_at": "2025-10-25T01:24:06.825318+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "2fd14ca56749a32a2a6bcdddf4c48f7cbcbbac7bde4792c227f9ec098d16218c",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-25T01:24:06.676617+00:00",
+                "stderr": "",
+                "stdout": "FBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n43 |         raising: bool = ...,\n   |         ^^^^^^^\n44 |     ) -> None: ...\n   |\n\nFBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:46:33\n   |\n44 |     ) -> None: ...\n45 |\n46 |     def delenv(self, name: str, raising: bool = ...) -> None: ...\n   |                                 ^^^^^^^\n47 |\n48 |     def setenv(self, name: str, value: str) -> None: ...\n   |\n\nSLF001 Private member accessed: `_prime_twine_credentials`\n  --> tests\\test_main_json.py:70:9\n   |\n68 |     prime_callable = cast(\n69 |         \"_PrimeCredentials\",\n70 |         publish_flow._prime_twine_credentials,\n   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n71 |     )\n72 |     return prime_callable(token_env)\n   |\n\nFound 3 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:24:06.676617+00:00\nduration: 0.149s\ntool_version: ruff 0.14.2\nstdout:\nFBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "FBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --tar\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:04.806179+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.13791039999341592,
+                "ended_at": "2025-10-25T01:24:04.806179+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "2fd14ca56749a32a2a6bcdddf4c48f7cbcbbac7bde4792c227f9ec098d16218c",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-25T01:24:04.671672+00:00",
+                "stderr": "",
+                "stdout": "FBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n43 |         raising: bool = ...,\n   |         ^^^^^^^\n44 |     ) -> None: ...\n   |\n\nFBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:46:33\n   |\n44 |     ) -> None: ...\n45 |\n46 |     def delenv(self, name: str, raising: bool = ...) -> None: ...\n   |                                 ^^^^^^^\n47 |\n48 |     def setenv(self, name: str, value: str) -> None: ...\n   |\n\nSLF001 Private member accessed: `_prime_twine_credentials`\n  --> tests\\test_main_json.py:70:9\n   |\n68 |     prime_callable = cast(\n69 |         \"_PrimeCredentials\",\n70 |         publish_flow._prime_twine_credentials,\n   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n71 |     )\n72 |     return prime_callable(token_env)\n   |\n\nFound 3 errors.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:24:04.671672+00:00\nduration: 0.138s\ntool_version: ruff 0.14.2\nstdout:\nFBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "FBT001 Boolean-typed positional argument in function definition\n  --> tests\\test_main_json.py:43:9\n   |\n41 |         name: str,\n42 |         value: object,\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 -\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:39.993529+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_yahw_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 0.637228999985382,
+                "ended_at": "2025-10-25T01:24:39.993529+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "e2d1d7f48cb832bea8fa513620cdbc22d20fef87c803ceb49d48a311f38d6fc5",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-25T01:24:39.367169+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_yahw_x.py:144: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:24: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:28: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:30: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_yahw.py:67: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_yahw.py:68: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:72: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:74: error: Redundant cast to \"SimpleNamespace\"  [redundant-cast]\ntests\\test_main_json.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_main_json.py:80: error: Expression has type \"Any\"  [misc]\nFound 15 errors in 4 files (checked 10 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-25T01:24:39.367169+00:00\nduration: 0.637s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_yahw_x.py:144: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:24: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_yahw_x.py:144: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:24: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes -\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:39.356803+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 0.15350439999019727,
+                "ended_at": "2025-10-25T01:24:39.356803+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "e2d1d7f48cb832bea8fa513620cdbc22d20fef87c803ceb49d48a311f38d6fc5",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-25T01:24:39.210301+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from types import SimpleNamespace\n6 | from typing import NoReturn, cast\n  |\nhelp: Move into type-checking block\n\nTC002 Move third-party import `pytest` into a type-checking block\n --> tests\\test_main_json.py:8:8\n  |\n6 | from typing import NoReturn, cast\n7 |\n8 | import pytest\n  |        ^^^^^^\n9 | from x_make_common_x.json_contracts import validate_payload\n  |\nhelp: Move into type-checking block\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:24:39.210301+00:00\nduration: 0.154s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --tar\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-25T01:24:37.540523+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 0.2721013999544084,
+                "ended_at": "2025-10-25T01:24:37.540523+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "e2d1d7f48cb832bea8fa513620cdbc22d20fef87c803ceb49d48a311f38d6fc5",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-25T01:24:37.266567+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from types import SimpleNamespace\n6 | from typing import NoReturn, cast\n  |\nhelp: Move into type-checking block\n\nTC002 Move third-party import `pytest` into a type-checking block\n --> tests\\test_main_json.py:8:8\n  |\n6 | from typing import NoReturn, cast\n7 |\n8 | import pytest\n  |        ^^^^^^\n9 | from x_make_common_x.json_contracts import validate_payload\n  |\nhelp: Move into type-checking block\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-25T01:24:37.266567+00:00\nduration: 0.272s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 -\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        }
+    ],
+    "generated_at": "2025-10-25T01:24:42.962641+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Lib\\site-packages\\PySide6;C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui\\Scripts;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts",
+            "PYTHONPATH": "c:\\x_runner_x"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-25T01:24:42.962641+00:00",
+        "run_started_at": "2025-10-25T01:16:35.941224+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 2,
+            "cache_misses": 78,
+            "failed_tools": 22,
+            "had_failures": true,
+            "total_tools_run": 80
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "81b2ceb70eae3dbb6f55a9a3f6594c5bbf2da563e24d55c90056274a2622a415",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "caa14a36a664f2511f138e5c621bf0e5043120f3e1d680c670a0b58c3a2e3bbe",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "52de476ece3a72a812d792dab62892ee1dcd5424717406e7482514580099c44c",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "4fff17d94200f8435d26249499684cfc9a6d64bb8cfc0b46717ae615608436bb",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "4b0119d7cc834dca671205bf0e94d1c5dcf54cf96c56aa892cbd7fd2ebb58584",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "ea3c901ff5b8c7bb641a9591f93eb447393aa5fcccdde3c51e9862f9dd539138",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "018875c95179b22c3a7687663e355170cd5942ab11218e0f8e25501e476fc7fd",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "3c2a8abad635d0e4ec75dbf475ad20f6f3c90a9a4f1c3ea2543ade37a7b76b54",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "4557f15180ac5c1a34ba08b2beff77dd9c73de5d1bbd01d1dec53390699d9f8a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "3819a71c86b566a7d833e6fece06e59aa5e7ae37573c7749714cd8bcd9d6e521",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "d86c24bf77fa9206a6c369b7018cf46f5e720532c698b7d29c2a7dbb477ae01e",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "0806b7ffade133bf5c59c4f2d983fc16e8515dd988fcb7122337c8a87ac21dab",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "838f7de1ccbbb4993d7575f29d0cb206fb5961d6a7dc790030b65f88150ce382",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "2fd14ca56749a32a2a6bcdddf4c48f7cbcbbac7bde4792c227f9ec098d16218c",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "e2d1d7f48cb832bea8fa513620cdbc22d20fef87c803ceb49d48a311f38d6fc5",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-25T01:24:42.962641+00:00",
+        "total_repos": 16
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

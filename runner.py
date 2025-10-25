@@ -14,6 +14,7 @@ from contextlib import suppress
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
+from subprocess import CompletedProcess
 from typing import TYPE_CHECKING, cast
 
 from jsonschema import ValidationError as _JsonSchemaValidationError
@@ -839,6 +840,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         module_name: str,
     ) -> ToolOutcome:
         now_iso = datetime.now(UTC).isoformat()
+        command = self._build_tool_command(repo=repo, config=config)
         skip_result: ToolResult = {
             "exit": 0,
             "stdout": "",
@@ -846,8 +848,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "cached": False,
             "skipped": True,
             "skip_reason": "no_python_files",
-            "cmd": list(config.command),
-            "cmd_display": " ".join(str(part) for part in config.command),
+            "cmd": command,
+            "cmd_display": " ".join(str(part) for part in command),
             "cwd": str(repo.path),
             "started_at": now_iso,
             "ended_at": now_iso,
@@ -869,12 +871,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         cached = self._load_cache(repo.rel_path, config.name, repo.repo_hash)
         if cached is None:
             return None
+        command = self._build_tool_command(repo=repo, config=config)
         cached_result: ToolResult = dict(cached)
         cached_result["cached"] = True
-        cached_result.setdefault("cmd", list(config.command))
+        cached_result.setdefault("cmd", command)
         cached_result.setdefault(
             "cmd_display",
-            " ".join(str(part) for part in config.command),
+            " ".join(str(part) for part in command),
         )
         cached_result.setdefault("cwd", str(repo.path))
         cached_result.setdefault("repo_hash", repo.repo_hash)
@@ -885,6 +888,91 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         cached_result.setdefault("duration_seconds", 0.0)
         _info(f"{config.name}: cache hit for {repo.rel_path}")
         return ToolOutcome(cached_result)
+
+    def _build_tool_command(
+        self,
+        *,
+        repo: RepoContext,
+        config: ToolConfig,
+    ) -> list[str]:
+        command = list(config.command)
+        if config.name == "mypy":
+            try:
+                target_index = command.index(".")
+            except ValueError:
+                target_index = -1
+            if target_index >= 0:
+                command[target_index : target_index + 1] = [
+                    "--package",
+                    repo.path.name,
+                ]
+        return command
+
+    def _build_tool_environment(self, *, repo: RepoContext) -> dict[str, str]:
+        env = os.environ.copy()
+        pythonpath_entries: list[str] = [str(repo.path), str(self.root)]
+        shared_typings = self.root / "typings"
+        if shared_typings.exists():
+            pythonpath_entries.append(str(shared_typings))
+        repo_typings = repo.path / "typings"
+        if repo_typings.exists():
+            pythonpath_entries.append(str(repo_typings))
+        existing = env.get("PYTHONPATH")
+        if existing:
+            pythonpath_entries.extend(
+                part for part in existing.split(os.pathsep) if part
+            )
+        env["PYTHONPATH"] = os.pathsep.join(
+            _dedupe_preserving_order(pythonpath_entries)
+        )
+        return env
+
+    def _execute_tool_command(
+        self,
+        *,
+        repo: RepoContext,
+        command: Sequence[str],
+        timeout: int,
+        env: Mapping[str, str] | None = None,
+    ) -> tuple[int | None, str, str, bool, datetime, datetime, float]:
+        start_wall = datetime.now(UTC)
+        start_perf = time.perf_counter()
+        timed_out = False
+        env_mapping = dict(env) if env is not None else os.environ.copy()
+        try:
+            _cooperative_yield()
+            completed = cast(
+                "CompletedProcess[str]",
+                subprocess.run(  # noqa: S603
+                    list(command),
+                    check=False,
+                    cwd=str(repo.path),
+                    capture_output=True,
+                    text=True,
+                    timeout=timeout,
+                    env=env_mapping,
+                ),
+            )
+        except subprocess.TimeoutExpired as exc:  # pragma: no cover - diag path
+            timed_out = True
+            exit_code = None
+            stdout_text = self._ensure_text(exc.output)
+            stderr_text = self._ensure_text(exc.stderr)
+        else:
+            exit_code = completed.returncode
+            stdout_text = self._ensure_text(completed.stdout)
+            stderr_text = self._ensure_text(completed.stderr)
+        end_wall = datetime.now(UTC)
+        duration = max(time.perf_counter() - start_perf, 0.0)
+        return (
+            exit_code,
+            stdout_text,
+            stderr_text,
+            timed_out,
+            start_wall,
+            end_wall,
+            duration,
+        )
 
     def _run_tool_for_repo(
         self,
@@ -949,47 +1037,30 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             )
             return cached_outcome
 
-        start_wall = datetime.now(UTC)
-        start_perf = time.perf_counter()
-        timed_out = False
-        exit_code: int | None
-        stdout_obj: object
-        stderr_obj: object
-
-        try:
-            _cooperative_yield()
-            completed = subprocess.run(  # noqa: S603
-                config.command,
-                check=False,
-                cwd=str(repo.path),
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            exit_code = completed.returncode
-            stdout_obj = completed.stdout
-            stderr_obj = completed.stderr
-        except subprocess.TimeoutExpired as exc:  # pragma: no cover - diag path
-            timed_out = True
-            exit_code = None
-            stdout_output = cast("object | None", exc.output)
-            stderr_output = cast("object | None", exc.stderr)
-            stdout_obj = stdout_output if stdout_output is not None else ""
-            stderr_obj = stderr_output if stderr_output is not None else ""
-
-        end_wall = datetime.now(UTC)
-        duration = max(time.perf_counter() - start_perf, 0.0)
-
-        proc_stdout = self._ensure_text(stdout_obj)
-        proc_stderr = self._ensure_text(stderr_obj)
+        command = self._build_tool_command(repo=repo, config=config)
+        env = self._build_tool_environment(repo=repo)
+        (
+            exit_code,
+            proc_stdout,
+            proc_stderr,
+            timed_out,
+            start_wall,
+            end_wall,
+            duration,
+        ) = self._execute_tool_command(
+            repo=repo,
+            command=command,
+            timeout=timeout,
+            env=env,
+        )
 
         result: ToolResult = {
             "exit": exit_code,
             "stdout": proc_stdout,
             "stderr": proc_stderr,
             "cached": False,
-            "cmd": list(config.command),
-            "cmd_display": " ".join(str(part) for part in config.command),
+            "cmd": command,
+            "cmd_display": " ".join(str(part) for part in command),
             "cwd": str(repo.path),
             "started_at": start_wall.isoformat(),
             "ended_at": end_wall.isoformat(),
@@ -1013,10 +1084,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 timed_out=timed_out,
                 result=result,
             )
-            _info(
-                f"{config.name}: failure in {repo.rel_path};",
-                "details captured",
-            )
+            _info(f"{config.name}: failure in {repo.rel_path}; details captured")
             failure_entries = self._extract_failure_entries(repo=repo, result=result)
             if failure_entries:
                 result["failed_files"] = failure_entries

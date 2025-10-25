@@ -1,0 +1,1830 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-24T00:55:47.942146+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "duration_seconds": 1.4244269999908283,
+                "ended_at": "2025-10-24T00:55:47.942146+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tools/template_linter.py",
+                    "x_cls_make_ppnw_dot_ai_x.py"
+                ],
+                "repo": "x_0_make_ppnw_dot_ai_x",
+                "repo_hash": "93cf2a72732359898158aec04b85e00d674a7c0fc0c31b664a74f8debd2bb71d",
+                "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "started_at": "2025-10-24T00:55:46.517720+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 2 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:46.489685+00:00\n+++ C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:47.808938+00:00\n@@ -70,12 +70,21 @@\n \n \n def main():\n     ap = argparse.ArgumentParser()\n     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n-    ap.add_argument(\"--fail-on-placeholders\", action=\"store_true\", help=\"Exit non-zero if placeholders remain\")\n-    ap.add_argument(\"--require-front-matter\", action=\"store_true\", default=True, help=\"Require front matter fields\")\n+    ap.add_argument(\n+        \"--fail-on-placeholders\",\n+        action=\"store_true\",\n+        help=\"Exit non-zero if placeholders remain\",\n+    )\n+    ap.add_argument(\n+        \"--require-front-matter\",\n+        action=\"store_true\",\n+        default=True,\n+        help=\"Require front matter fields\",\n+    )\n     args = ap.parse_args()\n \n     root = Path(args.path)\n     if not root.exists():\n         print(f\"Path not found: {root}\", file=sys.stderr)\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_0_make_ppnw_dot_ai_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-24T00:55:46.517720+00:00\nduration: 1.424s\ntool_version: python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:46.489685+00:00\n+++ C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:47.808938+00:00\n@@ -70,12 +70,21 @@\n \n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 2 files would be left unchanged.",
+            "repo": "x_0_make_ppnw_dot_ai_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 2 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:46.489685+00:00\n+++ C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\\tools\\template_linter.py\t2025-10-24 00:55:47.808938+00:00\n@@ -70,12 +70,21 @@\n \n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_0_make_ppnw_dot_ai_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-10-24T00:55:48.737436+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_0_make_ppnw_dot_ai_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_0_make_ppnw_dot_ai_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_0_make_ppnw_dot_ai_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "duration_seconds": 0.6786499000154436,
+                "ended_at": "2025-10-24T00:55:48.737436+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tools/template_linter.py",
+                    "x_cls_make_ppnw_dot_ai_x.py"
+                ],
+                "repo": "x_0_make_ppnw_dot_ai_x",
+                "repo_hash": "93cf2a72732359898158aec04b85e00d674a7c0fc0c31b664a74f8debd2bb71d",
+                "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "started_at": "2025-10-24T00:55:48.058788+00:00",
+                "stderr": "",
+                "stdout": "tools\\template_linter.py:45: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:46: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:51: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\ntools\\template_linter.py:51: error: Expression type contains \"Any\" (has type \"tuple[dict[str | Any, str | Any], int]\")  [misc]\ntools\\template_linter.py:54: error: Missing type parameters for generic type \"dict\"  [type-arg]\ntools\\template_linter.py:58: error: Expression type contains \"Any\" (has type \"set[Any]\")  [misc]\ntools\\template_linter.py:58: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntools\\template_linter.py:63: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntools\\template_linter.py:65: error: Expression type contains \"Any\" (has type \"tuple[str, list[Any]]\")  [misc]\ntools\\template_linter.py:65: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntools\\template_linter.py:66: error: Expression type contains \"Any\" (has type \"tuple[str, list[Any]]\")  [misc]\ntools\\template_linter.py:66: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntools\\template_linter.py:66: error: Expression type contains \"Any\" (has type \"set[Any]\")  [misc]\ntools\\template_linter.py:68: error: Expression type contains \"Any\" (has type \"tuple[str, list[Any]]\")  [misc]\ntools\\template_linter.py:68: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntools\\template_linter.py:72: error: Function is missing a return type annotation  [no-untyped-def]\ntools\\template_linter.py:79: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:93: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntools\\template_linter.py:94: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntools\\template_linter.py:94: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:95: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntools\\template_linter.py:95: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:96: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:99: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:100: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:103: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:107: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:107: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntools\\template_linter.py:114: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\ntools\\template_linter.py:114: error: Expression has type \"Any\"  [misc]\ntools\\template_linter.py:118: error: Expression has type \"Any\"  [misc]\nFound 33 errors in 1 file (checked 5 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_0_make_ppnw_dot_ai_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_0_make_ppnw_dot_ai_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T00:55:48.058788+00:00\nduration: 0.679s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\ntools\\template_linter.py:45: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:46: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:51: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_ppnw_dot_ai_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+            "stderr_preview": null,
+            "stdout_preview": "tools\\template_linter.py:45: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:46: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\ntools\\template_linter.py:47: error: Expression type contains \"Any\" (has type \"str | Any\")  [misc]\ntools\\template_linter.py:51: error: Expression type contains \"Any\" (has type \"dict[str | Any, str | Any]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_0_make_ppnw_dot_ai_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_0_make_ppnw_dot_ai_x --strict --no-warn-unused-configs\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T00:55:48.055056+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "duration_seconds": 0.10968539997702464,
+                "ended_at": "2025-10-24T00:55:48.055056+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tools/template_linter.py",
+                    "x_cls_make_ppnw_dot_ai_x.py"
+                ],
+                "repo": "x_0_make_ppnw_dot_ai_x",
+                "repo_hash": "93cf2a72732359898158aec04b85e00d674a7c0fc0c31b664a74f8debd2bb71d",
+                "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "started_at": "2025-10-24T00:55:47.945371+00:00",
+                "stderr": "",
+                "stdout": "E501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n  |                                                                                         ^^^^^^^^^^^^\n7 | - Reports placeholders of the form {{PLACEHOLDER}} remaining in the document\n  |\n\nC401 Unnecessary generator (rewrite as a set comprehension)\n  --> tools\\template_linter.py:59:40\n   |\n57 |     body = text[body_start:] if body_start else text\n58 |     placeholders = set(RE_PLACEHOLDER.findall(body))\n59 |     missing_fields = REQUIRED_FIELDS - set(k.lower() for k in fm.keys())\n   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n   |\nhelp: Rewrite as a set comprehension\n\nSIM118 Use `key in dict` instead of `key in dict.keys()`\n  --> tools\\template_linter.py:59:58\n   |\n57 |     body = text[body_start:] if body_start else text\n58 |     placeholders = set(RE_PLACEHOLDER.findall(body))\n59 |     missing_fields = REQUIRED_FIELDS - set(k.lower() for k in fm.keys())\n   |                                                          ^^^^^^^^^^^^^^\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n   |\nhelp: Remove `.keys()`\n\nSIM118 Use `key in dict` instead of `key in dict.keys()`\n  --> tools\\template_linter.py:62:37\n   |\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n62 |     present_fields = {k.lower() for k in fm.keys()}\n   |                                     ^^^^^^^^^^^^^^\n63 |     return {\n64 |         \"path\": str(path),\n   |\nhelp: Remove `.keys()`\n\nANN201 Missing return type annotation for public function `main`\n  --> tools\\template_linter.py:72:5\n   |\n72 | def main():\n   |     ^^^^\n73 |     ap = argparse.ArgumentParser()\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n   |\nhelp: Add return type annotation: `int`\n\nE501 Line too long (111 > 88)\n  --> tools\\template_linter.py:75:89\n   |\n73 |     ap = argparse.ArgumentParser()\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n75 |     ap.add_argument(\"--fail-on-placeholders\", action=\"store_true\", help=\"Exit non-zero if placeholders remain\")\n   |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^\n76 |     ap.add_argument(\"--require-front-matter\", action=\"store_true\", default=True, help=\"Require front matter fields\")\n77 |     args = ap.parse_args()\n   |\n\nE501 Line too long (116 > 88)\n  --> tools\\template_linter.py:76:89\n   |\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n75 |     ap.add_argument(\"--fail-on-placeholders\", action=\"store_true\", help=\"Exit non-zero if placeholders remain\")\n76 |     ap.add_argument(\"--require-front-matter\", action=\"store_true\", default=True, help=\"Require front matter fields\")\n   |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n77 |     args = ap.parse_args()\n   |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> tools\\template_linter.py:115:12\n    |\n113 |     try:\n114 |         code = main()\n115 |     except Exception as e:\n    |            ^^^^^^^^^\n116 |         print(f\"Error: {e}\", file=sys.stderr)\n117 |         code = 3\n    |\n\nFound 8 errors.\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_0_make_ppnw_dot_ai_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T00:55:47.945371+00:00\nduration: 0.110s\ntool_version: ruff 0.14.2\nstdout:\nE501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_ppnw_dot_ai_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+            "stderr_preview": null,
+            "stdout_preview": "E501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_0_make_ppnw_dot_ai_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-len\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T00:55:46.513732+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "duration_seconds": 0.1684129000059329,
+                "ended_at": "2025-10-24T00:55:46.513732+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tools/template_linter.py",
+                    "x_cls_make_ppnw_dot_ai_x.py"
+                ],
+                "repo": "x_0_make_ppnw_dot_ai_x",
+                "repo_hash": "93cf2a72732359898158aec04b85e00d674a7c0fc0c31b664a74f8debd2bb71d",
+                "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+                "started_at": "2025-10-24T00:55:46.345321+00:00",
+                "stderr": "",
+                "stdout": "E501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n  |                                                                                         ^^^^^^^^^^^^\n7 | - Reports placeholders of the form {{PLACEHOLDER}} remaining in the document\n  |\n\nC401 Unnecessary generator (rewrite as a set comprehension)\n  --> tools\\template_linter.py:59:40\n   |\n57 |     body = text[body_start:] if body_start else text\n58 |     placeholders = set(RE_PLACEHOLDER.findall(body))\n59 |     missing_fields = REQUIRED_FIELDS - set(k.lower() for k in fm.keys())\n   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n   |\nhelp: Rewrite as a set comprehension\n\nSIM118 Use `key in dict` instead of `key in dict.keys()`\n  --> tools\\template_linter.py:59:58\n   |\n57 |     body = text[body_start:] if body_start else text\n58 |     placeholders = set(RE_PLACEHOLDER.findall(body))\n59 |     missing_fields = REQUIRED_FIELDS - set(k.lower() for k in fm.keys())\n   |                                                          ^^^^^^^^^^^^^^\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n   |\nhelp: Remove `.keys()`\n\nSIM118 Use `key in dict` instead of `key in dict.keys()`\n  --> tools\\template_linter.py:62:37\n   |\n60 |     # The keys in fm are case-sensitive; normalize by lowercasing for comparison\n61 |     # Reconstruct mapping lower->original to report present fields\n62 |     present_fields = {k.lower() for k in fm.keys()}\n   |                                     ^^^^^^^^^^^^^^\n63 |     return {\n64 |         \"path\": str(path),\n   |\nhelp: Remove `.keys()`\n\nANN201 Missing return type annotation for public function `main`\n  --> tools\\template_linter.py:72:5\n   |\n72 | def main():\n   |     ^^^^\n73 |     ap = argparse.ArgumentParser()\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n   |\nhelp: Add return type annotation: `int`\n\nE501 Line too long (111 > 88)\n  --> tools\\template_linter.py:75:89\n   |\n73 |     ap = argparse.ArgumentParser()\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n75 |     ap.add_argument(\"--fail-on-placeholders\", action=\"store_true\", help=\"Exit non-zero if placeholders remain\")\n   |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^\n76 |     ap.add_argument(\"--require-front-matter\", action=\"store_true\", default=True, help=\"Require front matter fields\")\n77 |     args = ap.parse_args()\n   |\n\nE501 Line too long (116 > 88)\n  --> tools\\template_linter.py:76:89\n   |\n74 |     ap.add_argument(\"--path\", default=\".\", help=\"Directory to scan (default: .)\")\n75 |     ap.add_argument(\"--fail-on-placeholders\", action=\"store_true\", help=\"Exit non-zero if placeholders remain\")\n76 |     ap.add_argument(\"--require-front-matter\", action=\"store_true\", default=True, help=\"Require front matter fields\")\n   |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n77 |     args = ap.parse_args()\n   |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> tools\\template_linter.py:115:12\n    |\n113 |     try:\n114 |         code = main()\n115 |     except Exception as e:\n    |            ^^^^^^^^^\n116 |         print(f\"Error: {e}\", file=sys.stderr)\n117 |         code = 3\n    |\n\nFound 9 errors (1 fixed, 8 remaining).\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_0_make_ppnw_dot_ai_x (exit 1)\ncwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T00:55:46.345321+00:00\nduration: 0.168s\ntool_version: ruff 0.14.2\nstdout:\nE501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n\u2026\nstderr:\n<empty>",
+            "repo": "x_0_make_ppnw_dot_ai_x",
+            "repo_path": "C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x",
+            "stderr_preview": null,
+            "stdout_preview": "E501 Line too long (100 > 88)\n --> tools\\template_linter.py:6:89\n  |\n5 | Checks:\n6 | - YAML front matter exists and contains required fields: title, owner, version, last_updated, status\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_0_make_ppnw_dot_ai_x (exit 1) cwd: C:\\x_runner_x\\x_0_make_ppnw_dot_ai_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T00:58:03.514405+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_github_clones_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 0.542717200005427,
+                "ended_at": "2025-10-24T00:58:03.514405+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "json_contracts/__init__.py",
+                    "json_contracts/_impl.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "9f5f0579c31c89c018748100dd8b40f5e35e94a2f86be82517e0d4c188f33bad",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-24T00:58:02.971690+00:00",
+                "stderr": "",
+                "stdout": "x_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Cannot resolve attribute \"RepoRecord\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Module has no attribute \"RepoRecord\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Cannot resolve attribute \"main_json\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module has no attribute \"main_json\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:7: error: Cannot resolve attribute \"resolve_workspace_root\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:7: error: Module has no attribute \"resolve_workspace_root\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:7: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:8: error: Cannot resolve attribute \"synchronize_workspace\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:8: error: Module has no attribute \"synchronize_workspace\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:8: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Cannot resolve attribute \"x_cls_make_github_clones_x\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Module has no attribute \"x_cls_make_github_clones_x\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:9: error: Expression has type \"Any\"  [misc]\nFound 15 errors in 1 file (checked 2 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T00:58:02.971690+00:00\nduration: 0.543s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Cannot resolve attribute \"RepoRecord\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Module has no attribute \"RepoRecord\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Cannot resolve attribute \"main_json\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module has no attribute \"main_json\"  [attr-defined]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Cannot resolve attribute \"RepoRecord\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Module has no attribute \"RepoRecord\"  [attr-defined]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:5: error: Expression has type \"Any\"  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Cannot resolve attribute \"main_json\" (possible cyclic definition)  [misc]\nx_make_github_clones_x\\x_cls_make_github_clones_x.py:6: error: Module has no attribute \"main_json\"  [attr-defined]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_clones_x --strict --no-warn-unused-configs\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T00:58:06.262991+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_github_clones_x",
+                "duration_seconds": 2.7451451999950223,
+                "ended_at": "2025-10-24T00:58:06.262991+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "fastapi/__init__.py",
+                    "fastapi/__main__.py",
+                    "fastapi/cli.py",
+                    "fastapi_cli/__init__.py",
+                    "fastapi_cli/cli.py",
+                    "json_contracts/__init__.py",
+                    "json_contracts/_impl.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_make_github_clones.py",
+                    "x_cls_make_github_clones_x.py",
+                    "x_make_github_clones_x/__init__.py",
+                    "x_make_github_clones_x/x_cls_make_github_clones_x.py"
+                ],
+                "repo": "x_make_github_clones_x",
+                "repo_hash": "9f5f0579c31c89c018748100dd8b40f5e35e94a2f86be82517e0d4c188f33bad",
+                "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+                "started_at": "2025-10-24T00:58:03.517845+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:62:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:111:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:127:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:176:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:190:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:238:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:254:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:297:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n8 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.406"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_github_clones_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_clones_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error\nstarted_at: 2025-10-24T00:58:03.517845+00:00\nduration: 2.745s\ntool_version: pyright 1.1.406\nstdout:\nc:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:62:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:111:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:127:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:176:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_github_clones_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_clones_x",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:62:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:111:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:127:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n  c:\\x_runner_x\\x_make_github_clones_x\\tests\\test_make_github_clones.py:176:18 - error: Variable not allowed in type expression (reportInvalidTypeForm)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_github_clones_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_clones_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pyright . --level error started_at: 2025-10-24T00:58:03.517845+00:00\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.406"
+        },
+        {
+            "captured_at": "2025-10-24T00:58:48.052122+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_github_visitor_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "duration_seconds": 0.9020541000063531,
+                "ended_at": "2025-10-24T00:58:48.052122+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "inspection_flow.py",
+                    "json_contracts.py",
+                    "run_external.py",
+                    "run_visitor_no_cache.py",
+                    "runner.py",
+                    "tests/__init__.py",
+                    "tests/test_github_visitor.py",
+                    "tests/test_json_contracts.py",
+                    "x_cls_make_github_visitor_x.py"
+                ],
+                "repo": "x_make_github_visitor_x",
+                "repo_hash": "dc05a770cd5e50a378cc617663db475e82e131d3f8c5e46749c48985276e21cf",
+                "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+                "started_at": "2025-10-24T00:58:47.150071+00:00",
+                "stderr": "",
+                "stdout": "runner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_github_visitor_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_github_visitor_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T00:58:47.150071+00:00\nduration: 0.902s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nrunner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)\nstderr:\n<empty>",
+            "repo": "x_make_github_visitor_x",
+            "repo_path": "C:\\x_runner_x\\x_make_github_visitor_x",
+            "stderr_preview": null,
+            "stdout_preview": "runner.py:955: error: Expression has type \"Any\"  [misc]\nFound 1 error in 1 file (checked 13 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_github_visitor_x (exit 1) cwd: C:\\x_runner_x\\x_make_github_visitor_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_github_visitor_x --strict --no-warn-unused-conf\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T00:59:11.108708+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_graphviz_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_graphviz_x",
+                "duration_seconds": 0.6646155999915209,
+                "ended_at": "2025-10-24T00:59:11.108708+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_graphviz_builder.py",
+                    "tests/test_json_contracts.py",
+                    "x_cls_make_graphviz_x.py"
+                ],
+                "repo": "x_make_graphviz_x",
+                "repo_hash": "175f2808f1b6f645cffc9fd8611cdbaf6234f9c8db47cae5eab900c9cb7c5552",
+                "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+                "started_at": "2025-10-24T00:59:10.444094+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_graphviz_x.py:22: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_graphviz_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:624: error: Statement is unreachable  [unreachable]\ntests\\test_json_contracts.py:24: error: Unused \"type: ignore[misc]\" comment  [unused-ignore]\ntests\\test_json_contracts.py:27: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:31: error: Unused \"type: ignore[misc]\" comment  [unused-ignore]\ntests\\test_json_contracts.py:34: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:38: error: Unused \"type: ignore[misc]\" comment  [unused-ignore]\ntests\\test_json_contracts.py:41: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:68: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:69: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:70: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nFound 14 errors in 2 files (checked 9 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_graphviz_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_graphviz_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T00:59:10.444094+00:00\nduration: 0.665s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_graphviz_x.py:22: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_graphviz_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:624: error: Statement is unreachable  [unreachable]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_graphviz_x",
+            "repo_path": "C:\\x_runner_x\\x_make_graphviz_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_graphviz_x.py:22: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_graphviz_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression has type \"Any\"  [misc]\nx_cls_make_graphviz_x.py:605: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_graphviz_x.py:624: error: Statement is unreachable  [unreachable]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_graphviz_x (exit 1) cwd: C:\\x_runner_x\\x_make_graphviz_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_graphviz_x --strict --no-warn-unused-configs --show-error-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T00:59:40.511461+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_markdown_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 0.6443698999937624,
+                "ended_at": "2025-10-24T00:59:40.511461+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "168df4bb883c89b2f91756d9d0c2932e0dc520c314837e9fd44dfc8af2b2ba24",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-24T00:59:39.867092+00:00",
+                "stderr": "",
+                "stdout": "tests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:56: error: Expression has type \"Any\"  [misc]\nFound 2 errors in 1 file (checked 12 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T00:59:39.867092+00:00\nduration: 0.644s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\ntests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:56: error: Expression has type \"Any\"  [misc]\nFound 2 errors in 1 file (checked 12 source files)\nstderr:\n<empty>",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": null,
+            "stdout_preview": "tests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:56: error: Expression has type \"Any\"  [misc]\nFound 2 errors in 1 file (checked 12 source files)",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_markdown_x --strict --no-warn-unused-configs --show-error-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:11.230228+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_mermaid_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_mermaid_x",
+                "duration_seconds": 0.7324737999879289,
+                "ended_at": "2025-10-24T01:00:11.230228+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_mermaid_builder.py",
+                    "x_cls_make_mermaid_x.py"
+                ],
+                "repo": "x_make_mermaid_x",
+                "repo_hash": "5ee4c7d98c8ec4bcd9b730d648b6b80799a76da6c7df56d6a754839a406bce1a",
+                "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+                "started_at": "2025-10-24T01:00:10.497758+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_mermaid_x.py:1532: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:54: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:180: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:181: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:182: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nFound 8 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_mermaid_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_mermaid_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:00:10.497758+00:00\nduration: 0.732s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_mermaid_x.py:1532: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:54: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_mermaid_x",
+            "repo_path": "C:\\x_runner_x\\x_make_mermaid_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_mermaid_x.py:1532: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression has type \"Any\"  [misc]\nx_cls_make_mermaid_x.py:1535: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:54: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:55: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_mermaid_x (exit 1) cwd: C:\\x_runner_x\\x_make_mermaid_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_mermaid_x --strict --no-warn-unused-configs --show-error-code\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:33.162300+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_persistent_env_var_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.8909382999991067,
+                "ended_at": "2025-10-24T01:00:33.162300+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "a08c981e931e1713f5e3c9f59f77feb79642a420cfb78bae801acd144c97c92f",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-24T01:00:32.271363+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_persistent_env_var_x.py:600: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:601: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1142: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1145: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1145: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:38: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:44: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:127: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:128: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:135: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:147: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:236: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:237: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:238: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_json_contracts.py:239: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nFound 18 errors in 2 files (checked 8 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:00:32.271363+00:00\nduration: 0.891s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_persistent_env_var_x.py:600: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:601: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1142: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_persistent_env_var_x.py:600: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:601: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression type contains \"Any\" (has type \"Callable[[], Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:602: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:1142: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:40.845813+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pip_updates_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_pip_updates_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pip_updates_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "duration_seconds": 1.131536699977005,
+                "ended_at": "2025-10-24T01:00:40.845813+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_pip_updates.py",
+                    "update_flow.py",
+                    "x_cls_make_pip_updates_x.py"
+                ],
+                "repo": "x_make_pip_updates_x",
+                "repo_hash": "c032d2291390ef4d5d98364fd106c9742a56f342de69fbd3d506661076b2c859",
+                "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+                "started_at": "2025-10-24T01:00:39.714287+00:00",
+                "stderr": "",
+                "stdout": "update_flow.py:17: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nupdate_flow.py:17: note: Hint: \"python3 -m pip install types-jsonschema\"\nupdate_flow.py:17: note: (or run \"mypy --install-types\" to install all missing stub packages)\nupdate_flow.py:17: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nupdate_flow.py:105: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:577: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nupdate_flow.py:600: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nupdate_flow.py:601: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nupdate_flow.py:668: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nupdate_flow.py:674: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nupdate_flow.py:704: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:708: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nupdate_flow.py:708: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:709: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:710: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:780: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:784: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nupdate_flow.py:784: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:785: error: Expression has type \"Any\"  [misc]\nupdate_flow.py:786: error: Expression has type \"Any\"  [misc]\nx_cls_make_pip_updates_x.py:317: error: Expression has type \"Any\"  [misc]\nx_cls_make_pip_updates_x.py:320: error: Expression has type \"Any\"  [misc]\nx_cls_make_pip_updates_x.py:320: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:35: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:36: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:77: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:78: error: Expression has type \"Any\"  [misc]\nFound 24 errors in 3 files (checked 10 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_pip_updates_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pip_updates_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pip_updates_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:00:39.714287+00:00\nduration: 1.132s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nupdate_flow.py:17: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nupdate_flow.py:17: note: Hint: \"python3 -m pip install types-jsonschema\"\nupdate_flow.py:17: note: (or run \"mypy --install-types\" to install all missing stub packages)\nupdate_flow.py:17: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nupdate_flow.py:105: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pip_updates_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pip_updates_x",
+            "stderr_preview": null,
+            "stdout_preview": "update_flow.py:17: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nupdate_flow.py:17: note: Hint: \"python3 -m pip install types-jsonschema\"\nupdate_flow.py:17: note: (or run \"mypy --install-types\" to install all missing stub packages)\nupdate_flow.py:17: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nupdate_flow.py:105: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_pip_updates_x (exit 1) cwd: C:\\x_runner_x\\x_make_pip_updates_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pip_updates_x --strict --no-warn-unused-configs --sho\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:48.499285+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_py_mod_sideload_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+                "duration_seconds": 1.0594858000113163,
+                "ended_at": "2025-10-24T01:00:48.499285+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_py_module_sideload.py",
+                    "x_cls_make_py_mod_sideload_x.py"
+                ],
+                "repo": "x_make_py_mod_sideload_x",
+                "repo_hash": "f5da49b4fe3fab0222b7a57d91e4b21adba76cfabb823a00314c85e0c7f07ad8",
+                "repo_path": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+                "started_at": "2025-10-24T01:00:47.439797+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_py_mod_sideload_x.py:18: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_py_mod_sideload_x.py:18: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_py_mod_sideload_x.py:18: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_py_mod_sideload_x.py:18: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_py_mod_sideload_x.py:238: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:242: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_py_mod_sideload_x.py:242: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:243: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:244: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:272: error: Returning Any from function declared to return \"str | None\"  [no-any-return]\nx_cls_make_py_mod_sideload_x.py:272: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:350: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:354: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_py_mod_sideload_x.py:354: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:355: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:356: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:439: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:442: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_mod_sideload_x.py:442: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:26: error: Returning Any from function declared to return \"dict[str, object]\"  [no-any-return]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:37: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:38: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:128: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nFound 21 errors in 2 files (checked 9 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_py_mod_sideload_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_mod_sideload_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:00:47.439797+00:00\nduration: 1.059s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_py_mod_sideload_x.py:18: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_py_mod_sideload_x.py:18: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_py_mod_sideload_x.py:18: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_py_mod_sideload_x.py:18: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_py_mod_sideload_x.py:238: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_mod_sideload_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_mod_sideload_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_py_mod_sideload_x.py:18: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_py_mod_sideload_x.py:18: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_py_mod_sideload_x.py:18: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_py_mod_sideload_x.py:18: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_py_mod_sideload_x.py:238: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_py_mod_sideload_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_mod_sideload_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_mod_sideload_x --strict --no-warn-unused-c\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:54.392101+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_py_venv_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_py_venv_x",
+                "duration_seconds": 0.6944855999900028,
+                "ended_at": "2025-10-24T01:00:54.392101+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "x_cls_make_py_venv_x.py"
+                ],
+                "repo": "x_make_py_venv_x",
+                "repo_hash": "10a007a29eb3cf005b0ad2e9cdaa3ad2ca6d17ca32ea4ad1b1fec5745dcae8df",
+                "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+                "started_at": "2025-10-24T01:00:53.697617+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:546: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:548: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:550: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:551: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:552: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:555: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:558: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:558: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:558: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:559: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:559: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:559: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:560: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:562: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:562: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:562: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_py_venv_x.py:568: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:574: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:577: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:579: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:580: error: Expression has type \"Any\"  [misc]\nFound 22 errors in 1 file (checked 2 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_py_venv_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_venv_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:00:53.697617+00:00\nduration: 0.694s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:546: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:548: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:550: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:551: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_venv_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_py_venv_x.py:304: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:546: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:548: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:550: error: Expression has type \"Any\"  [misc]\nx_cls_make_py_venv_x.py:551: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_py_venv_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_venv_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_py_venv_x --strict --no-warn-unused-configs --show-error-code\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:53.694332+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_py_venv_x",
+                "duration_seconds": 0.17181800000253133,
+                "ended_at": "2025-10-24T01:00:53.694332+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "x_cls_make_py_venv_x.py"
+                ],
+                "repo": "x_make_py_venv_x",
+                "repo_hash": "10a007a29eb3cf005b0ad2e9cdaa3ad2ca6d17ca32ea4ad1b1fec5745dcae8df",
+                "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+                "started_at": "2025-10-24T01:00:53.522517+00:00",
+                "stderr": "",
+                "stdout": "FBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n404 |     logging.basicConfig(\n405 |         level=logging.DEBUG if verbose else logging.INFO,\n    |\n\nFound 1 error.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_py_venv_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_venv_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:00:53.522517+00:00\nduration: 0.172s\ntool_version: ruff 0.14.2\nstdout:\nFBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_venv_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+            "stderr_preview": null,
+            "stdout_preview": "FBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_py_venv_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_venv_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --tar\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:52.302704+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_py_venv_x",
+                "duration_seconds": 0.13676780002424493,
+                "ended_at": "2025-10-24T01:00:52.302704+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "x_cls_make_py_venv_x.py"
+                ],
+                "repo": "x_make_py_venv_x",
+                "repo_hash": "10a007a29eb3cf005b0ad2e9cdaa3ad2ca6d17ca32ea4ad1b1fec5745dcae8df",
+                "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+                "started_at": "2025-10-24T01:00:52.165936+00:00",
+                "stderr": "",
+                "stdout": "FBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n404 |     logging.basicConfig(\n405 |         level=logging.DEBUG if verbose else logging.INFO,\n    |\n\nFound 1 error.\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_py_venv_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_py_venv_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:00:52.165936+00:00\nduration: 0.137s\ntool_version: ruff 0.14.2\nstdout:\nFBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_py_venv_x",
+            "repo_path": "C:\\x_runner_x\\x_make_py_venv_x",
+            "stderr_preview": null,
+            "stdout_preview": "FBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_py_venv_x.py:403:24\n    |\n403 | def _configure_logging(verbose: bool) -> None:\n    |                        ^^^^^^^\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_py_venv_x (exit 1) cwd: C:\\x_runner_x\\x_make_py_venv_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 -\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:00.829528+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.7930148000014015,
+                "ended_at": "2025-10-24T01:01:00.829528+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "1a430c0fda3ef103bffa25ae17bb20fc9b3cf8e8082c67a2dc606451f3b6757d",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-24T01:00:59.036515+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 00:54:41.068369+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 01:01:00.592330+00:00\n@@ -244,11 +244,11 @@\n     expect(\n         condition=captured_call.repo_parent_root == str(tmp_path),\n         message=\"Incorrect repo parent root\",\n     )\n     expect(\n-    condition=captured_call.token_env == expected_token_env,\n+        condition=captured_call.token_env == expected_token_env,\n         message=\"Unexpected token env value\",\n     )\n \n     publisher_factory_obj: Callable[..., object] = captured_call.publisher_factory\n     expect(\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-24T01:00:59.036515+00:00\nduration: 1.793s\ntool_version: python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0\nstdout:\n--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 00:54:41.068369+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 01:01:00.592330+00:00\n@@ -244,11 +244,11 @@\n     expect(\n         condition=captured_call.repo_parent_root == str(tmp_path),\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 00:54:41.068369+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_main_json.py\t2025-10-24 01:01:00.592330+00:00\n@@ -244,11 +244,11 @@\n     expect(\n         condition=captured_call.repo_parent_root == str(tmp_path),\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-24T01\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:02.245911+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_pypi_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.2560272999980953,
+                "ended_at": "2025-10-24T01:01:02.245911+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "1a430c0fda3ef103bffa25ae17bb20fc9b3cf8e8082c67a2dc606451f3b6757d",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-24T01:01:00.989884+00:00",
+                "stderr": "",
+                "stdout": "publish_flow.py:68: error: Expression has type \"Any\"  [misc]\npublish_flow.py:69: error: Expression has type \"Any\"  [misc]\npublish_flow.py:73: error: Expression has type \"Any\"  [misc]\npublish_flow.py:74: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:28: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_pypi_x.py:28: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_pypi_x.py:28: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_pypi_x.py:28: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_pypi_x.py:639: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:640: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:660: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:664: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:664: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:665: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:666: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:776: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_pypi_x.py:777: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_pypi_x.py:783: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:793: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:799: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:800: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:800: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_pypi_x.py:802: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:805: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:809: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:809: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:810: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:811: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:823: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:824: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_pypi_x.py:840: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:843: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:843: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:120: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\ntests\\test_main_json.py:219: error: Value of type \"object\" is not indexable  [index]\ntests\\test_main_json.py:223: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:225: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:228: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:228: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:232: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:237: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:241: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:253: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_main_json.py:255: error: Expression type contains \"Any\" (has type \"Callable[..., object]\")  [misc]\ntests\\test_main_json.py:259: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\ntests\\test_main_json.py:259: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\ntests\\test_main_json.py:259: error: Expression type contains \"Any\" (has type \"Callable[..., object]\")  [misc]\ntests\\test_main_json.py:276: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\ntests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:77: error: Expression has type \"Any\"  [misc]\nFound 49 errors in 4 files (checked 11 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:01:00.989884+00:00\nduration: 1.256s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\npublish_flow.py:68: error: Expression has type \"Any\"  [misc]\npublish_flow.py:69: error: Expression has type \"Any\"  [misc]\npublish_flow.py:73: error: Expression has type \"Any\"  [misc]\npublish_flow.py:74: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:28: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "publish_flow.py:68: error: Expression has type \"Any\"  [misc]\npublish_flow.py:69: error: Expression has type \"Any\"  [misc]\npublish_flow.py:73: error: Expression has type \"Any\"  [misc]\npublish_flow.py:74: error: Expression has type \"Any\"  [misc]\nx_cls_make_pypi_x.py:28: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_pypi_x --strict --no-warn-unused-configs --show-error-codes --warn-\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:00.986817+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.15399859999888577,
+                "ended_at": "2025-10-24T01:01:00.986817+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "1a430c0fda3ef103bffa25ae17bb20fc9b3cf8e8082c67a2dc606451f3b6757d",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-24T01:01:00.832820+00:00",
+                "stderr": "",
+                "stdout": "TC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n14 | import pytest\n   |        ^^^^^^\n15 | from x_make_common_x.json_contracts import validate_payload\n   |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_prime_twine_credentials`\n  --> tests\\test_main_json.py:50:9\n   |\n48 |     prime_callable = cast(\n49 |         \"_PrimeCredentials\",\n50 |         publish_flow._prime_twine_credentials,\n   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n51 |     )\n52 |     return prime_callable(token_env)\n   |\n\nFound 2 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:01:00.832820+00:00\nduration: 0.154s\ntool_version: ruff 0.14.2\nstdout:\nTC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-ve\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T01:00:59.033128+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.14208550000330433,
+                "ended_at": "2025-10-24T01:00:59.033128+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "1a430c0fda3ef103bffa25ae17bb20fc9b3cf8e8082c67a2dc606451f3b6757d",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-24T01:00:58.891044+00:00",
+                "stderr": "",
+                "stdout": "TC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n14 | import pytest\n   |        ^^^^^^\n15 | from x_make_common_x.json_contracts import validate_payload\n   |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_prime_twine_credentials`\n  --> tests\\test_main_json.py:50:9\n   |\n48 |     prime_callable = cast(\n49 |         \"_PrimeCredentials\",\n50 |         publish_flow._prime_twine_credentials,\n   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n51 |     )\n52 |     return prime_callable(token_env)\n   |\n\nFound 2 errors.\nNo fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:00:58.891044+00:00\nduration: 0.142s\ntool_version: ruff 0.14.2\nstdout:\nTC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC002 Move third-party import `pytest` into a type-checking block\n  --> tests\\test_main_json.py:14:8\n   |\n12 | from typing import TYPE_CHECKING, NoReturn, Protocol, cast\n13 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targe\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:10.269823+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_yahw_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 1.2461428999959026,
+                "ended_at": "2025-10-24T01:01:10.269823+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "9cba08b75155903e0042a51eb688e5f50955f5de337002152035e626351b9a65",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-24T01:01:09.023682+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_yahw_x.py:12: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_yahw_x.py:12: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_yahw_x.py:12: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_yahw_x.py:12: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_yahw_x.py:63: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:67: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_yahw_x.py:67: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:68: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:69: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:116: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:120: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_yahw_x.py:120: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:121: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:122: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:144: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression has type \"Any\"  [misc]\nx_cls_make_yahw_x.py:147: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_json_contracts.py:24: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:26: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:28: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:30: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:31: error: Expression has type \"Any\"  [misc]\ntests\\test_json_contracts.py:32: error: Expression has type \"Any\"  [misc]\ntests\\test_yahw.py:67: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_yahw.py:68: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\ntests\\test_main_json.py:72: error: Expression type contains \"Any\" (has type \"type[SimpleNamespace]\")  [misc]\ntests\\test_main_json.py:74: error: Redundant cast to \"SimpleNamespace\"  [redundant-cast]\ntests\\test_main_json.py:76: error: Expression has type \"Any\"  [misc]\ntests\\test_main_json.py:80: error: Expression has type \"Any\"  [misc]\nFound 26 errors in 4 files (checked 10 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-24T01:01:09.023682+00:00\nduration: 1.246s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_yahw_x.py:12: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_yahw_x.py:12: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_yahw_x.py:12: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_yahw_x.py:12: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_yahw_x.py:63: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_yahw_x.py:12: error: Library stubs not installed for \"jsonschema\"  [import-untyped]\nx_cls_make_yahw_x.py:12: note: Hint: \"python3 -m pip install types-jsonschema\"\nx_cls_make_yahw_x.py:12: note: (or run \"mypy --install-types\" to install all missing stub packages)\nx_cls_make_yahw_x.py:12: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nx_cls_make_yahw_x.py:63: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m mypy --package x_make_yahw_x --strict --no-warn-unused-configs --show-error-codes --warn-\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:09.020663+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 0.14173180001671426,
+                "ended_at": "2025-10-24T01:01:09.020663+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "9cba08b75155903e0042a51eb688e5f50955f5de337002152035e626351b9a65",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-24T01:01:08.878932+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from types import SimpleNamespace\n6 | from typing import NoReturn, cast\n  |\nhelp: Move into type-checking block\n\nTC002 Move third-party import `pytest` into a type-checking block\n --> tests\\test_main_json.py:8:8\n  |\n6 | from typing import NoReturn, cast\n7 |\n8 | import pytest\n  |        ^^^^^^\n9 | from x_make_common_x.json_contracts import validate_payload\n  |\nhelp: Move into type-checking block\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:01:08.878932+00:00\nduration: 0.142s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-ve\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-24T01:01:07.441055+00:00",
+            "command": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_yahw_x",
+                "duration_seconds": 0.135347700008424,
+                "ended_at": "2025-10-24T01:01:07.441055+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "tests/test_yahw.py",
+                    "x_cls_make_yahw_x.py"
+                ],
+                "repo": "x_make_yahw_x",
+                "repo_hash": "9cba08b75155903e0042a51eb688e5f50955f5de337002152035e626351b9a65",
+                "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+                "started_at": "2025-10-24T01:01:07.305708+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from types import SimpleNamespace\n6 | from typing import NoReturn, cast\n  |\nhelp: Move into type-checking block\n\nTC002 Move third-party import `pytest` into a type-checking block\n --> tests\\test_main_json.py:8:8\n  |\n6 | from typing import NoReturn, cast\n7 |\n8 | import pytest\n  |        ^^^^^^\n9 | from x_make_common_x.json_contracts import validate_payload\n  |\nhelp: Move into type-checking block\n\nFound 2 errors.\nNo fixes available (2 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_yahw_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_yahw_x\ncommand: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-24T01:01:07.305708+00:00\nduration: 0.135s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_yahw_x",
+            "repo_path": "C:\\x_runner_x\\x_make_yahw_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_main_json.py:4:29\n  |\n3 | import importlib\n4 | from collections.abc import Mapping\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_yahw_x (exit 1) cwd: C:\\x_runner_x\\x_make_yahw_x command: C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targe\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        }
+    ],
+    "generated_at": "2025-10-24T01:01:12.535371+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-24T01:01:12.535082+00:00",
+        "run_started_at": "2025-10-24T00:55:06.067218+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 0,
+            "cache_misses": 80,
+            "failed_tools": 23,
+            "had_failures": true,
+            "total_tools_run": 80
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "461162ffb80ed630b279d20fcb0ccd748c573e707dcd0145bd92c6c1fb52a4d9",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "93cf2a72732359898158aec04b85e00d674a7c0fc0c31b664a74f8debd2bb71d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b1bfa83e50fe04d3156be4782999b2ca69ee1a6312a3119a9e16f31d9c3a6553",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "c5f89baf278355452909d7722e1fca6a0d2f74426ba0c01216daee2e969bcd07",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "9f5f0579c31c89c018748100dd8b40f5e35e94a2f86be82517e0d4c188f33bad",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "dc05a770cd5e50a378cc617663db475e82e131d3f8c5e46749c48985276e21cf",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "175f2808f1b6f645cffc9fd8611cdbaf6234f9c8db47cae5eab900c9cb7c5552",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "168df4bb883c89b2f91756d9d0c2932e0dc520c314837e9fd44dfc8af2b2ba24",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "5ee4c7d98c8ec4bcd9b730d648b6b80799a76da6c7df56d6a754839a406bce1a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "a08c981e931e1713f5e3c9f59f77feb79642a420cfb78bae801acd144c97c92f",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "c032d2291390ef4d5d98364fd106c9742a56f342de69fbd3d506661076b2c859",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "f5da49b4fe3fab0222b7a57d91e4b21adba76cfabb823a00314c85e0c7f07ad8",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "10a007a29eb3cf005b0ad2e9cdaa3ad2ca6d17ca32ea4ad1b1fec5745dcae8df",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "1a430c0fda3ef103bffa25ae17bb20fc9b3cf8e8082c67a2dc606451f3b6757d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "9cba08b75155903e0042a51eb688e5f50955f5de337002152035e626351b9a65",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-24T01:01:12.535405+00:00",
+        "total_repos": 16
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: no)\nPython (CPython) 3.14.0",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.406",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
