@@ -1,0 +1,655 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-26T00:15:46.505377+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_markdown_x",
+                "duration_seconds": 1.4447326000081375,
+                "ended_at": "2025-10-26T00:15:46.505377+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_markdown_builder.py",
+                    "x_cls_make_markdown_x.py"
+                ],
+                "repo": "x_make_markdown_x",
+                "repo_hash": "7dd43c70085cef445bfc6a209989e07e7f1d1549f9f0d1008304512e69a3fb66",
+                "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+                "started_at": "2025-10-26T00:15:45.062900+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 5 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:45.038610+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:46.228986+00:00\n@@ -34,10 +34,11 @@\n \n \n SAMPLE_INPUT: Final[dict[str, object]] = _load_fixture(\"input\")\n SAMPLE_OUTPUT: Final[dict[str, object]] = _load_fixture(\"output\")\n SAMPLE_ERROR: Final[dict[str, object]] = _load_fixture(\"error\")\n+\n \n def test_schemas_are_valid() -> None:\n     for schema in (INPUT_SCHEMA, OUTPUT_SCHEMA, ERROR_SCHEMA):\n         validate_schema(schema)\n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_markdown_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_markdown_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-26T00:15:45.062900+00:00\nduration: 1.445s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:45.038610+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:46.228986+00:00\n@@ -34,10 +34,11 @@\n \n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 5 files would be left unchanged.",
+            "repo": "x_make_markdown_x",
+            "repo_path": "C:\\x_runner_x\\x_make_markdown_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 5 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:45.038610+00:00\n+++ C:\\x_runner_x\\x_make_markdown_x\\tests\\test_json_contracts.py\t2025-10-26 00:15:46.228986+00:00\n@@ -34,10 +34,11 @@\n \n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_markdown_x (exit 1) cwd: C:\\x_runner_x\\x_make_markdown_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at:\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-26T00:17:42.599340+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 1.9254666999913752,
+                "ended_at": "2025-10-26T00:17:42.599340+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "565e8b9a0e7d27663acdd54be79691bb92261be8b89a09f75dc008fe89da8675",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-26T00:17:40.682193+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:11:46.278410+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:17:41.849389+00:00\n@@ -24,10 +24,12 @@\n     if not isinstance(payload_obj, dict):\n         message = f\"Fixture payload must be an object: {name}\"\n         raise TypeError(message)\n     typed_payload = cast(\"dict[str, object]\", payload_obj)\n     return dict(typed_payload)\n+\n+\n def test_schemas_are_valid() -> None:\n     for schema in (INPUT_SCHEMA, OUTPUT_SCHEMA, ERROR_SCHEMA):\n         validate_schema(schema)\n \n \n--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:11:46.276029+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:17:42.420638+00:00\n@@ -25,13 +25,17 @@\n \n class _WinRegModule(Protocol):\n     HKEY_CURRENT_USER: int\n     REG_EXPAND_SZ: int\n \n-    def OpenKey(self, key: int, sub_key: str) -> AbstractContextManager[object]: ...  # noqa: N802\n-\n-    def QueryValueEx(self, key: object, value_name: str) -> tuple[object, int]: ...  # noqa: N802\n+    def OpenKey(\n+        self, key: int, sub_key: str\n+    ) -> AbstractContextManager[object]: ...  # noqa: N802\n+\n+    def QueryValueEx(\n+        self, key: object, value_name: str\n+    ) -> tuple[object, int]: ...  # noqa: N802\n \n \n try:  # pragma: no cover - platform dependent\n     import winreg as _winreg\n except ModuleNotFoundError:  # pragma: no cover - non-Windows\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-26T00:17:40.682193+00:00\nduration: 1.925s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:11:46.278410+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:17:41.849389+00:00\n@@ -24,10 +24,12 @@\n     if not isinstance(payload_obj, dict):\n         message = f\"Fixture payload must be an object: {name}\"\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:11:46.278410+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\tests\\test_json_contracts.py\t2025-10-26 00:17:41.849389+00:00\n@@ -24,10 +24,12 @@\n     if not isinstance(payload_obj, dict):\n         message = f\"Fixture payload must be an object: {name}\"\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        }
+    ],
+    "generated_at": "2025-10-26T00:18:10.058607+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Lib\\site-packages\\PySide6;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-26T00:18:10.058607+00:00",
+        "run_started_at": "2025-10-26T00:12:27.329030+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 2,
+            "cache_misses": 78,
+            "failed_tools": 2,
+            "had_failures": true,
+            "total_tools_run": 80
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "31d4a695999511854bad2e1e6d0a65c648736c6d78270354e6b25da836c41a13",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "ea4219683857f50d8afa7f67f93f8f33c71eff15d00306df436899c8f3cd32cb",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f02276537ad090d8343cf5433e2c2b6f6aee52c3335c38aeea0955050e6b8b06",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "8a8e18eaf9943d36cd5c02ed270370b7db860f5234b705c10971c9e2240b230b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "d489616242d511a95ace33f04d14e31eeda7f5824d6466f2e2b789d5a66001ab",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "49a713570d0889b956fe1cedd6ab43eb006707ef70627ab916f7374db4989731",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "4d9e8d38cd8a95870ad944234297556e8a83818ab09015a5b987ab17de664764",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "7dd43c70085cef445bfc6a209989e07e7f1d1549f9f0d1008304512e69a3fb66",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "1a83cac97290b838210b8f555f56aca098d8f1f6edb5a71add8e6d128a6e3f6d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "9a83d9bedb84148850fa4f4f475923f9544c4fa85b8f17c09b51d575ec10e913",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "1614e9269335a4d0e0c3352db31ff68bbb29a3f7674e7bd2a5ba465941485170",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0f7f560befc5a1154352f669628b94d625ffedaced5dc82805b9f088b4323f97",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "642b479d41c4fd50564fe7b175fb760b1e88f83249b0e447c9b75be7c781ee98",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 1,
+                "repo_hash": "565e8b9a0e7d27663acdd54be79691bb92261be8b89a09f75dc008fe89da8675",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "30ee98e5e81d9bad8a6da3d8a9c03ec415802d9a1e16040a3fef0a9f0cb4dc44",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-26T00:18:10.058607+00:00",
+        "total_repos": 16
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

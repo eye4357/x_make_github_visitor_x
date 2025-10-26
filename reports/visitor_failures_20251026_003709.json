@@ -1,0 +1,719 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-26T00:36:54.094288+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 2.705050799995661,
+                "ended_at": "2025-10-26T00:36:54.094288+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "f53aaa7641489b6230207e2bcbeda9f9165da2d6e4a3dd4573ad703c25db7de7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-26T00:36:51.389404+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:51.345098+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:53.777190+00:00\n@@ -25,17 +25,13 @@\n \n class _WinRegModule(Protocol):\n     HKEY_CURRENT_USER: int\n     REG_EXPAND_SZ: int\n \n-    def OpenKey(\n-        self, key: int, sub_key: str\n-    ) -> AbstractContextManager[object]: ...\n-\n-    def QueryValueEx(\n-        self, key: object, value_name: str\n-    ) -> tuple[object, int]: ...\n+    def OpenKey(self, key: int, sub_key: str) -> AbstractContextManager[object]: ...\n+\n+    def QueryValueEx(self, key: object, value_name: str) -> tuple[object, int]: ...\n \n \n try:  # pragma: no cover - platform dependent\n     import winreg as _winreg\n except ModuleNotFoundError:  # pragma: no cover - non-Windows\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-26T00:36:51.389404+00:00\nduration: 2.705s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:51.345098+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:53.777190+00:00\n@@ -25,17 +25,13 @@\n \n class _WinRegModule(Protocol):\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 7 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:51.345098+00:00\n+++ C:\\x_runner_x\\x_make_pypi_x\\publish_flow.py\t2025-10-26 00:36:53.777190+00:00\n@@ -25,17 +25,13 @@\n \n class _WinRegModule(Protocol):\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-26T00:36:54.252575+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.15512419998412952,
+                "ended_at": "2025-10-26T00:36:54.252575+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "f53aaa7641489b6230207e2bcbeda9f9165da2d6e4a3dd4573ad703c25db7de7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-26T00:36:54.097824+00:00",
+                "stderr": "",
+                "stdout": "N802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n30 |     def OpenKey(\n   |         ^^^^^^^\n31 |         self, key: int, sub_key: str\n32 |     ) -> AbstractContextManager[object]: ...\n   |\n\nN802 Function name `QueryValueEx` should be lowercase\n  --> publish_flow.py:34:9\n   |\n32 |     ) -> AbstractContextManager[object]: ...\n33 |\n34 |     def QueryValueEx(\n   |         ^^^^^^^^^^^^\n35 |         self, key: object, value_name: str\n36 |     ) -> tuple[object, int]: ...\n   |\n\nFound 2 errors.\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-26T00:36:54.097824+00:00\nduration: 0.155s\ntool_version: ruff 0.14.2\nstdout:\nN802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "N802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --tar\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-26T00:36:51.380779+00:00",
+            "command": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_pypi_x",
+                "duration_seconds": 0.2964872000156902,
+                "ended_at": "2025-10-26T00:36:51.380779+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts.py",
+                    "publish_flow.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_main_json.py",
+                    "x_cls_make_pypi_x.py"
+                ],
+                "repo": "x_make_pypi_x",
+                "repo_hash": "f53aaa7641489b6230207e2bcbeda9f9165da2d6e4a3dd4573ad703c25db7de7",
+                "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+                "started_at": "2025-10-26T00:36:51.088905+00:00",
+                "stderr": "",
+                "stdout": "N802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n30 |     def OpenKey(\n   |         ^^^^^^^\n31 |         self, key: int, sub_key: str\n32 |     ) -> AbstractContextManager[object]: ...\n   |\n\nN802 Function name `QueryValueEx` should be lowercase\n  --> publish_flow.py:34:9\n   |\n32 |     ) -> AbstractContextManager[object]: ...\n33 |\n34 |     def QueryValueEx(\n   |         ^^^^^^^^^^^^\n35 |         self, key: object, value_name: str\n36 |     ) -> tuple[object, int]: ...\n   |\n\nFound 4 errors (2 fixed, 2 remaining).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_pypi_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_pypi_x\ncommand: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-26T00:36:51.088905+00:00\nduration: 0.296s\ntool_version: ruff 0.14.2\nstdout:\nN802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_pypi_x",
+            "repo_path": "C:\\x_runner_x\\x_make_pypi_x",
+            "stderr_preview": null,
+            "stdout_preview": "N802 Function name `OpenKey` should be lowercase\n  --> publish_flow.py:30:9\n   |\n28 |     REG_EXPAND_SZ: int\n29 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_pypi_x (exit 1) cwd: C:\\x_runner_x\\x_make_pypi_x command: C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 -\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        }
+    ],
+    "generated_at": "2025-10-26T00:37:09.210509+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand",
+            "PYTHONPATH": "c:\\x_runner_x"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\artifacts\\venvs\\orchestrator_gui_py312\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-26T00:37:09.210509+00:00",
+        "run_started_at": "2025-10-26T00:33:29.769067+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 12,
+            "cache_misses": 68,
+            "failed_tools": 3,
+            "had_failures": true,
+            "total_tools_run": 80
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f9d9533ad79b9e423e2ea44efca9a59b4ae87c0766d1e5c6d92977ecd24de9f2",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5763910c2a5e3ecada811787f8b702e67ec77ca030c85332b175a15f1d28ad45",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "44a0a7ef85b784d0f791d0d36d450c12e5d67a05af622680a33d48dc518487d3",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "bafec9c78bfbbf25a69441dc524cb4a43c0b728c31109c61e95d595d59753d30",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b04b9b4a492216da008a0ec31d2afe16c57fef8864789fcf9695f9521c3ba85b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "ff8f5f247250fa0bc938eb87e85da4e96c995bf3289da6816f3e8347cb8c2a44",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "63ee3d1facf532fc4ea5c509a542609e76624e075763c0c04f502bc857ebcb3f",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0195cfd4e774bfcf9c92237192c656bf34f40bb10ca41bbe02d0479cc934d78f",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "1498df1e90c96264c7ca56d452de80d53091e6cf320b1a6d46cfbb81c441d30a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "30dc6604ca13d44bf1325fb42012ec7c75621582b64b779ab0d382b8720ff6cb",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "656ea5f3ce37db5f6d0799180451e2880c28ebde541f1e35366f02cc73d191f4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a58b8c9019f22b99226c7f120747e92c5a27aeade2279fc04b502ab31d36e686",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "2799bc03384475f30d9021b8c1dd4cfcde2d7d0fcebeb7df6e085feb9ea20183",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 3,
+                "repo_hash": "f53aaa7641489b6230207e2bcbeda9f9165da2d6e4a3dd4573ad703c25db7de7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "23a983b65695fff15505b819313566a46e3df777ecd53dae94768b346a2eacfb",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-26T00:37:09.210509+00:00",
+        "total_repos": 16
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

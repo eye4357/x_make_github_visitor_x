@@ -941,27 +941,40 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         env_mapping = dict(env) if env is not None else os.environ.copy()
         try:
             _cooperative_yield()
-            completed = cast(
-                "CompletedProcess[str]",
-                subprocess.run(  # noqa: S603
-                    list(command),
-                    check=False,
-                    cwd=str(repo.path),
-                    capture_output=True,
-                    text=True,
-                    timeout=timeout,
-                    env=env_mapping,
-                ),
+            completed: CompletedProcess[str] = subprocess.run(  # noqa: S603
+                list(command),
+                check=False,
+                cwd=str(repo.path),
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                env=env_mapping,
             )
         except subprocess.TimeoutExpired as exc:  # pragma: no cover - diag path
             timed_out = True
             exit_code = None
-            stdout_text = self._ensure_text(exc.output)
-            stderr_text = self._ensure_text(exc.stderr)
+            stdout_timeout = cast(
+                "str | bytes | bytearray | memoryview | None",
+                exc.output,
+            )
+            stderr_timeout = cast(
+                "str | bytes | bytearray | memoryview | None",
+                exc.stderr,
+            )
+            stdout_text = self._ensure_text(stdout_timeout)
+            stderr_text = self._ensure_text(stderr_timeout)
         else:
             exit_code = completed.returncode
-            stdout_text = self._ensure_text(completed.stdout)
-            stderr_text = self._ensure_text(completed.stderr)
+            stdout_raw = cast(
+                "str | bytes | bytearray | memoryview | None",
+                completed.stdout,
+            )
+            stderr_raw = cast(
+                "str | bytes | bytearray | memoryview | None",
+                completed.stderr,
+            )
+            stdout_text = self._ensure_text(stdout_raw)
+            stderr_text = self._ensure_text(stderr_raw)
         end_wall = datetime.now(UTC)
         duration = max(time.perf_counter() - start_perf, 0.0)
         return (
