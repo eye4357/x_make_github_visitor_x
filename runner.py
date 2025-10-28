@@ -39,33 +39,18 @@ if _workspace_root_str not in sys.path:
 if TYPE_CHECKING:  # Static analyzers see the local package for precise types
     from x_make_common_x.json_contracts import validate_payload
     from x_make_common_x.stage_progress import RepoProgressReporter
-    from x_make_common_x.telemetry import (
-        JSONValue,
-        TelemetryContext,
-        emit_event,
-        make_event,
-    )
     from x_make_common_x.x_logging_utils_x import get_logger
 else:  # Prefer local workspace package, fall back to PyPI distribution
     try:
-        from x_make_common_x import emit_event, get_logger, make_event, validate_payload
-        from x_make_common_x.telemetry import JSONValue, TelemetryContext
+        from x_make_common_x import get_logger, validate_payload
     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
         from x_4357_make_common_x import (  # type: ignore[attr-defined]
-            emit_event,
             get_logger,
-            make_event,
             validate_payload,
         )
 
-        try:  # pragma: no cover - compatibility fall-back for legacy builds
-            from x_4357_make_common_x.telemetry import (
-                JSONValue,  # type: ignore[attr-defined]
-                TelemetryContext,  # type: ignore[attr-defined]
-            )
-        except (ModuleNotFoundError, ImportError, AttributeError):
-            JSONValue = object  # type: ignore[assignment]
-            TelemetryContext = object  # type: ignore[assignment]
+JSONPrimitive = str | int | float | bool | None
+JSONValue = JSONPrimitive | dict[str, "JSONValue"] | list["JSONValue"]
 
 _LOGGER = get_logger("x_make_github_visitor")
 
@@ -763,22 +748,24 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             files_for_event=files_for_event,
             failure_entries=failure_entries,
         )
-        json_details = cast("Mapping[str, JSONValue]", details)
-        telemetry_context = TelemetryContext(
-            repository=payload.repo.rel_path,
-            tool=payload.module_name,
-            attempt=1,
-            duration_ms=duration_ms,
-            details=json_details,
+        log_data = dict(details)
+        log_data["status"] = payload.status
+        log_data["duration_ms"] = duration_ms
+        if payload.summary:
+            log_data["summary"] = payload.summary
+        if failure_entries:
+            log_data["failure_count"] = len(failure_entries)
+
+        message = (
+            f"{payload.config.name} {payload.status} for {payload.repo.rel_path}"
         )
-        emit_event(
-            make_event(
-                source="visitor",
-                phase="inspection",
-                status=payload.status,
-                context=telemetry_context,
-            )
-        )
+        if payload.summary:
+            message = f"{message}: {payload.summary}"
+
+        if payload.status == "failed":
+            _LOGGER.warning("%s | details=%s", message, log_data)
+        else:
+            _LOGGER.debug("%s | details=%s", message, log_data)
 
     def _process_repository(
         self,
