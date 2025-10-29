@@ -756,9 +756,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         if failure_entries:
             log_data["failure_count"] = len(failure_entries)
 
-        message = (
-            f"{payload.config.name} {payload.status} for {payload.repo.rel_path}"
-        )
+        message = f"{payload.config.name} {payload.status} for {payload.repo.rel_path}"
         if payload.summary:
             message = f"{message}: {payload.summary}"
 
