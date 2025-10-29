@@ -1,0 +1,1144 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-29T17:11:50.269708+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 2.5445564000401646,
+                "ended_at": "2025-10-29T17:11:50.269708+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_cli_dispatch.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_gui_x.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "08ab37dad26d534175ca71c8fbc62d9284075419a9534481c11b8a085cb20e4c",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-29T17:11:47.732314+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\nwould reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:07:33.657223+00:00\n+++ C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:11:49.391092+00:00\n@@ -90,13 +90,11 @@\n     slack_bot_spec = next(\n         (spec for spec in instance.token_specs if spec.name == \"SLACK_BOT_TOKEN\"),\n         None,\n     )\n     expect(slack_bot_spec is not None, \"Slack bot token spec should be present\")\n-    if (\n-        slack_bot_spec is None\n-    ):  # pragma: no cover - defensive narrow for type checkers\n+    if slack_bot_spec is None:  # pragma: no cover - defensive narrow for type checkers\n         raise RuntimeError(\"Slack bot token spec unexpectedly missing\")\n     expect(\n         not slack_bot_spec.required,\n         \"Slack bot token must remain optional for future workflows\",\n     )\n--- C:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\t2025-10-29 17:11:47.689663+00:00\n+++ C:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\t2025-10-29 17:11:50.094362+00:00\n@@ -309,14 +309,11 @@\n         )\n         result = self.run_powershell(command)\n         return result.returncode == 0\n \n     def get_user_env(self) -> str | None:\n-        command = (\n-            \"[Environment]::GetEnvironmentVariable(\"\n-            f'\"{self.var}\", \"User\")'\n-        )\n+        command = \"[Environment]::GetEnvironmentVariable(\" f'\"{self.var}\", \"User\")'\n         result = self.run_powershell(command)\n         if result.returncode != 0:\n             return None\n         value = (result.stdout or \"\").strip()\n         return value or None\n@@ -466,10 +463,11 @@\n             collected[var] = value\n             capture_any = True\n     if not capture_any:\n         return {}\n     return collected\n+\n \n class _TokenDialog:\n     \"\"\"Encapsulate the Tkinter dialog orchestration.\"\"\"\n \n     def __init__(\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-29T17:11:47.732314+00:00\nduration: 2.545s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:07:33.657223+00:00\n+++ C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:11:49.391092+00:00\n@@ -90,13 +90,11 @@\n     slack_bot_spec = next(\n         (spec for spec in instance.token_specs if spec.name == \"SLACK_BOT_TOKEN\"),\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\nwould reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\nwould reformat C:\\x_runner_x\\x_make_persistent_env_var_x\\x_cls_make_persistent_env_var_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:07:33.657223+00:00\n+++ C:\\x_runner_x\\x_make_persistent_env_var_x\\tests\\test_persistent_env.py\t2025-10-29 17:11:49.391092+00:00\n@@ -90,13 +90,11 @@\n     slack_bot_spec = next(\n         (spec for spec in instance.token_specs if spec.name == \"SLACK_BOT_TOKEN\"),\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-29T1\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-29T17:11:51.370836+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_persistent_env_var_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.9348314000526443,
+                "ended_at": "2025-10-29T17:11:51.370836+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_cli_dispatch.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_gui_x.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "08ab37dad26d534175ca71c8fbc62d9284075419a9534481c11b8a085cb20e4c",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-29T17:11:50.442701+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_persistent_env_var_x.py:483: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:484: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:486: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:487: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:488: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:489: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:490: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:491: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:499: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:499: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:500: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:501: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:502: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:503: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:504: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:506: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:507: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:508: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:511: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:514: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:517: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:524: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:526: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:527: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:527: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:531: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:532: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:534: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:535: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:538: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:539: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:539: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:541: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:547: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:547: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:548: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:551: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:553: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:554: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:556: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:559: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:568: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:568: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:570: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:571: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:572: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:573: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:578: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:584: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:587: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:587: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:589: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:591: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:592: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:600: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:601: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:603: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:604: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:608: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:609: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:614: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:616: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:617: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:617: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:617: error: Expression type contains \"Any\" (has type \"dict_values[str, Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:618: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:625: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:625: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:629: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:636: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:688: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:702: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_persistent_env_var_x.py:702: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:703: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:704: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:744: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:744: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:759: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:775: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:777: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:778: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:782: error: Expression has type \"Any\"  [misc]\nx_cls_make_persistent_env_var_x.py:783: error: Expression has type \"Any\"  [misc]\nFound 83 errors in 1 file (checked 10 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-29T17:11:50.442701+00:00\nduration: 0.935s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_persistent_env_var_x.py:483: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:484: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:486: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:487: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:488: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_persistent_env_var_x.py:483: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:484: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:486: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:487: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_persistent_env_var_x.py:488: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_persistent_env_var_x --strict --no-warn-unused-configs --show-erro\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-29T17:11:50.438982+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.15890989999752492,
+                "ended_at": "2025-10-29T17:11:50.438982+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_cli_dispatch.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_gui_x.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "08ab37dad26d534175ca71c8fbc62d9284075419a9534481c11b8a085cb20e4c",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-29T17:11:50.280074+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n  |                             ^^^^^^^^\n5 | from io import StringIO\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_run_cli`\n  --> tests\\test_cli_dispatch.py:10:47\n   |\n 8 | import x_make_persistent_env_var_x.x_cls_make_persistent_env_var_x as module\n 9 |\n10 | _run_cli = cast(\"Callable[[list[str]], int]\", module._run_cli)\n   |                                               ^^^^^^^^^^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_dispatch.py:33:5\n   |\n31 |         sys.stdout = stdout_original\n32 |\n33 |     assert exit_code == 5\n   |     ^^^^^^\n34 |     assert records == [(\"run\", True)]\n   |\n\nPLR2004 Magic value used in comparison, consider replacing `5` with a constant variable\n  --> tests\\test_cli_dispatch.py:33:25\n   |\n31 |         sys.stdout = stdout_original\n32 |\n33 |     assert exit_code == 5\n   |                         ^\n34 |     assert records == [(\"run\", True)]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_dispatch.py:34:5\n   |\n33 |     assert exit_code == 5\n34 |     assert records == [(\"run\", True)]\n   |     ^^^^^^\n   |\n\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_persistent_env.py:5:29\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                             ^^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Iterator` into a type-checking block\n --> tests\\test_persistent_env.py:5:39\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                                       ^^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_persistent_env.py:5:49\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                                                 ^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_persistent_env.py:84:15\n   |\n82 |     expect(slack_spec is not None, \"Slack token spec should be present\")\n83 |     if slack_spec is None:  # pragma: no cover - defensive narrow for type checkers\n84 |         raise RuntimeError(\"Slack token spec unexpectedly missing\")\n   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n85 |     expect(slack_spec.required, \"Slack token must be marked as required\")\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_persistent_env.py:84:28\n   |\n82 |     expect(slack_spec is not None, \"Slack token spec should be present\")\n83 |     if slack_spec is None:  # pragma: no cover - defensive narrow for type checkers\n84 |         raise RuntimeError(\"Slack token spec unexpectedly missing\")\n   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n85 |     expect(slack_spec.required, \"Slack token must be marked as required\")\n   |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> tests\\test_persistent_env.py:98:15\n    |\n 96 |         slack_bot_spec is None\n 97 |     ):  # pragma: no cover - defensive narrow for type checkers\n 98 |         raise RuntimeError(\"Slack bot token spec unexpectedly missing\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n 99 |     expect(\n100 |         not slack_bot_spec.required,\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_persistent_env.py:98:28\n    |\n 96 |         slack_bot_spec is None\n 97 |     ):  # pragma: no cover - defensive narrow for type checkers\n 98 |         raise RuntimeError(\"Slack bot token spec unexpectedly missing\")\n    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n 99 |     expect(\n100 |         not slack_bot_spec.required,\n    |\nhelp: Assign to variable; remove string literal\n\nTC003 Move standard library import `types.ModuleType` into a type-checking block\n  --> x_cls_make_persistent_env_var_x.py:18:19\n   |\n16 | from datetime import UTC, datetime\n17 | from pathlib import Path\n18 | from types import ModuleType\n   |                   ^^^^^^^^^^\n19 | from typing import IO, TYPE_CHECKING, Any, Protocol, TypeVar, cast\n   |\nhelp: Move into type-checking block\n\nICN001 `tkinter` should be imported as `tk`\n  --> x_cls_make_persistent_env_var_x.py:24:23\n   |\n22 | messagebox: ModuleType | None\n23 | try:  # pragma: no cover - import guard to support headless environments\n24 |     import tkinter as _tk_module\n   |                       ^^^^^^^^^^\n25 |     from tkinter import messagebox as _messagebox_module\n26 | except ModuleNotFoundError:\n   |\nhelp: Alias `tkinter` to `tk`\n\nICN001 `tkinter` should be imported as `tk`\n  --> x_cls_make_persistent_env_var_x.py:34:12\n   |\n33 | if TYPE_CHECKING:  # pragma: no cover - aid type checkers without runtime impact\n34 |     import tkinter  # noqa: F401\n   |            ^^^^^^^\n35 |     from tkinter import messagebox as _messagebox_typing  # noqa: F401\n   |\nhelp: Alias `tkinter` to `tk`\n\nE402 Module level import not at top of file\n  --> x_cls_make_persistent_env_var_x.py:37:1\n   |\n35 |     from tkinter import messagebox as _messagebox_typing  # noqa: F401\n36 |\n37 | from x_make_common_x.json_contracts import validate_payload\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n38 |\n39 | from x_make_persistent_env_var_x.json_contracts import (\n   |\n\nE402 Module level import not at top of file\n  --> x_cls_make_persistent_env_var_x.py:39:1\n   |\n37 |   from x_make_common_x.json_contracts import validate_payload\n38 |\n39 | / from x_make_persistent_env_var_x.json_contracts import (\n40 | |     ERROR_SCHEMA,\n41 | |     INPUT_SCHEMA,\n42 | |     OUTPUT_SCHEMA,\n43 | | )\n   | |_^\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:525:19\n    |\n523 |     def _build_form(self) -> None:\n524 |         if self._frame is None:\n525 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n526 |         frame = self._frame\n527 |         tk_mod = cast(\"Any\", self._tk)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:525:32\n    |\n523 |     def _build_form(self) -> None:\n524 |         if self._frame is None:\n525 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n526 |         frame = self._frame\n527 |         tk_mod = cast(\"Any\", self._tk)\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:549:19\n    |\n547 |         tk_mod = cast(\"Any\", self._tk)\n548 |         if self._frame is None:\n549 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n550 |         toggle_row = len(self._controller.token_specs)\n551 |         self._show_var = tk_mod.BooleanVar(value=False)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:549:32\n    |\n547 |         tk_mod = cast(\"Any\", self._tk)\n548 |         if self._frame is None:\n549 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n550 |         toggle_row = len(self._controller.token_specs)\n551 |         self._show_var = tk_mod.BooleanVar(value=False)\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:590:19\n    |\n588 |         button_row = len(self._controller.token_specs) + 2\n589 |         if self._frame is None:\n590 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n591 |         frame = tk_mod.Frame(self._frame)\n592 |         frame.grid(\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:590:32\n    |\n588 |         button_row = len(self._controller.token_specs) + 2\n589 |         if self._frame is None:\n590 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n591 |         frame = tk_mod.Frame(self._frame)\n592 |         frame.grid(\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:615:19\n    |\n613 |     def _toggle_visibility(self) -> None:\n614 |         if self._show_var is None:\n615 |             raise RuntimeError(\"Visibility toggle not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n616 |         mask = \"\" if self._show_var.get() else \"*\"\n617 |         for entry in self._entries.values():\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:615:32\n    |\n613 |     def _toggle_visibility(self) -> None:\n614 |         if self._show_var is None:\n615 |             raise RuntimeError(\"Visibility toggle not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n616 |         mask = \"\" if self._show_var.get() else \"*\"\n617 |         for entry in self._entries.values():\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:776:19\n    |\n774 |     def _show_status(self, message: str, *, is_error: bool = False) -> None:\n775 |         if self._status_var is None or self._status_label is None:\n776 |             raise RuntimeError(\"Status widgets not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n777 |         self._status_var.set(message)\n778 |         self._status_label.configure(fg=\"#a33\" if is_error else \"#555\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:776:32\n    |\n774 |     def _show_status(self, message: str, *, is_error: bool = False) -> None:\n775 |         if self._status_var is None or self._status_label is None:\n776 |             raise RuntimeError(\"Status widgets not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n777 |         self._status_var.set(message)\n778 |         self._status_label.configure(fg=\"#a33\" if is_error else \"#555\")\n    |\nhelp: Assign to variable; remove string literal\n\nFound 27 errors.\nNo fixes available (12 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-29T17:11:50.280074+00:00\nduration: 0.159s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-v\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-29T17:11:47.721671+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "duration_seconds": 0.23685879993718117,
+                "ended_at": "2025-10-29T17:11:47.721671+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_cli_dispatch.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_persistent_env.py",
+                    "x_cls_make_persistent_env_var_gui_x.py",
+                    "x_cls_make_persistent_env_var_x.py"
+                ],
+                "repo": "x_make_persistent_env_var_x",
+                "repo_hash": "08ab37dad26d534175ca71c8fbc62d9284075419a9534481c11b8a085cb20e4c",
+                "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+                "started_at": "2025-10-29T17:11:47.489872+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n  |                             ^^^^^^^^\n5 | from io import StringIO\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nSLF001 Private member accessed: `_run_cli`\n  --> tests\\test_cli_dispatch.py:10:47\n   |\n 8 | import x_make_persistent_env_var_x.x_cls_make_persistent_env_var_x as module\n 9 |\n10 | _run_cli = cast(\"Callable[[list[str]], int]\", module._run_cli)\n   |                                               ^^^^^^^^^^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_dispatch.py:33:5\n   |\n31 |         sys.stdout = stdout_original\n32 |\n33 |     assert exit_code == 5\n   |     ^^^^^^\n34 |     assert records == [(\"run\", True)]\n   |\n\nPLR2004 Magic value used in comparison, consider replacing `5` with a constant variable\n  --> tests\\test_cli_dispatch.py:33:25\n   |\n31 |         sys.stdout = stdout_original\n32 |\n33 |     assert exit_code == 5\n   |                         ^\n34 |     assert records == [(\"run\", True)]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_dispatch.py:34:5\n   |\n33 |     assert exit_code == 5\n34 |     assert records == [(\"run\", True)]\n   |     ^^^^^^\n   |\n\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_persistent_env.py:5:29\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                             ^^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Iterator` into a type-checking block\n --> tests\\test_persistent_env.py:5:39\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                                       ^^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_persistent_env.py:5:49\n  |\n3 | import os\n4 | import subprocess\n5 | from collections.abc import Callable, Iterator, Mapping\n  |                                                 ^^^^^^^\n6 | from contextlib import contextmanager\n7 | from typing import Protocol, cast\n  |\nhelp: Move into type-checking block\n\nTRY003 Avoid specifying long messages outside the exception class\n  --> tests\\test_persistent_env.py:84:15\n   |\n82 |     expect(slack_spec is not None, \"Slack token spec should be present\")\n83 |     if slack_spec is None:  # pragma: no cover - defensive narrow for type checkers\n84 |         raise RuntimeError(\"Slack token spec unexpectedly missing\")\n   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n85 |     expect(slack_spec.required, \"Slack token must be marked as required\")\n   |\n\nEM101 Exception must not use a string literal, assign to variable first\n  --> tests\\test_persistent_env.py:84:28\n   |\n82 |     expect(slack_spec is not None, \"Slack token spec should be present\")\n83 |     if slack_spec is None:  # pragma: no cover - defensive narrow for type checkers\n84 |         raise RuntimeError(\"Slack token spec unexpectedly missing\")\n   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n85 |     expect(slack_spec.required, \"Slack token must be marked as required\")\n   |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> tests\\test_persistent_env.py:98:15\n    |\n 96 |         slack_bot_spec is None\n 97 |     ):  # pragma: no cover - defensive narrow for type checkers\n 98 |         raise RuntimeError(\"Slack bot token spec unexpectedly missing\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n 99 |     expect(\n100 |         not slack_bot_spec.required,\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> tests\\test_persistent_env.py:98:28\n    |\n 96 |         slack_bot_spec is None\n 97 |     ):  # pragma: no cover - defensive narrow for type checkers\n 98 |         raise RuntimeError(\"Slack bot token spec unexpectedly missing\")\n    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n 99 |     expect(\n100 |         not slack_bot_spec.required,\n    |\nhelp: Assign to variable; remove string literal\n\nTC003 Move standard library import `types.ModuleType` into a type-checking block\n  --> x_cls_make_persistent_env_var_x.py:18:19\n   |\n16 | from datetime import UTC, datetime\n17 | from pathlib import Path\n18 | from types import ModuleType\n   |                   ^^^^^^^^^^\n19 | from typing import IO, TYPE_CHECKING, Any, Protocol, TypeVar, cast\n   |\nhelp: Move into type-checking block\n\nICN001 `tkinter` should be imported as `tk`\n  --> x_cls_make_persistent_env_var_x.py:24:23\n   |\n22 | messagebox: ModuleType | None\n23 | try:  # pragma: no cover - import guard to support headless environments\n24 |     import tkinter as _tk_module\n   |                       ^^^^^^^^^^\n25 |     from tkinter import messagebox as _messagebox_module\n26 | except ModuleNotFoundError:\n   |\nhelp: Alias `tkinter` to `tk`\n\nICN001 `tkinter` should be imported as `tk`\n  --> x_cls_make_persistent_env_var_x.py:34:12\n   |\n33 | if TYPE_CHECKING:  # pragma: no cover - aid type checkers without runtime impact\n34 |     import tkinter  # noqa: F401\n   |            ^^^^^^^\n35 |     from tkinter import messagebox as _messagebox_typing  # noqa: F401\n   |\nhelp: Alias `tkinter` to `tk`\n\nE402 Module level import not at top of file\n  --> x_cls_make_persistent_env_var_x.py:37:1\n   |\n35 |     from tkinter import messagebox as _messagebox_typing  # noqa: F401\n36 |\n37 | from x_make_common_x.json_contracts import validate_payload\n   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n38 |\n39 | from x_make_persistent_env_var_x.json_contracts import (\n   |\n\nE402 Module level import not at top of file\n  --> x_cls_make_persistent_env_var_x.py:39:1\n   |\n37 |   from x_make_common_x.json_contracts import validate_payload\n38 |\n39 | / from x_make_persistent_env_var_x.json_contracts import (\n40 | |     ERROR_SCHEMA,\n41 | |     INPUT_SCHEMA,\n42 | |     OUTPUT_SCHEMA,\n43 | | )\n   | |_^\n   |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:525:19\n    |\n523 |     def _build_form(self) -> None:\n524 |         if self._frame is None:\n525 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n526 |         frame = self._frame\n527 |         tk_mod = cast(\"Any\", self._tk)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:525:32\n    |\n523 |     def _build_form(self) -> None:\n524 |         if self._frame is None:\n525 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n526 |         frame = self._frame\n527 |         tk_mod = cast(\"Any\", self._tk)\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:549:19\n    |\n547 |         tk_mod = cast(\"Any\", self._tk)\n548 |         if self._frame is None:\n549 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n550 |         toggle_row = len(self._controller.token_specs)\n551 |         self._show_var = tk_mod.BooleanVar(value=False)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:549:32\n    |\n547 |         tk_mod = cast(\"Any\", self._tk)\n548 |         if self._frame is None:\n549 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n550 |         toggle_row = len(self._controller.token_specs)\n551 |         self._show_var = tk_mod.BooleanVar(value=False)\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:590:19\n    |\n588 |         button_row = len(self._controller.token_specs) + 2\n589 |         if self._frame is None:\n590 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n591 |         frame = tk_mod.Frame(self._frame)\n592 |         frame.grid(\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:590:32\n    |\n588 |         button_row = len(self._controller.token_specs) + 2\n589 |         if self._frame is None:\n590 |             raise RuntimeError(\"Dialog frame is not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n591 |         frame = tk_mod.Frame(self._frame)\n592 |         frame.grid(\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:615:19\n    |\n613 |     def _toggle_visibility(self) -> None:\n614 |         if self._show_var is None:\n615 |             raise RuntimeError(\"Visibility toggle not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n616 |         mask = \"\" if self._show_var.get() else \"*\"\n617 |         for entry in self._entries.values():\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:615:32\n    |\n613 |     def _toggle_visibility(self) -> None:\n614 |         if self._show_var is None:\n615 |             raise RuntimeError(\"Visibility toggle not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n616 |         mask = \"\" if self._show_var.get() else \"*\"\n617 |         for entry in self._entries.values():\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_persistent_env_var_x.py:776:19\n    |\n774 |     def _show_status(self, message: str, *, is_error: bool = False) -> None:\n775 |         if self._status_var is None or self._status_label is None:\n776 |             raise RuntimeError(\"Status widgets not initialised\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n777 |         self._status_var.set(message)\n778 |         self._status_label.configure(fg=\"#a33\" if is_error else \"#555\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_persistent_env_var_x.py:776:32\n    |\n774 |     def _show_status(self, message: str, *, is_error: bool = False) -> None:\n775 |         if self._status_var is None or self._status_label is None:\n776 |             raise RuntimeError(\"Status widgets not initialised\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n777 |         self._status_var.set(message)\n778 |         self._status_label.configure(fg=\"#a33\" if is_error else \"#555\")\n    |\nhelp: Assign to variable; remove string literal\n\nFound 34 errors (7 fixed, 27 remaining).\nNo fixes available (12 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_persistent_env_var_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_persistent_env_var_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-29T17:11:47.489872+00:00\nduration: 0.237s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_persistent_env_var_x",
+            "repo_path": "C:\\x_runner_x\\x_make_persistent_env_var_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Callable` into a type-checking block\n --> tests\\test_cli_dispatch.py:4:29\n  |\n3 | import sys\n4 | from collections.abc import Callable\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_persistent_env_var_x (exit 1) cwd: C:\\x_runner_x\\x_make_persistent_env_var_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-29T17:12:48.218382+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 1.6815406000241637,
+                "ended_at": "2025-10-29T17:12:48.218382+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-29T17:12:46.543885+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 16:03:58.333983+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 17:12:47.917543+00:00\n@@ -22,11 +22,11 @@\n \n def test_output_schema_accepts_minimal_payload() -> None:\n     payload = {\n         \"status\": \"success\",\n         \"schema_version\": \"x_make_slack_dump_and_reset_x.run/1.0\",\n-    \"export_root\": \"./tmp/sprint\",\n+        \"export_root\": \"./tmp/sprint\",\n         \"channels\": [],\n     }\n     validate_payload(payload, OUTPUT_SCHEMA)\n \n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-29T17:12:46.543885+00:00\nduration: 1.682s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 16:03:58.333983+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 17:12:47.917543+00:00\n@@ -22,11 +22,11 @@\n \n def test_output_schema_accepts_minimal_payload() -> None:\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 16:03:58.333983+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\t2025-10-29 17:12:47.917543+00:00\n@@ -22,11 +22,11 @@\n \n def test_output_schema_accepts_minimal_payload() -> None:\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-29T17:12:51.642786+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_slack_dump_and_reset_z",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 3.281737699988298,
+                "ended_at": "2025-10-29T17:12:51.642786+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-29T17:12:48.362773+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_slack_dump_and_reset_x.py:33: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:107: error: Expression type contains \"Any\" (has type \"type[SlackMessageRecord]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:108: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:114: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:116: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:206: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:211: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:212: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:212: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:213: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:213: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:218: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:221: error: Expression type contains \"Any\" (has type \"Iterable[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:232: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:236: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:236: error: Expression type contains \"Any\" (has type \"Any | list[Never]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:236: error: Need type annotation for \"raw_messages\"  [var-annotated]\nx_cls_make_slack_dump_and_reset_x.py:237: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:239: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:246: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:283: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:284: error: Expression type contains \"Any\" (has type \"dict[str, dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:285: error: Expression type contains \"Any\" (has type \"dict[str, dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:285: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:288: error: Expression type contains \"Any\" (has type \"dict[str, dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:288: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:290: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:290: error: Expression type contains \"Any\" (has type \"Iterable[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:291: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:291: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:292: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:292: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:293: error: Expression type contains \"Any\" (has type \"dict[str, dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:293: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:296: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:301: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:304: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:308: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:308: error: Expression type contains \"Any\" (has type \"Any | list[Never]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:308: error: Need type annotation for \"channels\"  [var-annotated]\nx_cls_make_slack_dump_and_reset_x.py:309: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:311: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:316: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:320: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:326: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:326: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:327: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:327: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:328: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:328: error: Expression type contains \"Any\" (has type \"Any | list[Never]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:328: error: Need type annotation for \"files_payload\"  [var-annotated]\nx_cls_make_slack_dump_and_reset_x.py:330: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:347: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:347: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:349: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:350: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:353: error: Expression type contains \"Any\" (has type \"Literal[False] | Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:353: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:353: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:354: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:358: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:358: error: Expression type contains \"Any\" (has type \"Any | list[Never]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:358: error: Need type annotation for \"replies\"  [var-annotated]\nx_cls_make_slack_dump_and_reset_x.py:359: error: Expression type contains \"Any\" (has type \"Any | list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:363: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:365: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:368: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:386: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:387: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:431: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:432: error: Expression type contains \"Any\" (has type \"Mapping[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:432: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:433: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:496: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:496: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:528: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:528: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:529: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:529: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:562: error: Generator has incompatible item type \"int\"; expected \"bool\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:562: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:662: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:662: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:689: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:690: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:694: error: Expression type contains \"Any\" (has type \"tuple[str, dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:694: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:697: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:697: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:698: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:706: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:707: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:707: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:708: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:713: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:716: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:717: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:773: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:788: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:789: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:789: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:790: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:791: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:796: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:797: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:797: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:798: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:799: error: Expression type contains \"Any\" (has type \"IO[Any]\")  [misc]\ntests\\test_slack_dump_and_reset.py:42: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\ntests\\test_slack_dump_and_reset.py:51: error: Expression type contains \"Any\" (has type \"list[dict[str, Any]]\")  [misc]\ntests\\test_slack_dump_and_reset.py:51: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\ntests\\test_slack_dump_and_reset.py:76: error: Explicit \"Any\" is not allowed  [explicit-any]\ntests\\test_slack_dump_and_reset.py:103: error: Expression type contains \"Any\" (has type \"Mapping[str, Any]\")  [misc]\ntests\\test_slack_dump_and_reset.py:104: error: Expression type contains \"Any\" (has type \"Mapping[str, Any]\")  [misc]\ntests\\test_slack_dump_and_reset.py:113: error: Expression has type \"Any\"  [misc]\ntests\\test_slack_dump_and_reset.py:115: error: Expression has type \"Any\"  [misc]\ntests\\test_slack_dump_and_reset.py:120: error: Expression has type \"Any\"  [misc]\ntests\\test_slack_dump_and_reset.py:121: error: Expression has type \"Any\"  [misc]\ntests\\test_slack_dump_and_reset.py:122: error: Expression has type \"Any\"  [misc]\nFound 119 errors in 2 files (checked 7 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-29T17:12:48.362773+00:00\nduration: 3.282s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_slack_dump_and_reset_x.py:33: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:107: error: Expression type contains \"Any\" (has type \"type[SlackMessageRecord]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:108: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:114: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:116: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_slack_dump_and_reset_x.py:33: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:107: error: Expression type contains \"Any\" (has type \"type[SlackMessageRecord]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:108: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:114: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_slack_dump_and_reset_x.py:116: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --sho\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-29T17:12:53.997306+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "pyright",
+                    ".",
+                    "--level",
+                    "error"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 2.350342300022021,
+                "ended_at": "2025-10-29T17:12:53.997306+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-29T17:12:51.647684+00:00",
+                "stderr": "",
+                "stdout": "c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py:3:6 - error: Import \"x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:3:6 - error: Import \"x_make_common_x.json_contracts\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:5:6 - error: Import \"x_make_slack_dump_and_reset_z.json_contracts\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_slack_dump_and_reset.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_slack_dump_and_reset.py:10:8 - error: Import \"x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_slack_dump_and_reset.py:11:6 - error: Import \"x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py:18:6 - error: Import \"x_make_common_x.json_contracts\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py:20:6 - error: Import \"x_make_slack_dump_and_reset_z.json_contracts\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py:172:14 - error: Import \"x_make_persistent_env_var_x.x_cls_make_persistent_env_var_x\" could not be resolved (reportMissingImports)\n8 errors, 0 warnings, 0 informations\n",
+                "tool": "pyright",
+                "tool_module": "pyright",
+                "tool_version": "pyright 1.1.407"
+            },
+            "exit": "exit 1",
+            "message": "pyright failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error\nstarted_at: 2025-10-29T17:12:51.647684+00:00\nduration: 2.350s\ntool_version: pyright 1.1.407\nstdout:\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py:3:6 - error: Import \"x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:3:6 - error: Import \"x_make_common_x.json_contracts\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:5:6 - error: Import \"x_make_slack_dump_and_reset_z.json_contracts\" could not be resolved (reportMissingImports)\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\__main__.py:3:6 - error: Import \"x_make_slack_dump_and_reset_z.x_cls_make_slack_dump_and_reset_x\" could not be resolved (reportMissingImports)\nc:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:3:6 - error: Import \"x_make_common_x.json_contracts\" could not be resolved (reportMissingImports)\n  c:\\x_runner_x\\x_make_slack_dump_and_reset_z\\tests\\test_json_contracts.py:5:6 - error: Import \"x_make_slack_dump_and_reset_z.json_contracts\" could not be resolved (reportMissingImports)\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "pyright failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m pyright . --level error started_at: 2025-10-29T17:12:51.647684+00:00 duration: 2.\u2026",
+            "tool": "pyright",
+            "tool_version": "pyright 1.1.407"
+        },
+        {
+            "captured_at": "2025-10-29T17:12:48.351242+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 0.1271041000727564,
+                "ended_at": "2025-10-29T17:12:48.351242+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-29T17:12:48.228403+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n5 | from collections.abc import Mapping\n  |                             ^^^^^^^\n6 | from datetime import UTC, datetime\n7 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nARG002 Unused method argument: `identifier`\n  --> tests\\test_slack_dump_and_reset.py:27:31\n   |\n25 |         self.deleted_files: list[str] = []\n26 |\n27 |     def resolve_channel(self, identifier: str) -> SlackChannelContext:\n   |                               ^^^^^^^^^^\n28 |         return SlackChannelContext(\n29 |             channel_id=\"C123\", channel_name=\"general\", messages=[]\n   |\n\nARG002 Unused method argument: `channel_id`\n  --> tests\\test_slack_dump_and_reset.py:34:9\n   |\n32 |     def fetch_messages(\n33 |         self,\n34 |         channel_id: str,\n   |         ^^^^^^^^^^\n35 |         *,\n36 |         include_threads: bool,\n   |\n\nARG005 Unused lambda argument: `token`\n  --> tests\\test_slack_dump_and_reset.py:71:31\n   |\n69 | def _make_runner(fake_client: FakeSlackClient) -> SlackDumpAndReset:\n70 |     return SlackDumpAndReset(\n71 |         client_factory=lambda token: fake_client,\n   |                               ^^^^^\n72 |         time_provider=lambda: datetime(2025, 10, 26, tzinfo=UTC),\n73 |     )\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:106:5\n    |\n104 |     result = runner.run(payload)\n105 |\n106 |     assert result[\"status\"] == \"success\"\n    |     ^^^^^^\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n108 |     channels = result[\"channels\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:107:5\n    |\n106 |     assert result[\"status\"] == \"success\"\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n    |     ^^^^^^\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:109:5\n    |\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n    |     ^^^^^^\n110 |     assert channels\n111 |     channel_result = channels[0]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:110:5\n    |\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n110 |     assert channels\n    |     ^^^^^^\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:112:5\n    |\n110 |     assert channels\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n    |     ^^^^^^\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:113:5\n    |\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n    |     ^^^^^^\n114 |     assert channel_result[\"deleted\"] is True\n115 |     assert channel_result[\"file_count\"] == 1\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:114:5\n    |\n112 |     assert isinstance(channel_result, dict)\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n    |     ^^^^^^\n115 |     assert channel_result[\"file_count\"] == 1\n116 |     export_path = Path(channel_result[\"export_path\"])\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:115:5\n    |\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n115 |     assert channel_result[\"file_count\"] == 1\n    |     ^^^^^^\n116 |     export_path = Path(channel_result[\"export_path\"])\n117 |     assert export_path.exists()\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:117:5\n    |\n115 |     assert channel_result[\"file_count\"] == 1\n116 |     export_path = Path(channel_result[\"export_path\"])\n117 |     assert export_path.exists()\n    |     ^^^^^^\n118 |     messages_file = export_path / \"messages.json\"\n119 |     assert messages_file.exists()\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:119:5\n    |\n117 |     assert export_path.exists()\n118 |     messages_file = export_path / \"messages.json\"\n119 |     assert messages_file.exists()\n    |     ^^^^^^\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:121:5\n    |\n119 |     assert messages_file.exists()\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n    |     ^^^^^^\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:122:5\n    |\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n    |     ^^^^^^\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:123:5\n    |\n121 |     assert isinstance(messages, list)\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n    |     ^^^^^^\n124 |     assert fake_client.deleted_messages\n125 |     assert \"F123\" in fake_client.deleted_files\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:124:5\n    |\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n    |     ^^^^^^\n125 |     assert \"F123\" in fake_client.deleted_files\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:125:5\n    |\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n125 |     assert \"F123\" in fake_client.deleted_files\n    |     ^^^^^^\n    |\n\nS105 Possible hardcoded password assigned to: \"SLACK_TOKEN\"\n   --> tests\\test_slack_dump_and_reset.py:143:33\n    |\n142 |     original_env = os.environ.get(\"SLACK_TOKEN\")\n143 |     os.environ[\"SLACK_TOKEN\"] = \"xoxe-ignored-refresh-token\"\n    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n144 |     original_resolver = module._resolve_persistent_slack_token\n145 |     try:\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:144:25\n    |\n142 |     original_env = os.environ.get(\"SLACK_TOKEN\")\n143 |     os.environ[\"SLACK_TOKEN\"] = \"xoxe-ignored-refresh-token\"\n144 |     original_resolver = module._resolve_persistent_slack_token\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n145 |     try:\n146 |         module._resolve_persistent_slack_token = lambda: (\"xoxp-from-vault\", True)\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:146:9\n    |\n144 |     original_resolver = module._resolve_persistent_slack_token\n145 |     try:\n146 |         module._resolve_persistent_slack_token = lambda: (\"xoxp-from-vault\", True)\n    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n147 |         result = runner.run(payload)\n148 |     finally:\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:153:5\n    |\n151 |         else:\n152 |             os.environ.pop(\"SLACK_TOKEN\", None)\n153 |     module._resolve_persistent_slack_token = original_resolver\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n154 |\n155 |     assert result[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:155:5\n    |\n153 |     module._resolve_persistent_slack_token = original_resolver\n154 |\n155 |     assert result[\"status\"] == \"success\"\n    |     ^^^^^^\n    |\n\nANN401 Dynamically typed expressions (typing.Any) are disallowed in `json`\n  --> x_cls_make_slack_dump_and_reset_x.py:33:23\n   |\n31 |     headers: Mapping[str, str]\n32 |\n33 |     def json(self) -> Any: ...\n   |                       ^^^\n34 |\n35 |     def iter_content(self, chunk_size: int) -> Iterable[bytes]: ...\n   |\n\nN802 Function name `Session` should be lowercase\n  --> x_cls_make_slack_dump_and_reset_x.py:55:9\n   |\n54 | class RequestsModule(Protocol):\n55 |     def Session(self) -> SessionProtocol: ...\n   |         ^^^^^^^\n   |\n\nPLC0415 `import` should be at the top-level of a file\n   --> x_cls_make_slack_dump_and_reset_x.py:172:9\n    |\n171 |       try:\n172 | /         from x_make_persistent_env_var_x.x_cls_make_persistent_env_var_x import (\n173 | |             x_cls_make_persistent_env_var_x,\n174 | |         )\n    | |_________^\n175 |       except Exception:  # pragma: no cover - optional dependency at runtime\n176 |           return None, False\n    |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> x_cls_make_slack_dump_and_reset_x.py:175:12\n    |\n173 |             x_cls_make_persistent_env_var_x,\n174 |         )\n175 |     except Exception:  # pragma: no cover - optional dependency at runtime\n    |            ^^^^^^^^^\n176 |         return None, False\n    |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> x_cls_make_slack_dump_and_reset_x.py:181:12\n    |\n179 |         reader = x_cls_make_persistent_env_var_x(\"SLACK_TOKEN\", quiet=True)\n180 |         persisted = reader.get_user_env()\n181 |     except Exception:\n    |            ^^^^^^^^^\n182 |         return None, False\n183 |     if isinstance(persisted, str) and persisted.strip():\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:239:21\n    |\n237 |             if not isinstance(raw_messages, list):\n238 |                 raise SlackAPIError(\n239 |                     \"conversations.history\", \"invalid_messages_payload\", payload\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^\n240 |                 )\n241 |             for raw in raw_messages:\n    |\nhelp: Assign to variable; remove string literal\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:255:17\n    |\n253 |         if not file_record.download_url:\n254 |             raise SlackAPIError(\n255 |                 \"files.download\",\n    |                 ^^^^^^^^^^^^^^^^\n256 |                 \"missing_download_url\",\n257 |                 {\"file\": file_record.file_id},\n    |\nhelp: Assign to variable; remove string literal\n\nPLR1714 Consider merging multiple comparisons: `identifier in (channel_id, name)`. Use a `set` if the elements are hashable.\n   --> x_cls_make_slack_dump_and_reset_x.py:295:16\n    |\n293 |             self._channel_cache[channel_id] = payload\n294 |             self._channel_name_to_id[name] = channel_id\n295 |             if channel_id == identifier or name == identifier:\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n296 |                 return payload\n297 |         raise SlackAPIError(\n    |\nhelp: Merge multiple comparisons\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:298:13\n    |\n296 |                 return payload\n297 |         raise SlackAPIError(\n298 |             \"conversations.list\", \"channel_not_found\", {\"query\": identifier}\n    |             ^^^^^^^^^^^^^^^^^^^^\n299 |         )\n    |\nhelp: Assign to variable; remove string literal\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:311:21\n    |\n309 |             if not isinstance(channels, list):\n310 |                 raise SlackAPIError(\n311 |                     \"conversations.list\", \"invalid_channels_payload\", payload\n    |                     ^^^^^^^^^^^^^^^^^^^^\n312 |                 )\n313 |             for channel in channels:\n    |\nhelp: Assign to variable; remove string literal\n\nFBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_slack_dump_and_reset_x.py:324:9\n    |\n322 |         channel_id: str,\n323 |         raw: dict[str, Any],\n324 |         include_threads: bool,\n    |         ^^^^^^^^^^^^^^^\n325 |     ) -> SlackMessageRecord:\n326 |         text = str(raw.get(\"text\", \"\"))\n    |\n\nPLR2004 Magic value used in comparison, consider replacing `429` with a constant variable\n   --> x_cls_make_slack_dump_and_reset_x.py:420:40\n    |\n418 |                 stream=stream,\n419 |             )\n420 |             if response.status_code == 429:\n    |                                        ^^^\n421 |                 retry_after = response.headers.get(\"Retry-After\")\n422 |                 sleep_for = float(retry_after) if retry_after else backoff\n    |\n\nC901 `run` is too complex (16 > 10)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nPLR0912 Too many branches (15 > 12)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nPLR0915 Too many statements (60 > 50)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nE501 Line too long (120 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:520:89\n    |\n518 |                             )\n519 |                             info_messages.append(\n520 |                                 f\"File download failed for {file_record.file_id} in {context.channel_name}: {exc.error}\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n521 |                             )\n522 |             deleted = False\n    |\n\nE501 Line too long (122 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:542:89\n    |\n540 | \u00e2\u20ac\u00a6                     )\n541 | \u00e2\u20ac\u00a6                     info_messages.append(\n542 | \u00e2\u20ac\u00a6                         f\"File delete failed for {file_record.file_id} in {context.channel_name}: {exc.error}\"\n    |                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n543 | \u00e2\u20ac\u00a6                     )\n544 | \u00e2\u20ac\u00a6                     delete_failures = True\n    |\n\nE501 Line too long (116 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:553:89\n    |\n551 |                         )\n552 |                         info_messages.append(\n553 |                             f\"Message delete failed for channel {context.channel_name} ts={message.ts}: {exc.error}\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n554 |                         )\n555 |                         delete_failures = True\n    |\n\nC901 `_parse_parameters` is too complex (19 > 10)\n   --> x_cls_make_slack_dump_and_reset_x.py:589:9\n    |\n587 |         return factory(token)\n588 |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n    |         ^^^^^^^^^^^^^^^^^\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> x_cls_make_slack_dump_and_reset_x.py:589:9\n    |\n587 |         return factory(token)\n588 |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n    |         ^^^^^^^^^^^^^^^^^\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |\n\nS101 Use of `assert` detected\n   --> x_cls_make_slack_dump_and_reset_x.py:591:9\n    |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |         ^^^^^^\n592 |         token_obj = parameters_raw.get(\"slack_token\")\n593 |         token = token_obj if isinstance(token_obj, str) and token_obj else None\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:609:19\n    |\n607 |                   token = persisted_token\n608 |           if not isinstance(token, str) or not token:\n609 |               raise RuntimeError(\n    |  ___________________^\n610 | |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n611 | |             )\n    | |_____________^\n612 |           archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |           if not isinstance(archive_root_raw, str) or not archive_root_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:610:17\n    |\n608 |         if not isinstance(token, str) or not token:\n609 |             raise RuntimeError(\n610 |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n611 |             )\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:610:89\n    |\n608 |         if not isinstance(token, str) or not token:\n609 |             raise RuntimeError(\n610 |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n    |                                                                                         ^\n611 |             )\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:614:19\n    |\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |         if not isinstance(archive_root_raw, str) or not archive_root_raw:\n614 |             raise RuntimeError(\"archive_root must be a non-empty string path\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:614:32\n    |\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |         if not isinstance(archive_root_raw, str) or not archive_root_raw:\n614 |             raise RuntimeError(\"archive_root must be a non-empty string path\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:617:19\n    |\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n617 |             raise RuntimeError(\"channels must be a non-empty array\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n618 |         channels: list[str | Mapping[str, object]] = []\n619 |         for item in channels_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:617:32\n    |\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n617 |             raise RuntimeError(\"channels must be a non-empty array\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n618 |         channels: list[str | Mapping[str, object]] = []\n619 |         for item in channels_raw:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:623:23\n    |\n621 |                   channels.append(item)\n622 |               else:\n623 |                   raise RuntimeError(\n    |  _______________________^\n624 | |                     \"channels entries must be strings or objects with id/name\"\n625 | |                 )\n    | |_________________^\n626 |           skip_raw = parameters_raw.get(\"skip_channels\")\n627 |           skip_channels: set[str] = set()\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:624:21\n    |\n622 |             else:\n623 |                 raise RuntimeError(\n624 |                     \"channels entries must be strings or objects with id/name\"\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n625 |                 )\n626 |         skip_raw = parameters_raw.get(\"skip_channels\")\n    |\nhelp: Assign to variable; remove string literal\n\nPERF401 Use `list.extend` to create a transformed list\n   --> x_cls_make_slack_dump_and_reset_x.py:641:21\n    |\n639 |             for note in notes_raw:\n640 |                 if isinstance(note, str):\n641 |                     notes.append(note)\n    |                     ^^^^^^^^^^^^^^^^^^\n642 |         return SlackDumpParameters(\n643 |             slack_token=token,\n    |\nhelp: Replace for loop with list.extend\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:656:19\n    |\n654 |     def _resolve_export_root(self, archive_root: Path) -> Path:\n655 |         if not archive_root.exists():\n656 |             raise FileNotFoundError(f\"Archive root does not exist: {archive_root}\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n657 |         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |         if not subdirectories:\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:656:37\n    |\n654 |     def _resolve_export_root(self, archive_root: Path) -> Path:\n655 |         if not archive_root.exists():\n656 |             raise FileNotFoundError(f\"Archive root does not exist: {archive_root}\")\n    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n657 |         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |         if not subdirectories:\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:659:19\n    |\n657 |           subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |           if not subdirectories:\n659 |               raise FileNotFoundError(\n    |  ___________________^\n660 | |                 f\"Archive root {archive_root} has no subdirectories to target\"\n661 | |             )\n    | |_____________^\n662 |           latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n663 |           return latest_directory\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:660:17\n    |\n658 |         if not subdirectories:\n659 |             raise FileNotFoundError(\n660 |                 f\"Archive root {archive_root} has no subdirectories to target\"\n    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n661 |             )\n662 |         latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n    |\nhelp: Assign to variable; remove f-string literal\n\nRET504 Unnecessary assignment to `latest_directory` before `return` statement\n   --> x_cls_make_slack_dump_and_reset_x.py:663:16\n    |\n661 |             )\n662 |         latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n663 |         return latest_directory\n    |                ^^^^^^^^^^^^^^^^\n664 |\n665 |     @staticmethod\n    |\nhelp: Remove unnecessary assignment\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:681:19\n    |\n679 |             if isinstance(channel_name, str) and channel_name:\n680 |                 return channel_name, channel_name\n681 |             raise RuntimeError(\"Channel mapping must provide 'id' or 'name'\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n682 |         if isinstance(channel_spec, str) and channel_spec:\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:681:32\n    |\n679 |             if isinstance(channel_name, str) and channel_name:\n680 |                 return channel_name, channel_name\n681 |             raise RuntimeError(\"Channel mapping must provide 'id' or 'name'\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n682 |         if isinstance(channel_spec, str) and channel_spec:\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:684:15\n    |\n682 |           if isinstance(channel_spec, str) and channel_spec:\n683 |               return channel_spec, channel_spec.lstrip(\"#\")\n684 |           raise RuntimeError(\n    |  _______________^\n685 | |             \"Channel specification must be a non-empty string or mapping\"\n686 | |         )\n    | |_________^\n687 |\n688 |       @staticmethod\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:685:13\n    |\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n684 |         raise RuntimeError(\n685 |             \"Channel specification must be a non-empty string or mapping\"\n    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n686 |         )\n    |\nhelp: Assign to variable; remove string literal\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:715:14\n    |\n713 |         payload = json.load(sys.stdin)\n714 |     else:\n715 |         with open(path, encoding=\"utf-8\") as handle:\n    |              ^^^^\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n    |\nhelp: Replace with `Path.open()`\n\nTRY004 Prefer `TypeError` exception for invalid type\n   --> x_cls_make_slack_dump_and_reset_x.py:718:9\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:718:15\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:718:28\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:741:89\n    |\n739 |         response = (\n740 |             input(\n741 |                 \"Archive captured. Delete Slack messages and files after export? [y/N]: \"\n    |                                                                                         ^\n742 |             )\n743 |             .strip()\n    |\n\nSIM105 Use `contextlib.suppress(Exception)` instead of `try`-`except`-`pass`\n   --> x_cls_make_slack_dump_and_reset_x.py:784:9\n    |\n782 |               \"details\": {\"type\": exc.__class__.__name__},\n783 |           }\n784 | /         try:\n785 | |             validate_payload(error_payload, ERROR_SCHEMA)\n786 | |         except Exception:  # noqa: BLE001 - best effort to preserve error output\n787 | |             pass\n    | |________________^\n788 |           if args.output:\n789 |               with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |\nhelp: Replace `try`-`except`-`pass` with `with contextlib.suppress(Exception): ...`\n\nS110 `try`-`except`-`pass` detected, consider logging the exception\n   --> x_cls_make_slack_dump_and_reset_x.py:786:9\n    |\n784 |           try:\n785 |               validate_payload(error_payload, ERROR_SCHEMA)\n786 | /         except Exception:  # noqa: BLE001 - best effort to preserve error output\n787 | |             pass\n    | |________________^\n788 |           if args.output:\n789 |               with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:789:18\n    |\n787 |             pass\n788 |         if args.output:\n789 |             with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |                  ^^^^\n790 |                 json.dump(error_payload, handle, indent=2, ensure_ascii=False)\n791 |                 handle.write(\"\\n\")\n    |\nhelp: Replace with `Path.open()`\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:797:14\n    |\n796 |     if args.output:\n797 |         with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |              ^^^^\n798 |             json.dump(output, handle, indent=2, ensure_ascii=False)\n799 |             handle.write(\"\\n\")\n    |\nhelp: Replace with `Path.open()`\n\nFound 73 errors.\nNo fixes available (16 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-29T17:12:48.228403+00:00\nduration: 0.127s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --targ\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-29T17:12:46.537453+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 0.2593542999820784,
+                "ended_at": "2025-10-29T17:12:46.537453+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-29T17:12:46.278725+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n5 | from collections.abc import Mapping\n  |                             ^^^^^^^\n6 | from datetime import UTC, datetime\n7 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nARG002 Unused method argument: `identifier`\n  --> tests\\test_slack_dump_and_reset.py:27:31\n   |\n25 |         self.deleted_files: list[str] = []\n26 |\n27 |     def resolve_channel(self, identifier: str) -> SlackChannelContext:\n   |                               ^^^^^^^^^^\n28 |         return SlackChannelContext(\n29 |             channel_id=\"C123\", channel_name=\"general\", messages=[]\n   |\n\nARG002 Unused method argument: `channel_id`\n  --> tests\\test_slack_dump_and_reset.py:34:9\n   |\n32 |     def fetch_messages(\n33 |         self,\n34 |         channel_id: str,\n   |         ^^^^^^^^^^\n35 |         *,\n36 |         include_threads: bool,\n   |\n\nARG005 Unused lambda argument: `token`\n  --> tests\\test_slack_dump_and_reset.py:71:31\n   |\n69 | def _make_runner(fake_client: FakeSlackClient) -> SlackDumpAndReset:\n70 |     return SlackDumpAndReset(\n71 |         client_factory=lambda token: fake_client,\n   |                               ^^^^^\n72 |         time_provider=lambda: datetime(2025, 10, 26, tzinfo=UTC),\n73 |     )\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:106:5\n    |\n104 |     result = runner.run(payload)\n105 |\n106 |     assert result[\"status\"] == \"success\"\n    |     ^^^^^^\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n108 |     channels = result[\"channels\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:107:5\n    |\n106 |     assert result[\"status\"] == \"success\"\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n    |     ^^^^^^\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:109:5\n    |\n107 |     assert result[\"schema_version\"] == SCHEMA_VERSION\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n    |     ^^^^^^\n110 |     assert channels\n111 |     channel_result = channels[0]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:110:5\n    |\n108 |     channels = result[\"channels\"]\n109 |     assert isinstance(channels, list)\n110 |     assert channels\n    |     ^^^^^^\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:112:5\n    |\n110 |     assert channels\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n    |     ^^^^^^\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:113:5\n    |\n111 |     channel_result = channels[0]\n112 |     assert isinstance(channel_result, dict)\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n    |     ^^^^^^\n114 |     assert channel_result[\"deleted\"] is True\n115 |     assert channel_result[\"file_count\"] == 1\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:114:5\n    |\n112 |     assert isinstance(channel_result, dict)\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n    |     ^^^^^^\n115 |     assert channel_result[\"file_count\"] == 1\n116 |     export_path = Path(channel_result[\"export_path\"])\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:115:5\n    |\n113 |     assert channel_result[\"channel_name\"] == \"general\"\n114 |     assert channel_result[\"deleted\"] is True\n115 |     assert channel_result[\"file_count\"] == 1\n    |     ^^^^^^\n116 |     export_path = Path(channel_result[\"export_path\"])\n117 |     assert export_path.exists()\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:117:5\n    |\n115 |     assert channel_result[\"file_count\"] == 1\n116 |     export_path = Path(channel_result[\"export_path\"])\n117 |     assert export_path.exists()\n    |     ^^^^^^\n118 |     messages_file = export_path / \"messages.json\"\n119 |     assert messages_file.exists()\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:119:5\n    |\n117 |     assert export_path.exists()\n118 |     messages_file = export_path / \"messages.json\"\n119 |     assert messages_file.exists()\n    |     ^^^^^^\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:121:5\n    |\n119 |     assert messages_file.exists()\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n    |     ^^^^^^\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:122:5\n    |\n120 |     messages = json.loads(messages_file.read_text(encoding=\"utf-8\"))\n121 |     assert isinstance(messages, list)\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n    |     ^^^^^^\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:123:5\n    |\n121 |     assert isinstance(messages, list)\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n    |     ^^^^^^\n124 |     assert fake_client.deleted_messages\n125 |     assert \"F123\" in fake_client.deleted_files\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:124:5\n    |\n122 |     assert messages[0][\"text\"] == \"Hello world\"\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n    |     ^^^^^^\n125 |     assert \"F123\" in fake_client.deleted_files\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:125:5\n    |\n123 |     assert fake_client.downloaded\n124 |     assert fake_client.deleted_messages\n125 |     assert \"F123\" in fake_client.deleted_files\n    |     ^^^^^^\n    |\n\nS105 Possible hardcoded password assigned to: \"SLACK_TOKEN\"\n   --> tests\\test_slack_dump_and_reset.py:143:33\n    |\n142 |     original_env = os.environ.get(\"SLACK_TOKEN\")\n143 |     os.environ[\"SLACK_TOKEN\"] = \"xoxe-ignored-refresh-token\"\n    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n144 |     original_resolver = module._resolve_persistent_slack_token\n145 |     try:\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:144:25\n    |\n142 |     original_env = os.environ.get(\"SLACK_TOKEN\")\n143 |     os.environ[\"SLACK_TOKEN\"] = \"xoxe-ignored-refresh-token\"\n144 |     original_resolver = module._resolve_persistent_slack_token\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n145 |     try:\n146 |         module._resolve_persistent_slack_token = lambda: (\"xoxp-from-vault\", True)\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:146:9\n    |\n144 |     original_resolver = module._resolve_persistent_slack_token\n145 |     try:\n146 |         module._resolve_persistent_slack_token = lambda: (\"xoxp-from-vault\", True)\n    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n147 |         result = runner.run(payload)\n148 |     finally:\n    |\n\nSLF001 Private member accessed: `_resolve_persistent_slack_token`\n   --> tests\\test_slack_dump_and_reset.py:153:5\n    |\n151 |         else:\n152 |             os.environ.pop(\"SLACK_TOKEN\", None)\n153 |     module._resolve_persistent_slack_token = original_resolver\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n154 |\n155 |     assert result[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_slack_dump_and_reset.py:155:5\n    |\n153 |     module._resolve_persistent_slack_token = original_resolver\n154 |\n155 |     assert result[\"status\"] == \"success\"\n    |     ^^^^^^\n    |\n\nANN401 Dynamically typed expressions (typing.Any) are disallowed in `json`\n  --> x_cls_make_slack_dump_and_reset_x.py:33:23\n   |\n31 |     headers: Mapping[str, str]\n32 |\n33 |     def json(self) -> Any: ...\n   |                       ^^^\n34 |\n35 |     def iter_content(self, chunk_size: int) -> Iterable[bytes]: ...\n   |\n\nN802 Function name `Session` should be lowercase\n  --> x_cls_make_slack_dump_and_reset_x.py:55:9\n   |\n54 | class RequestsModule(Protocol):\n55 |     def Session(self) -> SessionProtocol: ...\n   |         ^^^^^^^\n   |\n\nPLC0415 `import` should be at the top-level of a file\n   --> x_cls_make_slack_dump_and_reset_x.py:172:9\n    |\n171 |       try:\n172 | /         from x_make_persistent_env_var_x.x_cls_make_persistent_env_var_x import (\n173 | |             x_cls_make_persistent_env_var_x,\n174 | |         )\n    | |_________^\n175 |       except Exception:  # pragma: no cover - optional dependency at runtime\n176 |           return None, False\n    |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> x_cls_make_slack_dump_and_reset_x.py:175:12\n    |\n173 |             x_cls_make_persistent_env_var_x,\n174 |         )\n175 |     except Exception:  # pragma: no cover - optional dependency at runtime\n    |            ^^^^^^^^^\n176 |         return None, False\n    |\n\nBLE001 Do not catch blind exception: `Exception`\n   --> x_cls_make_slack_dump_and_reset_x.py:181:12\n    |\n179 |         reader = x_cls_make_persistent_env_var_x(\"SLACK_TOKEN\", quiet=True)\n180 |         persisted = reader.get_user_env()\n181 |     except Exception:\n    |            ^^^^^^^^^\n182 |         return None, False\n183 |     if isinstance(persisted, str) and persisted.strip():\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:239:21\n    |\n237 |             if not isinstance(raw_messages, list):\n238 |                 raise SlackAPIError(\n239 |                     \"conversations.history\", \"invalid_messages_payload\", payload\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^\n240 |                 )\n241 |             for raw in raw_messages:\n    |\nhelp: Assign to variable; remove string literal\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:255:17\n    |\n253 |         if not file_record.download_url:\n254 |             raise SlackAPIError(\n255 |                 \"files.download\",\n    |                 ^^^^^^^^^^^^^^^^\n256 |                 \"missing_download_url\",\n257 |                 {\"file\": file_record.file_id},\n    |\nhelp: Assign to variable; remove string literal\n\nPLR1714 Consider merging multiple comparisons: `identifier in (channel_id, name)`. Use a `set` if the elements are hashable.\n   --> x_cls_make_slack_dump_and_reset_x.py:295:16\n    |\n293 |             self._channel_cache[channel_id] = payload\n294 |             self._channel_name_to_id[name] = channel_id\n295 |             if channel_id == identifier or name == identifier:\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n296 |                 return payload\n297 |         raise SlackAPIError(\n    |\nhelp: Merge multiple comparisons\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:298:13\n    |\n296 |                 return payload\n297 |         raise SlackAPIError(\n298 |             \"conversations.list\", \"channel_not_found\", {\"query\": identifier}\n    |             ^^^^^^^^^^^^^^^^^^^^\n299 |         )\n    |\nhelp: Assign to variable; remove string literal\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:311:21\n    |\n309 |             if not isinstance(channels, list):\n310 |                 raise SlackAPIError(\n311 |                     \"conversations.list\", \"invalid_channels_payload\", payload\n    |                     ^^^^^^^^^^^^^^^^^^^^\n312 |                 )\n313 |             for channel in channels:\n    |\nhelp: Assign to variable; remove string literal\n\nFBT001 Boolean-typed positional argument in function definition\n   --> x_cls_make_slack_dump_and_reset_x.py:324:9\n    |\n322 |         channel_id: str,\n323 |         raw: dict[str, Any],\n324 |         include_threads: bool,\n    |         ^^^^^^^^^^^^^^^\n325 |     ) -> SlackMessageRecord:\n326 |         text = str(raw.get(\"text\", \"\"))\n    |\n\nPLR2004 Magic value used in comparison, consider replacing `429` with a constant variable\n   --> x_cls_make_slack_dump_and_reset_x.py:420:40\n    |\n418 |                 stream=stream,\n419 |             )\n420 |             if response.status_code == 429:\n    |                                        ^^^\n421 |                 retry_after = response.headers.get(\"Retry-After\")\n422 |                 sleep_for = float(retry_after) if retry_after else backoff\n    |\n\nC901 `run` is too complex (16 > 10)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nPLR0912 Too many branches (15 > 12)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nPLR0915 Too many statements (60 > 50)\n   --> x_cls_make_slack_dump_and_reset_x.py:465:9\n    |\n463 |         self._time_provider = time_provider\n464 |\n465 |     def run(self, payload: Mapping[str, object]) -> dict[str, object]:\n    |         ^^^\n466 |         validate_payload(payload, INPUT_SCHEMA)\n467 |         parameters = self._parse_parameters(payload)\n    |\n\nE501 Line too long (120 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:520:89\n    |\n518 |                             )\n519 |                             info_messages.append(\n520 |                                 f\"File download failed for {file_record.file_id} in {context.channel_name}: {exc.error}\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n521 |                             )\n522 |             deleted = False\n    |\n\nE501 Line too long (122 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:542:89\n    |\n540 | \u00e2\u20ac\u00a6                     )\n541 | \u00e2\u20ac\u00a6                     info_messages.append(\n542 | \u00e2\u20ac\u00a6                         f\"File delete failed for {file_record.file_id} in {context.channel_name}: {exc.error}\"\n    |                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n543 | \u00e2\u20ac\u00a6                     )\n544 | \u00e2\u20ac\u00a6                     delete_failures = True\n    |\n\nE501 Line too long (116 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:553:89\n    |\n551 |                         )\n552 |                         info_messages.append(\n553 |                             f\"Message delete failed for channel {context.channel_name} ts={message.ts}: {exc.error}\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n554 |                         )\n555 |                         delete_failures = True\n    |\n\nC901 `_parse_parameters` is too complex (19 > 10)\n   --> x_cls_make_slack_dump_and_reset_x.py:589:9\n    |\n587 |         return factory(token)\n588 |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n    |         ^^^^^^^^^^^^^^^^^\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |\n\nPLR0912 Too many branches (19 > 12)\n   --> x_cls_make_slack_dump_and_reset_x.py:589:9\n    |\n587 |         return factory(token)\n588 |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n    |         ^^^^^^^^^^^^^^^^^\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |\n\nS101 Use of `assert` detected\n   --> x_cls_make_slack_dump_and_reset_x.py:591:9\n    |\n589 |     def _parse_parameters(self, payload: Mapping[str, object]) -> SlackDumpParameters:\n590 |         parameters_raw = payload[\"parameters\"]\n591 |         assert isinstance(parameters_raw, Mapping)\n    |         ^^^^^^\n592 |         token_obj = parameters_raw.get(\"slack_token\")\n593 |         token = token_obj if isinstance(token_obj, str) and token_obj else None\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:609:19\n    |\n607 |                   token = persisted_token\n608 |           if not isinstance(token, str) or not token:\n609 |               raise RuntimeError(\n    |  ___________________^\n610 | |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n611 | |             )\n    | |_____________^\n612 |           archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |           if not isinstance(archive_root_raw, str) or not archive_root_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:610:17\n    |\n608 |         if not isinstance(token, str) or not token:\n609 |             raise RuntimeError(\n610 |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n611 |             )\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:610:89\n    |\n608 |         if not isinstance(token, str) or not token:\n609 |             raise RuntimeError(\n610 |                 \"Slack token not provided in payload or SLACK_TOKEN environment variable\"\n    |                                                                                         ^\n611 |             )\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:614:19\n    |\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |         if not isinstance(archive_root_raw, str) or not archive_root_raw:\n614 |             raise RuntimeError(\"archive_root must be a non-empty string path\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:614:32\n    |\n612 |         archive_root_raw = parameters_raw.get(\"archive_root\")\n613 |         if not isinstance(archive_root_raw, str) or not archive_root_raw:\n614 |             raise RuntimeError(\"archive_root must be a non-empty string path\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:617:19\n    |\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n617 |             raise RuntimeError(\"channels must be a non-empty array\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n618 |         channels: list[str | Mapping[str, object]] = []\n619 |         for item in channels_raw:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:617:32\n    |\n615 |         channels_raw = parameters_raw.get(\"channels\")\n616 |         if not isinstance(channels_raw, Sequence) or not channels_raw:\n617 |             raise RuntimeError(\"channels must be a non-empty array\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n618 |         channels: list[str | Mapping[str, object]] = []\n619 |         for item in channels_raw:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:623:23\n    |\n621 |                   channels.append(item)\n622 |               else:\n623 |                   raise RuntimeError(\n    |  _______________________^\n624 | |                     \"channels entries must be strings or objects with id/name\"\n625 | |                 )\n    | |_________________^\n626 |           skip_raw = parameters_raw.get(\"skip_channels\")\n627 |           skip_channels: set[str] = set()\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:624:21\n    |\n622 |             else:\n623 |                 raise RuntimeError(\n624 |                     \"channels entries must be strings or objects with id/name\"\n    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n625 |                 )\n626 |         skip_raw = parameters_raw.get(\"skip_channels\")\n    |\nhelp: Assign to variable; remove string literal\n\nPERF401 Use `list.extend` to create a transformed list\n   --> x_cls_make_slack_dump_and_reset_x.py:641:21\n    |\n639 |             for note in notes_raw:\n640 |                 if isinstance(note, str):\n641 |                     notes.append(note)\n    |                     ^^^^^^^^^^^^^^^^^^\n642 |         return SlackDumpParameters(\n643 |             slack_token=token,\n    |\nhelp: Replace for loop with list.extend\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:656:19\n    |\n654 |     def _resolve_export_root(self, archive_root: Path) -> Path:\n655 |         if not archive_root.exists():\n656 |             raise FileNotFoundError(f\"Archive root does not exist: {archive_root}\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n657 |         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |         if not subdirectories:\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:656:37\n    |\n654 |     def _resolve_export_root(self, archive_root: Path) -> Path:\n655 |         if not archive_root.exists():\n656 |             raise FileNotFoundError(f\"Archive root does not exist: {archive_root}\")\n    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n657 |         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |         if not subdirectories:\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:659:19\n    |\n657 |           subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n658 |           if not subdirectories:\n659 |               raise FileNotFoundError(\n    |  ___________________^\n660 | |                 f\"Archive root {archive_root} has no subdirectories to target\"\n661 | |             )\n    | |_____________^\n662 |           latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n663 |           return latest_directory\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:660:17\n    |\n658 |         if not subdirectories:\n659 |             raise FileNotFoundError(\n660 |                 f\"Archive root {archive_root} has no subdirectories to target\"\n    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n661 |             )\n662 |         latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n    |\nhelp: Assign to variable; remove f-string literal\n\nRET504 Unnecessary assignment to `latest_directory` before `return` statement\n   --> x_cls_make_slack_dump_and_reset_x.py:663:16\n    |\n661 |             )\n662 |         latest_directory = max(subdirectories, key=lambda item: item.stat().st_mtime)\n663 |         return latest_directory\n    |                ^^^^^^^^^^^^^^^^\n664 |\n665 |     @staticmethod\n    |\nhelp: Remove unnecessary assignment\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:681:19\n    |\n679 |             if isinstance(channel_name, str) and channel_name:\n680 |                 return channel_name, channel_name\n681 |             raise RuntimeError(\"Channel mapping must provide 'id' or 'name'\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n682 |         if isinstance(channel_spec, str) and channel_spec:\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:681:32\n    |\n679 |             if isinstance(channel_name, str) and channel_name:\n680 |                 return channel_name, channel_name\n681 |             raise RuntimeError(\"Channel mapping must provide 'id' or 'name'\")\n    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n682 |         if isinstance(channel_spec, str) and channel_spec:\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:684:15\n    |\n682 |           if isinstance(channel_spec, str) and channel_spec:\n683 |               return channel_spec, channel_spec.lstrip(\"#\")\n684 |           raise RuntimeError(\n    |  _______________^\n685 | |             \"Channel specification must be a non-empty string or mapping\"\n686 | |         )\n    | |_________^\n687 |\n688 |       @staticmethod\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:685:13\n    |\n683 |             return channel_spec, channel_spec.lstrip(\"#\")\n684 |         raise RuntimeError(\n685 |             \"Channel specification must be a non-empty string or mapping\"\n    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n686 |         )\n    |\nhelp: Assign to variable; remove string literal\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:715:14\n    |\n713 |         payload = json.load(sys.stdin)\n714 |     else:\n715 |         with open(path, encoding=\"utf-8\") as handle:\n    |              ^^^^\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n    |\nhelp: Replace with `Path.open()`\n\nTRY004 Prefer `TypeError` exception for invalid type\n   --> x_cls_make_slack_dump_and_reset_x.py:718:9\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_slack_dump_and_reset_x.py:718:15\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_slack_dump_and_reset_x.py:718:28\n    |\n716 |             payload = json.load(handle)\n717 |     if not isinstance(payload, Mapping):\n718 |         raise RuntimeError(\"Input payload must be a JSON object\")\n    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n719 |     return payload\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_slack_dump_and_reset_x.py:741:89\n    |\n739 |         response = (\n740 |             input(\n741 |                 \"Archive captured. Delete Slack messages and files after export? [y/N]: \"\n    |                                                                                         ^\n742 |             )\n743 |             .strip()\n    |\n\nSIM105 Use `contextlib.suppress(Exception)` instead of `try`-`except`-`pass`\n   --> x_cls_make_slack_dump_and_reset_x.py:784:9\n    |\n782 |               \"details\": {\"type\": exc.__class__.__name__},\n783 |           }\n784 | /         try:\n785 | |             validate_payload(error_payload, ERROR_SCHEMA)\n786 | |         except Exception:  # noqa: BLE001 - best effort to preserve error output\n787 | |             pass\n    | |________________^\n788 |           if args.output:\n789 |               with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |\nhelp: Replace `try`-`except`-`pass` with `with contextlib.suppress(Exception): ...`\n\nS110 `try`-`except`-`pass` detected, consider logging the exception\n   --> x_cls_make_slack_dump_and_reset_x.py:786:9\n    |\n784 |           try:\n785 |               validate_payload(error_payload, ERROR_SCHEMA)\n786 | /         except Exception:  # noqa: BLE001 - best effort to preserve error output\n787 | |             pass\n    | |________________^\n788 |           if args.output:\n789 |               with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:789:18\n    |\n787 |             pass\n788 |         if args.output:\n789 |             with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |                  ^^^^\n790 |                 json.dump(error_payload, handle, indent=2, ensure_ascii=False)\n791 |                 handle.write(\"\\n\")\n    |\nhelp: Replace with `Path.open()`\n\nPTH123 `open()` should be replaced by `Path.open()`\n   --> x_cls_make_slack_dump_and_reset_x.py:797:14\n    |\n796 |     if args.output:\n797 |         with open(args.output, \"w\", encoding=\"utf-8\") as handle:\n    |              ^^^^\n798 |             json.dump(output, handle, indent=2, ensure_ascii=False)\n799 |             handle.write(\"\\n\")\n    |\nhelp: Replace with `Path.open()`\n\nFound 74 errors (1 fixed, 73 remaining).\nNo fixes available (16 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-29T17:12:46.278725+00:00\nduration: 0.259s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_slack_dump_and_reset.py:5:29\n  |\n3 | import json\n4 | import os\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        }
+    ],
+    "generated_at": "2025-10-29T17:12:56.365096+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\x_runner_x\\.venv\\Lib\\site-packages\\PySide6;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-29T17:12:56.365096+00:00",
+        "run_started_at": "2025-10-29T17:08:19.017035+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 46,
+            "cache_misses": 49,
+            "failed_tools": 9,
+            "had_failures": true,
+            "total_tools_run": 95
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "619ef13164d36ebf6da789109f18d073af302693ffad76fa57282e199c61770e",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_venvs_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "aab97556cecaa26d836e8f909d66208e47f10f98842760b68016079475cac8d7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "dbab380a78f263ae46694333407a944b23f05a52a5f588224b06e919522950c4",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "9ac05f6f8706454cd44a5312f3ccd8ff79386d37772780e95426dd9290d0d36b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_capsula_calculus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "4bcde11d4f4e764c44772232ee06cc7ffdb5de7d70358d4235b11375078a4a33",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "61e39aafb7d1d5420ab1e3820e4985c64baea0fbee211ce4a383659abf3f014b",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "b04b9b4a492216da008a0ec31d2afe16c57fef8864789fcf9695f9521c3ba85b",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0be2db285cc3e191905849714c92b50fcc9ce089e75e8cbc4e704a7f452e128b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "63ee3d1facf532fc4ea5c509a542609e76624e075763c0c04f502bc857ebcb3f",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "6d5964644dd961479848bcd93cd6af590787f6861fb7065eca475904c9a5796d",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "1498df1e90c96264c7ca56d452de80d53091e6cf320b1a6d46cfbb81c441d30a",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "08ab37dad26d534175ca71c8fbc62d9284075419a9534481c11b8a085cb20e4c",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "bd0fce3ba743a7320e7b186b7cb4a890ee1b24ac9b22af60d97a29a6904a9f61",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a58b8c9019f22b99226c7f120747e92c5a27aeade2279fc04b502ab31d36e686",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "2799bc03384475f30d9021b8c1dd4cfcde2d7d0fcebeb7df6e085feb9ea20183",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "ccb7caa9dbe2570442041dabde33b62aa5e988ffb928777b8e70eba324f804b2",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_slack_dump_and_reset_z": {
+                "cached": 0,
+                "failed": 5,
+                "repo_hash": "0907f9cc94a083222fe96759fad4bb2133516babf9c91e81a50cbff870450fe3",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "23a983b65695fff15505b819313566a46e3df777ecd53dae94768b346a2eacfb",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-29T17:12:56.365096+00:00",
+        "total_repos": 19
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
