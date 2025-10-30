@@ -1,0 +1,755 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-30T00:42:13.337076+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 3.329683600110002,
+                "ended_at": "2025-10-30T00:42:13.337076+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "fd16230832b349da215dc2dc4067206203a3a1036620589176ecbd862220046b",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-30T00:42:10.009220+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:35:16.548909+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:42:12.969357+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n \n     @staticmethod\n     def _parse_channels(\n-        parameters_raw: Mapping[str, object]\n+        parameters_raw: Mapping[str, object],\n     ) -> list[str | Mapping[str, object]]:\n         channels_raw = parameters_raw.get(\"channels\")\n         if (\n             not isinstance(channels_raw, Sequence)\n             or isinstance(channels_raw, (str, bytes))\n@@ -947,13 +947,11 @@\n         if not archive_root.exists():\n             message = f\"Archive root does not exist: {archive_root}\"\n             raise FileNotFoundError(message)\n         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n         if not subdirectories:\n-            message = (\n-                f\"Archive root {archive_root} has no subdirectories to target\"\n-            )\n+            message = f\"Archive root {archive_root} has no subdirectories to target\"\n             raise FileNotFoundError(message)\n         return max(subdirectories, key=lambda item: item.stat().st_mtime)\n \n     @staticmethod\n     def _normalise_channel_identifier(\n@@ -1038,12 +1036,11 @@\n     if bool(parameters_obj.get(\"dry_run\", False)):\n         return\n \n     while True:\n         prompt = (\n-            \"Archive captured. Delete Slack messages and files after export?\"\n-            \" [y/N]: \"\n+            \"Archive captured. Delete Slack messages and files after export?\" \" [y/N]: \"\n         )\n         response = input(prompt).strip().lower()\n         if response in {\"y\", \"yes\"}:\n             print(\n                 \"Confirmed. Slack source will be purged post-export.\", file=sys.stderr\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-30T00:42:10.009220+00:00\nduration: 3.330s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:35:16.548909+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:42:12.969357+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:35:16.548909+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 00:42:12.969357+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-30T00:42:21.819628+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_slack_dump_and_reset_z",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 8.16639839997515,
+                "ended_at": "2025-10-30T00:42:21.819628+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "fd16230832b349da215dc2dc4067206203a3a1036620589176ecbd862220046b",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-30T00:42:13.656597+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1087: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1088: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1093: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1094: error: Expression has type \"Any\"  [misc]\nFound 9 errors in 1 file (checked 7 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-30T00:42:13.656597+00:00\nduration: 8.166s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --sho\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        }
+    ],
+    "generated_at": "2025-10-30T00:42:36.113926+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\x_runner_x\\.venv\\Lib\\site-packages\\PySide6;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-30T00:42:36.113926+00:00",
+        "run_started_at": "2025-10-30T00:36:07.483724+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 21,
+            "cache_misses": 74,
+            "failed_tools": 2,
+            "had_failures": true,
+            "total_tools_run": 95
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "67eff10b1b81670d0bdc074ee4b54be5e172378b74c94ba3b1d4c5770ec13697",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_venvs_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "aab97556cecaa26d836e8f909d66208e47f10f98842760b68016079475cac8d7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b3a6dceb204c75ee45d997c8206dfd8ea1f01487eee58626a934a7f87d23e833",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "330783ed4154adfff9d05818eff1b5e08fceafc5c056ab54543d1d91201c04ab",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_capsula_calculus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "4bcde11d4f4e764c44772232ee06cc7ffdb5de7d70358d4235b11375078a4a33",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "3b367022b6d87281ac3f492417571c8ec7728a1c8f6fbbf4bba902b791cd3f9a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "bdf6dbbcebbebb05082069f6300ac9c904b4b0df12e8a7a870901c2ba4b12048",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "cb5580c2929579b4bc684bb91d85adbc0db311b13bdfb8ba21c619ed6f30efa2",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "862d413ea7a3022b9e6669d4ab4f17bc0d6868a254861fb228c0c8cd87bfc955",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "ebfb021d8e9336f67c244fec5511d7e8321f46946d6865decf8c992288ffe0a7",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "f0ad607723e8bb9f766b3a622bdc4c6fb4861e178d4df508223b7ac7e32716ab",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a2d989a79377c86db138b35d6a6a5431d51f6f852333e86663a30620b4be14cd",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "2b906ed31ed649673cb1d9e038fa7a31b2e6cc70e99e8a7e8fdaef105d0a0f58",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a652200cc668182514446e959355c149c392fddccb6b4ebf53f149350de7fe1d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "7803331c0032c1e4dbf631e3d9b4489c37f92ef889e06d2221c69752dfbdd5fb",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "2b0dc718dec30a54e59a21b891214d85f01b8627b95a9f79517ad2eab28a0bd8",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_slack_dump_and_reset_z": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "fd16230832b349da215dc2dc4067206203a3a1036620589176ecbd862220046b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a006b71710ad21ae14a83c117a84b722cfd881efe355173ae5f6f07e978ee99f",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-30T00:42:36.113926+00:00",
+        "total_repos": 19
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
