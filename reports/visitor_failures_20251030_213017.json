@@ -1,0 +1,1496 @@
+{
+    "failures": [
+        {
+            "captured_at": "2025-10-30T21:27:05.369758+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "duration_seconds": 1.580729000037536,
+                "ended_at": "2025-10-30T21:27:05.369758+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_cli_script.py",
+                    "tests/test_scaffolder.py",
+                    "x_cls_make_cli_scaffolder_x.py"
+                ],
+                "repo": "x_make_cli_scaffolder_x",
+                "repo_hash": "eca53b5f6788d463c547f748193535ebc0fafecf817dafa20f5496fddd5ff4c2",
+                "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "started_at": "2025-10-30T21:27:03.792509+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\nwould reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\x_cls_make_cli_scaffolder_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 4 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:03.743331+00:00\n+++ C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:05.074720+00:00\n@@ -25,13 +25,15 @@\n         if path.is_file()\n     }\n \n \n def test_project_config_from_mapping_defaults() -> None:\n-    config = ProjectConfig.from_mapping({\n-        \"project_name\": \"My CLI\",\n-    })\n+    config = ProjectConfig.from_mapping(\n+        {\n+            \"project_name\": \"My CLI\",\n+        }\n+    )\n     assert config.package_name == \"my_cli\"\n     assert config.resolved_script_name == \"my-cli\"\n     assert config.console_entrypoint == \"my_cli.cli:main\"\n     assert config.include_tests is True\n     assert config.include_license is True\n@@ -72,11 +74,15 @@\n     (first.root_path / \"README.md\").write_text(\"updated\", encoding=\"utf-8\")\n     with pytest.raises(FileExistsError):\n         scaffolder.scaffold(tmp_workspace, config)\n     overwriting = CliScaffolder(overwrite=True)\n     result = overwriting.scaffold(tmp_workspace, config)\n-    assert (result.root_path / \"README.md\").read_text(encoding=\"utf-8\").startswith(\"# Overwrite\")\n+    assert (\n+        (result.root_path / \"README.md\")\n+        .read_text(encoding=\"utf-8\")\n+        .startswith(\"# Overwrite\")\n+    )\n \n \n def test_run_entrypoint(tmp_workspace: Path) -> None:\n     payload: Mapping[str, object] = {\n         \"parameters\": {\n--- C:\\x_runner_x\\x_make_cli_scaffolder_x\\x_cls_make_cli_scaffolder_x.py\t2025-10-30 21:27:03.758806+00:00\n+++ C:\\x_runner_x\\x_make_cli_scaffolder_x\\x_cls_make_cli_scaffolder_x.py\t2025-10-30 21:27:05.238036+00:00\n@@ -66,19 +66,21 @@\n             project_name if package_raw is None else str(package_raw)\n         )\n         description = str(payload.get(\"description\", \"\") or \"\")\n         version = str(payload.get(\"version\", \"0.1.0\") or \"0.1.0\")\n         author_value = payload.get(\"author\")\n-        author = str(author_value) if author_value is not None and author_value != \"\" else None\n+        author = (\n+            str(author_value)\n+            if author_value is not None and author_value != \"\"\n+            else None\n+        )\n         python_version = str(payload.get(\"python_version\", \"3.11\") or \"3.11\")\n         include_tests = bool(payload.get(\"include_tests\", True))\n         include_license = bool(payload.get(\"include_license\", True))\n         script_raw = payload.get(\"script_name\")\n         script_name = (\n-            _normalise_script_name(str(script_raw))\n-            if script_raw is not None\n-            else None\n+            _normalise_script_name(str(script_raw)) if script_raw is not None else None\n         )\n         return cls(\n             project_name=project_name,\n             package_name=package_name,\n             description=description,\n@@ -168,13 +170,11 @@\n \n def _render_pyproject(config: ProjectConfig) -> str:\n     author_block = \"\"\n     if config.author:\n         author_block = (\n-            \"    authors = [\\n\"\n-            f'        {{ name = \"{config.author}\" }}\\n'\n-            \"    ]\\n\"\n+            \"    authors = [\\n\" f'        {{ name = \"{config.author}\" }}\\n' \"    ]\\n\"\n         )\n     script_name = config.resolved_script_name\n     return (\n         \"[build-system]\\n\"\n         'requires = [\"setuptools>=68\", \"wheel\"]\\n'\n@@ -311,20 +311,36 @@\n \n \n def main(argv: Sequence[str] | None = None) -> int:\n     parser = argparse.ArgumentParser(description=\"Generate a CLI project scaffold\")\n     parser.add_argument(\"--project-name\", required=True, help=\"Project directory name\")\n-    parser.add_argument(\"--target-dir\", default=\".\", help=\"Directory where the project will be created\")\n+    parser.add_argument(\n+        \"--target-dir\", default=\".\", help=\"Directory where the project will be created\"\n+    )\n     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n-    parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n-    parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n-    parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n-    parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n-    parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n+    parser.add_argument(\n+        \"--author\", default=None, help=\"Author name for README and LICENSE\"\n+    )\n+    parser.add_argument(\n+        \"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\"\n+    )\n+    parser.add_argument(\n+        \"--python-version\", default=\"3.11\", help=\"Minimum Python version\"\n+    )\n+    parser.add_argument(\n+        \"--package-name\", default=None, help=\"Override the generated package name\"\n+    )\n+    parser.add_argument(\n+        \"--script-name\", default=None, help=\"Override the console script name\"\n+    )\n     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n-    parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n-    parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\")\n+    parser.add_argument(\n+        \"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\"\n+    )\n+    parser.add_argument(\n+        \"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\"\n+    )\n     args = parser.parse_args(list(argv) if argv is not None else None)\n \n     config_payload = {\n         \"project_name\": args.project_name,\n         \"package_name\": args.package_name,\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_cli_scaffolder_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_cli_scaffolder_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-30T21:27:03.792509+00:00\nduration: 1.581s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:03.743331+00:00\n+++ C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:05.074720+00:00\n@@ -25,13 +25,15 @@\n         if path.is_file()\n     }\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\nwould reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\x_cls_make_cli_scaffolder_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 4 files would be left unchanged.",
+            "repo": "x_make_cli_scaffolder_x",
+            "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\nwould reformat C:\\x_runner_x\\x_make_cli_scaffolder_x\\x_cls_make_cli_scaffolder_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 4 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:03.743331+00:00\n+++ C:\\x_runner_x\\x_make_cli_scaffolder_x\\tests\\test_scaffolder.py\t2025-10-30 21:27:05.074720+00:00\n@@ -25,13 +25,15 @@\n         if path.is_file()\n     }\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_cli_scaffolder_x (exit 1) cwd: C:\\x_runner_x\\x_make_cli_scaffolder_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-30T21:27:03.\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:08.514672+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_cli_scaffolder_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_cli_scaffolder_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_cli_scaffolder_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "duration_seconds": 2.930196699919179,
+                "ended_at": "2025-10-30T21:27:08.514672+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_cli_script.py",
+                    "tests/test_scaffolder.py",
+                    "x_cls_make_cli_scaffolder_x.py"
+                ],
+                "repo": "x_make_cli_scaffolder_x",
+                "repo_hash": "eca53b5f6788d463c547f748193535ebc0fafecf817dafa20f5496fddd5ff4c2",
+                "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "started_at": "2025-10-30T21:27:05.584629+00:00",
+                "stderr": "",
+                "stdout": "tests\\conftest.py:9: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_cli_scaffolder_x.py:328: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:330: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:330: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:331: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:331: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:332: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:332: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:333: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:333: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:334: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:334: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:335: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:336: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:337: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:337: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:339: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:340: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:341: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:342: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntests\\test_scaffolder.py:109: error: Expression has type \"Any\"  [misc]\ntests\\test_scaffolder.py:110: error: Expression has type \"Any\"  [misc]\ntests\\test_scaffolder.py:111: error: Expression has type \"Any\"  [misc]\nFound 25 errors in 3 files (checked 6 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_cli_scaffolder_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_cli_scaffolder_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_cli_scaffolder_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-30T21:27:05.584629+00:00\nduration: 2.930s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\ntests\\conftest.py:9: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_cli_scaffolder_x.py:328: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:330: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_cli_scaffolder_x",
+            "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+            "stderr_preview": null,
+            "stdout_preview": "tests\\conftest.py:9: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_cli_scaffolder_x.py:328: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\nx_cls_make_cli_scaffolder_x.py:329: error: Expression has type \"Any\"  [misc]\nx_cls_make_cli_scaffolder_x.py:330: error: Expression type contains \"Any\" (has type \"tuple[str, Any]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_cli_scaffolder_x (exit 1) cwd: C:\\x_runner_x\\x_make_cli_scaffolder_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_cli_scaffolder_x --strict --no-warn-unused-configs --show-error-codes --wa\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:05.577378+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "duration_seconds": 0.15346069994848222,
+                "ended_at": "2025-10-30T21:27:05.577378+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_cli_script.py",
+                    "tests/test_scaffolder.py",
+                    "x_cls_make_cli_scaffolder_x.py"
+                ],
+                "repo": "x_make_cli_scaffolder_x",
+                "repo_hash": "eca53b5f6788d463c547f748193535ebc0fafecf817dafa20f5496fddd5ff4c2",
+                "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "started_at": "2025-10-30T21:27:05.426949+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n3 | from pathlib import Path\n  |                     ^^^^\n4 |\n5 | import pytest\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_cli_script.py:6:21\n  |\n4 | import subprocess\n5 | import sys\n6 | from pathlib import Path\n  |                     ^^^^\n7 |\n8 | from x_make_cli_scaffolder_x.x_cls_make_cli_scaffolder_x import (\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_script.py:29:5\n   |\n27 |         env=env,\n28 |     )\n29 |     assert \"Hello, Tester!\" in completed.stdout\n   |     ^^^^^^\n   |\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_scaffolder.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from pathlib import Path\n6 | from typing import TYPE_CHECKING\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:33:5\n   |\n31 |         \"project_name\": \"My CLI\",\n32 |     })\n33 |     assert config.package_name == \"my_cli\"\n   |     ^^^^^^\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:34:5\n   |\n32 |     })\n33 |     assert config.package_name == \"my_cli\"\n34 |     assert config.resolved_script_name == \"my-cli\"\n   |     ^^^^^^\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:35:5\n   |\n33 |     assert config.package_name == \"my_cli\"\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n   |     ^^^^^^\n36 |     assert config.include_tests is True\n37 |     assert config.include_license is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:36:5\n   |\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n   |     ^^^^^^\n37 |     assert config.include_license is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:37:5\n   |\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n37 |     assert config.include_license is True\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:62:5\n   |\n60 |         \"tests/test_cli.py\",\n61 |     }\n62 |     assert _collect_relative_paths(result.root_path) == expected_files\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:77:5\n   |\n75 |     overwriting = CliScaffolder(overwrite=True)\n76 |     result = overwriting.scaffold(tmp_workspace, config)\n77 |     assert (result.root_path / \"README.md\").read_text(encoding=\"utf-8\").startswith(\"# Overwrite\")\n   |     ^^^^^^\n   |\n\nE501 Line too long (97 > 88)\n  --> tests\\test_scaffolder.py:77:89\n   |\n75 |     overwriting = CliScaffolder(overwrite=True)\n76 |     result = overwriting.scaffold(tmp_workspace, config)\n77 |     assert (result.root_path / \"README.md\").read_text(encoding=\"utf-8\").startswith(\"# Overwrite\")\n   |                                                                                         ^^^^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:88:5\n   |\n86 |     }\n87 |     output = run(payload)\n88 |     assert output[\"status\"] == \"success\"\n   |     ^^^^^^\n89 |     created_raw = output[\"created_files\"]\n90 |     assert isinstance(created_raw, list)\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:90:5\n   |\n88 |     assert output[\"status\"] == \"success\"\n89 |     created_raw = output[\"created_files\"]\n90 |     assert isinstance(created_raw, list)\n   |     ^^^^^^\n91 |     created = {Path(str(path)) for path in created_raw}\n92 |     assert created\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:92:5\n   |\n90 |     assert isinstance(created_raw, list)\n91 |     created = {Path(str(path)) for path in created_raw}\n92 |     assert created\n   |     ^^^^^^\n93 |     root_raw = output[\"root_path\"]\n94 |     assert isinstance(root_raw, str)\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:94:5\n   |\n92 |     assert created\n93 |     root_raw = output[\"root_path\"]\n94 |     assert isinstance(root_raw, str)\n   |     ^^^^^^\n95 |     root_path = Path(root_raw)\n96 |     assert root_path.exists()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:96:5\n   |\n94 |     assert isinstance(root_raw, str)\n95 |     root_path = Path(root_raw)\n96 |     assert root_path.exists()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:108:5\n    |\n106 |     ]\n107 |     exit_code = main(args)\n108 |     assert exit_code == 0\n    |     ^^^^^^\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:110:5\n    |\n108 |     assert exit_code == 0\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n    |     ^^^^^^\n111 |     assert \"root_path\" in output\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:111:5\n    |\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n111 |     assert \"root_path\" in output\n    |     ^^^^^^\n    |\n\nE501 Line too long (95 > 88)\n  --> x_cls_make_cli_scaffolder_x.py:71:89\n   |\n69 |         version = str(payload.get(\"version\", \"0.1.0\") or \"0.1.0\")\n70 |         author_value = payload.get(\"author\")\n71 |         author = str(author_value) if author_value is not None and author_value != \"\" else None\n   |                                                                                         ^^^^^^^\n72 |         python_version = str(payload.get(\"python_version\", \"3.11\") or \"3.11\")\n73 |         include_tests = bool(payload.get(\"include_tests\", True))\n   |\n\nSIM102 Use a single `if` statement instead of nested `if` statements\n   --> x_cls_make_cli_scaffolder_x.py:122:9\n    |\n120 |       def scaffold(self, target_dir: Path, config: ProjectConfig) -> ScaffoldResult:\n121 |           root_path = target_dir / config.project_name\n122 | /         if root_path.exists() and not self._overwrite:\n123 | |             if any(root_path.iterdir()):\n    | |________________________________________^\n124 |                   raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n125 |           root_path.mkdir(parents=True, exist_ok=True)\n    |\nhelp: Combine `if` statements using `and`\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:124:23\n    |\n122 |         if root_path.exists() and not self._overwrite:\n123 |             if any(root_path.iterdir()):\n124 |                 raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n125 |         root_path.mkdir(parents=True, exist_ok=True)\n126 |         created: list[Path] = []\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:124:39\n    |\n122 |         if root_path.exists() and not self._overwrite:\n123 |             if any(root_path.iterdir()):\n124 |                 raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n125 |         root_path.mkdir(parents=True, exist_ok=True)\n126 |         created: list[Path] = []\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:131:23\n    |\n129 |             file_path.parent.mkdir(parents=True, exist_ok=True)\n130 |             if file_path.exists() and not self._overwrite:\n131 |                 raise FileExistsError(f\"File '{file_path}' already exists\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n132 |             file_path.write_text(contents, encoding=\"utf-8\")\n133 |             created.append(file_path)\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:131:39\n    |\n129 |             file_path.parent.mkdir(parents=True, exist_ok=True)\n130 |             if file_path.exists() and not self._overwrite:\n131 |                 raise FileExistsError(f\"File '{file_path}' already exists\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n132 |             file_path.write_text(contents, encoding=\"utf-8\")\n133 |             created.append(file_path)\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:137:23\n    |\n135 |             license_path = root_path / \"LICENSE\"\n136 |             if license_path.exists() and not self._overwrite:\n137 |                 raise FileExistsError(f\"File '{license_path}' already exists\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |             license_path.write_text(_render_mit_license(config), encoding=\"utf-8\")\n139 |             created.append(license_path)\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:137:39\n    |\n135 |             license_path = root_path / \"LICENSE\"\n136 |             if license_path.exists() and not self._overwrite:\n137 |                 raise FileExistsError(f\"File '{license_path}' already exists\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |             license_path.write_text(_render_mit_license(config), encoding=\"utf-8\")\n139 |             created.append(license_path)\n    |\nhelp: Assign to variable; remove f-string literal\n\nE501 Line too long (122 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:242:89\n    |\n240 |         \"import runpy\\n\"\n241 |         \"import pytest\\n\\n\"\n242 |         \"@pytest.mark.parametrize('argv,expected', [(None, 'Hello, world!'), (['--name', 'Tester'], 'Hello, Tester!')])\\n\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n243 |         \"def test_cli_output(argv: list[str] | None, expected: str, capsys: pytest.CaptureFixture[str]) -> None:\\n\"\n244 |         f\"    module = importlib.import_module('{package}.cli')\\n\"\n    |\n\nE501 Line too long (115 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:243:89\n    |\n241 |         \"import pytest\\n\\n\"\n242 |         \"@pytest.mark.parametrize('argv,expected', [(None, 'Hello, world!'), (['--name', 'Tester'], 'Hello, Tester!')])\\n\"\n243 |         \"def test_cli_output(argv: list[str] | None, expected: str, capsys: pytest.CaptureFixture[str]) -> None:\\n\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n244 |         f\"    module = importlib.import_module('{package}.cli')\\n\"\n245 |         \"    result = module.main(argv)\\n\"\n    |\n\nDTZ005 `datetime.datetime.now()` called without a `tz` argument\n   --> x_cls_make_cli_scaffolder_x.py:260:12\n    |\n259 | def _render_mit_license(config: ProjectConfig) -> str:\n260 |     year = datetime.now().year\n    |            ^^^^^^^^^^^^^^\n261 |     holder = config.author or \"Author\"\n262 |     body = f\"\"\"\n    |\nhelp: Pass a `datetime.timezone` object to the `tz` parameter\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:291:15\n    |\n289 |     value = payload.get(key)\n290 |     if not isinstance(value, str) or not value.strip():\n291 |         raise ValueError(f\"Parameter '{key}' must be a non-empty string\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n292 |     return value.strip()\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:291:26\n    |\n289 |     value = payload.get(key)\n290 |     if not isinstance(value, str) or not value.strip():\n291 |         raise ValueError(f\"Parameter '{key}' must be a non-empty string\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n292 |     return value.strip()\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:298:15\n    |\n296 |     parameters_obj = payload.get(\"parameters\")\n297 |     if not isinstance(parameters_obj, Mapping):\n298 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n299 |     target_dir_obj = parameters_obj.get(\"target_dir\", \".\")\n300 |     target_dir = Path(str(target_dir_obj))\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:298:25\n    |\n296 |     parameters_obj = payload.get(\"parameters\")\n297 |     if not isinstance(parameters_obj, Mapping):\n298 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n299 |     target_dir_obj = parameters_obj.get(\"target_dir\", \".\")\n300 |     target_dir = Path(str(target_dir_obj))\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (104 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:316:89\n    |\n314 |     parser = argparse.ArgumentParser(description=\"Generate a CLI project scaffold\")\n315 |     parser.add_argument(\"--project-name\", required=True, help=\"Project directory name\")\n316 |     parser.add_argument(\"--target-dir\", default=\".\", help=\"Directory where the project will be created\")\n    |                                                                                         ^^^^^^^^^^^^^^^^\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n    |\n\nE501 Line too long (92 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:318:89\n    |\n316 |     parser.add_argument(\"--target-dir\", default=\".\", help=\"Directory where the project will be created\")\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n    |                                                                                         ^^^^\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n    |\n\nE501 Line too long (96 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:319:89\n    |\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n    |                                                                                         ^^^^^^^^\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:320:89\n    |\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n    |                                                                                         ^^\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:321:89\n    |\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n    |                                                                                         ^^^^^^^^^^^\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n    |\n\nE501 Line too long (95 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:322:89\n    |\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n    |                                                                                         ^^^^^^^\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:324:89\n    |\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n    |                                                                                         ^^\n325 |     parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\")\n326 |     args = parser.parse_args(list(argv) if argv is not None else None)\n    |\n\nE501 Line too long (96 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:325:89\n    |\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n325 |     parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\")\n    |                                                                                         ^^^^^^^^\n326 |     args = parser.parse_args(list(argv) if argv is not None else None)\n    |\n\nFound 43 errors.\nNo fixes available (8 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_cli_scaffolder_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_cli_scaffolder_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:27:05.426949+00:00\nduration: 0.153s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_cli_scaffolder_x",
+            "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_cli_scaffolder_x (exit 1) cwd: C:\\x_runner_x\\x_make_cli_scaffolder_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version p\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:03.787949+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "duration_seconds": 0.22147320001386106,
+                "ended_at": "2025-10-30T21:27:03.787949+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/conftest.py",
+                    "tests/test_cli_script.py",
+                    "tests/test_scaffolder.py",
+                    "x_cls_make_cli_scaffolder_x.py"
+                ],
+                "repo": "x_make_cli_scaffolder_x",
+                "repo_hash": "eca53b5f6788d463c547f748193535ebc0fafecf817dafa20f5496fddd5ff4c2",
+                "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+                "started_at": "2025-10-30T21:27:03.565922+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n3 | from pathlib import Path\n  |                     ^^^^\n4 |\n5 | import pytest\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_cli_script.py:6:21\n  |\n4 | import subprocess\n5 | import sys\n6 | from pathlib import Path\n  |                     ^^^^\n7 |\n8 | from x_make_cli_scaffolder_x.x_cls_make_cli_scaffolder_x import (\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_cli_script.py:29:5\n   |\n27 |         env=env,\n28 |     )\n29 |     assert \"Hello, Tester!\" in completed.stdout\n   |     ^^^^^^\n   |\n\nTC003 Move standard library import `collections.abc.Mapping` into a type-checking block\n --> tests\\test_scaffolder.py:4:29\n  |\n3 | import json\n4 | from collections.abc import Mapping\n  |                             ^^^^^^^\n5 | from pathlib import Path\n6 | from typing import TYPE_CHECKING\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:33:5\n   |\n31 |         \"project_name\": \"My CLI\",\n32 |     })\n33 |     assert config.package_name == \"my_cli\"\n   |     ^^^^^^\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:34:5\n   |\n32 |     })\n33 |     assert config.package_name == \"my_cli\"\n34 |     assert config.resolved_script_name == \"my-cli\"\n   |     ^^^^^^\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:35:5\n   |\n33 |     assert config.package_name == \"my_cli\"\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n   |     ^^^^^^\n36 |     assert config.include_tests is True\n37 |     assert config.include_license is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:36:5\n   |\n34 |     assert config.resolved_script_name == \"my-cli\"\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n   |     ^^^^^^\n37 |     assert config.include_license is True\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:37:5\n   |\n35 |     assert config.console_entrypoint == \"my_cli.cli:main\"\n36 |     assert config.include_tests is True\n37 |     assert config.include_license is True\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:62:5\n   |\n60 |         \"tests/test_cli.py\",\n61 |     }\n62 |     assert _collect_relative_paths(result.root_path) == expected_files\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:77:5\n   |\n75 |     overwriting = CliScaffolder(overwrite=True)\n76 |     result = overwriting.scaffold(tmp_workspace, config)\n77 |     assert (result.root_path / \"README.md\").read_text(encoding=\"utf-8\").startswith(\"# Overwrite\")\n   |     ^^^^^^\n   |\n\nE501 Line too long (97 > 88)\n  --> tests\\test_scaffolder.py:77:89\n   |\n75 |     overwriting = CliScaffolder(overwrite=True)\n76 |     result = overwriting.scaffold(tmp_workspace, config)\n77 |     assert (result.root_path / \"README.md\").read_text(encoding=\"utf-8\").startswith(\"# Overwrite\")\n   |                                                                                         ^^^^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:88:5\n   |\n86 |     }\n87 |     output = run(payload)\n88 |     assert output[\"status\"] == \"success\"\n   |     ^^^^^^\n89 |     created_raw = output[\"created_files\"]\n90 |     assert isinstance(created_raw, list)\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:90:5\n   |\n88 |     assert output[\"status\"] == \"success\"\n89 |     created_raw = output[\"created_files\"]\n90 |     assert isinstance(created_raw, list)\n   |     ^^^^^^\n91 |     created = {Path(str(path)) for path in created_raw}\n92 |     assert created\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:92:5\n   |\n90 |     assert isinstance(created_raw, list)\n91 |     created = {Path(str(path)) for path in created_raw}\n92 |     assert created\n   |     ^^^^^^\n93 |     root_raw = output[\"root_path\"]\n94 |     assert isinstance(root_raw, str)\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:94:5\n   |\n92 |     assert created\n93 |     root_raw = output[\"root_path\"]\n94 |     assert isinstance(root_raw, str)\n   |     ^^^^^^\n95 |     root_path = Path(root_raw)\n96 |     assert root_path.exists()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_scaffolder.py:96:5\n   |\n94 |     assert isinstance(root_raw, str)\n95 |     root_path = Path(root_raw)\n96 |     assert root_path.exists()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:108:5\n    |\n106 |     ]\n107 |     exit_code = main(args)\n108 |     assert exit_code == 0\n    |     ^^^^^^\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:110:5\n    |\n108 |     assert exit_code == 0\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n    |     ^^^^^^\n111 |     assert \"root_path\" in output\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_scaffolder.py:111:5\n    |\n109 |     output = json.loads(capsys.readouterr().out)\n110 |     assert output[\"status\"] == \"success\"\n111 |     assert \"root_path\" in output\n    |     ^^^^^^\n    |\n\nE501 Line too long (95 > 88)\n  --> x_cls_make_cli_scaffolder_x.py:71:89\n   |\n69 |         version = str(payload.get(\"version\", \"0.1.0\") or \"0.1.0\")\n70 |         author_value = payload.get(\"author\")\n71 |         author = str(author_value) if author_value is not None and author_value != \"\" else None\n   |                                                                                         ^^^^^^^\n72 |         python_version = str(payload.get(\"python_version\", \"3.11\") or \"3.11\")\n73 |         include_tests = bool(payload.get(\"include_tests\", True))\n   |\n\nSIM102 Use a single `if` statement instead of nested `if` statements\n   --> x_cls_make_cli_scaffolder_x.py:122:9\n    |\n120 |       def scaffold(self, target_dir: Path, config: ProjectConfig) -> ScaffoldResult:\n121 |           root_path = target_dir / config.project_name\n122 | /         if root_path.exists() and not self._overwrite:\n123 | |             if any(root_path.iterdir()):\n    | |________________________________________^\n124 |                   raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n125 |           root_path.mkdir(parents=True, exist_ok=True)\n    |\nhelp: Combine `if` statements using `and`\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:124:23\n    |\n122 |         if root_path.exists() and not self._overwrite:\n123 |             if any(root_path.iterdir()):\n124 |                 raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n125 |         root_path.mkdir(parents=True, exist_ok=True)\n126 |         created: list[Path] = []\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:124:39\n    |\n122 |         if root_path.exists() and not self._overwrite:\n123 |             if any(root_path.iterdir()):\n124 |                 raise FileExistsError(f\"Directory '{root_path}' is not empty\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n125 |         root_path.mkdir(parents=True, exist_ok=True)\n126 |         created: list[Path] = []\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:131:23\n    |\n129 |             file_path.parent.mkdir(parents=True, exist_ok=True)\n130 |             if file_path.exists() and not self._overwrite:\n131 |                 raise FileExistsError(f\"File '{file_path}' already exists\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n132 |             file_path.write_text(contents, encoding=\"utf-8\")\n133 |             created.append(file_path)\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:131:39\n    |\n129 |             file_path.parent.mkdir(parents=True, exist_ok=True)\n130 |             if file_path.exists() and not self._overwrite:\n131 |                 raise FileExistsError(f\"File '{file_path}' already exists\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n132 |             file_path.write_text(contents, encoding=\"utf-8\")\n133 |             created.append(file_path)\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:137:23\n    |\n135 |             license_path = root_path / \"LICENSE\"\n136 |             if license_path.exists() and not self._overwrite:\n137 |                 raise FileExistsError(f\"File '{license_path}' already exists\")\n    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |             license_path.write_text(_render_mit_license(config), encoding=\"utf-8\")\n139 |             created.append(license_path)\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:137:39\n    |\n135 |             license_path = root_path / \"LICENSE\"\n136 |             if license_path.exists() and not self._overwrite:\n137 |                 raise FileExistsError(f\"File '{license_path}' already exists\")\n    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |             license_path.write_text(_render_mit_license(config), encoding=\"utf-8\")\n139 |             created.append(license_path)\n    |\nhelp: Assign to variable; remove f-string literal\n\nE501 Line too long (122 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:242:89\n    |\n240 |         \"import runpy\\n\"\n241 |         \"import pytest\\n\\n\"\n242 |         \"@pytest.mark.parametrize('argv,expected', [(None, 'Hello, world!'), (['--name', 'Tester'], 'Hello, Tester!')])\\n\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n243 |         \"def test_cli_output(argv: list[str] | None, expected: str, capsys: pytest.CaptureFixture[str]) -> None:\\n\"\n244 |         f\"    module = importlib.import_module('{package}.cli')\\n\"\n    |\n\nE501 Line too long (115 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:243:89\n    |\n241 |         \"import pytest\\n\\n\"\n242 |         \"@pytest.mark.parametrize('argv,expected', [(None, 'Hello, world!'), (['--name', 'Tester'], 'Hello, Tester!')])\\n\"\n243 |         \"def test_cli_output(argv: list[str] | None, expected: str, capsys: pytest.CaptureFixture[str]) -> None:\\n\"\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n244 |         f\"    module = importlib.import_module('{package}.cli')\\n\"\n245 |         \"    result = module.main(argv)\\n\"\n    |\n\nDTZ005 `datetime.datetime.now()` called without a `tz` argument\n   --> x_cls_make_cli_scaffolder_x.py:260:12\n    |\n259 | def _render_mit_license(config: ProjectConfig) -> str:\n260 |     year = datetime.now().year\n    |            ^^^^^^^^^^^^^^\n261 |     holder = config.author or \"Author\"\n262 |     body = f\"\"\"\n    |\nhelp: Pass a `datetime.timezone` object to the `tz` parameter\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:291:15\n    |\n289 |     value = payload.get(key)\n290 |     if not isinstance(value, str) or not value.strip():\n291 |         raise ValueError(f\"Parameter '{key}' must be a non-empty string\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n292 |     return value.strip()\n    |\n\nEM102 Exception must not use an f-string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:291:26\n    |\n289 |     value = payload.get(key)\n290 |     if not isinstance(value, str) or not value.strip():\n291 |         raise ValueError(f\"Parameter '{key}' must be a non-empty string\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n292 |     return value.strip()\n    |\nhelp: Assign to variable; remove f-string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_cli_scaffolder_x.py:298:15\n    |\n296 |     parameters_obj = payload.get(\"parameters\")\n297 |     if not isinstance(parameters_obj, Mapping):\n298 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n299 |     target_dir_obj = parameters_obj.get(\"target_dir\", \".\")\n300 |     target_dir = Path(str(target_dir_obj))\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_cli_scaffolder_x.py:298:25\n    |\n296 |     parameters_obj = payload.get(\"parameters\")\n297 |     if not isinstance(parameters_obj, Mapping):\n298 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n299 |     target_dir_obj = parameters_obj.get(\"target_dir\", \".\")\n300 |     target_dir = Path(str(target_dir_obj))\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (104 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:316:89\n    |\n314 |     parser = argparse.ArgumentParser(description=\"Generate a CLI project scaffold\")\n315 |     parser.add_argument(\"--project-name\", required=True, help=\"Project directory name\")\n316 |     parser.add_argument(\"--target-dir\", default=\".\", help=\"Directory where the project will be created\")\n    |                                                                                         ^^^^^^^^^^^^^^^^\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n    |\n\nE501 Line too long (92 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:318:89\n    |\n316 |     parser.add_argument(\"--target-dir\", default=\".\", help=\"Directory where the project will be created\")\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n    |                                                                                         ^^^^\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n    |\n\nE501 Line too long (96 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:319:89\n    |\n317 |     parser.add_argument(\"--description\", default=\"\", help=\"Project description\")\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n    |                                                                                         ^^^^^^^^\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:320:89\n    |\n318 |     parser.add_argument(\"--author\", default=None, help=\"Author name for README and LICENSE\")\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n    |                                                                                         ^^\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n    |\n\nE501 Line too long (99 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:321:89\n    |\n319 |     parser.add_argument(\"--version\", default=\"0.1.0\", help=\"Initial version for pyproject.toml\")\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n    |                                                                                         ^^^^^^^^^^^\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n    |\n\nE501 Line too long (95 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:322:89\n    |\n320 |     parser.add_argument(\"--python-version\", default=\"3.11\", help=\"Minimum Python version\")\n321 |     parser.add_argument(\"--package-name\", default=None, help=\"Override the generated package name\")\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n    |                                                                                         ^^^^^^^\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n    |\n\nE501 Line too long (90 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:324:89\n    |\n322 |     parser.add_argument(\"--script-name\", default=None, help=\"Override the console script name\")\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n    |                                                                                         ^^\n325 |     parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\")\n326 |     args = parser.parse_args(list(argv) if argv is not None else None)\n    |\n\nE501 Line too long (96 > 88)\n   --> x_cls_make_cli_scaffolder_x.py:325:89\n    |\n323 |     parser.add_argument(\"--no-tests\", action=\"store_true\", help=\"Skip pytest scaffold\")\n324 |     parser.add_argument(\"--no-license\", action=\"store_true\", help=\"Skip MIT license stub\")\n325 |     parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary instead of text\")\n    |                                                                                         ^^^^^^^^\n326 |     args = parser.parse_args(list(argv) if argv is not None else None)\n    |\n\nFound 62 errors (19 fixed, 43 remaining).\nNo fixes available (8 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_cli_scaffolder_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_cli_scaffolder_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:27:03.565922+00:00\nduration: 0.221s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_cli_scaffolder_x",
+            "repo_path": "C:\\x_runner_x\\x_make_cli_scaffolder_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\conftest.py:3:21\n  |\n1 | from __future__ import annotations\n2 |\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_cli_scaffolder_x (exit 1) cwd: C:\\x_runner_x\\x_make_cli_scaffolder_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-versi\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:15.419606+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "duration_seconds": 1.3077793000265956,
+                "ended_at": "2025-10-30T21:27:15.419606+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_contract_validators.py",
+                    "x_cls_make_contract_validators_x.py"
+                ],
+                "repo": "x_make_contract_validators_x",
+                "repo_hash": "9a6def1fb4e0410ea0cb3be40a64a9562dde5f345ecc0256778e1c2eb20cf405",
+                "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "started_at": "2025-10-30T21:27:14.112922+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\nwould reformat C:\\x_runner_x\\x_make_contract_validators_x\\x_cls_make_contract_validators_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 2 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:14.068087+00:00\n+++ C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:15.164831+00:00\n@@ -74,11 +74,13 @@\n     result = run(payload)\n     assert result[\"status\"] == \"success\"\n     assert result[\"issues\"] == []\n \n \n-def test_run_payload_from_files(sample_schema: dict[str, object], tmp_path: Path) -> None:\n+def test_run_payload_from_files(\n+    sample_schema: dict[str, object], tmp_path: Path\n+) -> None:\n     schema_path = tmp_path / \"schema.json\"\n     payload_path = tmp_path / \"payload.json\"\n     schema_path.write_text(json.dumps(sample_schema), encoding=\"utf-8\")\n     payload_path.write_text(json.dumps({\"name\": \"Ops\", \"age\": 2}), encoding=\"utf-8\")\n     payload = {\n@@ -102,38 +104,46 @@\n     assert result[\"status\"] == \"failure\"\n     assert result[\"error_type\"] == \"payload\"\n     assert result[\"issues\"]\n \n \n-def test_cli_success(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n+def test_cli_success(\n+    sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]\n+) -> None:\n     schema_path = tmp_path / \"schema.json\"\n     payload_path = tmp_path / \"payload.json\"\n     schema_path.write_text(json.dumps(sample_schema), encoding=\"utf-8\")\n     payload_path.write_text(json.dumps({\"name\": \"CLI\"}), encoding=\"utf-8\")\n-    exit_code = main([\n-        \"--schema\",\n-        str(schema_path),\n-        \"--payload\",\n-        str(payload_path),\n-        \"--json\",\n-    ])\n+    exit_code = main(\n+        [\n+            \"--schema\",\n+            str(schema_path),\n+            \"--payload\",\n+            str(payload_path),\n+            \"--json\",\n+        ]\n+    )\n     assert exit_code == 0\n     output = json.loads(capsys.readouterr().out)\n     assert output[\"status\"] == \"success\"\n \n \n-def test_cli_failure(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n+def test_cli_failure(\n+    sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]\n+) -> None:\n     schema_path = tmp_path / \"schema.json\"\n     payload_path = tmp_path / \"payload.json\"\n     schema_path.write_text(json.dumps(sample_schema), encoding=\"utf-8\")\n     payload_path.write_text(json.dumps({\"age\": 5}), encoding=\"utf-8\")\n-    exit_code = main([\n-        \"--schema\",\n-        str(schema_path),\n-        \"--payload\",\n-        str(payload_path),\n-        \"--json\",\n-    ])\n+    exit_code = main(\n+        [\n+            \"--schema\",\n+            str(schema_path),\n+            \"--payload\",\n+            str(payload_path),\n+            \"--json\",\n+        ]\n+    )\n     assert exit_code == 1\n     output = json.loads(capsys.readouterr().out)\n     assert output[\"status\"] == \"failure\"\n     assert output[\"error_type\"] == \"payload\"\n--- C:\\x_runner_x\\x_make_contract_validators_x\\x_cls_make_contract_validators_x.py\t2025-10-30 21:27:14.089799+00:00\n+++ C:\\x_runner_x\\x_make_contract_validators_x\\x_cls_make_contract_validators_x.py\t2025-10-30 21:27:15.228843+00:00\n@@ -146,11 +146,13 @@\n def _resolve_payload(parameters: Mapping[str, object]) -> object:\n     if \"payload\" in parameters:\n         return parameters[\"payload\"]\n     payload_path_obj = parameters.get(\"payload_path\")\n     if payload_path_obj is None:\n-        raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n+        raise ValueError(\n+            \"Payload data must be provided via 'payload' or 'payload_path'\"\n+        )\n     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n \n \n def _load_json(path: Path, *, expect_mapping: bool) -> Any:\n     with path.open(\"r\", encoding=\"utf-8\") as handle:\n@@ -159,11 +161,13 @@\n         raise TypeError(\"JSON file must contain an object at the root\")\n     return data\n \n \n def main(argv: Sequence[str] | None = None) -> int:\n-    parser = argparse.ArgumentParser(description=\"Validate JSON payloads against a schema\")\n+    parser = argparse.ArgumentParser(\n+        description=\"Validate JSON payloads against a schema\"\n+    )\n     parser.add_argument(\"--schema\", required=True, help=\"Path to JSON schema file\")\n     parser.add_argument(\"--payload\", required=True, help=\"Path to JSON payload file\")\n     parser.add_argument(\"--json\", action=\"store_true\", help=\"Emit JSON summary\")\n     args = parser.parse_args(list(argv) if argv is not None else None)\n \n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_contract_validators_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_contract_validators_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-30T21:27:14.112922+00:00\nduration: 1.308s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:14.068087+00:00\n+++ C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:15.164831+00:00\n@@ -74,11 +74,13 @@\n     result = run(payload)\n     assert result[\"status\"] == \"success\"\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\nwould reformat C:\\x_runner_x\\x_make_contract_validators_x\\x_cls_make_contract_validators_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 2 files would be left unchanged.",
+            "repo": "x_make_contract_validators_x",
+            "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\nwould reformat C:\\x_runner_x\\x_make_contract_validators_x\\x_cls_make_contract_validators_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n2 files would be reformatted, 2 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:14.068087+00:00\n+++ C:\\x_runner_x\\x_make_contract_validators_x\\tests\\test_contract_validators.py\t2025-10-30 21:27:15.164831+00:00\n@@ -74,11 +74,13 @@\n     result = run(payload)\n     assert result[\"status\"] == \"success\"\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_contract_validators_x (exit 1) cwd: C:\\x_runner_x\\x_make_contract_validators_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-30\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:18.122115+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_contract_validators_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_contract_validators_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_contract_validators_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "duration_seconds": 2.562872300040908,
+                "ended_at": "2025-10-30T21:27:18.122115+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_contract_validators.py",
+                    "x_cls_make_contract_validators_x.py"
+                ],
+                "repo": "x_make_contract_validators_x",
+                "repo_hash": "9a6def1fb4e0410ea0cb3be40a64a9562dde5f345ecc0256778e1c2eb20cf405",
+                "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "started_at": "2025-10-30T21:27:15.558967+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_contract_validators_x.py:30: error: Returning Any from function declared to return \"type[_DraftValidatorProtocol]\"  [no-any-return]\nx_cls_make_contract_validators_x.py:30: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:91: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"tuple[Any, ...]\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"Any | Iterable[Any]\")  [misc]\nx_cls_make_contract_validators_x.py:93: error: Expression type contains \"Any\" (has type \"tuple[Any, ...]\")  [misc]\nx_cls_make_contract_validators_x.py:93: error: Expression type contains \"Any\" (has type \"Any | Iterable[Any]\")  [misc]\nx_cls_make_contract_validators_x.py:94: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nx_cls_make_contract_validators_x.py:94: error: Expression type contains \"Any\" (has type \"tuple[Any, ...]\")  [misc]\nx_cls_make_contract_validators_x.py:142: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:143: error: Returning Any from function declared to return \"Mapping[str, object]\"  [no-any-return]\nx_cls_make_contract_validators_x.py:143: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:152: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:155: error: Explicit \"Any\" is not allowed  [explicit-any]\nx_cls_make_contract_validators_x.py:157: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:158: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:160: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:172: error: Expression type contains \"Any\" (has type \"dict[str, Any]\")  [misc]\nx_cls_make_contract_validators_x.py:173: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:174: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:178: error: Expression has type \"Any\"  [misc]\ntests\\test_contract_validators.py:23: error: Unused \"type: ignore\" comment  [unused-ignore]\ntests\\test_contract_validators.py:83: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntests\\test_contract_validators.py:111: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntests\\test_contract_validators.py:120: error: Expression has type \"Any\"  [misc]\ntests\\test_contract_validators.py:121: error: Expression has type \"Any\"  [misc]\ntests\\test_contract_validators.py:128: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\ntests\\test_contract_validators.py:137: error: Expression has type \"Any\"  [misc]\ntests\\test_contract_validators.py:138: error: Expression has type \"Any\"  [misc]\ntests\\test_contract_validators.py:139: error: Expression has type \"Any\"  [misc]\nFound 30 errors in 2 files (checked 4 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_contract_validators_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_contract_validators_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_contract_validators_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-30T21:27:15.558967+00:00\nduration: 2.563s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_contract_validators_x.py:30: error: Returning Any from function declared to return \"type[_DraftValidatorProtocol]\"  [no-any-return]\nx_cls_make_contract_validators_x.py:30: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:91: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"tuple[Any, ...]\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"Any | Iterable[Any]\")  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_contract_validators_x",
+            "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_contract_validators_x.py:30: error: Returning Any from function declared to return \"type[_DraftValidatorProtocol]\"  [no-any-return]\nx_cls_make_contract_validators_x.py:30: error: Expression has type \"Any\"  [misc]\nx_cls_make_contract_validators_x.py:91: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"tuple[Any, ...]\")  [misc]\nx_cls_make_contract_validators_x.py:92: error: Expression type contains \"Any\" (has type \"Any | Iterable[Any]\")  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_contract_validators_x (exit 1) cwd: C:\\x_runner_x\\x_make_contract_validators_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_contract_validators_x --strict --no-warn-unused-configs --show-e\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:15.555439+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "duration_seconds": 0.13119099999312311,
+                "ended_at": "2025-10-30T21:27:15.555439+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_contract_validators.py",
+                    "x_cls_make_contract_validators_x.py"
+                ],
+                "repo": "x_make_contract_validators_x",
+                "repo_hash": "9a6def1fb4e0410ea0cb3be40a64a9562dde5f345ecc0256778e1c2eb20cf405",
+                "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "started_at": "2025-10-30T21:27:15.423975+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n  |                     ^^^^\n5 | from typing import TYPE_CHECKING\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:53:5\n   |\n51 | def test_validate_payload_success(sample_schema: dict[str, object]) -> None:\n52 |     result = validate_payload({\"name\": \"Jess\", \"age\": 33}, sample_schema)\n53 |     assert result.success is True\n   |     ^^^^^^\n54 |     assert result.issues == ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:54:5\n   |\n52 |     result = validate_payload({\"name\": \"Jess\", \"age\": 33}, sample_schema)\n53 |     assert result.success is True\n54 |     assert result.issues == ()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:61:5\n   |\n59 |         validate_payload({\"age\": 10}, sample_schema)\n60 |     issues = exc_info.value.issues\n61 |     assert issues\n   |     ^^^^^^\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:63:5\n   |\n61 |     assert issues\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n   |     ^^^^^^\n64 |     assert tuple(first.path) == ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:64:5\n   |\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n64 |     assert tuple(first.path) == ()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:75:5\n   |\n73 |     }\n74 |     result = run(payload)\n75 |     assert result[\"status\"] == \"success\"\n   |     ^^^^^^\n76 |     assert result[\"issues\"] == []\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:76:5\n   |\n74 |     result = run(payload)\n75 |     assert result[\"status\"] == \"success\"\n76 |     assert result[\"issues\"] == []\n   |     ^^^^^^\n   |\n\nE501 Line too long (90 > 88)\n  --> tests\\test_contract_validators.py:79:89\n   |\n79 | def test_run_payload_from_files(sample_schema: dict[str, object], tmp_path: Path) -> None:\n   |                                                                                         ^^\n80 |     schema_path = tmp_path / \"schema.json\"\n81 |     payload_path = tmp_path / \"payload.json\"\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:91:5\n   |\n89 |     }\n90 |     result = run(payload)\n91 |     assert result[\"status\"] == \"success\"\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:102:5\n    |\n100 |     }\n101 |     result = run(payload)\n102 |     assert result[\"status\"] == \"failure\"\n    |     ^^^^^^\n103 |     assert result[\"error_type\"] == \"payload\"\n104 |     assert result[\"issues\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:103:5\n    |\n101 |     result = run(payload)\n102 |     assert result[\"status\"] == \"failure\"\n103 |     assert result[\"error_type\"] == \"payload\"\n    |     ^^^^^^\n104 |     assert result[\"issues\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:104:5\n    |\n102 |     assert result[\"status\"] == \"failure\"\n103 |     assert result[\"error_type\"] == \"payload\"\n104 |     assert result[\"issues\"]\n    |     ^^^^^^\n    |\n\nE501 Line too long (108 > 88)\n   --> tests\\test_contract_validators.py:107:89\n    |\n107 | def test_cli_success(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^\n108 |     schema_path = tmp_path / \"schema.json\"\n109 |     payload_path = tmp_path / \"payload.json\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:119:5\n    |\n117 |         \"--json\",\n118 |     ])\n119 |     assert exit_code == 0\n    |     ^^^^^^\n120 |     output = json.loads(capsys.readouterr().out)\n121 |     assert output[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:121:5\n    |\n119 |     assert exit_code == 0\n120 |     output = json.loads(capsys.readouterr().out)\n121 |     assert output[\"status\"] == \"success\"\n    |     ^^^^^^\n    |\n\nE501 Line too long (108 > 88)\n   --> tests\\test_contract_validators.py:124:89\n    |\n124 | def test_cli_failure(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^\n125 |     schema_path = tmp_path / \"schema.json\"\n126 |     payload_path = tmp_path / \"payload.json\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:136:5\n    |\n134 |         \"--json\",\n135 |     ])\n136 |     assert exit_code == 1\n    |     ^^^^^^\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:138:5\n    |\n136 |     assert exit_code == 1\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n    |     ^^^^^^\n139 |     assert output[\"error_type\"] == \"payload\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:139:5\n    |\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n139 |     assert output[\"error_type\"] == \"payload\"\n    |     ^^^^^^\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:100:15\n    |\n 98 |     parameters_obj = payload.get(\"parameters\")\n 99 |     if not isinstance(parameters_obj, Mapping):\n100 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n101 |     schema = _resolve_schema(parameters_obj)\n102 |     try:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:100:25\n    |\n 98 |     parameters_obj = payload.get(\"parameters\")\n 99 |     if not isinstance(parameters_obj, Mapping):\n100 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n101 |     schema = _resolve_schema(parameters_obj)\n102 |     try:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:137:19\n    |\n135 |         schema_obj = parameters[\"schema\"]\n136 |         if not isinstance(schema_obj, Mapping):\n137 |             raise TypeError(\"Inline schema must be a mapping\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |         return schema_obj\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:137:29\n    |\n135 |         schema_obj = parameters[\"schema\"]\n136 |         if not isinstance(schema_obj, Mapping):\n137 |             raise TypeError(\"Inline schema must be a mapping\")\n    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |         return schema_obj\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:141:15\n    |\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n140 |     if schema_path_obj is None:\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:141:26\n    |\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n140 |     if schema_path_obj is None:\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |\nhelp: Assign to variable; remove string literal\n\nRET504 Unnecessary assignment to `schema_data` before `return` statement\n   --> x_cls_make_contract_validators_x.py:143:12\n    |\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |            ^^^^^^^^^^^\n    |\nhelp: Remove unnecessary assignment\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:151:15\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:151:26\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_contract_validators_x.py:151:89\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |                                                                                         ^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\n\nANN401 Dynamically typed expressions (typing.Any) are disallowed in `_load_json`\n   --> x_cls_make_contract_validators_x.py:155:56\n    |\n155 | def _load_json(path: Path, *, expect_mapping: bool) -> Any:\n    |                                                        ^^^\n156 |     with path.open(\"r\", encoding=\"utf-8\") as handle:\n157 |         data = json.load(handle)\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:159:15\n    |\n157 |         data = json.load(handle)\n158 |     if expect_mapping and not isinstance(data, Mapping):\n159 |         raise TypeError(\"JSON file must contain an object at the root\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n160 |     return data\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:159:25\n    |\n157 |         data = json.load(handle)\n158 |     if expect_mapping and not isinstance(data, Mapping):\n159 |         raise TypeError(\"JSON file must contain an object at the root\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n160 |     return data\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (91 > 88)\n   --> x_cls_make_contract_validators_x.py:164:89\n    |\n163 | def main(argv: Sequence[str] | None = None) -> int:\n164 |     parser = argparse.ArgumentParser(description=\"Validate JSON payloads against a schema\")\n    |                                                                                         ^^^\n165 |     parser.add_argument(\"--schema\", required=True, help=\"Path to JSON schema file\")\n166 |     parser.add_argument(\"--payload\", required=True, help=\"Path to JSON payload file\")\n    |\n\nFound 34 errors.\nNo fixes available (7 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_contract_validators_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_contract_validators_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:27:15.423975+00:00\nduration: 0.131s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_contract_validators_x",
+            "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_contract_validators_x (exit 1) cwd: C:\\x_runner_x\\x_make_contract_validators_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:27:14.108748+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "duration_seconds": 0.14870390004944056,
+                "ended_at": "2025-10-30T21:27:14.108748+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_contract_validators.py",
+                    "x_cls_make_contract_validators_x.py"
+                ],
+                "repo": "x_make_contract_validators_x",
+                "repo_hash": "9a6def1fb4e0410ea0cb3be40a64a9562dde5f345ecc0256778e1c2eb20cf405",
+                "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+                "started_at": "2025-10-30T21:27:13.959855+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n  |                     ^^^^\n5 | from typing import TYPE_CHECKING\n  |\nhelp: Move into type-checking block\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:53:5\n   |\n51 | def test_validate_payload_success(sample_schema: dict[str, object]) -> None:\n52 |     result = validate_payload({\"name\": \"Jess\", \"age\": 33}, sample_schema)\n53 |     assert result.success is True\n   |     ^^^^^^\n54 |     assert result.issues == ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:54:5\n   |\n52 |     result = validate_payload({\"name\": \"Jess\", \"age\": 33}, sample_schema)\n53 |     assert result.success is True\n54 |     assert result.issues == ()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:61:5\n   |\n59 |         validate_payload({\"age\": 10}, sample_schema)\n60 |     issues = exc_info.value.issues\n61 |     assert issues\n   |     ^^^^^^\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:63:5\n   |\n61 |     assert issues\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n   |     ^^^^^^\n64 |     assert tuple(first.path) == ()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:64:5\n   |\n62 |     first = issues[0]\n63 |     assert \"is a required property\" in first.message\n64 |     assert tuple(first.path) == ()\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:75:5\n   |\n73 |     }\n74 |     result = run(payload)\n75 |     assert result[\"status\"] == \"success\"\n   |     ^^^^^^\n76 |     assert result[\"issues\"] == []\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:76:5\n   |\n74 |     result = run(payload)\n75 |     assert result[\"status\"] == \"success\"\n76 |     assert result[\"issues\"] == []\n   |     ^^^^^^\n   |\n\nE501 Line too long (90 > 88)\n  --> tests\\test_contract_validators.py:79:89\n   |\n79 | def test_run_payload_from_files(sample_schema: dict[str, object], tmp_path: Path) -> None:\n   |                                                                                         ^^\n80 |     schema_path = tmp_path / \"schema.json\"\n81 |     payload_path = tmp_path / \"payload.json\"\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_contract_validators.py:91:5\n   |\n89 |     }\n90 |     result = run(payload)\n91 |     assert result[\"status\"] == \"success\"\n   |     ^^^^^^\n   |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:102:5\n    |\n100 |     }\n101 |     result = run(payload)\n102 |     assert result[\"status\"] == \"failure\"\n    |     ^^^^^^\n103 |     assert result[\"error_type\"] == \"payload\"\n104 |     assert result[\"issues\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:103:5\n    |\n101 |     result = run(payload)\n102 |     assert result[\"status\"] == \"failure\"\n103 |     assert result[\"error_type\"] == \"payload\"\n    |     ^^^^^^\n104 |     assert result[\"issues\"]\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:104:5\n    |\n102 |     assert result[\"status\"] == \"failure\"\n103 |     assert result[\"error_type\"] == \"payload\"\n104 |     assert result[\"issues\"]\n    |     ^^^^^^\n    |\n\nE501 Line too long (108 > 88)\n   --> tests\\test_contract_validators.py:107:89\n    |\n107 | def test_cli_success(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^\n108 |     schema_path = tmp_path / \"schema.json\"\n109 |     payload_path = tmp_path / \"payload.json\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:119:5\n    |\n117 |         \"--json\",\n118 |     ])\n119 |     assert exit_code == 0\n    |     ^^^^^^\n120 |     output = json.loads(capsys.readouterr().out)\n121 |     assert output[\"status\"] == \"success\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:121:5\n    |\n119 |     assert exit_code == 0\n120 |     output = json.loads(capsys.readouterr().out)\n121 |     assert output[\"status\"] == \"success\"\n    |     ^^^^^^\n    |\n\nE501 Line too long (108 > 88)\n   --> tests\\test_contract_validators.py:124:89\n    |\n124 | def test_cli_failure(sample_schema: dict[str, object], tmp_path: Path, capsys: CaptureFixture[str]) -> None:\n    |                                                                                         ^^^^^^^^^^^^^^^^^^^^\n125 |     schema_path = tmp_path / \"schema.json\"\n126 |     payload_path = tmp_path / \"payload.json\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:136:5\n    |\n134 |         \"--json\",\n135 |     ])\n136 |     assert exit_code == 1\n    |     ^^^^^^\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:138:5\n    |\n136 |     assert exit_code == 1\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n    |     ^^^^^^\n139 |     assert output[\"error_type\"] == \"payload\"\n    |\n\nS101 Use of `assert` detected\n   --> tests\\test_contract_validators.py:139:5\n    |\n137 |     output = json.loads(capsys.readouterr().out)\n138 |     assert output[\"status\"] == \"failure\"\n139 |     assert output[\"error_type\"] == \"payload\"\n    |     ^^^^^^\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:100:15\n    |\n 98 |     parameters_obj = payload.get(\"parameters\")\n 99 |     if not isinstance(parameters_obj, Mapping):\n100 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n101 |     schema = _resolve_schema(parameters_obj)\n102 |     try:\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:100:25\n    |\n 98 |     parameters_obj = payload.get(\"parameters\")\n 99 |     if not isinstance(parameters_obj, Mapping):\n100 |         raise TypeError(\"Payload parameters must be a mapping\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n101 |     schema = _resolve_schema(parameters_obj)\n102 |     try:\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:137:19\n    |\n135 |         schema_obj = parameters[\"schema\"]\n136 |         if not isinstance(schema_obj, Mapping):\n137 |             raise TypeError(\"Inline schema must be a mapping\")\n    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |         return schema_obj\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:137:29\n    |\n135 |         schema_obj = parameters[\"schema\"]\n136 |         if not isinstance(schema_obj, Mapping):\n137 |             raise TypeError(\"Inline schema must be a mapping\")\n    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n138 |         return schema_obj\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n    |\nhelp: Assign to variable; remove string literal\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:141:15\n    |\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n140 |     if schema_path_obj is None:\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:141:26\n    |\n139 |     schema_path_obj = parameters.get(\"schema_path\")\n140 |     if schema_path_obj is None:\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |\nhelp: Assign to variable; remove string literal\n\nRET504 Unnecessary assignment to `schema_data` before `return` statement\n   --> x_cls_make_contract_validators_x.py:143:12\n    |\n141 |         raise ValueError(\"Schema data must be provided via 'schema' or 'schema_path'\")\n142 |     schema_data = _load_json(Path(str(schema_path_obj)), expect_mapping=True)\n143 |     return schema_data\n    |            ^^^^^^^^^^^\n    |\nhelp: Remove unnecessary assignment\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:151:15\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:151:26\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (89 > 88)\n   --> x_cls_make_contract_validators_x.py:151:89\n    |\n149 |     payload_path_obj = parameters.get(\"payload_path\")\n150 |     if payload_path_obj is None:\n151 |         raise ValueError(\"Payload data must be provided via 'payload' or 'payload_path'\")\n    |                                                                                         ^\n152 |     return _load_json(Path(str(payload_path_obj)), expect_mapping=False)\n    |\n\nANN401 Dynamically typed expressions (typing.Any) are disallowed in `_load_json`\n   --> x_cls_make_contract_validators_x.py:155:56\n    |\n155 | def _load_json(path: Path, *, expect_mapping: bool) -> Any:\n    |                                                        ^^^\n156 |     with path.open(\"r\", encoding=\"utf-8\") as handle:\n157 |         data = json.load(handle)\n    |\n\nTRY003 Avoid specifying long messages outside the exception class\n   --> x_cls_make_contract_validators_x.py:159:15\n    |\n157 |         data = json.load(handle)\n158 |     if expect_mapping and not isinstance(data, Mapping):\n159 |         raise TypeError(\"JSON file must contain an object at the root\")\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n160 |     return data\n    |\n\nEM101 Exception must not use a string literal, assign to variable first\n   --> x_cls_make_contract_validators_x.py:159:25\n    |\n157 |         data = json.load(handle)\n158 |     if expect_mapping and not isinstance(data, Mapping):\n159 |         raise TypeError(\"JSON file must contain an object at the root\")\n    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n160 |     return data\n    |\nhelp: Assign to variable; remove string literal\n\nE501 Line too long (91 > 88)\n   --> x_cls_make_contract_validators_x.py:164:89\n    |\n163 | def main(argv: Sequence[str] | None = None) -> int:\n164 |     parser = argparse.ArgumentParser(description=\"Validate JSON payloads against a schema\")\n    |                                                                                         ^^^\n165 |     parser.add_argument(\"--schema\", required=True, help=\"Path to JSON schema file\")\n166 |     parser.add_argument(\"--payload\", required=True, help=\"Path to JSON payload file\")\n    |\n\nFound 46 errors (12 fixed, 34 remaining).\nNo fixes available (7 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_contract_validators_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_contract_validators_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:27:13.959855+00:00\nduration: 0.149s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_contract_validators_x",
+            "repo_path": "C:\\x_runner_x\\x_make_contract_validators_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_contract_validators.py:4:21\n  |\n3 | import json\n4 | from pathlib import Path\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_contract_validators_x (exit 1) cwd: C:\\x_runner_x\\x_make_contract_validators_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --ta\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:29:14.453226+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_progress_board_x",
+                "duration_seconds": 1.5405859999591485,
+                "ended_at": "2025-10-30T21:29:14.453226+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "cli.py",
+                    "controller.py",
+                    "progress_board_widget.py",
+                    "tests/test_progress_board.py"
+                ],
+                "repo": "x_make_progress_board_x",
+                "repo_hash": "9c2888bab24ac8198521551bc9f73ff5d58c328b202aece65dc95fa75665d44c",
+                "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+                "started_at": "2025-10-30T21:29:12.922614+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_progress_board_x\\cli.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:12.888265+00:00\n+++ C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:14.152740+00:00\n@@ -25,11 +25,13 @@\n     return stages\n \n \n def main(argv: Sequence[str] | None = None) -> int:\n     parser = argparse.ArgumentParser(description=\"Launch the PySide6 progress board\")\n-    parser.add_argument(\"--snapshot\", required=True, help=\"Path to progress snapshot JSON\")\n+    parser.add_argument(\n+        \"--snapshot\", required=True, help=\"Path to progress snapshot JSON\"\n+    )\n     args = parser.parse_args(list(argv) if argv is not None else None)\n \n     snapshot_path = Path(args.snapshot).resolve()\n     definitions = _current_stage_layout(snapshot_path)\n     if not definitions:\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_progress_board_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_progress_board_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-30T21:29:12.922614+00:00\nduration: 1.541s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:12.888265+00:00\n+++ C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:14.152740+00:00\n@@ -25,11 +25,13 @@\n     return stages\n \n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_progress_board_x\\cli.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.",
+            "repo": "x_make_progress_board_x",
+            "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_progress_board_x\\cli.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 4 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:12.888265+00:00\n+++ C:\\x_runner_x\\x_make_progress_board_x\\cli.py\t2025-10-30 21:29:14.152740+00:00\n@@ -25,11 +25,13 @@\n     return stages\n \n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_progress_board_x (exit 1) cwd: C:\\x_runner_x\\x_make_progress_board_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-30T21:29:12.\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-30T21:29:17.725842+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_progress_board_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_progress_board_x",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_progress_board_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_progress_board_x",
+                "duration_seconds": 2.9795825000619516,
+                "ended_at": "2025-10-30T21:29:17.725842+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "cli.py",
+                    "controller.py",
+                    "progress_board_widget.py",
+                    "tests/test_progress_board.py"
+                ],
+                "repo": "x_make_progress_board_x",
+                "repo_hash": "9c2888bab24ac8198521551bc9f73ff5d58c328b202aece65dc95fa75665d44c",
+                "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+                "started_at": "2025-10-30T21:29:14.755287+00:00",
+                "stderr": "",
+                "stdout": "progress_board_widget.py:21: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:21: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:22: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:22: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:23: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:23: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:25: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:26: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:27: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:51: error: Class cannot subclass \"QWidget\" (has type \"Any\")  [misc]\nprogress_board_widget.py:51: note: Error code \"misc\" not covered by \"type: ignore\" comment\nprogress_board_widget.py:54: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:76: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:77: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:78: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:79: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:82: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:84: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:85: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:86: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:87: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:88: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:90: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:91: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:93: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:94: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:95: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:97: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:98: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:99: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:100: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:102: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:103: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:104: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:106: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:108: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:109: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:110: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:112: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:113: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:114: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:115: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:117: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:118: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:119: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:122: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:123: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:124: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:126: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:127: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:129: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:130: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:132: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:133: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:135: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:136: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:137: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:140: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:141: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:142: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:143: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:144: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:145: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:148: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:149: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:150: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:151: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:152: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:158: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:163: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:167: error: Expression type contains \"Any\" (has type \"Any | dict[Never, Never]\")  [misc]\nprogress_board_widget.py:167: error: Expression type contains \"Any\" (has type \"Any | dict[Any, Any]\")  [misc]\nprogress_board_widget.py:167: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nprogress_board_widget.py:169: error: Expression type contains \"Any\" (has type \"Any | tuple[Any, Any]\")  [misc]\nprogress_board_widget.py:169: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:169: error: Expression type contains \"Any\" (has type \"Any | dict[Any, Any]\")  [misc]\nprogress_board_widget.py:169: error: Expression type contains \"Any\" (has type \"Any | dict_items[Any, Any]\")  [misc]\nprogress_board_widget.py:170: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nprogress_board_widget.py:170: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:171: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:176: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:177: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:178: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:179: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:180: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:181: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:182: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:191: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:192: error: Expression type contains \"Any\" (has type \"Any | tuple[()]\")  [misc]\nprogress_board_widget.py:193: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:193: error: Expression type contains \"Any\" (has type \"Any | tuple[()]\")  [misc]\nprogress_board_widget.py:201: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:205: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:228: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:229: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:231: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:237: error: Expression type contains \"Any\" (has type \"Any | dict[Never, Never]\")  [misc]\nprogress_board_widget.py:237: error: Expression type contains \"Any\" (has type \"Any | dict[Any, Any]\")  [misc]\nprogress_board_widget.py:237: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nprogress_board_widget.py:238: error: Expression type contains \"Any\" (has type \"Any | dict[Any, Any]\")  [misc]\nprogress_board_widget.py:247: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:249: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:254: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:259: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:262: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:263: error: Expression type contains \"Any\" (has type \"tuple[int, Any]\")  [misc]\nprogress_board_widget.py:263: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:263: error: Expression type contains \"Any\" (has type \"enumerate[Any]\")  [misc]\nprogress_board_widget.py:264: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:264: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:265: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:265: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:266: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:266: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:267: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:268: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:273: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:273: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\nprogress_board_widget.py:275: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:276: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:277: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:278: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:279: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:280: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:281: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:282: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:284: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:290: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:291: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:294: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:309: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:311: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:313: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:314: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:374: error: Returning Any from function declared to return \"dict[str, object] | None\"  [no-any-return]\nprogress_board_widget.py:374: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:383: error: Expression type contains \"Any\" (has type \"dict[Any, Any]\")  [misc]\nprogress_board_widget.py:392: error: Expression type contains \"Any\" (has type \"dict[str, object] | Any | bool | None\")  [misc]\nprogress_board_widget.py:392: error: Expression type contains \"Any\" (has type \"Any | bool\")  [misc]\nprogress_board_widget.py:392: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nprogress_board_widget.py:401: error: Expression type contains \"Any\" (has type \"tuple[str, Any | None]\")  [misc]\nprogress_board_widget.py:401: error: Expression type contains \"Any\" (has type \"Any | None\")  [misc]\nprogress_board_widget.py:423: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:425: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:426: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:429: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:430: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:437: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:438: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:441: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:443: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:445: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:448: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:449: error: Expression has type \"Any\"  [misc]\ncli.py:20: error: Expression has type \"Any\"  [misc]\ncli.py:20: error: Expression type contains \"Any\" (has type \"Any | dict[Never, Never]\")  [misc]\ncli.py:20: error: Expression type contains \"Any\" (has type \"Any | dict_values[Never, Never]\")  [misc]\ncli.py:21: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\ncli.py:21: error: Expression has type \"Any\"  [misc]\ncli.py:22: error: Expression type contains \"Any\" (has type \"Any | str\")  [misc]\ncli.py:22: error: Expression has type \"Any\"  [misc]\ncli.py:33: error: Expression has type \"Any\"  [misc]\ntests\\test_progress_board.py:23: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_progress_board.py:30: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntests\\test_progress_board.py:30: error: Expression has type \"Any\"  [misc]\ntests\\test_progress_board.py:33: error: Expression type contains \"Any\" (has type \"Callable[[NamedArg(Path, 'snapshot_path'), NamedArg(Any, 'stage_definitions'), NamedArg(Event, 'worker_done_event')], None]\")  [misc]\ntests\\test_progress_board.py:67: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ntests\\test_progress_board.py:74: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\ntests\\test_progress_board.py:74: error: Expression has type \"Any\"  [misc]\ntests\\test_progress_board.py:78: error: Expression type contains \"Any\" (has type \"Callable[[NamedArg(Path, 'snapshot_path'), NamedArg(Any, 'stage_definitions'), NamedArg(Event, 'worker_done_event')], None]\")  [misc]\nFound 169 errors in 3 files (checked 6 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_progress_board_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_progress_board_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_progress_board_x --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-30T21:29:14.755287+00:00\nduration: 2.980s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nprogress_board_widget.py:21: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:21: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:22: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:22: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:23: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_progress_board_x",
+            "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+            "stderr_preview": null,
+            "stdout_preview": "progress_board_widget.py:21: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:21: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:22: error: Explicit \"Any\" is not allowed  [explicit-any]\nprogress_board_widget.py:22: error: Expression has type \"Any\"  [misc]\nprogress_board_widget.py:23: error: Explicit \"Any\" is not allowed  [explicit-any]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_progress_board_x (exit 1) cwd: C:\\x_runner_x\\x_make_progress_board_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_progress_board_x --strict --no-warn-unused-configs --show-error-codes --wa\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        },
+        {
+            "captured_at": "2025-10-30T21:29:14.748119+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_progress_board_x",
+                "duration_seconds": 0.2847312999656424,
+                "ended_at": "2025-10-30T21:29:14.748119+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "cli.py",
+                    "controller.py",
+                    "progress_board_widget.py",
+                    "tests/test_progress_board.py"
+                ],
+                "repo": "x_make_progress_board_x",
+                "repo_hash": "9c2888bab24ac8198521551bc9f73ff5d58c328b202aece65dc95fa75665d44c",
+                "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+                "started_at": "2025-10-30T21:29:14.467214+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n7 | from collections.abc import Sequence\n  |                             ^^^^^^^^\n8 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nE501 Line too long (91 > 88)\n  --> cli.py:30:89\n   |\n28 | def main(argv: Sequence[str] | None = None) -> int:\n29 |     parser = argparse.ArgumentParser(description=\"Launch the PySide6 progress board\")\n30 |     parser.add_argument(\"--snapshot\", required=True, help=\"Path to progress snapshot JSON\")\n   |                                                                                         ^^^\n31 |     args = parser.parse_args(list(argv) if argv is not None else None)\n   |\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n  --> controller.py:8:21\n   |\n 6 | from collections.abc import Callable, Sequence\n 7 | from dataclasses import dataclass\n 8 | from pathlib import Path\n   |                     ^^^^\n 9 |\n10 | from x_make_progress_board_x.progress_board_widget import run_progress_board\n   |\nhelp: Move into type-checking block\n\nN802 Function name `setText` should be lowercase\n  --> progress_board_widget.py:42:9\n   |\n41 | class _ChecklistItem(Protocol):\n42 |     def setText(self, text: str) -> None: ...\n   |         ^^^^^^^\n43 |\n44 |     def setCheckState(self, state: object) -> None: ...\n   |\n\nN802 Function name `setCheckState` should be lowercase\n  --> progress_board_widget.py:44:9\n   |\n42 |     def setText(self, text: str) -> None: ...\n43 |\n44 |     def setCheckState(self, state: object) -> None: ...\n   |         ^^^^^^^^^^^^^\n   |\n\nINP001 File `tests\\test_progress_board.py` is part of an implicit namespace package. Add an `__init__.py`.\n--> tests\\test_progress_board.py:1:1\n\nTC003 Move standard library import `threading` into a type-checking block\n --> tests\\test_progress_board.py:4:8\n  |\n3 | import json\n4 | import threading\n  |        ^^^^^^^^^\n5 | from pathlib import Path\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_progress_board.py:5:21\n  |\n3 | import json\n4 | import threading\n5 | from pathlib import Path\n  |                     ^^^^\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nANN001 Missing type annotation for function argument `stage_definitions`\n  --> tests\\test_progress_board.py:26:9\n   |\n24 |         *,\n25 |         snapshot_path: Path,\n26 |         stage_definitions,\n   |         ^^^^^^^^^^^^^^^^^\n27 |         worker_done_event: threading.Event,\n28 |     ) -> None:\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:39:9\n   |\n37 |     def worker(event: threading.Event) -> None:\n38 |         worker_called.append(True)\n39 |         assert event.is_set() is False\n   |         ^^^^^^\n40 |         event.set()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:48:5\n   |\n46 |     )\n47 |     result.thread.join(timeout=1)\n48 |     assert result.done_event.is_set() is True\n   |     ^^^^^^\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:49:5\n   |\n47 |     result.thread.join(timeout=1)\n48 |     assert result.done_event.is_set() is True\n49 |     assert worker_called\n   |     ^^^^^^\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:50:5\n   |\n48 |     assert result.done_event.is_set() is True\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |     ^^^^^^\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:51:5\n   |\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `stage_definitions`\n  --> tests\\test_progress_board.py:70:9\n   |\n68 |         *,\n69 |         snapshot_path: Path,\n70 |         stage_definitions,\n   |         ^^^^^^^^^^^^^^^^^\n71 |         worker_done_event: threading.Event,\n72 |     ) -> None:\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:81:5\n   |\n80 |     exit_code = cli.main([\"--snapshot\", str(snapshot_path)])\n81 |     assert exit_code == 0\n   |     ^^^^^^\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:82:5\n   |\n80 |     exit_code = cli.main([\"--snapshot\", str(snapshot_path)])\n81 |     assert exit_code == 0\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |     ^^^^^^\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:83:5\n   |\n81 |     assert exit_code == 0\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |     ^^^^^^\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n85 |     assert event.is_set()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:85:5\n   |\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n85 |     assert event.is_set()\n   |     ^^^^^^\n   |\n\nFound 19 errors.\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_check",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_check failed for x_make_progress_board_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_progress_board_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:29:14.467214+00:00\nduration: 0.285s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_progress_board_x",
+            "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_check failed for x_make_progress_board_x (exit 1) cwd: C:\\x_runner_x\\x_make_progress_board_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version p\u2026",
+            "tool": "ruff_check",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:29:12.919828+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "ruff",
+                    "check",
+                    ".",
+                    "--fix",
+                    "--select",
+                    "ALL",
+                    "--ignore",
+                    "D,COM812,ISC001,T20",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311",
+                "cwd": "C:\\x_runner_x\\x_make_progress_board_x",
+                "duration_seconds": 0.3122529999818653,
+                "ended_at": "2025-10-30T21:29:12.919828+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "cli.py",
+                    "controller.py",
+                    "progress_board_widget.py",
+                    "tests/test_progress_board.py"
+                ],
+                "repo": "x_make_progress_board_x",
+                "repo_hash": "9c2888bab24ac8198521551bc9f73ff5d58c328b202aece65dc95fa75665d44c",
+                "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+                "started_at": "2025-10-30T21:29:12.605791+00:00",
+                "stderr": "",
+                "stdout": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n7 | from collections.abc import Sequence\n  |                             ^^^^^^^^\n8 | from pathlib import Path\n  |\nhelp: Move into type-checking block\n\nE501 Line too long (91 > 88)\n  --> cli.py:30:89\n   |\n28 | def main(argv: Sequence[str] | None = None) -> int:\n29 |     parser = argparse.ArgumentParser(description=\"Launch the PySide6 progress board\")\n30 |     parser.add_argument(\"--snapshot\", required=True, help=\"Path to progress snapshot JSON\")\n   |                                                                                         ^^^\n31 |     args = parser.parse_args(list(argv) if argv is not None else None)\n   |\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n  --> controller.py:8:21\n   |\n 6 | from collections.abc import Callable, Sequence\n 7 | from dataclasses import dataclass\n 8 | from pathlib import Path\n   |                     ^^^^\n 9 |\n10 | from x_make_progress_board_x.progress_board_widget import run_progress_board\n   |\nhelp: Move into type-checking block\n\nN802 Function name `setText` should be lowercase\n  --> progress_board_widget.py:42:9\n   |\n41 | class _ChecklistItem(Protocol):\n42 |     def setText(self, text: str) -> None: ...\n   |         ^^^^^^^\n43 |\n44 |     def setCheckState(self, state: object) -> None: ...\n   |\n\nN802 Function name `setCheckState` should be lowercase\n  --> progress_board_widget.py:44:9\n   |\n42 |     def setText(self, text: str) -> None: ...\n43 |\n44 |     def setCheckState(self, state: object) -> None: ...\n   |         ^^^^^^^^^^^^^\n   |\n\nINP001 File `tests\\test_progress_board.py` is part of an implicit namespace package. Add an `__init__.py`.\n--> tests\\test_progress_board.py:1:1\n\nTC003 Move standard library import `threading` into a type-checking block\n --> tests\\test_progress_board.py:4:8\n  |\n3 | import json\n4 | import threading\n  |        ^^^^^^^^^\n5 | from pathlib import Path\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nTC003 Move standard library import `pathlib.Path` into a type-checking block\n --> tests\\test_progress_board.py:5:21\n  |\n3 | import json\n4 | import threading\n5 | from pathlib import Path\n  |                     ^^^^\n6 | from typing import cast\n  |\nhelp: Move into type-checking block\n\nANN001 Missing type annotation for function argument `stage_definitions`\n  --> tests\\test_progress_board.py:26:9\n   |\n24 |         *,\n25 |         snapshot_path: Path,\n26 |         stage_definitions,\n   |         ^^^^^^^^^^^^^^^^^\n27 |         worker_done_event: threading.Event,\n28 |     ) -> None:\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:39:9\n   |\n37 |     def worker(event: threading.Event) -> None:\n38 |         worker_called.append(True)\n39 |         assert event.is_set() is False\n   |         ^^^^^^\n40 |         event.set()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:48:5\n   |\n46 |     )\n47 |     result.thread.join(timeout=1)\n48 |     assert result.done_event.is_set() is True\n   |     ^^^^^^\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:49:5\n   |\n47 |     result.thread.join(timeout=1)\n48 |     assert result.done_event.is_set() is True\n49 |     assert worker_called\n   |     ^^^^^^\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:50:5\n   |\n48 |     assert result.done_event.is_set() is True\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |     ^^^^^^\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:51:5\n   |\n49 |     assert worker_called\n50 |     assert observed[\"snapshot_path\"] == snapshot_path\n51 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |     ^^^^^^\n   |\n\nANN001 Missing type annotation for function argument `stage_definitions`\n  --> tests\\test_progress_board.py:70:9\n   |\n68 |         *,\n69 |         snapshot_path: Path,\n70 |         stage_definitions,\n   |         ^^^^^^^^^^^^^^^^^\n71 |         worker_done_event: threading.Event,\n72 |     ) -> None:\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:81:5\n   |\n80 |     exit_code = cli.main([\"--snapshot\", str(snapshot_path)])\n81 |     assert exit_code == 0\n   |     ^^^^^^\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:82:5\n   |\n80 |     exit_code = cli.main([\"--snapshot\", str(snapshot_path)])\n81 |     assert exit_code == 0\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n   |     ^^^^^^\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:83:5\n   |\n81 |     assert exit_code == 0\n82 |     assert observed[\"snapshot_path\"] == snapshot_path\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n   |     ^^^^^^\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n85 |     assert event.is_set()\n   |\n\nS101 Use of `assert` detected\n  --> tests\\test_progress_board.py:85:5\n   |\n83 |     assert observed[\"stage_definitions\"] == [(\"env\", \"Environment\")]\n84 |     event = cast(\"threading.Event\", observed[\"event\"])\n85 |     assert event.is_set()\n   |     ^^^^^^\n   |\n\nFound 26 errors (7 fixed, 19 remaining).\nNo fixes available (4 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+                "tool": "ruff_fix",
+                "tool_module": "ruff",
+                "tool_version": "ruff 0.14.2"
+            },
+            "exit": "exit 1",
+            "message": "ruff_fix failed for x_make_progress_board_x (exit 1)\ncwd: C:\\x_runner_x\\x_make_progress_board_x\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-version py311\nstarted_at: 2025-10-30T21:29:12.605791+00:00\nduration: 0.312s\ntool_version: ruff 0.14.2\nstdout:\nTC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_progress_board_x",
+            "repo_path": "C:\\x_runner_x\\x_make_progress_board_x",
+            "stderr_preview": null,
+            "stdout_preview": "TC003 Move standard library import `collections.abc.Sequence` into a type-checking block\n --> cli.py:7:29\n  |\n5 | import argparse\n6 | import threading\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "ruff_fix failed for x_make_progress_board_x (exit 1) cwd: C:\\x_runner_x\\x_make_progress_board_x command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m ruff check . --fix --select ALL --ignore D,COM812,ISC001,T20 --line-length 88 --target-versi\u2026",
+            "tool": "ruff_fix",
+            "tool_version": "ruff 0.14.2"
+        },
+        {
+            "captured_at": "2025-10-30T21:30:10.580329+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "black",
+                    ".",
+                    "--line-length",
+                    "88",
+                    "--target-version",
+                    "py311",
+                    "--check",
+                    "--diff"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 2.3851394000230357,
+                "ended_at": "2025-10-30T21:30:10.580329+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "508437343b3f1d432f42b89f1786bae73ff3a255e6161cd0440f2b9a8af28068",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-30T21:30:08.198098+00:00",
+                "stderr": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.\n",
+                "stdout": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 18:16:19.336325+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 21:30:10.405657+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n \n     @staticmethod\n     def _parse_channels(\n-        parameters_raw: Mapping[str, object]\n+        parameters_raw: Mapping[str, object],\n     ) -> list[str | Mapping[str, object]]:\n         channels_raw = parameters_raw.get(\"channels\")\n         if (\n             not isinstance(channels_raw, Sequence)\n             or isinstance(channels_raw, (str, bytes))\n@@ -947,13 +947,11 @@\n         if not archive_root.exists():\n             message = f\"Archive root does not exist: {archive_root}\"\n             raise FileNotFoundError(message)\n         subdirectories = [item for item in archive_root.iterdir() if item.is_dir()]\n         if not subdirectories:\n-            message = (\n-                f\"Archive root {archive_root} has no subdirectories to target\"\n-            )\n+            message = f\"Archive root {archive_root} has no subdirectories to target\"\n             raise FileNotFoundError(message)\n         return max(subdirectories, key=lambda item: item.stat().st_mtime)\n \n     @staticmethod\n     def _normalise_channel_identifier(\n@@ -1038,12 +1036,11 @@\n     if bool(parameters_obj.get(\"dry_run\", False)):\n         return\n \n     while True:\n         prompt = (\n-            \"Archive captured. Delete Slack messages and files after export?\"\n-            \" [y/N]: \"\n+            \"Archive captured. Delete Slack messages and files after export?\" \" [y/N]: \"\n         )\n         response = input(prompt).strip().lower()\n         if response in {\"y\", \"yes\"}:\n             print(\n                 \"Confirmed. Slack source will be purged post-export.\", file=sys.stderr\n",
+                "tool": "black",
+                "tool_module": "black",
+                "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+            },
+            "exit": "exit 1",
+            "message": "black failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff\nstarted_at: 2025-10-30T21:30:08.198098+00:00\nduration: 2.385s\ntool_version: python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6\nstdout:\n--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 18:16:19.336325+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 21:30:10.405657+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n\u2026\nstderr:\nwould reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": "would reformat C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\n\nOh no! \\U0001f4a5 \\U0001f494 \\U0001f4a5\n1 file would be reformatted, 6 files would be left unchanged.",
+            "stdout_preview": "--- C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 18:16:19.336325+00:00\n+++ C:\\x_runner_x\\x_make_slack_dump_and_reset_z\\x_cls_make_slack_dump_and_reset_x.py\t2025-10-30 21:30:10.405657+00:00\n@@ -886,11 +886,11 @@\n             raise RuntimeError(message)\n         return Path(archive_root_raw).expanduser().resolve()\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "black failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m black . --line-length 88 --target-version py311 --check --diff started_at: 2025-10-\u2026",
+            "tool": "black",
+            "tool_version": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6"
+        },
+        {
+            "captured_at": "2025-10-30T21:30:12.175598+00:00",
+            "command": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+            "detail": {
+                "cached": false,
+                "cmd": [
+                    "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+                    "-m",
+                    "mypy",
+                    "--package",
+                    "x_make_slack_dump_and_reset_z",
+                    "--strict",
+                    "--no-warn-unused-configs",
+                    "--show-error-codes",
+                    "--warn-return-any",
+                    "--warn-unreachable",
+                    "--disallow-any-unimported",
+                    "--disallow-any-expr",
+                    "--disallow-any-decorated",
+                    "--disallow-any-explicit"
+                ],
+                "cmd_display": "C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit",
+                "cwd": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "duration_seconds": 1.4771923999069259,
+                "ended_at": "2025-10-30T21:30:12.175598+00:00",
+                "exit": 1,
+                "failed_files": [],
+                "files_checked": [
+                    "__init__.py",
+                    "__main__.py",
+                    "json_contracts/__init__.py",
+                    "tests/__init__.py",
+                    "tests/test_json_contracts.py",
+                    "tests/test_slack_dump_and_reset.py",
+                    "x_cls_make_slack_dump_and_reset_x.py"
+                ],
+                "repo": "x_make_slack_dump_and_reset_z",
+                "repo_hash": "508437343b3f1d432f42b89f1786bae73ff3a255e6161cd0440f2b9a8af28068",
+                "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+                "started_at": "2025-10-30T21:30:10.702096+00:00",
+                "stderr": "",
+                "stdout": "x_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1087: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1088: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1093: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1094: error: Expression has type \"Any\"  [misc]\nFound 9 errors in 1 file (checked 7 source files)\n",
+                "tool": "mypy",
+                "tool_module": "mypy",
+                "tool_version": "mypy 1.18.2 (compiled: yes)"
+            },
+            "exit": "exit 1",
+            "message": "mypy failed for x_make_slack_dump_and_reset_z (exit 1)\ncwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z\ncommand: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --show-error-codes --warn-return-any --warn-unreachable --disallow-any-unimported --disallow-any-expr --disallow-any-decorated --disallow-any-explicit\nstarted_at: 2025-10-30T21:30:10.702096+00:00\nduration: 1.477s\ntool_version: mypy 1.18.2 (compiled: yes)\nstdout:\nx_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\n\u2026\nstderr:\n<empty>",
+            "repo": "x_make_slack_dump_and_reset_z",
+            "repo_path": "C:\\x_runner_x\\x_make_slack_dump_and_reset_z",
+            "stderr_preview": null,
+            "stdout_preview": "x_cls_make_slack_dump_and_reset_x.py:120: error: Unused \"type: ignore\" comment  [unused-ignore]\nx_cls_make_slack_dump_and_reset_x.py:676: error: Expression type contains \"Any\" (has type \"list[Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression type contains \"Any\" (has type \"Callable[[Any], Any]\")  [misc]\nx_cls_make_slack_dump_and_reset_x.py:956: error: Expression has type \"Any\"  [misc]\nx_cls_make_slack_dump_and_reset_x.py:1074: error: Expression has type \"Any\"  [misc]\n\u2026",
+            "suggested_action": "Investigate",
+            "summary": "mypy failed for x_make_slack_dump_and_reset_z (exit 1) cwd: C:\\x_runner_x\\x_make_slack_dump_and_reset_z command: C:\\x_runner_x\\.venv\\Scripts\\python.exe -m mypy --package x_make_slack_dump_and_reset_z --strict --no-warn-unused-configs --sho\u2026",
+            "tool": "mypy",
+            "tool_version": "mypy 1.18.2 (compiled: yes)"
+        }
+    ],
+    "generated_at": "2025-10-30T21:30:17.880220+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\x_runner_x\\.venv\\Lib\\site-packages\\PySide6;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\HP\\HP One Agent;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-10-30T21:30:17.880220+00:00",
+        "run_started_at": "2025-10-30T21:25:50.699533+00:00",
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "overall_stats": {
+            "cache_hits": 51,
+            "cache_misses": 59,
+            "failed_tools": 14,
+            "had_failures": true,
+            "total_tools_run": 110
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f27bc31672a8034117b81d0063d1c9f5c222b469e1ce0ecd84b565a570a7471d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_venvs_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "aab97556cecaa26d836e8f909d66208e47f10f98842760b68016079475cac8d7",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0e7c0c6a52161dfe74b8462c82ebbc02e8a5e08c08a0ca55fd909dd08bab8432",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "9877cf2ef9b64be96fdf78360e30aad7f43c2edc4cc7ef735a5a8eeffd4ae933",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_capsula_calculus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "4bcde11d4f4e764c44772232ee06cc7ffdb5de7d70358d4235b11375078a4a33",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 2,
+                "failed": 0,
+                "repo_hash": "9fe8fa5da6bb7971aae3acb28f1cc21b176c9c0916997a30407b350986bb270b",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_cli_scaffolder_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "eca53b5f6788d463c547f748193535ebc0fafecf817dafa20f5496fddd5ff4c2",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_common_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "36370f984177f8c11806f6dbdb63b91a88a9ff45ee453ba8de86f58dfcf7ad68",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_contract_validators_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "9a6def1fb4e0410ea0cb3be40a64a9562dde5f345ecc0256778e1c2eb20cf405",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_clones_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "bdf6dbbcebbebb05082069f6300ac9c904b4b0df12e8a7a870901c2ba4b12048",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b0e5b786c2e652562f20a7f6dc731d1f949429aaa9774206e389521a9dc6948d",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_graphviz_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "11f50bd2173049d7ebe9b1f6b91ff25cf63c1d4edf531c7f098e1fbbbd380810",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_markdown_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "ebfb021d8e9336f67c244fec5511d7e8321f46946d6865decf8c992288ffe0a7",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_mermaid_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "f0ad607723e8bb9f766b3a622bdc4c6fb4861e178d4df508223b7ac7e32716ab",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "a2d989a79377c86db138b35d6a6a5431d51f6f852333e86663a30620b4be14cd",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0ae564b725d3a6b9b344a9c88cd0d67de8adc34493cfb806394d9872c9c51e58",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_progress_board_x": {
+                "cached": 0,
+                "failed": 4,
+                "repo_hash": "9c2888bab24ac8198521551bc9f73ff5d58c328b202aece65dc95fa75665d44c",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "e73d5c6b1f833a1bc453d3ce7914f2327f8f19e000001b529b78501356825512",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_py_venv_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "b6cdc9357da6d257d5d6c635b287d0f70d57a3b72c937661963eb18bcadcb68d",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "cba9cb385135033f71fbb502360716b6c82f6e1eadae052d533872263129691a",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_slack_dump_and_reset_z": {
+                "cached": 0,
+                "failed": 2,
+                "repo_hash": "508437343b3f1d432f42b89f1786bae73ff3a255e6161cd0440f2b9a8af28068",
+                "tools": {
+                    "black": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": false,
+                        "exit": 1,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": false,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            },
+            "x_make_yahw_x": {
+                "cached": 5,
+                "failed": 0,
+                "repo_hash": "33756efd77e902ab6182399ad7985b466cbfbc76fdc267da9a54f7b892e944f2",
+                "tools": {
+                    "black": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "mypy": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "pyright": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_check": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    },
+                    "ruff_fix": {
+                        "cached": true,
+                        "exit": 0,
+                        "timed_out": false
+                    }
+                }
+            }
+        },
+        "timestamp": "2025-10-30T21:30:17.880220+00:00",
+        "total_repos": 22
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.9.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.2"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}
