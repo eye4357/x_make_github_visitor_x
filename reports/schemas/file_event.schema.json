@@ -1,0 +1,46 @@
+{
+  "$id": "x_make_github_visitor_x.file_event.schema.json",
+  "title": "GitHub Visitor File Event",
+  "type": "object",
+  "required": ["schema", "emitted_at", "run_id", "event", "repo", "payload"],
+  "properties": {
+    "schema": {"const": "x_make_github_visitor_x.event/1.0"},
+    "emitted_at": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 8},
+    "event": {"const": "file"},
+    "repo": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object",
+      "required": ["path", "status", "issues", "duration_ms", "messages"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "enum": ["completed", "attention", "blocked"]},
+        "issues": {
+          "type": "object",
+          "required": ["ruff", "mypy", "black"],
+          "properties": {
+            "ruff": {"type": "integer", "minimum": 0},
+            "mypy": {"type": "integer", "minimum": 0},
+            "black": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": false
+        },
+        "duration_ms": {"type": "integer", "minimum": 0},
+        "messages": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 25
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

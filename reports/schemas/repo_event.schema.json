@@ -1,0 +1,46 @@
+{
+  "$id": "x_make_github_visitor_x.repo_event.schema.json",
+  "title": "GitHub Visitor Repo Event",
+  "type": "object",
+  "required": ["schema", "emitted_at", "run_id", "event", "repo", "payload"],
+  "properties": {
+    "schema": {"const": "x_make_github_visitor_x.event/1.0"},
+    "emitted_at": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 8},
+    "event": {"const": "repo"},
+    "repo": {
+      "type": "object",
+      "required": ["id", "display"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "display": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object",
+      "required": ["status", "summary", "messages"],
+      "properties": {
+        "status": {"type": "string", "enum": ["completed", "attention", "blocked"]},
+        "summary": {
+          "type": "object",
+          "required": ["files", "errors", "warnings", "duration_s"],
+            "properties": {
+              "files": {"type": "integer", "minimum": 0},
+              "errors": {"type": "integer", "minimum": 0},
+              "warnings": {"type": "integer", "minimum": 0},
+              "duration_s": {"type": "number", "minimum": 0}
+            },
+            "additionalProperties": false
+        },
+        "messages": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 25
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -39,6 +39,40 @@ The active fast paths appear in generated JSON under `runtime.fast_paths` and in
 
 The runner discovers immediate child clones, executes the tool suite, and drops a timestamped JSON dossier under `reports/`. The orchestrator and GUI expect those artefacts in that location.
 
+### Streaming Mode (Incremental Events)
+In streaming mode the visitor emits **line-delimited JSON (NDJSON)** events while parsing instead of waiting to produce one monolithic end-of-run report. This accelerates GUI feedback and enables real-time orchestration decisions.
+
+| Event Type | Emitted When | Schema | Purpose |
+|------------|--------------|--------|---------|
+| `file` | After each file analysis | `reports/schemas/file_event.schema.json` | Surfaces per-file issues early |
+| `repo` | After finishing a repository scan | `reports/schemas/repo_event.schema.json` | Summarizes repo-level status and counts |
+| `rotate` | When the NDJSON stream file exceeds size threshold | (implicit control event) | Signals tailer to reopen next segment |
+
+**Stream path:** `reports/events/visitor_events.ndjson` (single writer, fsync per line). Per-repo and per-file shards may also be mirrored under `reports/visitor_streams/` for recovery.
+
+**Enable streaming:** set `VISITOR_STREAMING=1` (or future CLI flag `--stream`). Disable with `VISITOR_STREAMING=0` to revert legacy single-summary behavior.
+
+Each event envelope includes:
+```
+{
+	"schema": "x_make_github_visitor_x.event/1.0",
+	"emitted_at": "2025-11-08T19:12:34Z",
+	"run_id": "<uuid>",
+	"event": "file|repo|rotate",
+	"repo": {"id": "x_make_common_x", "display": "x_make_common_x"},
+	"payload": { ... }
+}
+```
+
+The orchestrator tailer validates each event with `x_make_common_x.json_contracts.validate_payload` and upserts progress indices for immediate GUI refresh. Final summary JSON still persists for archival and hash reconciliation.
+
+**Color semantics downstream:**
+`completed` = green, `attention` = yellow (issues but finished), `blocked` = red (hard failure). Only `completed` marks a stage fully done.
+
+**Advantages:** lower perceived latency, early triage, resilience (partial progress survives crashes), future astrocyte network readiness.
+
+**Fallback:** If file system permissions prevent stream creation the visitor automatically reverts to legacy mode and logs a single summary report.
+
 ## Evidence Checks
 | Check | Command |
 | --- | --- |

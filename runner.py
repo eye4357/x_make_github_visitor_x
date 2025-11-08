@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import time
+import uuid
 from collections.abc import Iterable, Mapping, MutableMapping, Sequence
 from contextlib import suppress
 from dataclasses import dataclass
@@ -243,6 +244,13 @@ def _dedupe_preserving_order(values: Iterable[str]) -> list[str]:
     return unique
 
 
+def _generate_run_id() -> str:
+    """Return a short unique run identifier for streaming envelopes."""
+    dt_part = datetime.now(UTC).strftime("%Y%m%d%H%M%S")
+    rand_part = uuid.uuid4().hex[:8]
+    return f"run_{dt_part}_{rand_part}"
+
+
 def _is_generated_build_dir(name: str) -> bool:
     return any(name.startswith(prefix) for prefix in GENERATED_BUILD_DIR_PREFIXES)
 
@@ -276,6 +284,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         allowed_repositories: Sequence[str] | None = None,
         file_allowlist: Mapping[str, Sequence[str]] | None = None,
         progress_writer: RepoProgressReporter | None = None,
+        stream_events: bool | None = None,
     ) -> None:
         """Initialize visitor.
 
@@ -351,6 +360,125 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 if normalized_files:
                     file_allowance[normalized_repo] = frozenset(normalized_files)
         self._file_allowlist: dict[str, frozenset[str]] = file_allowance
+
+        # ------------- Streaming event state (experimental) -------------
+        if stream_events is None:
+            env_value = os.environ.get("VISITOR_STREAMING", "").strip().lower()
+            stream_events = env_value in {"1", "true", "yes", "on"}
+        self._stream_events = bool(stream_events)
+        self._event_run_id: str | None = _generate_run_id() if self._stream_events else None
+        # Events live under reports/events/visitor_events.ndjson to co-locate with existing JSON reports
+        self._event_dir = self.package_root / REPORTS_DIR_NAME / "events"
+        self._event_stream_path = self._event_dir / "visitor_events.ndjson"
+        if self._stream_events:
+            with suppress(OSError):
+                self._event_dir.mkdir(parents=True, exist_ok=True)
+
+    # ------------------------------------------------------------------
+    # Streaming helpers
+    # ------------------------------------------------------------------
+    def _emit_stream_event(self, envelope: Mapping[str, object]) -> None:
+        if not self._stream_events or self._event_run_id is None:
+            return
+        base: dict[str, object] = {
+            "schema": "x_make_github_visitor_x.event/1.0",
+            "emitted_at": datetime.now(UTC).isoformat(),
+            "run_id": self._event_run_id,
+        }
+        base.update(dict(envelope))
+        line = json.dumps(base, ensure_ascii=False)
+        try:
+            with self._event_stream_path.open("a", encoding="utf-8") as handle:
+                handle.write(line + "\n")
+                handle.flush()
+                with suppress(OSError):
+                    os.fsync(handle.fileno())
+        except OSError:
+            # Hard degrade: disable further streaming attempts this run
+            self._stream_events = False
+
+    def _emit_repo_event(
+        self,
+        *,
+        repo: RepoContext,
+        phase: str,
+        status: str | None = None,
+        summary: Mapping[str, object] | None = None,
+        messages: Sequence[str] | None = None,
+    ) -> None:
+        if not self._stream_events:
+            return
+        payload: dict[str, object] = {
+            "event": "repo",
+            "phase": phase,
+            "repo": repo.rel_path,
+        }
+        if status is not None:
+            payload["status"] = status
+        if summary is not None:
+            payload["summary"] = dict(summary)
+        if messages:
+            payload["messages"] = list(messages)
+        self._emit_stream_event(payload)
+
+    def _emit_tool_stream_event(
+        self,
+        *,
+        repo: RepoContext,
+        config: ToolConfig,
+        status: str,
+        result: Mapping[str, object] | None = None,
+        summary: str | None = None,
+        failures: Sequence[Mapping[str, object]] | None = None,
+    ) -> None:
+        if not self._stream_events:
+            return
+        payload: dict[str, object] = {
+            "event": "tool",
+            "repo": repo.rel_path,
+            "tool": config.name,
+            "status": status,
+        }
+        if summary:
+            payload["summary"] = summary
+        if failures:
+            payload["failures"] = [dict(f) for f in failures]
+        if result is not None:
+            # Include lightweight subset to limit file growth
+            subset: dict[str, object] = {}
+            for key in (
+                "exit",
+                "cached",
+                "skipped",
+                "timed_out",
+                "duration_seconds",
+                "repo_hash",
+                "tool_version",
+            ):
+                val = result.get(key)
+                if val is not None:
+                    subset[key] = val
+            payload["result"] = subset
+        self._emit_stream_event(payload)
+
+    def _emit_run_event(
+        self,
+        *,
+        phase: str,
+        repositories: Sequence[str] | None = None,
+        summary: Mapping[str, object] | None = None,
+    ) -> None:
+        if not self._stream_events:
+            return
+        payload: dict[str, object] = {
+            "event": "run",
+            "phase": phase,
+        }
+        if repositories is not None:
+            payload["repositories"] = list(repositories)
+        if summary is not None:
+            payload["summary"] = dict(summary)
+        self._emit_stream_event(payload)
 
     @staticmethod
     def _detect_fast_paths() -> dict[str, bool]:
@@ -825,6 +953,15 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             _LOGGER.warning("%s | details=%s", message, log_data)
         else:
             _LOGGER.debug("%s | details=%s", message, log_data)
+        # Streaming mirror (tool-level)
+        self._emit_tool_stream_event(
+            repo=payload.repo,
+            config=payload.config,
+            status=payload.status,
+            result=payload.result,
+            summary=payload.summary,
+            failures=failure_entries if failure_entries else None,
+        )
 
     def _process_repository(
         self,
@@ -877,6 +1014,8 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         failure_details: list[dict[str, object]] = []
 
         configs = self._tool_configurations(python)
+        # Emit repo start streaming event
+        self._emit_repo_event(repo=repo_context, phase="start")
         for index, config in enumerate(configs, 1):
             outcome = self._run_tool_for_repo(
                 repo=repo_context,
@@ -897,12 +1036,26 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "files": repo_files,
         }
 
-        return RepoProcessingResult(
+        result_obj = RepoProcessingResult(
             relative_name=repo_context.rel_path,
             report=repo_report,
             failure_messages=failure_messages,
             failure_details=failure_details,
         )
+        # Emit repo completion streaming event
+        status = "failed" if failure_messages else "succeeded"
+        summary_payload = {
+            "failed_tools": len(failure_messages),
+            "tool_count": len(configs),
+        }
+        self._emit_repo_event(
+            repo=repo_context,
+            phase="complete",
+            status=status,
+            summary=summary_payload,
+            messages=failure_messages if failure_messages else None,
+        )
+        return result_obj
 
     def _build_skip_outcome(
         self,
@@ -1748,12 +1901,20 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "visitor discovery:",
             f"found {len(repo_names)} repositories under {self.root}",
         )
+        # Streaming run start
+        self._emit_run_event(phase="start", repositories=repo_names)
 
         self._remove_legacy_json_reports()
         self.body(children=children)
         report_path = self._write_json_failure_report()
         self.cleanup()
         self._finalize_run_result(report_path)
+        # Streaming run complete with overall summary
+        try:
+            overall_summary = self.generate_summary_report()
+        except Exception:  # pragma: no cover - defensive
+            overall_summary = {"error": "summary_generation_failed"}
+        self._emit_run_event(phase="complete", summary=overall_summary)
 
     @property
     def last_report_path(self) -> Path | None:
