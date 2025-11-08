@@ -18,7 +18,24 @@ I built this visitor to walk every clone, interrogate it with Ruff, Black, MyPy,
 2. `\.venv\Scripts\Activate.ps1`
 3. `python -m pip install --upgrade pip`
 4. `pip install -r requirements.txt`
-5. `python -m x_make_github_visitor_x.runner`
+5. `python -m x_make_github_visitor_x.runner` (add acceleration flags as needed)
+
+### Acceleration / Fast Paths
+For rapid iterative inspection cycles you can engage selective fast paths via CLI flags (they set corresponding `VISITOR_*` environment variables and are recorded for traceability in the runtime snapshot and summary):
+
+| Flag | Effect | Env Var | Traceability Key |
+|------|--------|---------|------------------|
+| `--quick` | Skips all tool execution (files discovered only) | `VISITOR_QUICK_MODE` | `quick_mode` |
+| `--skip-content-hash` | Bypasses per-file hashing (uses path-derived placeholder) | `VISITOR_SKIP_CONTENT_HASH` | `skip_content_hash` |
+| `--skip-tools` | Runs only a lightweight Pyright error-level scan | `VISITOR_SKIP_TOOLS` | `skip_tools` |
+
+Example (PowerShell):
+
+```
+python -m x_make_github_visitor_x.runner --quick --skip-content-hash --skip-tools
+```
+
+The active fast paths appear in generated JSON under `runtime.fast_paths` and in the summary as `fast_paths_active`.
 
 The runner discovers immediate child clones, executes the tool suite, and drops a timestamped JSON dossier under `reports/`. The orchestrator and GUI expect those artefacts in that location.
 

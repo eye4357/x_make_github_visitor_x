@@ -352,6 +352,18 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                     file_allowance[normalized_repo] = frozenset(normalized_files)
         self._file_allowlist: dict[str, frozenset[str]] = file_allowance
 
+    @staticmethod
+    def _detect_fast_paths() -> dict[str, bool]:
+        def enabled(name: str) -> bool:
+            val = os.environ.get(name, "").strip().lower()
+            return val in {"1", "true", "yes", "on"}
+
+        return {
+            "skip_content_hash": enabled("VISITOR_SKIP_CONTENT_HASH"),
+            "skip_tools": enabled("VISITOR_SKIP_TOOLS"),
+            "quick_mode": enabled("VISITOR_QUICK_MODE"),
+        }
+
     def _child_dirs(self) -> list[Path]:
         """Return immediate child directories excluding hidden and cache dirs.
 
@@ -432,11 +444,30 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _repo_content_hash(self, repo_path: Path) -> str:
         """Return a deterministic hash of repository contents for caching."""
-        hasher = hashlib.sha256()
-        for index, p in enumerate(sorted(repo_path.rglob("*")), 1):
-            _yield_periodically(index, interval=_FILE_SCAN_YIELD_INTERVAL)
-            if not p.is_file():
+        # Fast-path: allow environment flag VISITOR_SKIP_CONTENT_HASH to bypass
+        # expensive hashing for large iterative inspection runs. Returns a stable
+        # placeholder derived from repo path for cache key segregation without
+        # per-file IO.
+        fast_flag = os.environ.get("VISITOR_SKIP_CONTENT_HASH", "").strip().lower()
+        if fast_flag in {"1", "true", "yes", "on"}:
+            placeholder = hashlib.sha256(str(repo_path).encode("utf-8")).hexdigest()
+            _LOGGER.debug(
+                "skip-content-hash fast path engaged for %s (placeholder=%s, flag=%s)",
+                repo_path.name,
+                placeholder[:12],
+                fast_flag,
+            )
+            return placeholder
 
+        hasher = hashlib.sha256()
+        # Micro-optimisation: materialize directory listing once to avoid repeated
+        # generator churn; still stable ordering.
+        entries = list(repo_path.rglob("*"))
+        for index, p in enumerate(sorted(entries), 1):
+            # Reduced yield frequency for speed during hashing
+            if index % 250 == 0:
+                _cooperative_yield()
+            if not p.is_file():
                 continue
             if ".git" in p.parts or "__pycache__" in p.parts:
                 continue
@@ -481,6 +512,13 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "workspace_root": str(self.root),
         }
 
+        # Traceability: record which acceleration flags (fast paths) are active.
+        fast_paths = self._detect_fast_paths()
+        self._runtime_snapshot["fast_paths"] = dict(fast_paths)
+        active_fast_paths = [name for name, enabled in fast_paths.items() if enabled]
+        if active_fast_paths:
+            self._runtime_snapshot["fast_paths_active"] = active_fast_paths
+
         env_snapshot = {
             key: os.environ.get(key)
             for key in ("PATH", "PYTHONPATH", "VIRTUAL_ENV")
@@ -493,6 +531,29 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         _cooperative_yield()
 
     def _tool_configurations(self, python: str) -> list[ToolConfig]:
+        # Fast-path skip: if VISITOR_SKIP_TOOLS is set truthy, return only a
+        # lightweight pyright check to drastically reduce run time. This pairs
+        # with VISITOR_SKIP_CONTENT_HASH for rapid inspection cycles.
+        if os.environ.get("VISITOR_SKIP_TOOLS", "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }:
+            return [
+                ToolConfig(
+                    name="pyright",
+                    command=[
+                        python,
+                        "-m",
+                        "pyright",
+                        ".",
+                        "--level",
+                        "error",
+                    ],
+                    skip_if_no_python=True,
+                )
+            ]
         return [
             ToolConfig(
                 name="ruff_fix",
@@ -776,6 +837,33 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         rel = str(repo_path.relative_to(self.root))
         repo_hash = self._repo_content_hash(repo_path)
         repo_files = self._collect_repo_files(repo_path)
+        # Quick mode: skip tool execution entirely for speed; emit a minimal report
+        # capturing file discovery only. Intended for inspection-only fast passes.
+        if os.environ.get("VISITOR_QUICK_MODE", "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }:
+            repo_context = RepoContext(
+                path=repo_path,
+                rel_path=rel,
+                repo_hash=repo_hash,
+                has_python=bool(repo_files),
+                files=tuple(repo_files),
+            )
+            repo_report: RepoReport = {
+                "timestamp": datetime.now(UTC).isoformat(),
+                "repo_hash": repo_context.repo_hash,
+                "tool_reports": {},
+                "files": repo_files,
+            }
+            return RepoProcessingResult(
+                relative_name=repo_context.rel_path,
+                report=repo_report,
+                failure_messages=[],
+                failure_details=[],
+            )
         repo_context = RepoContext(
             path=repo_path,
             rel_path=rel,
@@ -1454,11 +1542,19 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             _cooperative_yield()
         return versions
 
-    def body(self, *, children: Iterable[Path] | None = None) -> None:
+    def body(self, *, children: Iterable[Path] | None = None) -> None:  # noqa: C901 - orchestration clarity prioritized over refactor
         """Run ruff/black/mypy/pyright against each child repository."""
 
         python = sys.executable
         self._prepare_environment(python, REQUIRED_PACKAGES)
+
+        # Traceability: record selected tools based on current acceleration flags.
+        try:
+            selected = [cfg.name for cfg in self._tool_configurations(python)]
+        except (RuntimeError, ValueError, TypeError):
+            selected = []
+        if selected:
+            self._runtime_snapshot["selected_tools"] = list(selected)
 
         reports: dict[str, RepoReport] = {}
         failure_messages: list[str] = []
@@ -1573,6 +1669,12 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             "overall_stats": overall_stats,
             "repos": repos_section,
         }
+        # Surface acceleration flag usage in summary for downstream traceability.
+        fast_paths = self._detect_fast_paths()
+        summary["fast_paths"] = dict(fast_paths)
+        summary["fast_paths_active"] = [
+            name for name, enabled in fast_paths.items() if enabled
+        ]
         for repo_name, report in self._tool_reports.items():
             tools_summary: dict[str, dict[str, object]] = {}
             repo_summary: dict[str, object] = {
@@ -2028,6 +2130,21 @@ def _run_json_cli(args: Sequence[str]) -> None:
         type=str,
         help="Path to JSON payload file",
     )
+    parser.add_argument(
+        "--quick",
+        action="store_true",
+        help="Engage quick mode (skip tool execution; repo/file discovery only).",
+    )
+    parser.add_argument(
+        "--skip-content-hash",
+        action="store_true",
+        help="Skip computing repository content hashes (use path-derived placeholder).",
+    )
+    parser.add_argument(
+        "--skip-tools",
+        action="store_true",
+        help="Run only lightweight pyright check instead of full toolchain.",
+    )
     parsed = parser.parse_args(list(args))
 
     json_attr: object = getattr(parsed, "json", False)
@@ -2040,6 +2157,14 @@ def _run_json_cli(args: Sequence[str]) -> None:
 
     if not json_flag and json_file is None:
         parser.error("JSON input required. Use --json for stdin or --json-file <path>.")
+
+    # Apply acceleration flags via environment before running
+    if parsed.quick:
+        os.environ["VISITOR_QUICK_MODE"] = "1"
+    if parsed.skip_content_hash:
+        os.environ["VISITOR_SKIP_CONTENT_HASH"] = "1"
+    if parsed.skip_tools:
+        os.environ["VISITOR_SKIP_TOOLS"] = "1"
 
     payload = _load_json_payload(json_file)
     result = main_json(payload)
@@ -2161,9 +2286,43 @@ __all__ = [
 
 
 if __name__ == "__main__":
+    # Support both JSON payload mode and acceleration CLI flags.
     if any(arg in {"--json", "--json-file"} for arg in sys.argv[1:]):
         _run_json_cli(sys.argv[1:])
     else:
+        parser = argparse.ArgumentParser(
+            description=(
+                "x_make_github_visitor_x workspace inspection runner "
+                "with acceleration flags"
+            )
+        )
+        parser.add_argument(
+            "--quick",
+            action="store_true",
+            help="Engage quick mode (skip tool execution; repo/file discovery only).",
+        )
+        parser.add_argument(
+            "--skip-content-hash",
+            action="store_true",
+            help=(
+                "Skip computing repository content hashes (use path-"
+                "derived placeholder)."
+            ),
+        )
+        parser.add_argument(
+            "--skip-tools",
+            action="store_true",
+            help="Run only lightweight pyright check instead of full toolchain.",
+        )
+        parsed, remaining = parser.parse_known_args(sys.argv[1:])
+
+        if parsed.quick:
+            os.environ["VISITOR_QUICK_MODE"] = "1"
+        if parsed.skip_content_hash:
+            os.environ["VISITOR_SKIP_CONTENT_HASH"] = "1"
+        if parsed.skip_tools:
+            os.environ["VISITOR_SKIP_TOOLS"] = "1"
+
         inst = init_main()
         inst.run_inspect_flow()
         summary = inst.generate_summary_report()
