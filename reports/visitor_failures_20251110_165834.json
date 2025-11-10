@@ -1,0 +1,251 @@
+{
+    "failures": [],
+    "generated_at": "2025-11-10T16:58:34.693279+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\HP\\HP One Agent;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "fast_paths": {
+            "quick_mode": true,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "fast_paths_active": [
+            "quick_mode"
+        ],
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\x_runner_x\\.venv\\Scripts\\python.exe",
+        "python_version": "3.12.6 (main, Sep  9 2024, 20:50:27) [MSC v.1929 64 bit (AMD64)]",
+        "run_completed_at": "2025-11-10T16:58:34.693279+00:00",
+        "run_started_at": "2025-11-10T16:55:07.260863+00:00",
+        "selected_tools": [
+            "ruff_fix",
+            "black",
+            "ruff_check",
+            "mypy",
+            "pyright"
+        ],
+        "workspace_root": "C:\\x_runner_x"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "fast_paths": {
+            "quick_mode": true,
+            "skip_content_hash": false,
+            "skip_tools": false
+        },
+        "fast_paths_active": [
+            "quick_mode"
+        ],
+        "overall_stats": {
+            "cache_hits": 0,
+            "cache_misses": 0,
+            "failed_tools": 0,
+            "had_failures": false,
+            "total_tools_run": 0
+        },
+        "repos": {
+            "x_0_make_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "39f48f1b5e564db3cddd740bb96f60de8b9890b3c56e6435e5833ac3abe4904a",
+                "tools": {}
+            },
+            "x_0_make_ppnw_dot_ai_change_control_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f2a122364bb2cffc83e02ee52b509e8cd5bfe237659d861ee6f9fb6e30206010",
+                "tools": {}
+            },
+            "x_0_make_ppnw_dot_ai_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "63ce87f2e9b86123756d1e4f4f5dfc9606f4a6b228e3476bd051c4eb3a1e7b4f",
+                "tools": {}
+            },
+            "x_0_run_all_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "8cc5efb37d8f4861bf83f41f6cfa23773a56fb2c8f099e8af36c9d8a02317384",
+                "tools": {}
+            },
+            "x_legatus_acta_schedae_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "db08d6df9b643942509d6a0f2551f6d77be358c5b8ec8deabebc3a959c089e75",
+                "tools": {}
+            },
+            "x_legatus_caecus_orator_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "23dd6d757c2aec0a86d92b8df6c417f9e9055047c8ef05e00e4fddbdb1def01a",
+                "tools": {}
+            },
+            "x_legatus_canis_cursor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "6a26af6b2bda8baa46b7a6c98b2b6225ffa8e460384081460eb4e89d17784e72",
+                "tools": {}
+            },
+            "x_legatus_capsula_calculus_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a4494544cf62f34d337ccace5685ad36a861faf5ab124bdae9a8d5109d6ea340",
+                "tools": {}
+            },
+            "x_legatus_catena_sensus_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f352436a9d91e952521e38f3dbe51c28c42370efc0dd90b178c47dd6f6961c7f",
+                "tools": {}
+            },
+            "x_legatus_celer_notitia_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0810338c6733aecf8c5ef3ce5493ac9a58754f1e8cf8f0cb0bd57afdaefae195",
+                "tools": {}
+            },
+            "x_legatus_multipes_explorator_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "3260f3efbf898c654e6807a2fe4ec28b5781008156eecefedbf5aeed8c0fa4a8",
+                "tools": {}
+            },
+            "x_legatus_officina_automatarum_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "201b8c7832b99a5c25fa1939182725079a084acf6ada849cebf2f2ae8a4dfcd8",
+                "tools": {}
+            },
+            "x_legatus_pulsus_astra_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "de09c9ded5c4bc8237e94701fab593c9a29fa06fdc061a07786b8e1b8d3e9f9c",
+                "tools": {}
+            },
+            "x_legatus_tactica_impetus_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "57a2c73f06d5e2c79b1ae62ca03d79dd660e514d5c9b6f3ac97e79c2a3de48ba",
+                "tools": {}
+            },
+            "x_legatus_vigil_nexus_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b74c554e5998285a0459ef8f24ab5041d3030a9519ba46b868908137367b1438",
+                "tools": {}
+            },
+            "x_make_astrocyte_gateway_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "f7e333c1d52e3f9fd0ccf5782076163d818842b68f5a245a1bf3a1a59ede550a",
+                "tools": {}
+            },
+            "x_make_cli_scaffolder_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "8200dad80d28ebcaf790a05d8b94306475d570d34626a2a7e1beb1a625004448",
+                "tools": {}
+            },
+            "x_make_common_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "b1835497a329ed660c4701a0dcc1b0e2aa3a820c46a85574b2626bb1e08c4f9c",
+                "tools": {}
+            },
+            "x_make_contract_validators_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "382023c4f879dfe465d568aa5ae1e2854c0dd33f38472b7d7416215db6525045",
+                "tools": {}
+            },
+            "x_make_github_clones_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "ad25dd96c44ec5ad36735ceef05f170de7424bb5cc504c114590b237cbc36c59",
+                "tools": {}
+            },
+            "x_make_github_visitor_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "5dc375cb60159c22d4e1867ac882b3283edeb90971f17d081fec1c1df62ce0b9",
+                "tools": {}
+            },
+            "x_make_graphviz_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "e4ec8a2cdabb2af74f9d8481a35d0c5f3c6950acf9a9f3a43a926f6f10e275a3",
+                "tools": {}
+            },
+            "x_make_markdown_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "07db07e96ac8321ff2f1f55eeab30a5ac94a7cdfeb0d7711233ff8d946b08b3f",
+                "tools": {}
+            },
+            "x_make_mermaid_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "dfbd3d499bf1b9bda92a990949c0cb433260ebe26a3978dee084068ce4c5fb77",
+                "tools": {}
+            },
+            "x_make_persistent_env_var_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "91945fb15fb6918ac7684ff60403489aabeb29fb0ec0c9086287dd6334b04398",
+                "tools": {}
+            },
+            "x_make_pip_updates_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "60935fe84f4d97ca65bba4415f3cad1b85f068145b9b5615647bf160022c7f60",
+                "tools": {}
+            },
+            "x_make_progress_board_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "6f50b449a9683219dfadba75fd41b587fa1121aef91d69b1be38a2fbbe7e4e87",
+                "tools": {}
+            },
+            "x_make_py_mod_sideload_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "14d451ed4e66f86853ccc008ef49ff533e402d95797dcf82b1445eaac58bebf3",
+                "tools": {}
+            },
+            "x_make_py_venv_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "874f1fdb475cc41097740ae95445b0b422e11ba091767b2642db583a2f2411b0",
+                "tools": {}
+            },
+            "x_make_pypi_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "0dd99bd709ee7f6bf4021a8f9ec242a87cde83b16ab50846e8e920d169d0a450",
+                "tools": {}
+            },
+            "x_make_slack_dump_and_reset_z": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "e71bda5aecbbcfe500ef9423d56e70d64406a3c9ae825017d29209a4c7ae4ce3",
+                "tools": {}
+            },
+            "x_make_yahw_x": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "76aeca16a02ac4849d025a328954ad513eb8faa46091318514ab30e829b3e790",
+                "tools": {}
+            }
+        },
+        "timestamp": "2025-11-10T16:58:34.702296+00:00",
+        "total_repos": 32
+    },
+    "tool_versions": {
+        "black": "python -m black, 25.11.0 (compiled: yes)\nPython (CPython) 3.12.6",
+        "mypy": "mypy 1.18.2 (compiled: yes)",
+        "pyright": "pyright 1.1.407",
+        "ruff": "ruff 0.14.4"
+    },
+    "workspace_root": "C:\\x_runner_x"
+}

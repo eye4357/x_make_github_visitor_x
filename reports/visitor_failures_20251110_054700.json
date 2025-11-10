@@ -1,0 +1,65 @@
+{
+    "failures": [],
+    "generated_at": "2025-11-10T05:47:00.113924+00:00",
+    "runtime": {
+        "environment": {
+            "PATH": "C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\HP\\HP One Agent;C:\\Program Files\\Git\\cmd;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\eye43\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64;C:\\x_runner_x\\tools\\node-v20.11.1-win-x64\\node-v20.11.1-win-x64\\node_modules\\npm\\bin;C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\Scripts;c:\\Users\\eye43\\.vscode\\extensions\\ms-python.debugpy-2025.14.1-win32-x64\\bundled\\scripts\\noConfigScripts;c:\\Users\\eye43\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        },
+        "fast_paths": {
+            "quick_mode": true,
+            "skip_content_hash": true,
+            "skip_tools": true
+        },
+        "fast_paths_active": [
+            "skip_content_hash",
+            "skip_tools",
+            "quick_mode"
+        ],
+        "platform": "Windows-11-10.0.26100-SP0",
+        "python_executable": "C:\\Users\\eye43\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "run_completed_at": "2025-11-10T05:47:00.113392+00:00",
+        "run_started_at": "2025-11-10T05:46:59.985482+00:00",
+        "selected_tools": [
+            "pyright"
+        ],
+        "workspace_root": "C:\\Users\\eye43\\AppData\\Local\\Temp\\pytest-of-eye43\\pytest-186\\test_runtime_snapshot_records_0\\workspace"
+    },
+    "schema_version": "1.0",
+    "summary": {
+        "fast_paths": {
+            "quick_mode": true,
+            "skip_content_hash": true,
+            "skip_tools": true
+        },
+        "fast_paths_active": [
+            "skip_content_hash",
+            "skip_tools",
+            "quick_mode"
+        ],
+        "overall_stats": {
+            "cache_hits": 0,
+            "cache_misses": 0,
+            "failed_tools": 0,
+            "had_failures": false,
+            "total_tools_run": 0
+        },
+        "repos": {
+            "child_repo": {
+                "cached": 0,
+                "failed": 0,
+                "repo_hash": "a550719e53997783080a15308db8e1ae0797887e7a3887ab7cdbd69a812ebc3f",
+                "tools": {}
+            }
+        },
+        "timestamp": "2025-11-10T05:47:00.113982+00:00",
+        "total_repos": 1
+    },
+    "tool_versions": {
+        "black": "<no output>",
+        "mypy": "<no output>",
+        "pyright": "<no output>",
+        "ruff": "<no output>"
+    },
+    "workspace_root": "C:\\Users\\eye43\\AppData\\Local\\Temp\\pytest-of-eye43\\pytest-186\\test_runtime_snapshot_records_0\\workspace"
+}

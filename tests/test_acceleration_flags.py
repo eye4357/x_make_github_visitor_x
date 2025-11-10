@@ -1,4 +1,5 @@
 """Acceleration flag traceability tests."""
+
 # ruff: noqa: S101,TC003
 
 from __future__ import annotations

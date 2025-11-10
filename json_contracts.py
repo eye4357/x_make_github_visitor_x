@@ -79,6 +79,17 @@ _SUMMARY_SCHEMA: dict[str, object] = {
             "type": "object",
             "additionalProperties": _REPO_SUMMARY_SCHEMA,
         },
+        "fast_paths": {
+            "type": "object",
+            "patternProperties": {
+                ".+": {"type": "boolean"},
+            },
+            "additionalProperties": False,
+        },
+        "fast_paths_active": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+        },
     },
     "required": ["timestamp", "total_repos", "overall_stats", "repos"],
     "additionalProperties": False,

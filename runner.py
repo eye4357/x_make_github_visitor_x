@@ -366,8 +366,11 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             env_value = os.environ.get("VISITOR_STREAMING", "").strip().lower()
             stream_events = env_value in {"1", "true", "yes", "on"}
         self._stream_events = bool(stream_events)
-        self._event_run_id: str | None = _generate_run_id() if self._stream_events else None
-        # Events live under reports/events/visitor_events.ndjson to co-locate with existing JSON reports
+        self._event_run_id: str | None = (
+            _generate_run_id() if self._stream_events else None
+        )
+        # Events live under reports/events/visitor_events.ndjson so they remain
+        # co-located with the existing JSON reports.
         self._event_dir = self.package_root / REPORTS_DIR_NAME / "events"
         self._event_stream_path = self._event_dir / "visitor_events.ndjson"
         if self._stream_events:
@@ -423,26 +426,24 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
 
     def _emit_tool_stream_event(
         self,
+        event: _ToolEventPayload,
         *,
-        repo: RepoContext,
-        config: ToolConfig,
-        status: str,
-        result: Mapping[str, object] | None = None,
-        summary: str | None = None,
         failures: Sequence[Mapping[str, object]] | None = None,
     ) -> None:
         if not self._stream_events:
             return
         payload: dict[str, object] = {
             "event": "tool",
-            "repo": repo.rel_path,
-            "tool": config.name,
-            "status": status,
+            "repo": event.repo.rel_path,
+            "tool": event.config.name,
+            "status": event.status,
         }
-        if summary:
-            payload["summary"] = summary
-        if failures:
-            payload["failures"] = [dict(f) for f in failures]
+        if event.summary:
+            payload["summary"] = event.summary
+        active_failures = failures or event.failures
+        if active_failures:
+            payload["failures"] = [dict(f) for f in active_failures]
+        result = event.result
         if result is not None:
             # Include lightweight subset to limit file growth
             subset: dict[str, object] = {}
@@ -955,11 +956,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             _LOGGER.debug("%s | details=%s", message, log_data)
         # Streaming mirror (tool-level)
         self._emit_tool_stream_event(
-            repo=payload.repo,
-            config=payload.config,
-            status=payload.status,
-            result=payload.result,
-            summary=payload.summary,
+            payload,
             failures=failure_entries if failure_entries else None,
         )
 
@@ -989,7 +986,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
                 has_python=bool(repo_files),
                 files=tuple(repo_files),
             )
-            repo_report: RepoReport = {
+            quick_repo_report: RepoReport = {
                 "timestamp": datetime.now(UTC).isoformat(),
                 "repo_hash": repo_context.repo_hash,
                 "tool_reports": {},
@@ -997,7 +994,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             }
             return RepoProcessingResult(
                 relative_name=repo_context.rel_path,
-                report=repo_report,
+                report=quick_repo_report,
                 failure_messages=[],
                 failure_details=[],
             )
@@ -1695,7 +1692,9 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             _cooperative_yield()
         return versions
 
-    def body(self, *, children: Iterable[Path] | None = None) -> None:  # noqa: C901 - orchestration clarity prioritized over refactor
+    def body(
+        self, *, children: Iterable[Path] | None = None
+    ) -> None:
         """Run ruff/black/mypy/pyright against each child repository."""
 
         python = sys.executable
@@ -1912,8 +1911,11 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
         # Streaming run complete with overall summary
         try:
             overall_summary = self.generate_summary_report()
-        except Exception:  # pragma: no cover - defensive
-            overall_summary = {"error": "summary_generation_failed"}
+        except (KeyError, TypeError, ValueError) as exc:  # pragma: no cover - defensive
+            overall_summary = {
+                "error": "summary_generation_failed",
+                "detail": str(exc),
+            }
         self._emit_run_event(phase="complete", summary=overall_summary)
 
     @property
