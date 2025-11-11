@@ -1692,9 +1692,7 @@ class x_cls_make_github_visitor_x:  # noqa: N801 - legacy naming retained for co
             _cooperative_yield()
         return versions
 
-    def body(
-        self, *, children: Iterable[Path] | None = None
-    ) -> None:
+    def body(self, *, children: Iterable[Path] | None = None) -> None:  # noqa: C901
         """Run ruff/black/mypy/pyright against each child repository."""
 
         python = sys.executable
