@@ -465,6 +465,9 @@ def _load_visitor_runner(
     module_name = cast("str | None", getattr(visitor_factory, "__module__", None))
     if not isinstance(module_name, str):
         return None
+    disable_runner_env = os.environ.get("VISITOR_DISABLE_RUNNER", "").strip().lower()
+    if disable_runner_env in {"1", "true", "yes", "on"}:
+        return None
     try:
         module = importlib.import_module(module_name)
     except ImportError:
