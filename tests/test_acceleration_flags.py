@@ -63,9 +63,10 @@ def test_runtime_snapshot_records_fast_paths(
     assert fast_paths.get("skip_content_hash") is True
     assert fast_paths.get("skip_tools") is True
     assert fast_paths.get("quick_mode") is True
-    active = snapshot.get("fast_paths_active")
-    assert isinstance(active, list)
-    assert set(active) == {"skip_content_hash", "skip_tools", "quick_mode"}
+    active_raw = snapshot.get("fast_paths_active")
+    assert isinstance(active_raw, list)
+    active_flags = {flag for flag in active_raw if isinstance(flag, str)}
+    assert active_flags == {"skip_content_hash", "skip_tools", "quick_mode"}
 
     summary = visitor.generate_summary_report()
     summary_fast = summary.get("fast_paths")

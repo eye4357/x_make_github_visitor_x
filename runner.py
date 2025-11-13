@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import os
 import platform
@@ -10,7 +11,7 @@ import subprocess
 import sys
 import time
 import uuid
-from collections.abc import Iterable, Mapping, MutableMapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, MutableMapping, Sequence
 from contextlib import suppress
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -45,9 +46,14 @@ else:  # Prefer local workspace package, fall back to PyPI distribution
     try:
         from x_make_common_x import get_logger, validate_payload
     except ModuleNotFoundError:  # pragma: no cover - only hit when using PyPI build
-        from x_4357_make_common_x import (  # type: ignore[attr-defined]
-            get_logger,
-            validate_payload,
+        fallback_module = importlib.import_module("x_4357_make_common_x")
+        get_logger = cast(
+            "Callable[[str], object]",
+            fallback_module.get_logger,
+        )
+        validate_payload = cast(
+            "Callable[..., object]",
+            fallback_module.validate_payload,
         )
 
 JSONPrimitive = str | int | float | bool | None
@@ -2279,6 +2285,12 @@ def _load_json_payload(path: str | None) -> Mapping[str, object]:
     return normalized
 
 
+def _flag_enabled(namespace: argparse.Namespace, name: str) -> bool:
+    """Return True when the argparse namespace defines a truthy flag."""
+
+    return bool(cast("object", getattr(namespace, name, False)))
+
+
 def _run_json_cli(args: Sequence[str]) -> None:
     parser = argparse.ArgumentParser(description="x_make_github_visitor_x JSON runner")
     parser.add_argument(
@@ -2320,11 +2332,14 @@ def _run_json_cli(args: Sequence[str]) -> None:
         parser.error("JSON input required. Use --json for stdin or --json-file <path>.")
 
     # Apply acceleration flags via environment before running
-    if parsed.quick:
+    quick_flag = _flag_enabled(parsed, "quick")
+    if quick_flag:
         os.environ["VISITOR_QUICK_MODE"] = "1"
-    if parsed.skip_content_hash:
+    skip_hash_flag = _flag_enabled(parsed, "skip_content_hash")
+    if skip_hash_flag:
         os.environ["VISITOR_SKIP_CONTENT_HASH"] = "1"
-    if parsed.skip_tools:
+    skip_tools_flag = _flag_enabled(parsed, "skip_tools")
+    if skip_tools_flag:
         os.environ["VISITOR_SKIP_TOOLS"] = "1"
 
     payload = _load_json_payload(json_file)
@@ -2475,13 +2490,13 @@ if __name__ == "__main__":
             action="store_true",
             help="Run only lightweight pyright check instead of full toolchain.",
         )
-        parsed, remaining = parser.parse_known_args(sys.argv[1:])
+        parsed, _remaining = parser.parse_known_args(sys.argv[1:])
 
-        if parsed.quick:
+        if _flag_enabled(parsed, "quick"):
             os.environ["VISITOR_QUICK_MODE"] = "1"
-        if parsed.skip_content_hash:
+        if _flag_enabled(parsed, "skip_content_hash"):
             os.environ["VISITOR_SKIP_CONTENT_HASH"] = "1"
-        if parsed.skip_tools:
+        if _flag_enabled(parsed, "skip_tools"):
             os.environ["VISITOR_SKIP_TOOLS"] = "1"
 
         inst = init_main()
